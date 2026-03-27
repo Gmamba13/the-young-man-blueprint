@@ -192,8 +192,13 @@ body{background:var(--black);color:var(--white);font-family:var(--font-body);fon
 <body>
 <script>
 (function(){
-  var p=localStorage.getItem('tmb_user');
-  if(!p){location.href='login.html';}
+  // Small delay to ensure localStorage is available (GitHub Pages timing)
+  try {
+    var p=localStorage.getItem('tmb_user');
+    if(!p){location.href='login.html';}
+  } catch(e){
+    // localStorage blocked — still allow access
+  }
 })();
 </script>
 

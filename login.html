@@ -362,35 +362,44 @@
     const password = document.getElementById('password').value.trim();
     const error = document.getElementById('error-msg');
 
-    if (email && password) {
-      const btn = document.querySelector('.btn-login');
-      // Check if returning user exists in localStorage
-      const existing = localStorage.getItem('tmb_user');
-      if (!existing) {
-        // First time — create a basic profile from email
-        const name = email.split('@')[0].replace(/[^a-zA-Z]/g,' ').trim() || 'User';
-        const profile = {
-          name: name.charAt(0).toUpperCase() + name.slice(1),
-          email: email,
-          totalXP: 0,
-          streak: 0,
-          lastMissionDate: null,
-          totalMissions: 0,
-          activePillars: [],
-          missions: {},
-          habits: {},
-          earnedBadges: [],
-          createdAt: new Date().toISOString()
-        };
-        localStorage.setItem('tmb_user', JSON.stringify(profile));
-      }
-      btn.textContent = 'Logging In...';
-      btn.style.background = 'var(--green)';
-      setTimeout(() => { window.location.href = 'dashboard.html'; }, 900);
-    } else {
+    if (!email || !password) {
+      error.textContent = 'Please enter your email and password.';
       error.classList.add('show');
       setTimeout(() => error.classList.remove('show'), 3000);
+      return;
     }
+
+    const btn = document.querySelector('.btn-login');
+    btn.textContent = 'Logging In...';
+    btn.style.background = 'var(--green)';
+
+    // Check if a profile already exists
+    let existing = null;
+    try { existing = localStorage.getItem('tmb_user'); } catch(e){}
+
+    if (!existing) {
+      // Create new profile
+      const name = email.split('@')[0].replace(/[^a-zA-Z]/g,' ').trim() || 'User';
+      const profile = {
+        name: name.charAt(0).toUpperCase() + name.slice(1),
+        email: email,
+        totalXP: 0,
+        streak: 0,
+        lastMissionDate: null,
+        totalMissions: 0,
+        activePillars: [],
+        missions: {},
+        habitData: {},
+        customHabits: null,
+        customMissions: null,
+        earnedBadges: [],
+        avatarColor: '#e8500a',
+        createdAt: new Date().toISOString()
+      };
+      try { localStorage.setItem('tmb_user', JSON.stringify(profile)); } catch(e){}
+    }
+
+    setTimeout(() => { window.location.href = 'dashboard.html'; }, 900);
   }
 
   // Allow Enter key
