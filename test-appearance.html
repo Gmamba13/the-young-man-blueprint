@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Appearance Checklist — The Young Man Blueprint</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--black:#0a0a0a;--deep:#111318;--panel:#16191f;--border:#22262e;--orange:#e8500a;--amber:#f5a623;--white:#f0ede8;--muted:#7a7f8a;--green:#2dba6e;--red:#e84040;--font-display:'Bebas Neue',sans-serif;--font-body:'DM Sans',sans-serif;--font-mono:'Space Mono',monospace;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--black);color:var(--white);font-family:var(--font-body);min-height:100vh;}
+.header{padding:24px 40px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:var(--deep);}
+.back-btn{font-family:var(--font-mono);font-size:0.7rem;letter-spacing:2px;color:var(--muted);text-decoration:none;}.back-btn:hover{color:var(--orange);}
+.ht{font-family:var(--font-display);font-size:1.4rem;letter-spacing:2px;}.ht span{color:var(--orange);}
+.wrap{max-width:860px;margin:0 auto;padding:60px 24px;}
+.eyebrow{font-family:var(--font-mono);font-size:0.7rem;letter-spacing:3px;color:var(--muted);text-transform:uppercase;margin-bottom:16px;text-align:center;}
+.big{font-family:var(--font-display);font-size:clamp(2.5rem,6vw,5rem);letter-spacing:2px;line-height:1;margin-bottom:16px;text-align:center;}
+.sub{color:var(--muted);font-size:0.95rem;line-height:1.7;max-width:500px;margin:0 auto 48px;text-align:center;}
+.gate-box{background:var(--panel);border:1px solid var(--orange);padding:32px;border-radius:4px;text-align:center;margin-bottom:40px;}
+.gate-box h3{font-family:var(--font-display);font-size:1.6rem;letter-spacing:1px;margin-bottom:8px;}
+.gate-box p{font-size:0.85rem;color:var(--muted);margin-bottom:20px;}
+.gate-input{background:var(--deep);border:1px solid var(--border);color:var(--white);padding:12px 16px;font-size:0.9rem;font-family:var(--font-body);border-radius:2px;outline:none;width:100%;max-width:320px;margin-bottom:12px;display:block;margin-left:auto;margin-right:auto;}
+.gate-input:focus{border-color:var(--orange);}
+.gate-btn{background:var(--orange);color:var(--white);border:none;padding:12px 32px;font-size:0.82rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;font-family:var(--font-body);border-radius:2px;}
+.score-banner{display:flex;align-items:center;gap:20px;background:var(--panel);border:1px solid var(--border);padding:18px 24px;border-radius:4px;margin-bottom:28px;position:sticky;top:0;z-index:10;}
+.sb-score{font-family:var(--font-display);font-size:2.2rem;letter-spacing:-1px;color:var(--orange);}
+.sb-bar-wrap{flex:1;}
+.sb-label{font-family:var(--font-mono);font-size:0.58rem;color:var(--muted);letter-spacing:2px;margin-bottom:5px;}
+.sb-bar{background:var(--border);border-radius:2px;height:8px;overflow:hidden;}
+.sb-fill{height:100%;background:linear-gradient(90deg,var(--orange),var(--amber));border-radius:2px;transition:width 0.4s;}
+.sb-grade{font-family:var(--font-display);font-size:1.2rem;color:var(--muted);}
+.section{margin-bottom:28px;}
+.sec-hdr{background:var(--deep);border:1px solid var(--border);border-bottom:none;padding:16px 20px;border-radius:4px 4px 0 0;display:flex;align-items:center;gap:12px;}
+.sec-icon{font-size:1.2rem;}
+.sec-title{font-family:var(--font-display);font-size:1.1rem;letter-spacing:1px;flex:1;}
+.sec-score{font-family:var(--font-mono);font-size:0.7rem;color:var(--muted);}
+.items{background:var(--panel);border:1px solid var(--border);border-radius:0 0 4px 4px;}
+.item{display:flex;gap:14px;padding:16px 20px;border-bottom:1px solid var(--border);cursor:pointer;transition:background 0.15s;}
+.item:last-child{border:none;}
+.item:hover{background:#1a1e26;}
+.item.ck{background:rgba(45,186,110,0.04);}
+.chk{width:22px;height:22px;border:1.5px solid var(--border);border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;transition:all 0.2s;font-size:0.7rem;}
+.item.ck .chk{background:var(--green);border-color:var(--green);color:var(--white);}
+.item-body{flex:1;}
+.item-title{font-size:0.88rem;font-weight:500;margin-bottom:3px;}
+.item-desc{font-size:0.75rem;color:var(--muted);line-height:1.5;}
+.item-why{font-size:0.72rem;color:var(--orange);margin-top:4px;font-family:var(--font-mono);}
+.gaps-panel{background:var(--panel);border:1px solid var(--border);padding:28px;border-radius:4px;margin-top:28px;}
+.g-title{font-family:var(--font-display);font-size:1.3rem;letter-spacing:1px;margin-bottom:16px;}
+.gap-row{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--border);font-size:0.82rem;color:var(--muted);}
+.gap-row:last-child{border:none;}
+</style>
+</head>
+<body>
+<div class="header"><a href="appearance.html" class="back-btn">← BACK TO APPEARANCE</a><div class="ht">THE YOUNG MAN <span>BLUEPRINT</span></div><div style="font-family:var(--font-mono);font-size:0.65rem;color:var(--muted);letter-spacing:2px;">APPEARANCE CHECKLIST</div></div>
+<div class="wrap">
+  <div class="eyebrow">🪞 Appearance Assessment</div>
+  <h1 class="big">HOW YOU SHOW UP MATTERS</h1>
+  <p class="sub">This isn't about vanity. How you present yourself affects how others treat you — and how you feel about yourself. Tick every box you currently own. See your score live.</p>
+  
+  <div id="main">
+    <div class="score-banner"><div class="sb-score" id="sb-score">0</div><div class="sb-bar-wrap"><div class="sb-label">APPEARANCE SCORE</div><div class="sb-bar"><div class="sb-fill" id="sb-fill" style="width:0%"></div></div></div><div class="sb-grade" id="sb-grade">—</div></div>
+    <div id="checklist-body"></div>
+    <div class="gaps-panel" id="gaps-panel"><div class="g-title">YOUR QUICK WINS</div><div id="gaps-list"></div></div>
+    <div style="text-align:center;margin-top:28px;"><a href="appearance.html" style="background:var(--orange);color:var(--white);padding:12px 28px;font-size:0.82rem;font-weight:700;letter-spacing:2px;text-decoration:none;border-radius:2px;display:inline-block;">← Back to Appearance Pillar</a></div>
+  </div>
+</div>
+<script>
+const SECTIONS=[
+  {icon:'🧼',title:'GROOMING BASICS',items:[
+    {id:'g1',title:'You shower daily',desc:'Baseline hygiene. Non-negotiable.',why:'High impact',pts:5},
+    {id:'g2',title:'You use deodorant every day',desc:'Scent is a massive part of first impressions.',why:'High impact',pts:5},
+    {id:'g3',title:'Your hair is clean and has a consistent style',desc:'Doesn\'t have to be expensive — just intentional.',why:'High impact',pts:6},
+    {id:'g4',title:'Your nails are clean and trimmed',desc:'People notice dirty or overgrown nails immediately.',why:'Medium impact',pts:4},
+    {id:'g5',title:'You moisturize your face daily',desc:'Dry or broken skin ages you and looks neglected.',why:'Medium impact',pts:4},
+    {id:'g6',title:'You use a face wash morning and evening',desc:'Basic skincare takes 2 minutes and makes a real difference.',why:'Medium impact',pts:4},
+    {id:'g7',title:'Your facial hair (if any) is intentional and maintained',desc:'Patchy, unkempt facial hair looks worse than none.',why:'High impact',pts:5},
+    {id:'g8',title:'You use a good cologne or fragrance',desc:'Scent is the most powerful sensory memory trigger.',why:'High impact',pts:5},
+  ]},
+  {icon:'👕',title:'CLOTHING & FIT',items:[
+    {id:'c1',title:'Your clothes fit properly — not too baggy, not too tight',desc:'Fit is more important than price. A $20 shirt that fits beats a $200 shirt that doesn\'t.',why:'Highest impact',pts:8},
+    {id:'c2',title:'Your wardrobe has a consistent "look" or style direction',desc:'Random clothing = forgettable impression.',why:'High impact',pts:6},
+    {id:'c3',title:'You own at least one well-fitting outfit for formal occasions',desc:'When the moment comes, you need to be ready.',why:'Medium impact',pts:5},
+    {id:'c4',title:'Your clothes are clean and ironed/wrinkle-free',desc:'Wrinkled or stained clothes signal you don\'t care.',why:'High impact',pts:5},
+    {id:'c5',title:'Your shoes are clean and in good condition',desc:'Shoes are one of the first things people check.',why:'High impact',pts:6},
+    {id:'c6',title:'You own quality basics: white tee, dark jeans, clean white shirt',desc:'A capsule wardrobe removes daily decision fatigue.',why:'Medium impact',pts:4},
+    {id:'c7',title:'Your underwear and socks are in good condition',desc:'Even if nobody else sees them — you know.',why:'Low impact',pts:3},
+  ]},
+  {icon:'🧍',title:'POSTURE & PRESENCE',items:[
+    {id:'p1',title:'You walk with your head up and shoulders back',desc:'Posture signals confidence before you open your mouth.',why:'Highest impact',pts:8},
+    {id:'p2',title:'You make consistent eye contact in conversations',desc:'Eye contact signals confidence and respect.',why:'Highest impact',pts:8},
+    {id:'p3',title:'You have a firm handshake',desc:'A weak handshake is noticed and remembered negatively.',why:'High impact',pts:5},
+    {id:'p4',title:'You don\'t slouch when sitting',desc:'Slouching at a desk or in social settings projects disengagement.',why:'Medium impact',pts:4},
+    {id:'p5',title:'You smile naturally and aren\'t constantly frowning or tense',desc:'Approachability is part of presence.',why:'High impact',pts:5},
+  ]},
+  {icon:'⚕️',title:'HEALTH-BASED APPEARANCE',items:[
+    {id:'h1',title:'Your teeth are clean and you brush twice daily',desc:'Dental hygiene is critical for breath and appearance.',why:'High impact',pts:6},
+    {id:'h2',title:'Your eyes are clear — not red or constantly tired-looking',desc:'Sleep quality shows in your eyes more than anywhere.',why:'Medium impact',pts:4},
+    {id:'h3',title:'You\'re at a healthy body fat level or actively working toward it',desc:'Body composition is the highest-leverage appearance factor long-term.',why:'Highest impact',pts:8},
+    {id:'h4',title:'Your skin is relatively clear — you have a skincare routine',desc:'Consistent skincare is simple and makes a large difference.',why:'High impact',pts:5},
+  ]},
+];
+let checked=new Set();
+
+
+function render(){
+  const body=document.getElementById('checklist-body');body.innerHTML='';
+  SECTIONS.forEach(sec=>{
+    const div=document.createElement('div');div.className='section';
+    const ck=sec.items.filter(i=>checked.has(i.id)).length;
+    div.innerHTML=`<div class="sec-hdr"><span class="sec-icon">${sec.icon}</span><span class="sec-title">${sec.title}</span><span class="sec-score">${ck}/${sec.items.length}</span></div>`;
+    const items=document.createElement('div');items.className='items';
+    sec.items.forEach(item=>{
+      const row=document.createElement('div');row.className='item'+(checked.has(item.id)?' ck':'');
+      row.innerHTML=`<div class="chk">${checked.has(item.id)?'✓':''}</div><div class="item-body"><div class="item-title">${item.title}</div><div class="item-desc">${item.desc}</div><div class="item-why">${item.why} · +${item.pts} pts</div></div>`;
+      row.onclick=()=>{if(checked.has(item.id))checked.delete(item.id);else checked.add(item.id);updateScore();render();};
+      items.appendChild(row);
+    });
+    div.appendChild(items);body.appendChild(div);
+  });
+  updateScore();
+}
+function updateScore(){
+  const allItems=SECTIONS.flatMap(s=>s.items);const max=allItems.reduce((a,i)=>a+i.pts,0);
+  const earned=allItems.filter(i=>checked.has(i.id)).reduce((a,i)=>a+i.pts,0);
+  const pct=Math.round((earned/max)*100);
+  document.getElementById('sb-score').textContent=earned;document.getElementById('sb-fill').style.width=pct+'%';
+  let grade;if(pct>=80)grade='SHARP';else if(pct>=60)grade='SOLID';else if(pct>=40)grade='AVERAGE';else grade='NEEDS WORK';
+  document.getElementById('sb-grade').textContent=grade;document.getElementById('sb-grade').style.color=pct>=80?'var(--green)':pct>=60?'var(--amber)':'var(--red)';
+  const gl=document.getElementById('gaps-list');
+  const unchecked=allItems.filter(i=>!checked.has(i.id)).sort((a,b)=>b.pts-a.pts).slice(0,5);
+  if(unchecked.length===0){gl.innerHTML='<div style="color:var(--green);font-size:0.85rem;">✓ You\'ve hit every checklist item. You\'re presenting yourself at a high level.</div>';return;}
+  gl.innerHTML=unchecked.map((i,idx)=>`<div class="gap-row"><span style="flex-shrink:0;">${idx===0?'🔴':'🟡'}</span><div><strong>${i.title}</strong><br><span>${i.desc}</span></div></div>`).join('');
+}
+</script>
+</body>
+</html>

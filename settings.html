@@ -93,6 +93,23 @@ body{background:var(--black);color:var(--white);font-family:var(--font-body);fon
 </style>
 </head>
 <body>
+<script>
+(function(){
+  var p = localStorage.getItem('tmb_user');
+  var pub = ['index.html','login.html','create-account.html','thankyou.html','faq.html','blog.html','community.html','resources.html','health.html','mental-health.html','finances.html','investing.html','career.html','relationships.html','discipline.html','motivation.html','appearance.html','addiction.html','resources-pillar.html'];
+  var page = location.pathname.split('/').pop() || 'index.html';
+  if(!p && pub.indexOf(page) === -1){ location.href = 'login.html'; }
+  // Persist nav state — update sidebar avatar/name if logged in
+  if(p){
+    var u = JSON.parse(p);
+    var els = document.querySelectorAll('.sb-name-live');
+    els.forEach(function(e){ e.textContent = u.name || 'User'; });
+    var avs = document.querySelectorAll('.sb-avatar-live');
+    avs.forEach(function(a){ a.textContent = (u.name||'?')[0].toUpperCase(); if(u.avatarColor) a.style.background = u.avatarColor; });
+  }
+})();
+</script>
+
 <button class="mobile-menu-btn" onclick="toggleSidebar()">☰</button>
 <div class="mob-overlay" id="mob-overlay" onclick="toggleSidebar()"></div>
 <div class="toast" id="toast"></div>

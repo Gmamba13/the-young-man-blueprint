@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Physical Health Test — The Young Man Blueprint</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--black:#0a0a0a;--deep:#111318;--panel:#16191f;--border:#22262e;--orange:#e8500a;--amber:#f5a623;--white:#f0ede8;--muted:#7a7f8a;--green:#2dba6e;--red:#e84040;--font-display:'Bebas Neue',sans-serif;--font-body:'DM Sans',sans-serif;--font-mono:'Space Mono',monospace;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--black);color:var(--white);font-family:var(--font-body);min-height:100vh;padding:0;}
+.header{padding:24px 40px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:var(--deep);}
+.back-btn{font-family:var(--font-mono);font-size:0.7rem;letter-spacing:2px;color:var(--muted);text-decoration:none;transition:color 0.2s;}
+.back-btn:hover{color:var(--orange);}
+.header-title{font-family:var(--font-display);font-size:1.4rem;letter-spacing:2px;}
+.header-title span{color:var(--orange);}
+.container{max-width:760px;margin:0 auto;padding:60px 24px;}
+.test-intro{text-align:center;margin-bottom:56px;}
+.test-eyebrow{font-family:var(--font-mono);font-size:0.7rem;letter-spacing:3px;color:var(--orange);text-transform:uppercase;margin-bottom:16px;}
+.test-title{font-family:var(--font-display);font-size:clamp(2.5rem,6vw,5rem);letter-spacing:2px;line-height:1;margin-bottom:16px;}
+.test-sub{color:var(--muted);font-size:0.95rem;line-height:1.7;max-width:500px;margin:0 auto 32px;}
+.gate-box{background:var(--panel);border:1px solid var(--orange);padding:32px;border-radius:4px;text-align:center;margin-bottom:40px;}
+.gate-box h3{font-family:var(--font-display);font-size:1.6rem;letter-spacing:1px;margin-bottom:8px;}
+.gate-box p{font-size:0.85rem;color:var(--muted);margin-bottom:20px;}
+.gate-input{background:var(--deep);border:1px solid var(--border);color:var(--white);padding:12px 16px;font-size:0.9rem;font-family:var(--font-body);border-radius:2px;outline:none;width:100%;max-width:320px;margin-bottom:12px;display:block;margin-left:auto;margin-right:auto;transition:border-color 0.2s;}
+.gate-input:focus{border-color:var(--orange);}
+.gate-btn{background:var(--orange);color:var(--white);border:none;padding:12px 32px;font-size:0.82rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;font-family:var(--font-body);border-radius:2px;transition:background 0.2s;}
+.gate-btn:hover{background:#ff6820;}
+/* PROGRESS */
+.progress-wrap{margin-bottom:40px;}
+.progress-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.progress-label{font-family:var(--font-mono);font-size:0.65rem;letter-spacing:2px;color:var(--muted);}
+.progress-count{font-family:var(--font-mono);font-size:0.7rem;color:var(--orange);}
+.progress-bar{background:var(--border);border-radius:2px;height:6px;overflow:hidden;}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--orange),var(--amber));border-radius:2px;transition:width 0.4s ease;}
+/* QUESTION CARD */
+.q-card{background:var(--panel);border:1px solid var(--border);padding:36px;border-radius:4px;margin-bottom:24px;animation:slideIn 0.35s ease;}
+@keyframes slideIn{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+.q-category{font-family:var(--font-mono);font-size:0.62rem;letter-spacing:3px;color:var(--orange);text-transform:uppercase;margin-bottom:12px;}
+.q-text{font-family:var(--font-display);font-size:1.5rem;letter-spacing:1px;line-height:1.2;margin-bottom:28px;}
+.options{display:flex;flex-direction:column;gap:10px;}
+.option{background:var(--deep);border:1.5px solid var(--border);padding:14px 20px;border-radius:4px;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;gap:14px;font-size:0.88rem;}
+.option:hover{border-color:var(--orange);background:#1a1e26;}
+.option.selected{border-color:var(--orange);background:rgba(232,80,10,0.1);}
+.option-dot{width:18px;height:18px;border-radius:50%;border:1.5px solid var(--border);flex-shrink:0;transition:all 0.2s;}
+.option.selected .option-dot{background:var(--orange);border-color:var(--orange);}
+.option-score{margin-left:auto;font-family:var(--font-mono);font-size:0.6rem;color:var(--muted);}
+.nav-btns{display:flex;gap:12px;justify-content:flex-end;margin-top:20px;}
+.btn-next{background:var(--orange);color:var(--white);border:none;padding:12px 28px;font-size:0.82rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;border-radius:2px;transition:background 0.2s;}
+.btn-next:hover{background:#ff6820;}
+.btn-prev{background:transparent;color:var(--muted);border:1px solid var(--border);padding:12px 22px;font-size:0.82rem;cursor:pointer;border-radius:2px;transition:all 0.2s;}
+.btn-prev:hover{color:var(--white);}
+/* RESULTS */
+.results{display:none;animation:slideIn 0.4s ease;}
+.score-ring-wrap{display:flex;justify-content:center;margin-bottom:40px;}
+.score-ring{position:relative;width:180px;height:180px;}
+.score-ring svg{transform:rotate(-90deg);}
+.score-ring-num{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:var(--font-display);font-size:3rem;letter-spacing:-1px;line-height:1;}
+.score-ring-lbl{font-family:var(--font-mono);font-size:0.58rem;color:var(--muted);letter-spacing:2px;margin-top:4px;}
+.result-grade{text-align:center;margin-bottom:40px;}
+.grade-badge{display:inline-block;font-family:var(--font-display);font-size:2rem;letter-spacing:2px;padding:10px 28px;border-radius:2px;margin-bottom:12px;}
+.grade-badge.A{background:rgba(45,186,110,0.15);color:var(--green);border:1px solid rgba(45,186,110,0.4);}
+.grade-badge.B{background:rgba(245,166,35,0.12);color:var(--amber);border:1px solid rgba(245,166,35,0.3);}
+.grade-badge.C{background:rgba(232,80,10,0.1);color:var(--orange);border:1px solid rgba(232,80,10,0.3);}
+.grade-badge.D{background:rgba(232,64,64,0.1);color:var(--red);border:1px solid rgba(232,64,64,0.3);}
+.grade-title{font-family:var(--font-display);font-size:2rem;letter-spacing:1px;margin-bottom:8px;}
+.grade-desc{color:var(--muted);font-size:0.88rem;max-width:480px;margin:0 auto;line-height:1.7;}
+.category-bars{margin-bottom:40px;}
+.cat-bar-row{margin-bottom:18px;}
+.cat-bar-top{display:flex;justify-content:space-between;font-size:0.8rem;margin-bottom:6px;}
+.cat-bar-name{font-weight:500;}
+.cat-bar-score{font-family:var(--font-mono);font-size:0.7rem;color:var(--orange);}
+.cat-bar-bg{background:var(--border);border-radius:2px;height:8px;overflow:hidden;}
+.cat-bar-fill{height:100%;border-radius:2px;transition:width 0.8s ease;}
+.recommendations{background:var(--panel);border:1px solid var(--border);padding:28px;border-radius:4px;margin-bottom:32px;}
+.rec-title{font-family:var(--font-display);font-size:1.2rem;letter-spacing:1px;margin-bottom:16px;}
+.rec-item{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--border);font-size:0.82rem;color:var(--muted);line-height:1.5;}
+.rec-item:last-child{border:none;}
+.rec-icon{flex-shrink:0;font-size:1rem;margin-top:1px;}
+.retake-btn{background:transparent;color:var(--orange);border:1px solid var(--orange);padding:12px 24px;font-size:0.8rem;font-family:var(--font-body);letter-spacing:2px;text-transform:uppercase;cursor:pointer;border-radius:2px;transition:all 0.2s;margin-right:12px;}
+.retake-btn:hover{background:rgba(232,80,10,0.1);}
+</style>
+</head>
+<body>
+<div class="header">
+  <a href="health.html" class="back-btn">← BACK TO HEALTH</a>
+  <div class="header-title">THE YOUNG MAN <span>BLUEPRINT</span></div>
+  <div style="font-family:var(--font-mono);font-size:0.65rem;color:var(--muted);letter-spacing:2px;">HEALTH TEST</div>
+</div>
+
+<div class="container">
+  <div class="test-intro">
+    <div class="test-eyebrow">💪 Physical Health Assessment</div>
+    <h1 class="test-title">WHERE ARE YOU RIGHT NOW?</h1>
+    <p class="test-sub">This assessment covers training, nutrition, sleep, and recovery. It takes about 4 minutes and gives you a personalized score across each category.</p>
+  </div>
+
+  <!-- EMAIL GATE -->
+  
+
+  <!-- TEST -->
+  <div id="test-wrap">
+    <div class="progress-wrap">
+      <div class="progress-top">
+        <span class="progress-label">YOUR PROGRESS</span>
+        <span class="progress-count" id="q-count">1 / 16</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:6%"></div></div>
+    </div>
+    <div id="q-card-wrap"></div>
+    <div class="nav-btns">
+      <button class="btn-prev" id="btn-prev" onclick="prevQ()" style="display:none;">← Back</button>
+      <button class="btn-next" id="btn-next" onclick="nextQ()">Next →</button>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div class="results" id="results">
+    <div class="score-ring-wrap">
+      <div class="score-ring">
+        <svg width="180" height="180" viewBox="0 0 180 180">
+          <circle cx="90" cy="90" r="76" fill="none" stroke="#22262e" stroke-width="14"/>
+          <circle cx="90" cy="90" r="76" fill="none" stroke="url(#grad)" stroke-width="14" stroke-linecap="round" stroke-dasharray="477.5" id="score-circle" stroke-dashoffset="477.5"/>
+          <defs><linearGradient id="grad" x1="0%" y1="0%"><stop offset="0%" stop-color="#e8500a"/><stop offset="100%" stop-color="#f5a623"/></linearGradient></defs>
+        </svg>
+        <div class="score-ring-num"><span id="score-num">0</span><span class="score-ring-lbl">/ 100</span></div>
+      </div>
+    </div>
+    <div class="result-grade">
+      <div class="grade-badge" id="grade-badge">A</div>
+      <div class="grade-title" id="grade-title">STRONG FOUNDATION</div>
+      <p class="grade-desc" id="grade-desc"></p>
+    </div>
+    <div class="category-bars" id="category-bars"></div>
+    <div class="recommendations" id="recommendations"></div>
+    <div style="text-align:center;">
+      <button class="retake-btn" onclick="retake()">↩ Retake Test</button>
+      <a href="health.html" class="btn-next" style="display:inline-block;text-decoration:none;">← Back to Health Pillar</a>
+    </div>
+  </div>
+</div>
+
+<script>
+const QUESTIONS = [
+  {cat:'💤 Sleep',text:'How many hours of sleep do you get on average?',opts:[{t:'Less than 5 hours',s:0},{t:'5–6 hours',s:1},{t:'6–7 hours',s:2},{t:'7–9 hours',s:3}]},
+  {cat:'💤 Sleep',text:'How would you describe your sleep quality?',opts:[{t:'Terrible — wake up multiple times',s:0},{t:'Poor — feel groggy most mornings',s:1},{t:'Average — some good nights, some bad',s:2},{t:'Good — feel rested most days',s:3}]},
+  {cat:'💤 Sleep',text:'What time do you typically go to bed?',opts:[{t:'After 2am',s:0},{t:'12am–2am',s:1},{t:'10pm–12am',s:2},{t:'Before 10pm',s:3}]},
+  {cat:'💪 Training',text:'How many times a week do you exercise?',opts:[{t:'Never',s:0},{t:'1–2 times',s:1},{t:'3–4 times',s:2},{t:'5+ times',s:3}]},
+  {cat:'💪 Training',text:'Do you follow a structured training program?',opts:[{t:'No program at all',s:0},{t:'I do random workouts',s:1},{t:'Loosely structured',s:2},{t:'Yes — I follow a clear program',s:3}]},
+  {cat:'💪 Training',text:'How long have you been training consistently?',opts:[{t:'I\'ve never trained consistently',s:0},{t:'Less than 3 months',s:1},{t:'3 months to 1 year',s:2},{t:'Over 1 year',s:3}]},
+  {cat:'🥗 Nutrition',text:'How many meals do you eat per day?',opts:[{t:'1 or less',s:0},{t:'2 meals',s:1},{t:'3 meals',s:2},{t:'3+ balanced meals',s:3}]},
+  {cat:'🥗 Nutrition',text:'Do you track your protein intake?',opts:[{t:'No — I have no idea what I eat',s:0},{t:'Roughly aware but don\'t track',s:1},{t:'Sometimes track',s:2},{t:'Yes — I hit my protein target daily',s:3}]},
+  {cat:'🥗 Nutrition',text:'How much water do you drink daily?',opts:[{t:'Less than 1L',s:0},{t:'1–1.5L',s:1},{t:'1.5–2.5L',s:2},{t:'2.5L+',s:3}]},
+  {cat:'🥗 Nutrition',text:'How often do you eat fast food or processed food?',opts:[{t:'Every day',s:0},{t:'4–5 times a week',s:1},{t:'1–3 times a week',s:2},{t:'Rarely or never',s:3}]},
+  {cat:'🏃 Cardio',text:'How often do you do cardiovascular exercise?',opts:[{t:'Never',s:0},{t:'Once a week',s:1},{t:'2–3 times a week',s:2},{t:'4+ times a week',s:3}]},
+  {cat:'🏃 Cardio',text:'Can you run 5km without stopping?',opts:[{t:'No — I\'d struggle with 1km',s:0},{t:'Probably not comfortably',s:1},{t:'Yes but slowly',s:2},{t:'Yes — I\'m a regular runner',s:3}]},
+  {cat:'🔄 Recovery',text:'Do you stretch or do mobility work?',opts:[{t:'Never',s:0},{t:'Occasionally after workouts',s:1},{t:'After most workouts',s:2},{t:'Daily dedicated mobility work',s:3}]},
+  {cat:'🔄 Recovery',text:'How do you handle muscle soreness?',opts:[{t:'Just push through or rest completely',s:0},{t:'Rest when it\'s bad',s:1},{t:'Light activity and stretching',s:2},{t:'Active recovery — walk, stretch, sleep',s:3}]},
+  {cat:'⚕️ Health',text:'When did you last get a health check-up?',opts:[{t:'Never as an adult',s:0},{t:'More than 3 years ago',s:1},{t:'1–3 years ago',s:2},{t:'Within the last year',s:3}]},
+  {cat:'⚕️ Health',text:'Do you have any ongoing unhealthy habits?',opts:[{t:'Heavy smoking and/or drinking daily',s:0},{t:'Regular smoking or heavy drinking',s:1},{t:'Occasional and trying to cut down',s:2},{t:'Clean — no major unhealthy habits',s:3}]},
+];
+
+const CATS = ['💤 Sleep','💪 Training','🥗 Nutrition','🏃 Cardio','🔄 Recovery','⚕️ Health'];
+let current=0, answers=[], unlocked=false;
+
+
+
+function renderQ(){
+  const q=QUESTIONS[current];
+  const wrap=document.getElementById('q-card-wrap');
+  const sel=answers[current];
+  wrap.innerHTML=`<div class="q-card">
+    <div class="q-category">${q.cat}</div>
+    <div class="q-text">${q.text}</div>
+    <div class="options">${q.opts.map((o,i)=>`<div class="option${sel===i?' selected':''}" onclick="selectOpt(${i})"><div class="option-dot"></div><span>${o.t}</span></div>`).join('')}</div>
+  </div>`;
+  const total=QUESTIONS.length;
+  document.getElementById('q-count').textContent=(current+1)+' / '+total;
+  document.getElementById('progress-fill').style.width=(((current+1)/total)*100)+'%';
+  document.getElementById('btn-prev').style.display=current>0?'block':'none';
+  document.getElementById('btn-next').textContent=current===total-1?'See My Results →':'Next →';
+}
+
+function selectOpt(i){answers[current]=i;renderQ();}
+
+function nextQ(){
+  if(answers[current]===undefined){const opts=document.querySelectorAll('.option');opts.forEach(o=>o.style.animation='');setTimeout(()=>opts.forEach(o=>o.style.borderColor='var(--red)'),0);setTimeout(()=>opts.forEach(o=>o.style.borderColor=''),1200);return;}
+  if(current<QUESTIONS.length-1){current++;renderQ();}else{showResults();}
+}
+function prevQ(){if(current>0){current--;renderQ();}}
+
+function showResults(){
+  document.getElementById('test-wrap').style.display='none';
+  const res=document.getElementById('results');res.style.display='block';
+  // Calculate scores per category
+  const catScores={};const catMax={};
+  QUESTIONS.forEach((q,i)=>{
+    const cat=q.cat;if(!catScores[cat]){catScores[cat]=0;catMax[cat]=0;}
+    catScores[cat]+=(answers[i]||0);catMax[cat]+=3;
+  });
+  const total=Object.values(catScores).reduce((a,b)=>a+b,0);
+  const maxTotal=Object.values(catMax).reduce((a,b)=>a+b,0);
+  const pct=Math.round((total/maxTotal)*100);
+
+  // Animate score ring
+  const circ=document.getElementById('score-circle');
+  const circumference=477.5;
+  setTimeout(()=>{circ.style.transition='stroke-dashoffset 1.5s ease';circ.style.strokeDashoffset=circumference-(circumference*(pct/100));},100);
+  let num=0;const numEl=document.getElementById('score-num');
+  const counter=setInterval(()=>{num=Math.min(num+2,pct);numEl.textContent=num;if(num>=pct)clearInterval(counter);},30);
+
+  // Grade
+  let grade,gtitle,gdesc;
+  if(pct>=80){grade='A';gtitle='STRONG FOUNDATION';gdesc='Your physical health is in solid shape. You\'re sleeping well, training consistently, and eating with intent. Now optimize — refine your program, dial in your nutrition, and push for the next level.';}
+  else if(pct>=60){grade='B';gtitle='BUILDING MOMENTUM';gdesc='You\'ve got decent habits in some areas but clear gaps in others. Pick the lowest-scoring category below and make it your focus for the next 30 days.';}
+  else if(pct>=40){grade='C';gtitle='ROOM TO GROW';gdesc='Your foundation needs work. The good news: small consistent changes compound fast. Start with sleep — it fixes everything else. Then training, then nutrition.';}
+  else{grade='D';gtitle='START TODAY';gdesc='You\'re starting from a low base — and that\'s okay. Every man who\'s built a great physique started somewhere. Your one job right now is to show up. Sleep more, move daily, drink water.';}
+
+  const badge=document.getElementById('grade-badge');badge.textContent=grade;badge.className='grade-badge '+grade;
+  document.getElementById('grade-title').textContent=gtitle;
+  document.getElementById('grade-desc').textContent=gdesc;
+
+  // Category bars
+  const barsWrap=document.getElementById('category-bars');barsWrap.innerHTML='<h3 style="font-family:var(--font-display);font-size:1.2rem;letter-spacing:1px;margin-bottom:20px;">BREAKDOWN BY CATEGORY</h3>';
+  Object.entries(catScores).forEach(([cat,score])=>{
+    const max=catMax[cat];const pct2=Math.round((score/max)*100);
+    const color=pct2>=70?'var(--green)':pct2>=40?'var(--amber)':'var(--red)';
+    barsWrap.innerHTML+=`<div class="cat-bar-row">
+      <div class="cat-bar-top"><span class="cat-bar-name">${cat}</span><span class="cat-bar-score">${pct2}%</span></div>
+      <div class="cat-bar-bg"><div class="cat-bar-fill" style="width:0%;background:${color}" data-target="${pct2}"></div></div>
+    </div>`;
+  });
+  setTimeout(()=>{document.querySelectorAll('.cat-bar-fill').forEach(el=>{el.style.transition='width 0.8s ease';el.style.width=el.dataset.target+'%';});},200);
+
+  // Recommendations
+  const recs=[];
+  if((catScores['💤 Sleep']||0)/catMax['💤 Sleep']<0.6)recs.push({icon:'🛌',text:'Prioritize getting 7–9 hours of sleep. Set a hard bedtime — same time every night. This fixes energy, mood, and training performance more than any supplement.'});
+  if((catScores['💪 Training']||0)/catMax['💪 Training']<0.6)recs.push({icon:'💪',text:'Start a 3-day/week program (Push/Pull/Legs or Starting Strength). You don\'t need 5 days — you need consistency.'});
+  if((catScores['🥗 Nutrition']||0)/catMax['🥗 Nutrition']<0.6)recs.push({icon:'🥗',text:'Calculate your protein target (0.8g per pound of bodyweight). Hit it every single day. Everything else comes second.'});
+  if((catScores['🏃 Cardio']||0)/catMax['🏃 Cardio']<0.6)recs.push({icon:'🏃',text:'Add two 20-minute walks per day. It\'s the single easiest cardio you can do and the benefits are massive.'});
+  if((catScores['🔄 Recovery']||0)/catMax['🔄 Recovery']<0.6)recs.push({icon:'🔄',text:'10 minutes of stretching before bed. Hips, hamstrings, chest, shoulders. This compounds into injury prevention and better sleep.'});
+  if(recs.length===0)recs.push({icon:'⭐',text:'You\'re doing well across the board. Now optimize: dial in your calorie targets, add mobility work, and consider working with a coach.'});
+  const recWrap=document.getElementById('recommendations');
+  recWrap.innerHTML='<div class="rec-title">YOUR ACTION PLAN</div>'+recs.map(r=>`<div class="rec-item"><span class="rec-icon">${r.icon}</span><span>${r.text}</span></div>`).join('');
+}
+
+function retake(){current=0;answers=[];document.getElementById('results').style.display='none';document.getElementById('test-wrap').style.display='block';renderQ();}
+
+// Check if already signed in
+
+</script>
+</body>
+</html>

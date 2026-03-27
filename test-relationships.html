@@ -1,0 +1,104 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Relationships Checklist — The Young Man Blueprint</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--black:#0a0a0a;--deep:#111318;--panel:#16191f;--border:#22262e;--orange:#e8500a;--amber:#f5a623;--white:#f0ede8;--muted:#7a7f8a;--green:#2dba6e;--red:#e84040;--font-display:'Bebas Neue',sans-serif;--font-body:'DM Sans',sans-serif;--font-mono:'Space Mono',monospace;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--black);color:var(--white);font-family:var(--font-body);min-height:100vh;}
+.header{padding:24px 40px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:var(--deep);}
+.back-btn{font-family:var(--font-mono);font-size:0.7rem;letter-spacing:2px;color:var(--muted);text-decoration:none;}.back-btn:hover{color:var(--orange);}
+.ht{font-family:var(--font-display);font-size:1.4rem;letter-spacing:2px;}.ht span{color:var(--orange);}
+.wrap{max-width:760px;margin:0 auto;padding:60px 24px;}
+.eyebrow{font-family:var(--font-mono);font-size:0.7rem;letter-spacing:3px;text-transform:uppercase;margin-bottom:16px;text-align:center;}
+.big{font-family:var(--font-display);font-size:clamp(2.5rem,6vw,4.5rem);letter-spacing:2px;line-height:1;margin-bottom:16px;text-align:center;}
+.sub{color:var(--muted);font-size:0.95rem;line-height:1.7;max-width:500px;margin:0 auto 48px;text-align:center;}
+.gate-box{background:var(--panel);border:1px solid var(--orange);padding:32px;border-radius:4px;text-align:center;margin-bottom:40px;}
+.gate-box h3{font-family:var(--font-display);font-size:1.6rem;letter-spacing:1px;margin-bottom:8px;}
+.gate-box p{font-size:0.85rem;color:var(--muted);margin-bottom:20px;}
+.gate-input{background:var(--deep);border:1px solid var(--border);color:var(--white);padding:12px 16px;font-size:0.9rem;font-family:var(--font-body);border-radius:2px;outline:none;width:100%;max-width:320px;margin-bottom:12px;display:block;margin-left:auto;margin-right:auto;}
+.gate-input:focus{border-color:var(--orange);}
+.gate-btn{background:var(--orange);color:var(--white);border:none;padding:12px 32px;font-size:0.82rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;font-family:var(--font-body);border-radius:2px;}
+.q-card{background:var(--panel);border:1px solid var(--border);padding:36px;border-radius:4px;margin-bottom:24px;animation:si 0.3s ease;}
+@keyframes si{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+.q-cat{font-family:var(--font-mono);font-size:0.62rem;letter-spacing:3px;text-transform:uppercase;margin-bottom:12px;}
+.q-text{font-family:var(--font-display);font-size:1.4rem;letter-spacing:1px;line-height:1.2;margin-bottom:24px;}
+.opts{display:flex;flex-direction:column;gap:10px;}
+.opt{background:var(--deep);border:1.5px solid var(--border);padding:14px 20px;border-radius:4px;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;gap:14px;font-size:0.86rem;}
+.opt:hover{border-color:var(--orange);background:#1a1e26;}.opt.sel{border-color:var(--orange);background:rgba(232,80,10,0.1);}
+.dot{width:16px;height:16px;border-radius:50%;border:1.5px solid var(--border);flex-shrink:0;}.opt.sel .dot{background:var(--orange);border-color:var(--orange);}
+.nav{display:flex;gap:12px;justify-content:flex-end;margin-top:20px;}
+.bn{background:var(--orange);color:var(--white);border:none;padding:12px 28px;font-size:0.82rem;font-weight:700;letter-spacing:2px;cursor:pointer;border-radius:2px;}
+.bp{background:transparent;color:var(--muted);border:1px solid var(--border);padding:12px 22px;font-size:0.82rem;cursor:pointer;border-radius:2px;}
+.prog{background:var(--border);border-radius:2px;height:5px;overflow:hidden;margin-bottom:32px;}
+.prog-fill{height:100%;border-radius:2px;transition:width 0.4s;}
+.prog-top{display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:0.62rem;color:var(--muted);margin-bottom:8px;}
+.score-big{font-family:var(--font-display);font-size:5rem;letter-spacing:-2px;line-height:1;text-align:center;margin-bottom:8px;}
+.score-lbl{font-family:var(--font-mono);font-size:0.65rem;color:var(--muted);letter-spacing:2px;text-align:center;margin-bottom:32px;}
+.res-card{background:var(--panel);border:1px solid var(--border);padding:32px;border-radius:4px;margin-bottom:20px;}
+.res-title{font-family:var(--font-display);font-size:1.6rem;letter-spacing:1px;margin-bottom:10px;}
+.res-desc{color:var(--muted);font-size:0.88rem;line-height:1.7;margin-bottom:18px;}
+.rec-item{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--border);font-size:0.82rem;color:var(--muted);line-height:1.5;}
+.rec-item:last-child{border:none;}
+.cat-row{margin-bottom:16px;}
+.cat-top{display:flex;justify-content:space-between;font-size:0.8rem;margin-bottom:5px;}
+.cat-bg{background:var(--border);border-radius:2px;height:7px;overflow:hidden;}
+.cat-fill{height:100%;border-radius:2px;transition:width 0.8s;}
+</style><style>:root{--accent:#2dba6e;}</style></head><body>
+<div class="header"><a href="relationships.html" class="back-btn">← BACK TO RELATIONSHIPS</a><div class="ht">THE YOUNG MAN <span>BLUEPRINT</span></div><div style="font-family:var(--font-mono);font-size:0.65rem;color:var(--muted);letter-spacing:2px;">RELATIONSHIPS TEST</div></div>
+<div class="wrap">
+<div class="eyebrow" style="color:var(--green);">🤝 Relationships Assessment</div>
+<h1 class="big">HEALTHY OR UNHEALTHY?</h1>
+<p class="sub">This covers your friendships, romantic relationships, family dynamics, and communication. No judgement — just honest signals.</p>
+
+<div id="tw">
+  <div class="prog-top"><span id="pc">1 / 12</span><span></span></div>
+  <div class="prog"><div class="prog-fill" id="pf" style="width:8%;background:linear-gradient(90deg,var(--green),var(--amber));"></div></div>
+  <div id="qw"></div>
+  <div class="nav"><button class="bp" id="bp" onclick="prev()" style="display:none;">← Back</button><button class="bn" id="bn" onclick="next()">Next →</button></div>
+</div>
+<div id="results" style="display:none;"></div>
+</div>
+<script>
+const Q=[
+  {cat:'👥 Friendships',text:'How many genuine friends do you have — people you could call in a crisis?',opts:[{t:'None',s:0},{t:'1',s:1},{t:'2–3',s:2},{t:'4 or more',s:3}]},
+  {cat:'👥 Friendships',text:'When did you last spend time with a real friend (not online)?',opts:[{t:'I can't remember',s:0},{t:'Over a month ago',s:1},{t:'A couple of weeks',s:2},{t:'This week',s:3}]},
+  {cat:'👥 Friendships',text:'Do your friends support your growth or pull you down?',opts:[{t:'They actively pull me down',s:0},{t:'They're neutral — mostly passive',s:1},{t:'Mixed — some good some not',s:2},{t:'They challenge and support me',s:3}]},
+  {cat:'💬 Communication',text:'Can you express how you're actually feeling to someone close to you?',opts:[{t:'No — I keep everything inside',s:0},{t:'Rarely and awkwardly',s:1},{t:'Sometimes',s:2},{t:'Yes — I can be honest about my feelings',s:3}]},
+  {cat:'💬 Communication',text:'When you're in conflict with someone, how do you handle it?',opts:[{t:'I shut down or blow up',s:0},{t:'I avoid it until it explodes',s:1},{t:'I try but it often goes sideways',s:2},{t:'I address it calmly and directly',s:3}]},
+  {cat:'❤️ Romantic',text:'In past or current relationships, have you experienced controlling or toxic behaviour?',opts:[{t:'Yes — I've been in toxic relationships repeatedly',s:0},{t:'Yes in one relationship',s:1},{t:'Minor issues but mostly healthy',s:2},{t:'My relationships have been mostly healthy',s:3}]},
+  {cat:'❤️ Romantic',text:'Do you know what your "green flags" and "red flags" look like in a partner?',opts:[{t:'Not at all',s:0},{t:'Vaguely',s:1},{t:'Mostly yes',s:2},{t:'Yes — I have clear standards',s:3}]},
+  {cat:'🧠 Self-Awareness',text:'Do you tend to take responsibility in relationships or blame others?',opts:[{t:'Always the other person's fault',s:0},{t:'Lean toward blaming others',s:1},{t:'I try to look at my part',s:2},{t:'I take full ownership of my role',s:3}]},
+  {cat:'🧠 Self-Awareness',text:'Do you have patterns that repeat across relationships (arguments, disconnection, jealousy)?',opts:[{t:'Yes — the same things keep happening',s:0},{t:'I notice them but don't address them',s:1},{t:'I'm aware and working on them',s:2},{t:'No obvious repeating patterns',s:3}]},
+  {cat:'🏠 Family',text:'How is your relationship with your immediate family?',opts:[{t:'Severely damaged or no contact',s:0},{t:'Strained and distant',s:1},{t:'Average with some tension',s:2},{t:'Mostly good and connected',s:3}]},
+  {cat:'🔋 Energy',text:'After spending time with the main people in your life, how do you feel?',opts:[{t:'Drained and exhausted',s:0},{t:'Often drained',s:1},{t:'Mixed',s:2},{t:'Mostly energized and supported',s:3}]},
+  {cat:'🔋 Energy',text:'Do you have any relationships you know you should end or seriously reassess?',opts:[{t:'Several',s:0},{t:'One significant one',s:1},{t:'Maybe — I'm unsure',s:2},{t:'No — my circle feels right',s:3}]},
+];
+
+const Q=Q;
+let cur=0,ans=[];
+
+
+function render(){const q=Q[cur];const w=document.getElementById('qw');const s=ans[cur];w.innerHTML=`<div class="q-card"><div class="q-cat" style="color:var(--accent);">${q.cat}</div><div class="q-text">${q.text}</div><div class="opts">${q.opts.map((o,i)=>`<div class="opt${s===i?' sel':''}" onclick="sel(${i})"><div class="dot"></div><span>${o.t}</span></div>`).join('')}</div></div>`;const pct=Math.round(((cur+1)/Q.length)*100);document.getElementById('pf').style.width=pct+'%';document.getElementById('pc').textContent=(cur+1)+' / '+Q.length;document.getElementById('bn').textContent=cur===Q.length-1?'See My Results →':'Next →';document.getElementById('bp').style.display=cur>0?'block':'none';}
+function sel(i){ans[cur]=i;render();}
+function next(){if(ans[cur]===undefined){document.querySelectorAll('.opt').forEach(o=>o.style.borderColor='var(--red)');setTimeout(()=>document.querySelectorAll('.opt').forEach(o=>o.style.borderColor=''),1200);return;}if(cur<Q.length-1){cur++;render();}else showResults();}
+function prev(){if(cur>0){cur--;render();}}
+function retake(){cur=0;ans=[];document.getElementById('results').style.display='none';document.getElementById('tw').style.display='block';render();}
+function showResults(){
+  document.getElementById('tw').style.display='none';
+  const r=document.getElementById('results');r.style.display='block';
+  const total=ans.reduce((a,b)=>a+(b||0),0);const max=Q.length*3;const pct=Math.round((total/max)*100);
+  const col=pct>=70?'var(--green)':pct>=40?'var(--amber)':'var(--red)';
+  let gt,gd;
+  if(pct>=75){gt='STRONG CONNECTIONS';gd='Your relationships show signs of health — you can communicate, you have genuine friends, and you take ownership. Keep investing in the people who energize you.';}
+  else if(pct>=50){gt='ROOM TO BUILD';gd='You have some healthy foundations but clear gaps. The biggest wins usually come from communication and choosing who gets your time.';}
+  else if(pct>=30){gt='PATTERNS TO BREAK';gd='There are repeating dynamics in your relationships that are costing you. This takes honesty — and sometimes support. Consider what patterns you bring to every relationship.';}
+  else{gt='ATTENTION NEEDED';gd='Your relationship health is low across the board. Isolation and toxic dynamics are serious. Reach out to one person this week — a friend, family member, or counsellor.';}
+  r.innerHTML=`<div class="score-big" style="color:${col};">${pct}</div><div class="score-lbl">RELATIONSHIP HEALTH SCORE / 100</div>
+  <div class="res-card"><div class="res-title">${gt}</div><p class="res-desc">${gd}</p>
+  <div class="rec-item"><span>🤝</span><span>Reach out to one person you've let drift — send a message or call this week.</span></div>
+  <div class="rec-item"><span>💬</span><span>Read "Never Split the Difference" (Voss) for communication, and "Attached" (Levine) for relationship patterns.</span></div>
+  <div class="rec-item"><span>🔋</span><span>Audit your circle: who energizes you vs drains you. You don't have to cut people — but you can invest your time differently.</span></div>
+  <div class="rec-item"><span>🪞</span><span>Journal about patterns that repeat in your relationships — what's the common variable in each one?</span></div>
+  </div><div style="text-align:center;"><button onclick="retake()" style="background:transparent;color:var(--orange);border:1px solid var(--orange);padding:12px 24px;font-size:0.8rem;font-family:var(--font-body);letter-spacing:2px;text-transform:uppercase;cursor:pointer;border-radius:2px;margin-right:12px;">↩ Retake</button><a href="relationships.html" style="background:var(--orange);color:var(--white);padding:12px 24px;font-size:0.8rem;font-weight:700;letter-spacing:2px;text-decoration:none;border-radius:2px;display:inline-block;">← Back to Pillar</a></div>`;
+}
+
+</script></body></html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Addiction Model — The Young Man Blueprint</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--black:#0a0a0a;--deep:#111318;--panel:#16191f;--border:#22262e;--orange:#e8500a;--amber:#f5a623;--white:#f0ede8;--muted:#7a7f8a;--green:#2dba6e;--red:#e84040;--font-display:'Bebas Neue',sans-serif;--font-body:'DM Sans',sans-serif;--font-mono:'Space Mono',monospace;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--black);color:var(--white);font-family:var(--font-body);min-height:100vh;}
+.header{padding:24px 40px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:var(--deep);}
+.back-btn{font-family:var(--font-mono);font-size:0.7rem;letter-spacing:2px;color:var(--muted);text-decoration:none;}.back-btn:hover{color:var(--orange);}
+.ht{font-family:var(--font-display);font-size:1.4rem;letter-spacing:2px;}.ht span{color:var(--orange);}
+.wrap{max-width:900px;margin:0 auto;padding:60px 24px;}
+.eyebrow{font-family:var(--font-mono);font-size:0.7rem;letter-spacing:3px;color:var(--muted);text-transform:uppercase;margin-bottom:16px;text-align:center;}
+.big{font-family:var(--font-display);font-size:clamp(2.5rem,6vw,5rem);letter-spacing:2px;line-height:1;margin-bottom:16px;text-align:center;}
+.sub{color:var(--muted);font-size:0.95rem;line-height:1.7;max-width:500px;margin:0 auto 48px;text-align:center;}
+.gate-box{background:var(--panel);border:1px solid var(--orange);padding:32px;border-radius:4px;text-align:center;margin-bottom:40px;}
+.gate-box h3{font-family:var(--font-display);font-size:1.6rem;letter-spacing:1px;margin-bottom:8px;}
+.gate-box p{font-size:0.85rem;color:var(--muted);margin-bottom:20px;}
+.gate-input{background:var(--deep);border:1px solid var(--border);color:var(--white);padding:12px 16px;font-size:0.9rem;font-family:var(--font-body);border-radius:2px;outline:none;width:100%;max-width:320px;margin-bottom:12px;display:block;margin-left:auto;margin-right:auto;}
+.gate-input:focus{border-color:var(--orange);}
+.gate-btn{background:var(--orange);color:var(--white);border:none;padding:12px 32px;font-size:0.82rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;font-family:var(--font-body);border-radius:2px;}
+.model{display:none;}
+.panel{background:var(--panel);border:1px solid var(--border);padding:32px;border-radius:4px;margin-bottom:24px;}
+.pt{font-family:var(--font-display);font-size:1.4rem;letter-spacing:1px;margin-bottom:8px;}
+.ps{color:var(--muted);font-size:0.85rem;margin-bottom:24px;}
+/* SPECTRUM */
+.spectrum{position:relative;margin-bottom:32px;}
+.spec-bar{height:16px;border-radius:8px;background:linear-gradient(90deg,var(--green),var(--amber),var(--red));margin-bottom:12px;position:relative;}
+.spec-labels{display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:0.58rem;color:var(--muted);}
+.habit-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px;}
+@media(max-width:700px){.habit-cards{grid-template-columns:1fr;}}
+.hab-card{background:var(--deep);border:1.5px solid var(--border);padding:18px;border-radius:4px;cursor:pointer;transition:all 0.2s;text-align:center;}
+.hab-card.sel-green{border-color:var(--green);background:rgba(45,186,110,0.08);}
+.hab-card.sel-amber{border-color:var(--amber);background:rgba(245,166,35,0.08);}
+.hab-card.sel-red{border-color:var(--red);background:rgba(232,64,64,0.08);}
+.hc-icon{font-size:1.8rem;margin-bottom:8px;}
+.hc-name{font-family:var(--font-display);font-size:0.95rem;letter-spacing:1px;margin-bottom:4px;}
+.hc-risk{font-family:var(--font-mono);font-size:0.58rem;letter-spacing:2px;margin-bottom:6px;}
+.hc-desc{font-size:0.72rem;color:var(--muted);line-height:1.4;}
+.hab-detail{background:var(--deep);border-left:3px solid var(--orange);padding:20px;border-radius:0 4px 4px 0;margin-bottom:20px;display:none;animation:si 0.3s ease;}
+.hab-detail.show{display:block;}
+@keyframes si{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+.hd-title{font-family:var(--font-display);font-size:1.1rem;letter-spacing:1px;color:var(--orange);margin-bottom:10px;}
+.hd-text{color:var(--muted);font-size:0.85rem;line-height:1.6;margin-bottom:12px;}
+.hd-signs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;}
+.sign-pill{font-size:0.68rem;padding:3px 10px;border-radius:20px;background:rgba(232,64,64,0.1);border:1px solid rgba(232,64,64,0.3);color:var(--red);}
+/* SELF AUDIT */
+.audit-q{display:flex;align-items:center;gap:14px;padding:14px;background:var(--deep);border:1px solid var(--border);border-radius:4px;margin-bottom:8px;cursor:pointer;transition:all 0.15s;}
+.audit-q:hover{border-color:var(--orange);}
+.audit-q.ck{border-color:var(--orange);background:rgba(232,80,10,0.06);}
+.aq-box{width:20px;height:20px;border:1.5px solid var(--border);border-radius:4px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:0.7rem;}
+.audit-q.ck .aq-box{background:var(--orange);border-color:var(--orange);color:var(--white);}
+.audit-q-text{font-size:0.84rem;}
+.audit-meter{background:var(--border);border-radius:2px;height:10px;overflow:hidden;margin:16px 0 8px;}
+.am-fill{height:100%;border-radius:2px;transition:width 0.4s;background:linear-gradient(90deg,var(--green),var(--amber),var(--red));}
+.audit-verdict{background:var(--deep);padding:16px;border-radius:4px;font-size:0.85rem;color:var(--muted);line-height:1.5;border:1px solid var(--border);}
+/* STAGES */
+.stages{display:flex;flex-direction:column;gap:0;}
+.stage{display:flex;gap:16px;padding:18px 0;border-bottom:1px solid var(--border);}
+.stage:last-child{border:none;}
+.stage-dot{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.7rem;flex-shrink:0;margin-top:2px;font-family:var(--font-mono);font-weight:500;}
+.stage-info{}
+.stage-title{font-family:var(--font-display);font-size:0.9rem;letter-spacing:1px;margin-bottom:3px;}
+.stage-desc{font-size:0.8rem;color:var(--muted);line-height:1.5;}
+/* CRISIS */
+.crisis{background:rgba(232,64,64,0.08);border:1px solid rgba(232,64,64,0.3);padding:24px;border-radius:4px;margin-bottom:24px;}
+.ct{font-family:var(--font-display);font-size:1.1rem;letter-spacing:1px;color:var(--red);margin-bottom:10px;}
+.cd{font-size:0.85rem;color:var(--muted);line-height:1.7;}
+.cd a{color:var(--orange);}
+</style>
+</head>
+<body>
+<div class="header"><a href="addiction.html" class="back-btn">← BACK TO ADDICTION</a><div class="ht">THE YOUNG MAN <span>BLUEPRINT</span></div><div style="font-family:var(--font-mono);font-size:0.65rem;color:var(--muted);letter-spacing:2px;">ADDICTION MODEL</div></div>
+<div class="wrap">
+  <div class="eyebrow">🚫 Addiction Interactive Model</div>
+  <h1 class="big">BREAK THE LOOP</h1>
+  <p class="sub">No judgement here. This tool helps you understand where your habits fall on the spectrum, audit your own patterns, and understand the stages of breaking a habit loop.</p>
+  
+  <div class="model" id="model">
+
+    <!-- SPECTRUM -->
+    <div class="panel">
+      <div class="pt">THE HABIT SPECTRUM — From Use to Dependence</div>
+      <div class="ps">Every habit exists on a spectrum. Understanding where yours sits is the first step. Click any habit type to learn more about the warning signs.</div>
+      <div class="spectrum">
+        <div class="spec-bar"></div>
+        <div class="spec-labels"><span>CASUAL USE</span><span>PROBLEMATIC USE</span><span>DEPENDENCE</span></div>
+      </div>
+      <div class="habit-cards">
+        <div class="hab-card" onclick="showHabit('screen')"><div class="hc-icon">📱</div><div class="hc-name">SCREEN & SOCIAL</div><div class="hc-risk" style="color:var(--amber);">MEDIUM RISK</div><div class="hc-desc">Phone, social media, video games, porn.</div></div>
+        <div class="hab-card" onclick="showHabit('substance')"><div class="hc-icon">🍺</div><div class="hc-name">SUBSTANCES</div><div class="hc-risk" style="color:var(--red);">HIGH RISK</div><div class="hc-desc">Alcohol, cannabis, nicotine, recreational drugs.</div></div>
+        <div class="hab-card" onclick="showHabit('food')"><div class="hc-icon">🍔</div><div class="hc-name">FOOD & COMFORT</div><div class="hc-risk" style="color:var(--amber);">MEDIUM RISK</div><div class="hc-desc">Overeating, binge eating, emotional eating.</div></div>
+        <div class="hab-card" onclick="showHabit('work')"><div class="hc-icon">💼</div><div class="hc-name">WORK & HUSTLE</div><div class="hc-risk" style="color:var(--amber);">OFTEN OVERLOOKED</div><div class="hc-desc">Workaholism and performance addiction.</div></div>
+        <div class="hab-card" onclick="showHabit('gambling')"><div class="hc-icon">🎰</div><div class="hc-name">GAMBLING</div><div class="hc-risk" style="color:var(--red);">HIGH RISK</div><div class="hc-desc">Sports betting, poker, casino, crypto gambling.</div></div>
+        <div class="hab-card" onclick="showHabit('avoidance')"><div class="hc-icon">🧊</div><div class="hc-name">AVOIDANCE</div><div class="hc-risk" style="color:var(--muted);">QUIET RISK</div><div class="hc-desc">Procrastination, isolation, dissociation.</div></div>
+      </div>
+      <div class="hab-detail" id="hab-detail"></div>
+    </div>
+
+    <!-- SELF AUDIT -->
+    <div class="panel">
+      <div class="pt">THE HONEST AUDIT — Rate Your Own Patterns</div>
+      <div class="ps">Check every statement that applies to a habit or behaviour in your life. No judgement — just clarity.</div>
+      <div id="audit-qs">
+        <div class="audit-q" onclick="toggleAudit(this,8)"><div class="aq-box"></div><span class="audit-q-text">I use this habit to cope with stress, boredom, loneliness or anxiety — not just for enjoyment</span></div>
+        <div class="audit-q" onclick="toggleAudit(this,8)"><div class="aq-box"></div><span class="audit-q-text">I've tried to stop or cut back and couldn't, or only lasted a short time</span></div>
+        <div class="audit-q" onclick="toggleAudit(this,10)"><div class="aq-box"></div><span class="audit-q-text">I spend more time on this than I intend to — and it surprises me</span></div>
+        <div class="audit-q" onclick="toggleAudit(this,8)"><div class="aq-box"></div><span class="audit-q-text">I've hidden this from people close to me or felt ashamed about it</span></div>
+        <div class="audit-q" onclick="toggleAudit(this,9)"><div class="aq-box"></div><span class="audit-q-text">It has negatively affected my work, relationships, health, or finances</span></div>
+        <div class="audit-q" onclick="toggleAudit(this,7)"><div class="aq-box"></div><span class="audit-q-text">I need more of it over time to get the same feeling (escalation)</span></div>
+        <div class="audit-q" onclick="toggleAudit(this,7)"><div class="aq-box"></div><span class="audit-q-text">Without it, I feel irritable, anxious, restless or empty</span></div>
+        <div class="audit-q" onclick="toggleAudit(this,9)"><div class="aq-box"></div><span class="audit-q-text">I have given up activities I used to enjoy in favor of this habit</span></div>
+        <div class="audit-q" onclick="toggleAudit(this,6)"><div class="aq-box"></div><span class="audit-q-text">My first thoughts in the morning often include this habit</span></div>
+        <div class="audit-q" onclick="toggleAudit(this,10)"><div class="aq-box"></div><span class="audit-q-text">People who care about me have expressed concern about this</span></div>
+      </div>
+      <div style="margin-top:20px;font-family:var(--font-mono);font-size:0.62rem;color:var(--muted);letter-spacing:2px;margin-bottom:8px;">CONCERN LEVEL</div>
+      <div class="audit-meter"><div class="am-fill" id="am-fill" style="width:0%"></div></div>
+      <div class="audit-verdict" id="audit-verdict">Check the boxes above to see your pattern assessment.</div>
+    </div>
+
+    <!-- STAGES OF CHANGE -->
+    <div class="panel">
+      <div class="pt">THE 5 STAGES OF CHANGE — Where Are You?</div>
+      <div class="ps">The Transtheoretical Model explains how people actually break habits. You can't skip stages — but you can move through them faster.</div>
+      <div class="stages">
+        <div class="stage"><div class="stage-dot" style="background:rgba(232,64,64,0.2);border:1.5px solid var(--red);color:var(--red);">1</div><div class="stage-info"><div class="stage-title" style="color:var(--red);">PRE-CONTEMPLATION — "I don't have a problem"</div><div class="stage-desc">You're not yet aware of the issue or are minimizing it. This is where most men spend years. The fact that you're here means you may have already passed this stage.</div></div></div>
+        <div class="stage"><div class="stage-dot" style="background:rgba(232,80,10,0.15);border:1.5px solid var(--orange);color:var(--orange);">2</div><div class="stage-info"><div class="stage-title" style="color:var(--orange);">CONTEMPLATION — "Maybe I have a problem"</div><div class="stage-desc">You see both sides — the benefits and the costs of the habit. You're ambivalent. This stage can last years. The key move is to tip the scales — write out every way the habit is costing you.</div></div></div>
+        <div class="stage"><div class="stage-dot" style="background:rgba(245,166,35,0.15);border:1.5px solid var(--amber);color:var(--amber);">3</div><div class="stage-info"><div class="stage-title" style="color:var(--amber);">PREPARATION — "I'm going to change"</div><div class="stage-desc">You've decided to change and you're getting ready. This is where you make the plan — remove the triggers, build the support, tell someone. Preparation done poorly leads to relapse.</div></div></div>
+        <div class="stage"><div class="stage-dot" style="background:rgba(45,186,110,0.15);border:1.5px solid var(--green);color:var(--green);">4</div><div class="stage-info"><div class="stage-title" style="color:var(--green);">ACTION — "I'm doing it"</div><div class="stage-desc">You've made the change and you're living it. This requires the most energy. The first 30–90 days are the highest-risk period for relapse. Support, structure, and identity are critical here.</div></div></div>
+        <div class="stage"><div class="stage-dot" style="background:rgba(45,186,110,0.25);border:1.5px solid var(--green);color:var(--green);">5</div><div class="stage-info"><div class="stage-title" style="color:var(--green);">MAINTENANCE — "This is who I am now"</div><div class="stage-desc">You've sustained the change for 6+ months. The habit no longer dominates your thoughts. This doesn't mean the risk is gone — it means you've built a new identity and new systems. Relapse is still possible but less likely.</div></div></div>
+      </div>
+    </div>
+
+    <!-- CRISIS -->
+    <div class="crisis">
+      <div class="ct">⚠️ IF YOU'RE STRUGGLING WITH DEPENDENCE</div>
+      <div class="cd">This tool is for self-reflection and education — not treatment. If you're dealing with a serious substance dependence, please reach out for professional support. In Canada and the US, you can call <strong>1-800-662-4357</strong> (SAMHSA) or text "HELLO" to <strong>741741</strong> for the Crisis Text Line. You can also visit <a href="resources.html">our Resources page</a> for more help lines and support options. Asking for help is not weakness — it's the hardest and most important move you can make.</div>
+    </div>
+    <div style="text-align:center;"><a href="addiction.html" style="background:var(--orange);color:var(--white);padding:12px 28px;font-size:0.82rem;font-weight:700;letter-spacing:2px;text-decoration:none;border-radius:2px;display:inline-block;">← Back to Addiction Pillar</a></div>
+  </div>
+</div>
+<script>
+
+
+const HABITS={
+  screen:{col:'var(--amber)',title:'📱 Screen & Social Media Habits',body:'These are the most common addictions of the modern era — and the most normalized. Social media, porn, and gaming activate the same dopamine circuits as drugs. The key difference: society doesn\'t call them addictions.',signs:['Reaching for your phone within 5 minutes of waking','Feeling anxious without your phone nearby','Staying up significantly later than planned because of screens','Using screens to avoid emotional discomfort','Watching porn more than occasionally or feeling unable to stop'],action:'The dopamine detox approach: pick one screen habit. Remove it completely for 30 days. Notice what emotions emerge when the distraction is gone — those are what the habit was covering.'},
+  substance:{col:'var(--red)',title:'🍺 Alcohol & Substance Use',body:'Alcohol is the most socially accepted substance — and one of the most damaging. Cannabis dependency is increasing. The question isn\'t whether you use — it\'s whether you could stop comfortably, and whether it\'s costing you anything.',signs:['Needing alcohol to relax or sleep','Using cannabis every day or multiple times a day','Drinking more than you planned regularly','Experiencing physical withdrawal (shaking, sweating, anxiety)','Using substances alone'],action:'If you\'re questioning your substance use — that questioning is a signal. The CAGE questionnaire (4 questions) is a validated screening tool. If you answer yes to 2 or more: speak to a doctor.'},
+  food:{col:'var(--amber)',title:'🍔 Food & Emotional Eating',body:'Food addiction operates differently from substance addiction but the patterns are similar — using eating to manage emotion rather than hunger, loss of control around specific foods, and shame cycles.',signs:['Eating past fullness regularly','Eating in response to stress, boredom, or sadness','Hiding food or eating secretly','Thinking about food when you\'re not hungry','Feeling out of control around certain foods'],action:'Identify your trigger pattern: what emotion precedes the binge? Most food habit loops start with a specific emotional state. Once you identify the emotion — you can address the emotion directly instead.'},
+  work:{col:'var(--amber)',title:'💼 Work Addiction & Performance Anxiety',body:'In male culture, workaholism is celebrated. But using work to avoid discomfort, relationships, or emotions is still avoidance. The dopamine hit of productivity can become as compulsive as any other substance.',signs:['Inability to relax or "switch off"','Feeling guilty during downtime','Relationships suffering because of work hours','Using work as an excuse to avoid personal issues','Defining your worth entirely by performance'],action:'This one is subtle. The test: can you take a weekend completely off without anxiety? Can you sit in silence without needing to be productive? If not — there\'s something beneath the hustle worth examining.'},
+  gambling:{col:'var(--red)',title:'🎰 Gambling & Betting',body:'Sports betting has exploded with apps making it frictionless. Gambling activates identical neural pathways to substance addiction — and the losses are often hidden until they\'re catastrophic.',signs:['Betting more than you planned or can afford','Chasing losses ("just one more bet")','Lying about the amount you gamble','Using gambling to escape problems','Borrowing money to gamble'],action:'If sports betting or gambling is causing financial or relationship stress — it has crossed into problem territory. Gamblers Anonymous is free and available in most cities. GamStop (UK) or similar self-exclusion tools exist in most regions.'},
+  avoidance:{col:'var(--muted)',title:'🧊 Avoidance & Dissociation',body:'Avoidance is the quietest addiction. It doesn\'t look like a problem from the outside. It looks like procrastination, laziness, or being "laid back." But systematically avoiding discomfort — whether it\'s difficult conversations, medical appointments, or facing emotions — is still a coping mechanism that keeps you stuck.',signs:['Knowing exactly what you need to do and consistently not doing it','Feeling paralyzed by tasks that you know are important','Avoiding people or situations that might create discomfort','Staying in bad situations rather than having hard conversations','Numbing out with TV, games, or sleep rather than facing something'],action:'Start with one avoided item. The smallest, easiest one on the list. Do it today. Avoidance patterns break one completed item at a time. The momentum from one thing carries to the next.'},
+};
+function showHabit(id){document.querySelectorAll('.hab-card').forEach(c=>{c.className='hab-card';});event.currentTarget.className='hab-card sel-'+( id==='screen'||id==='food'||id==='work'||id==='avoidance'?'amber':'red');const h=HABITS[id];const d=document.getElementById('hab-detail');d.className='hab-detail show';d.style.borderLeftColor=h.col;d.innerHTML=`<div class="hd-title" style="color:${h.col};">${h.title}</div><div class="hd-text">${h.body}</div><div style="font-family:var(--font-mono);font-size:0.62rem;letter-spacing:2px;color:var(--red);margin-bottom:8px;">WARNING SIGNS</div><div class="hd-signs">${h.signs.map(s=>`<span class="sign-pill">${s}</span>`).join('')}</div><div class="hd-text"><strong style="color:var(--white);">What to do: </strong>${h.action}</div>`;}
+let auditScore=0;const auditMap=new Map();
+function toggleAudit(el,pts){if(el.classList.contains('ck')){el.classList.remove('ck');el.querySelector('.aq-box').textContent='';auditScore-=auditMap.get(el)||0;auditMap.delete(el);}else{el.classList.add('ck');el.querySelector('.aq-box').textContent='✓';auditMap.set(el,pts);auditScore+=pts;}const pct=Math.min(100,Math.round((auditScore/82)*100));document.getElementById('am-fill').style.width=pct+'%';let v;if(pct===0)v='No flags raised. Either you\'re genuinely doing well, or you selected a habit that isn\'t a concern for you right now.';else if(pct<25)v='Low concern level. Some patterns to watch, but no major alarm signals. Stay aware.';else if(pct<50)v='Moderate concern. These patterns suggest your habit may be crossing from use to coping. Worth examining honestly.';else if(pct<75)v='High concern. Multiple flags raised. This habit is likely costing you more than you realize. Consider speaking to someone.';else v='Very high concern. This pattern resembles dependency. Please reach out — to a friend, a counsellor, or a helpline. You don\'t have to manage this alone.';document.getElementById('audit-verdict').textContent=v;}
+</script>
+</body>
+</html>

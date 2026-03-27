@@ -54,19 +54,19 @@
   .step-title { font-family: var(--font-display); font-size: 1.1rem; letter-spacing: 1px; margin-bottom: 6px; }
   .step-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
   /* EMAIL GATE */
-  .gate-section { position: relative; }
-  .gate-preview { max-height: 320px; overflow: hidden; position: relative; }
-  .gate-preview::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 200px; background: linear-gradient(to bottom, transparent, var(--black)); }
-  .gate-box { background: var(--panel); border: 1px solid var(--orange); padding: 48px 40px; text-align: center; margin-top: 0; }
-  .gate-icon { font-size: 2rem; margin-bottom: 16px; }
-  .gate-title { font-family: var(--font-display); font-size: 2rem; margin-bottom: 10px; }
-  .gate-sub { font-size: 0.88rem; color: var(--muted); max-width: 400px; margin: 0 auto 28px; line-height: 1.6; }
-  .gate-form { display: flex; gap: 0; max-width: 440px; margin: 0 auto; }
-  .gate-input { flex: 1; background: var(--deep); border: 1px solid var(--border); border-right: none; color: var(--white); padding: 14px 16px; font-size: 0.9rem; font-family: var(--font-body); outline: none; }
-  .gate-input:focus { border-color: var(--orange); }
-  .gate-input::placeholder { color: var(--muted); }
-  .gate-btn { background: var(--orange); color: var(--white); border: none; padding: 14px 24px; font-size: 0.78rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; font-family: var(--font-body); transition: background 0.2s; white-space: nowrap; }
-  .gate-btn:hover { background: var(--orange-glow); }
+
+
+
+
+
+
+
+
+
+
+
+
+
   /* RESOURCES */
   .resources-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 40px; }
   .resource-card { background: var(--panel); border: 1px solid var(--border); padding: 22px; transition: all 0.2s; text-decoration: none; display: block; }
@@ -97,7 +97,7 @@
     nav { padding: 16px 20px; } .nav-links { display: none; }
     .hero { padding: 120px 20px 40px; } .page-wrap { padding: 0 20px; }
     .cards-grid, .steps-grid, .resources-grid { grid-template-columns: 1fr; }
-    .gate-form { flex-direction: column; } .gate-input { border-right: 1px solid var(--border); border-bottom: none; }
+  
     footer { flex-direction: column; gap: 20px; text-align: center; }
   }
 </style>
@@ -153,8 +153,8 @@
   </div>
 
   <!-- EMAIL GATE -->
-  <div class="section gate-section">
-    <div class="gate-preview">
+  <div class="section">
+    <div>
       <div class="section-label">The Action Plan</div>
       <h2 class="section-title">WHERE TO START</h2>
       <p class="section-body">How to get the most out of the resources available to you.</p>
@@ -164,15 +164,7 @@
 
       </div>
     </div>
-    <div class="gate-box">
-      <div class="gate-icon">🔓</div>
-      <div class="gate-title">UNLOCK THE FULL GUIDE</div>
-      <p class="gate-sub">Enter your email to get free access to the full action plan, resources, and tools for this pillar.</p>
-      <div class="gate-form">
-        <input type="email" class="gate-input" placeholder="your@email.com">
-        <button class="gate-btn" onclick="unlockContent(this)">Unlock Free →</button>
-      </div>
-    </div>
+    
   </div>
 
   <!-- RESOURCES -->
@@ -212,24 +204,7 @@
 </footer>
 
 <script>
-function unlockContent(btn) {
-  const input = btn.parentElement.querySelector('.gate-input');
-  if (!input.value.includes('@')) {
-    input.style.borderColor = 'var(--red)';
-    input.placeholder = 'Enter a valid email';
-    return;
-  }
-  btn.textContent = '✓ Unlocked!';
-  btn.style.background = 'var(--green)';
-  setTimeout(() => {
-    document.querySelector('.gate-section .gate-box').style.display = 'none';
-    document.querySelector('.gate-preview').style.maxHeight = 'none';
-    document.querySelector('.gate-preview::after') && (document.querySelector('.gate-preview').style.setProperty('--after-display', 'none'));
-    document.getElementById('resources-section').style.display = 'block';
-    document.querySelector('.gate-preview').classList.remove('gate-preview');
-    window.location.href = 'thankyou.html';
-  }, 800);
-}
+
 </script>
 </body>
 </html>

@@ -46,7 +46,7 @@
   .terms a{color:var(--muted);text-decoration:underline;}
   @media(max-width:800px){body{grid-template-columns:1fr;}.left-panel{display:none;}.right-panel{padding:40px 24px;}}
 </style>
-</head>
+
 <body>
 
 <div class="left-panel">
@@ -76,7 +76,7 @@
     <div class="plan-label">Choose Your Plan</div>
     <div class="plan-toggle">
       <button class="plan-btn active" onclick="selectPlan(this,'free')">Starter — Free</button>
-      <button class="plan-btn" onclick="selectPlan(this,'paid')">Blueprint — $19/mo</button>
+      <button class="plan-btn" onclick="selectPlan(this,'paid')">Blueprint — $9/mo</button>
     </div>
 
     <div class="form-group">
@@ -118,39 +118,59 @@ function selectPlan(btn, plan) {
   document.querySelectorAll('.plan-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
 }
-function handleSignup() {
+
+async function handleSignup() {
   const fname = document.getElementById('fname').value.trim();
   const email = document.getElementById('email').value.trim();
   const pw = document.getElementById('password').value.trim();
   const struggle = document.getElementById('struggle').value;
   const btn = document.querySelector('.btn-signup');
+
   if (!fname || !email.includes('@') || pw.length < 8) {
     btn.textContent = '⚠ Please fill in all fields correctly';
     btn.style.background = 'var(--red)';
     setTimeout(() => { btn.textContent = '⚡ Create My Account'; btn.style.background = ''; }, 2000);
     return;
   }
-  // Save new profile to localStorage
+
+  // Save profile to localStorage
   const profile = {
-    name: fname,
-    email: email,
-    plan: selectedPlan,
-    struggle: struggle,
-    totalXP: 0,
-    streak: 0,
-    lastMissionDate: null,
-    totalMissions: 0,
-    activePillars: [],
-    missions: {},
-    habits: {},
-    earnedBadges: [],
+    name: fname, email, plan: selectedPlan, struggle,
+    totalXP: 0, streak: 0, lastMissionDate: null, totalMissions: 0,
+    activePillars: [], missions: {}, habitData: {}, earnedBadges: [],
     createdAt: new Date().toISOString()
   };
   localStorage.setItem('tmb_user', JSON.stringify(profile));
-  btn.textContent = '✓ Account Created!';
-  btn.style.background = 'var(--green)';
-  setTimeout(() => { window.location.href = 'thankyou.html'; }, 900);
+
+  // Update button to sending state
+  btn.textContent = '⏳ Sending confirmation...';
+  btn.disabled = true;
+
+  try {
+    await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        access_key: 'c52038bd-53c9-42d0-ac49-a4185c9a3296',
+        subject: 'Welcome to The Young Man Blueprint',
+        from_name: 'The Young Man Blueprint',
+        name: fname,
+        email: email,
+        message: `Hi ${fname},\n\nYour account has been created. Welcome to The Young Man Blueprint.\n\nYour starting pillar: ${struggle || 'Not specified'}\n\nHead to your dashboard to begin Phase 1:\nhttps://gmamba13.github.io/the-young-man-blueprint/dashboard.html\n\n— The Young Man Blueprint`,
+        replyto: email,
+      })
+    });
+    btn.textContent = '✓ Account Created!';
+    btn.style.background = 'var(--green)';
+  } catch (err) {
+    console.warn('Email send failed:', err);
+    btn.textContent = '✓ Account Created!';
+    btn.style.background = 'var(--green)';
+  }
+
+  setTimeout(() => { window.location.href = 'thankyou.html'; }, 1000);
 }
+
 document.addEventListener('keydown', e => { if (e.key === 'Enter') handleSignup(); });
 </script>
 </body>

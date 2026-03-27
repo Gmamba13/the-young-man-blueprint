@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Discipline Model — The Young Man Blueprint</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--black:#0a0a0a;--deep:#111318;--panel:#16191f;--border:#22262e;--orange:#e8500a;--amber:#f5a623;--white:#f0ede8;--muted:#7a7f8a;--green:#2dba6e;--red:#e84040;--font-display:'Bebas Neue',sans-serif;--font-body:'DM Sans',sans-serif;--font-mono:'Space Mono',monospace;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--black);color:var(--white);font-family:var(--font-body);min-height:100vh;}
+.header{padding:24px 40px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:var(--deep);}
+.back-btn{font-family:var(--font-mono);font-size:0.7rem;letter-spacing:2px;color:var(--muted);text-decoration:none;}.back-btn:hover{color:var(--orange);}
+.ht{font-family:var(--font-display);font-size:1.4rem;letter-spacing:2px;}.ht span{color:var(--orange);}
+.wrap{max-width:900px;margin:0 auto;padding:60px 24px;}
+.eyebrow{font-family:var(--font-mono);font-size:0.7rem;letter-spacing:3px;color:var(--orange);text-transform:uppercase;margin-bottom:16px;text-align:center;}
+.big{font-family:var(--font-display);font-size:clamp(2.5rem,6vw,5rem);letter-spacing:2px;line-height:1;margin-bottom:16px;text-align:center;}
+.sub{color:var(--muted);font-size:0.95rem;line-height:1.7;max-width:500px;margin:0 auto 48px;text-align:center;}
+.gate-box{background:var(--panel);border:1px solid var(--orange);padding:32px;border-radius:4px;text-align:center;margin-bottom:40px;}
+.gate-box h3{font-family:var(--font-display);font-size:1.6rem;letter-spacing:1px;margin-bottom:8px;}
+.gate-box p{font-size:0.85rem;color:var(--muted);margin-bottom:20px;}
+.gate-input{background:var(--deep);border:1px solid var(--border);color:var(--white);padding:12px 16px;font-size:0.9rem;font-family:var(--font-body);border-radius:2px;outline:none;width:100%;max-width:320px;margin-bottom:12px;display:block;margin-left:auto;margin-right:auto;}
+.gate-input:focus{border-color:var(--orange);}
+.gate-btn{background:var(--orange);color:var(--white);border:none;padding:12px 32px;font-size:0.82rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;font-family:var(--font-body);border-radius:2px;}
+/* MODEL */
+.model-wrap{display:none;}
+/* HABIT LOOP */
+.habit-loop{background:var(--panel);border:1px solid var(--border);padding:36px;border-radius:4px;margin-bottom:24px;}
+.loop-title{font-family:var(--font-display);font-size:1.4rem;letter-spacing:1px;margin-bottom:8px;}
+.loop-sub{color:var(--muted);font-size:0.85rem;margin-bottom:32px;}
+.loop-diagram{display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;align-items:center;gap:8px;margin-bottom:32px;}
+@media(max-width:700px){.loop-diagram{grid-template-columns:1fr 1fr;gap:12px;}.loop-arrow{display:none;}}
+.loop-node{background:var(--deep);border:2px solid var(--border);border-radius:8px;padding:18px 12px;text-align:center;cursor:pointer;transition:all 0.25s;position:relative;}
+.loop-node:hover,.loop-node.active{border-color:var(--orange);background:#1a1e26;}
+.loop-node.active{border-color:var(--orange);}
+.loop-icon{font-size:1.8rem;margin-bottom:8px;}
+.loop-label{font-family:var(--font-display);font-size:0.85rem;letter-spacing:1px;}
+.loop-arrow{font-size:1.5rem;color:var(--border);text-align:center;}
+.loop-node.active .loop-arrow-hint{display:block;}
+.node-detail{background:var(--deep);border:1px solid var(--orange);border-radius:4px;padding:24px;margin-bottom:24px;animation:si 0.3s ease;display:none;}
+.node-detail.show{display:block;}
+@keyframes si{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+.node-detail-title{font-family:var(--font-display);font-size:1.2rem;letter-spacing:1px;color:var(--orange);margin-bottom:10px;}
+.node-detail-text{color:var(--muted);font-size:0.85rem;line-height:1.7;margin-bottom:14px;}
+.node-example{background:var(--panel);border-left:3px solid var(--orange);padding:12px 16px;font-size:0.82rem;color:var(--muted);border-radius:0 4px 4px 0;margin-bottom:10px;}
+.node-example strong{color:var(--white);}
+/* SLIDERS */
+.sliders-panel{background:var(--panel);border:1px solid var(--border);padding:32px;border-radius:4px;margin-bottom:24px;}
+.sp-title{font-family:var(--font-display);font-size:1.4rem;letter-spacing:1px;margin-bottom:8px;}
+.sp-sub{color:var(--muted);font-size:0.85rem;margin-bottom:28px;}
+.slider-row{margin-bottom:24px;}
+.slider-label{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.slider-name{font-size:0.88rem;font-weight:500;}
+.slider-val{font-family:var(--font-display);font-size:1.4rem;color:var(--orange);}
+input[type=range]{width:100%;appearance:none;height:6px;background:var(--border);border-radius:3px;outline:none;cursor:pointer;}
+input[type=range]::-webkit-slider-thumb{appearance:none;width:20px;height:20px;border-radius:50%;background:var(--orange);cursor:pointer;box-shadow:0 0 8px rgba(232,80,10,0.5);}
+.discipline-score-display{background:var(--deep);border:1px solid var(--border);padding:24px;border-radius:4px;margin-top:20px;display:flex;align-items:center;gap:24px;}
+.ds-num{font-family:var(--font-display);font-size:3.5rem;color:var(--orange);letter-spacing:-2px;line-height:1;}
+.ds-text{flex:1;}
+.ds-label{font-family:var(--font-mono);font-size:0.65rem;color:var(--muted);letter-spacing:2px;margin-bottom:6px;}
+.ds-verdict{font-size:0.9rem;line-height:1.5;}
+/* STRATEGIES */
+.strategies{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:24px;}
+@media(max-width:700px){.strategies{grid-template-columns:1fr;}}
+.strategy-card{background:var(--panel);border:1px solid var(--border);padding:20px;border-radius:4px;cursor:pointer;transition:all 0.2s;}
+.strategy-card:hover{border-color:var(--orange);background:#1a1e26;}
+.strategy-card.active{border-color:var(--orange);background:rgba(232,80,10,0.06);}
+.sc-icon{font-size:1.8rem;margin-bottom:10px;}
+.sc-title{font-family:var(--font-display);font-size:0.95rem;letter-spacing:1px;margin-bottom:6px;}
+.sc-desc{font-size:0.74rem;color:var(--muted);line-height:1.4;}
+.strategy-detail{background:var(--deep);border:1px solid var(--border);padding:24px;border-radius:4px;display:none;}
+.strategy-detail.show{display:block;animation:si 0.3s ease;}
+.sd-title{font-family:var(--font-display);font-size:1.3rem;letter-spacing:1px;color:var(--orange);margin-bottom:12px;}
+.sd-step{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--border);font-size:0.82rem;color:var(--muted);}
+.sd-step:last-child{border:none;}
+.sd-num{font-family:var(--font-mono);font-size:0.7rem;color:var(--orange);flex-shrink:0;min-width:24px;}
+</style>
+</head>
+<body>
+<div class="header"><a href="discipline.html" class="back-btn">← BACK TO DISCIPLINE</a><div class="ht">THE YOUNG MAN <span>BLUEPRINT</span></div><div style="font-family:var(--font-mono);font-size:0.65rem;color:var(--muted);letter-spacing:2px;">DISCIPLINE MODEL</div></div>
+<div class="wrap">
+  <div class="eyebrow">🔥 Discipline Interactive Model</div>
+  <h1 class="big">HOW DISCIPLINE ACTUALLY WORKS</h1>
+  <p class="sub">Motivation is unreliable. Systems are what matter. Explore the habit loop, rate your own discipline, and get the strategies that actually work.</p>
+  
+  <div class="model-wrap" id="model-wrap">
+
+    <!-- HABIT LOOP -->
+    <div class="habit-loop">
+      <div class="loop-title">THE HABIT LOOP — How Every Habit Works</div>
+      <div class="loop-sub">Every habit — good or bad — follows the same four-step loop. Click each node to understand how to build or break habits using it.</div>
+      <div class="loop-diagram">
+        <div class="loop-node" onclick="showNode('cue')" id="node-cue"><div class="loop-icon">👁️</div><div class="loop-label">CUE</div></div>
+        <div class="loop-arrow">→</div>
+        <div class="loop-node" onclick="showNode('craving')" id="node-craving"><div class="loop-icon">💭</div><div class="loop-label">CRAVING</div></div>
+        <div class="loop-arrow">→</div>
+        <div class="loop-node" onclick="showNode('response')" id="node-response"><div class="loop-icon">⚡</div><div class="loop-label">RESPONSE</div></div>
+        <div class="loop-arrow">→</div>
+        <div class="loop-node" onclick="showNode('reward')" id="node-reward"><div class="loop-icon">🏆</div><div class="loop-label">REWARD</div></div>
+      </div>
+      <div class="node-detail" id="detail-cue"><div class="node-detail-title">👁️ THE CUE — The Trigger</div><div class="node-detail-text">The cue is the signal that initiates the habit. It tells your brain "a reward is coming." Cues are usually time, place, emotional state, people, or a preceding action.</div><div class="node-example"><strong>Good habit cue example:</strong> You put your gym shoes by the door every night. Seeing them in the morning is the cue that triggers your morning workout habit.</div><div class="node-example"><strong>Bad habit cue example:</strong> You sit down on the couch (cue) → immediately reach for your phone and open Instagram. The couch is the cue.</div><div class="node-detail-text"><strong style="color:var(--white);">How to use this:</strong> To build a habit — make the cue obvious. Put your journal on your pillow. Set a specific alarm. Link the new habit to an existing one. To break a habit — make the cue invisible. Delete the app. Put the snacks out of sight.</div></div>
+      <div class="node-detail" id="detail-craving"><div class="node-detail-title">💭 THE CRAVING — The Desire</div><div class="node-detail-text">The craving is the motivational force behind every habit. You don't crave the habit itself — you crave the change in state it provides. You don't crave a cigarette — you crave the relief from stress. You don't crave gaming — you crave the feeling of escape.</div><div class="node-example"><strong>The craving is the feeling — not the behavior.</strong> Understanding this is the key to changing habits. You can satisfy the same craving with a different response.</div><div class="node-detail-text"><strong style="color:var(--white);">How to use this:</strong> Make good habits attractive. Pair the habit with something you like. For bad habits — identify the craving underneath. What feeling are you actually seeking? Then find a better way to get it.</div></div>
+      <div class="node-detail" id="detail-response"><div class="node-detail-title">⚡ THE RESPONSE — The Habit Itself</div><div class="node-detail-text">The response is the actual habit you perform. It can be a thought or an action. The response depends on how motivated you are and how much friction exists. The harder it is to do something, the less likely you are to do it.</div><div class="node-example"><strong>Reduce friction for good habits:</strong> Set your gym bag out the night before. Put your book on your desk. Prep your meals on Sunday. Every step you remove makes it easier to act.</div><div class="node-example"><strong>Add friction for bad habits:</strong> Log out of social media. Delete addictive apps and force yourself to reinstall each time. Put your phone in another room at night.</div></div>
+      <div class="node-detail" id="detail-reward"><div class="node-detail-title">🏆 THE REWARD — The Payoff</div><div class="node-detail-text">The reward ends the habit loop and teaches the brain whether the loop is worth remembering. Rewards satisfy the craving and teach the brain what works. Good habits often have delayed rewards — this is why they're hard to build.</div><div class="node-example"><strong>The problem with bad habits:</strong> They provide immediate reward and delayed cost. Junk food, scrolling, substances — they feel good immediately. The damage is later.</div><div class="node-example"><strong>The problem with good habits:</strong> Working out, saving money, studying — delayed reward. This is why immediate reward stacking helps. Track your habits visibly so you feel the win today.</div><div class="node-detail-text"><strong style="color:var(--white);">How to use this:</strong> Make good habits immediately satisfying. Use a habit tracker. Celebrate the small win. Never miss twice — the recovery is part of the reward loop.</div></div>
+    </div>
+
+    <!-- DISCIPLINE SLIDERS -->
+    <div class="sliders-panel">
+      <div class="sp-title">RATE YOUR CURRENT DISCIPLINE</div>
+      <div class="sp-sub">Move each slider honestly. Your discipline score updates in real time.</div>
+      <div class="slider-row"><div class="slider-label"><span class="slider-name">📅 Consistency — Do you show up when you don't feel like it?</span><span class="slider-val" id="sv1">5</span></div><input type="range" min="1" max="10" value="5" oninput="updateSliders()"></div>
+      <div class="slider-row"><div class="slider-label"><span class="slider-name">⏰ Morning Routine — Do you own your first hour?</span><span class="slider-val" id="sv2">5</span></div><input type="range" min="1" max="10" value="5" oninput="updateSliders()"></div>
+      <div class="slider-row"><div class="slider-label"><span class="slider-name">📵 Distraction Control — How well do you manage your attention?</span><span class="slider-val" id="sv3">5</span></div><input type="range" min="1" max="10" value="5" oninput="updateSliders()"></div>
+      <div class="slider-row"><div class="slider-label"><span class="slider-name">🎯 Follow-Through — Do you finish what you start?</span><span class="slider-val" id="sv4">5</span></div><input type="range" min="1" max="10" value="5" oninput="updateSliders()"></div>
+      <div class="slider-row"><div class="slider-label"><span class="slider-name">🔄 Habit Strength — Are your daily habits automatic?</span><span class="slider-val" id="sv5">5</span></div><input type="range" min="1" max="10" value="5" oninput="updateSliders()"></div>
+      <div class="discipline-score-display">
+        <div class="ds-num" id="ds-num">50</div>
+        <div class="ds-text"><div class="ds-label">DISCIPLINE SCORE / 100</div><div class="ds-verdict" id="ds-verdict">Rate your sliders to see your verdict.</div></div>
+      </div>
+    </div>
+
+    <!-- STRATEGIES -->
+    <div style="background:var(--panel);border:1px solid var(--border);padding:32px;border-radius:4px;margin-bottom:24px;">
+      <div class="loop-title" style="margin-bottom:8px;">DISCIPLINE STRATEGIES — CLICK TO EXPLORE</div>
+      <div class="loop-sub">Six proven frameworks. Pick the one that fits your gap.</div>
+      <div class="strategies">
+        <div class="strategy-card" onclick="showStrategy('2min')"><div class="sc-icon">⏱️</div><div class="sc-title">2-MINUTE RULE</div><div class="sc-desc">Scale any habit down to 2 minutes to start it.</div></div>
+        <div class="strategy-card" onclick="showStrategy('stack')"><div class="sc-icon">🔗</div><div class="sc-title">HABIT STACKING</div><div class="sc-desc">Attach new habits to existing ones.</div></div>
+        <div class="strategy-card" onclick="showStrategy('env')"><div class="sc-icon">🏠</div><div class="sc-title">ENVIRONMENT DESIGN</div><div class="sc-desc">Build your environment to do the work for you.</div></div>
+        <div class="strategy-card" onclick="showStrategy('track')"><div class="sc-icon">📊</div><div class="sc-title">DON'T BREAK THE CHAIN</div><div class="sc-desc">Streaks create accountability and momentum.</div></div>
+        <div class="strategy-card" onclick="showStrategy('id')"><div class="sc-icon">🪪</div><div class="sc-title">IDENTITY-BASED</div><div class="sc-desc">Act like the person you want to become.</div></div>
+        <div class="strategy-card" onclick="showStrategy('friction')"><div class="sc-icon">🧱</div><div class="sc-title">FRICTION REMOVAL</div><div class="sc-desc">Eliminate every barrier between you and the habit.</div></div>
+      </div>
+      <div class="strategy-detail" id="strat-detail"></div>
+    </div>
+    <div style="text-align:center;margin-top:16px;"><a href="discipline.html" style="background:var(--orange);color:var(--white);padding:12px 28px;font-size:0.82rem;font-weight:700;letter-spacing:2px;text-decoration:none;border-radius:2px;display:inline-block;">← Back to Discipline Pillar</a></div>
+  </div>
+</div>
+<script>
+
+
+function showNode(id){document.querySelectorAll('.node-detail').forEach(d=>d.classList.remove('show'));document.querySelectorAll('.loop-node').forEach(n=>n.classList.remove('active'));document.getElementById('detail-'+id).classList.add('show');document.getElementById('node-'+id).classList.add('active');}
+function updateSliders(){const vals=[...document.querySelectorAll('input[type=range]')].map(i=>parseInt(i.value));vals.forEach((v,i)=>document.getElementById('sv'+(i+1)).textContent=v);const total=vals.reduce((a,b)=>a+b,0);const score=Math.round((total/50)*100);document.getElementById('ds-num').textContent=score;let verdict;if(score>=80)verdict='Your discipline is solid. Focus on your lowest-scoring area and push it to match the others.';else if(score>=60)verdict='Building momentum. Pick your two weakest areas and create systems around them this week.';else if(score>=40)verdict='Room to grow. Start with your morning — own the first hour and everything else gets easier.';else verdict='Low baseline — and that\'s okay. Your only job is to start one habit and protect it for 30 days.';document.getElementById('ds-verdict').textContent=verdict;}
+const STRATS={
+  '2min':{t:'⏱️ THE 2-MINUTE RULE',steps:['Identify the habit you want to build','Scale it down until it takes 2 minutes or less','"Read 30 pages" becomes "Read one page." "Run 5km" becomes "Put on shoes."','Do the 2-minute version every day without exception','Once the habit is established, extend naturally — never force it early']},
+  'stack':{t:'🔗 HABIT STACKING',steps:['Identify a habit you already do every day automatically (brush teeth, make coffee, shower)','Attach the new habit immediately before or after: "After I pour my morning coffee, I will journal for 5 minutes"','Be specific about the exact moment — vague plans fail','Start with one stack. Add more only after the first is automatic','The existing habit becomes the cue for the new one']},
+  'env':{t:'🏠 ENVIRONMENT DESIGN',steps:['Walk through your home and identify cues that trigger bad habits — remove them','Make good habit cues visible: gym bag by the door, book on the pillow, journal on the desk','Make bad habits invisible: log out of social media, put snacks out of reach, phone charges in another room','Your environment is more powerful than your willpower — stop fighting the environment and redesign it','Change your geography: different desk for work, different café for study']},
+  'track':{t:'📊 DON\'T BREAK THE CHAIN',steps:['Get a physical calendar or use the Blueprint habit tracker','Mark an X every day you complete the habit','Your only job is to not break the chain','When you miss (you will): never miss twice. One missed day is an accident. Two is starting a new habit.','The visual chain creates a feedback loop — you don\'t want to break it']},
+  'id':{t:'🪪 IDENTITY-BASED HABITS',steps:['Most people focus on outcomes ("I want to lose weight"). Identity-based habits focus on who you\'re becoming.','Ask: "What would a disciplined man do right now?"','Every action you take is a vote for the kind of person you\'re becoming. Cast more votes for the right person.','Change the story: "I\'m trying to quit smoking" → "I\'m not a smoker." "I\'m trying to work out" → "I\'m someone who trains."','This approach is slow but deeply durable — you\'re changing your self-concept, not just your behavior']},
+  'friction':{t:'🧱 FRICTION REMOVAL',steps:['For every good habit, identify every step between you and starting it — then eliminate steps','Sleeping in gym clothes is extreme but effective. Meal prep Sunday. Pre-load the book on your phone.','Reduce the number of decisions required. Decision fatigue is real and kills discipline.','Automate good habits: set up auto-savings, schedule workouts in your calendar as non-optional meetings','Create "if-then" plans: "If I feel like skipping, I will do 5 minutes minimum." Execution beats planning.']},
+};
+function showStrategy(id){document.querySelectorAll('.strategy-card').forEach(c=>c.classList.remove('active'));document.querySelector(`[onclick="showStrategy('${id}')"]`).classList.add('active');const s=STRATS[id];const d=document.getElementById('strat-detail');d.className='strategy-detail show';d.innerHTML=`<div class="sd-title">${s.t}</div>${s.steps.map((st,i)=>`<div class="sd-step"><span class="sd-num">0${i+1}</span><span>${st}</span></div>`).join('')}`;}
+updateSliders();
+</script>
+</body>
+</html>
