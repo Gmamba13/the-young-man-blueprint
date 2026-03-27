@@ -246,8 +246,9 @@ function showResults(){
 
 function retake(){current=0;answers=[];document.getElementById('results').style.display='none';document.getElementById('test-wrap').style.display='block';renderQ();}
 
-// Check if already signed in
 
+
+window.onload = function() { renderQ(); };
 </script>
 </body>
 </html>

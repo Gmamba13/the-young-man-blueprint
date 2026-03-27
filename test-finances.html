@@ -142,6 +142,8 @@ function updateScore(){
   gl.innerHTML=sorted.map((i,idx)=>`<div class="gap-item"><span class="gap-icon">${idx===0?'🔴':'🟡'}</span><span><strong>${i.title}</strong><br><span style="color:var(--muted);font-size:0.76rem;">${i.desc}</span></span></div>`).join('');
 }
 
+
+window.onload = function() { renderChecklist(); };
 </script>
 </body>
 </html>

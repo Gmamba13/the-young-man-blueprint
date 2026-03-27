@@ -131,6 +131,8 @@ function updateScore(){
   if(unchecked.length===0){gl.innerHTML='<div style="color:var(--green);font-size:0.85rem;">✓ You\'ve hit every checklist item. You\'re presenting yourself at a high level.</div>';return;}
   gl.innerHTML=unchecked.map((i,idx)=>`<div class="gap-row"><span style="flex-shrink:0;">${idx===0?'🔴':'🟡'}</span><div><strong>${i.title}</strong><br><span>${i.desc}</span></div></div>`).join('');
 }
+
+window.onload = function() { render(); };
 </script>
 </body>
 </html>
