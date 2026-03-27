@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resources Library — The Young Man Blueprint</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--black:#0a0a0a;--deep:#111318;--panel:#16191f;--border:#22262e;--orange:#e8500a;--orange-glow:#ff6820;--amber:#f5a623;--white:#f0ede8;--muted:#7a7f8a;--green:#2dba6e;--font-display:'Bebas Neue',sans-serif;--font-body:'DM Sans',sans-serif;--font-mono:'Space Mono',monospace;}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--black);color:var(--white);font-family:var(--font-body);font-size:16px;line-height:1.6;overflow-x:hidden;}
+  ::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-track{background:var(--black);}::-webkit-scrollbar-thumb{background:var(--orange);border-radius:2px;}
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:18px 40px;background:rgba(10,10,10,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+  .nav-logo{font-family:var(--font-display);font-size:1.3rem;letter-spacing:2px;color:var(--white);text-decoration:none;}
+  .nav-logo span{color:var(--orange);}
+  .nav-links{display:flex;gap:28px;align-items:center;}
+  .nav-links a{font-size:0.78rem;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color 0.2s;}
+  .nav-links a:hover{color:var(--white);}
+  .nav-cta{background:var(--orange)!important;color:var(--white)!important;padding:10px 22px;border-radius:2px;font-weight:700!important;}
+  .hero{padding:140px 40px 72px;position:relative;overflow:hidden;border-bottom:1px solid var(--border);}
+  .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(232,80,10,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(232,80,10,0.04) 1px,transparent 1px);background-size:60px 60px;}
+  .hero-glow{position:absolute;top:0;right:0;width:500px;height:500px;background:radial-gradient(circle,rgba(232,80,10,0.1) 0%,transparent 70%);pointer-events:none;}
+  .page-tag{font-family:var(--font-mono);font-size:0.7rem;letter-spacing:3px;color:var(--orange);text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:12px;position:relative;z-index:1;}
+  .page-tag::before{content:'';display:block;width:40px;height:1px;background:var(--orange);}
+  .hero h1{font-family:var(--font-display);font-size:clamp(3rem,7vw,6rem);line-height:0.95;letter-spacing:2px;position:relative;z-index:1;}
+  .hero h1 span{color:var(--orange);}
+  .hero-sub{font-size:1rem;color:var(--muted);max-width:520px;margin-top:20px;font-weight:300;line-height:1.7;position:relative;z-index:1;}
+  .page-wrap{max-width:1200px;margin:0 auto;padding:0 40px;}
+  .lib-section{padding:64px 0;border-bottom:1px solid var(--border);}
+  .lib-header{display:flex;align-items:baseline;gap:16px;margin-bottom:32px;}
+  .lib-icon{font-size:1.6rem;}
+  .lib-title{font-family:var(--font-display);font-size:1.8rem;letter-spacing:1px;}
+  .lib-count{font-family:var(--font-mono);font-size:0.65rem;color:var(--muted);letter-spacing:2px;}
+  .res-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;}
+  .res-card{background:var(--panel);border:1px solid var(--border);padding:22px;transition:all 0.2s;text-decoration:none;display:block;position:relative;overflow:hidden;}
+  .res-card::before{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--orange);transform:scaleX(0);transform-origin:left;transition:transform 0.3s;}
+  .res-card:hover::before{transform:scaleX(1);}
+  .res-card:hover{background:#1a1e26;transform:translateY(-2px);}
+  .res-type{font-family:var(--font-mono);font-size:0.58rem;letter-spacing:2px;color:var(--orange);text-transform:uppercase;margin-bottom:8px;}
+  .res-name{font-size:0.88rem;font-weight:500;color:var(--white);margin-bottom:5px;line-height:1.3;}
+  .res-desc{font-size:0.76rem;color:var(--muted);line-height:1.5;margin-bottom:10px;}
+  .res-pillar{font-family:var(--font-mono);font-size:0.58rem;letter-spacing:1px;color:var(--border);text-transform:uppercase;}
+  .crisis-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;}
+  .crisis-card{background:rgba(232,80,10,0.06);border:1px solid rgba(232,80,10,0.25);padding:28px;text-decoration:none;display:block;transition:all 0.2s;}
+  .crisis-card:hover{background:rgba(232,80,10,0.1);}
+  .crisis-name{font-family:var(--font-display);font-size:1.2rem;letter-spacing:1px;color:var(--white);margin-bottom:6px;}
+  .crisis-num{font-family:var(--font-mono);font-size:1rem;color:var(--orange);margin-bottom:8px;}
+  .crisis-desc{font-size:0.82rem;color:var(--muted);line-height:1.5;}
+  .cta-band{background:var(--orange);padding:72px 40px;text-align:center;}
+  .cta-band h2{font-family:var(--font-display);font-size:clamp(2.5rem,5vw,4rem);color:var(--white);margin-bottom:16px;}
+  .cta-band p{color:rgba(255,255,255,0.8);max-width:400px;margin:0 auto 28px;font-size:0.9rem;}
+  .btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--black);color:var(--white);font-family:var(--font-body);font-size:0.85rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;text-decoration:none;padding:16px 32px;border-radius:2px;transition:all 0.2s;}
+  .btn-ghost{display:inline-flex;align-items:center;background:transparent;color:var(--white);font-size:0.85rem;text-decoration:none;padding:16px 20px;border:1px solid rgba(255,255,255,0.3);border-radius:2px;margin-left:12px;}
+  footer{background:var(--black);border-top:1px solid var(--border);padding:48px 40px;display:flex;justify-content:space-between;align-items:center;}
+  .footer-logo{font-family:var(--font-display);font-size:1.1rem;letter-spacing:2px;color:var(--white);text-decoration:none;}
+  .footer-logo span{color:var(--orange);}
+  .footer-links{display:flex;gap:24px;}
+  .footer-links a{font-size:0.78rem;color:var(--muted);text-decoration:none;transition:color 0.2s;}
+  .footer-links a:hover{color:var(--white);}
+  .footer-copy{font-family:var(--font-mono);font-size:0.65rem;color:var(--muted);}
+  @media(max-width:900px){nav{padding:16px 20px;}.nav-links{display:none;}.hero{padding:120px 20px 48px;}.page-wrap{padding:0 20px;}.res-grid{grid-template-columns:repeat(2,1fr);}.crisis-grid{grid-template-columns:1fr;}footer{flex-direction:column;gap:20px;text-align:center;}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">THE YOUNG MAN <span>BLUEPRINT</span></a>
+  <div class="nav-links">
+    <a href="index.html#pillars">Pillars</a>
+    <a href="blog.html">Blog</a>
+    <a href="community.html">Community</a>
+    <a href="faq.html">FAQ</a>
+    <a href="login.html">Log In</a>
+    <a href="create-account.html" class="nav-cta">Start Free</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="page-tag">Resources Library</div>
+  <h1>THE TOOLS THAT <span>ACTUALLY HELP.</span></h1>
+  <p class="hero-sub">Curated books, apps, YouTube channels, communities, and crisis resources — filtered for quality. No affiliate padding, no SEO filler.</p>
+</div>
+
+<div class="page-wrap">
+
+  <div class="lib-section">
+    <div class="lib-header"><span class="lib-icon">📗</span><span class="lib-title">ESSENTIAL BOOKS</span><span class="lib-count">12 BOOKS</span></div>
+    <div class="res-grid">
+      <a href="https://jamesclear.com/atomic-habits" target="_blank" class="res-card"><div class="res-type">📗 Book</div><div class="res-name">Atomic Habits — James Clear</div><p class="res-desc">The definitive guide to building good habits and breaking bad ones. Evidence-based and immediately practical.</p><div class="res-pillar">Discipline</div></a>
+      <a href="https://www.iwillteachyoutoberich.com/" target="_blank" class="res-card"><div class="res-type">📗 Book</div><div class="res-name">I Will Teach You To Be Rich — Ramit Sethi</div><p class="res-desc">No-fluff personal finance for your 20s and 30s. Automate everything and spend guilt-free on what you love.</p><div class="res-pillar">Finances</div></a>
+      <a href="https://www.calnewport.com/books/so-good/" target="_blank" class="res-card"><div class="res-type">📗 Book</div><div class="res-name">So Good They Can't Ignore You — Cal Newport</div><p class="res-desc">Stop following your passion. Get so good at something valuable that opportunities come to you.</p><div class="res-pillar">Career</div></a>
+      <a href="https://www.besselvanderkolk.com/resources/the-body-keeps-the-score" target="_blank" class="res-card"><div class="res-type">📗 Book</div><div class="res-name">The Body Keeps the Score — Bessel van der Kolk</div><p class="res-desc">How trauma lives in the body and what actually heals it. Essential reading for any man with a difficult past.</p><div class="res-pillar">Mental Health</div></a>
+      <a href="https://www.simonandschuster.com/books/Why-We-Sleep/Matthew-Walker/9781501144325" target="_blank" class="res-card"><div class="res-type">📗 Book</div><div class="res-name">Why We Sleep — Matthew Walker</div><p class="res-desc">After this book, you will never deprioritise sleep again. The science is overwhelming and the stakes are high.</p><div class="res-pillar">Health</div></a>
+      <a href="https://www.annalembke.com/dopamine-nation" target="_blank" class="res-card"><div class="res-type">📗 Book</div><div class="res-name">Dopamine Nation — Anna Lembke</div><p class="res-desc">A Stanford psychiatrist on addiction in the age of easy pleasure. Compassionate, clear, and genuinely useful.</p><div class="res-pillar">Addiction</div></a>
+      <a href="https://www.nonviolentcommunication.com/" target="_blank" class="res-card"><div class="res-type">📗 Book</div><div class="res-name">Nonviolent Communication — Marshall Rosenberg</div><p class="res-desc">The most practical communication framework ever written. Transforms every relationship you have.</p><div class="res-pillar">Relationships</div></a>
+      <a href="https://www.blackswanltd.com/never-split-the-difference" target="_blank" class="res-card"><div class="res-type">📗 Book</div><div class="res-name">Never Split the Difference — Chris Voss</div><p class="res-desc">FBI negotiation techniques applied to salary and business. Changes how you think about every negotiation.</p><div class="res-pillar">Career</div></a>
+      <a href="https://feelinggood.com/" target="_blank" class="res-card"><div class="res-type">📗 Book</div><div class="res-name">Feeling Good — David Burns</div><p class="res-desc">The classic CBT self-help book. Highly effective for depression and anxiety. Evidence-backed and accessible.</p><div class="res-pillar">Mental Health</div></a>
+      <a href="https://www.muscleforlife.com/books/bigger-leaner-stronger/" target="_blank" class="res-card"><div class="res-type">📗 Book</div><div class="res-name">Bigger Leaner Stronger — Michael Matthews</div><p class="res-desc">Evidence-based strength training without the broscience. Clear, practical, and built for beginners.</p><div class="res-pillar">Health</div></a>
+      <a href="https://www.viktorfrankl.org/" target="_blank" class="res-card"><div class="res-type">📗 Book</div><div class="res-name">Man's Search for Meaning — Viktor Frankl</div><p class="res-desc">Written in a concentration camp. On finding purpose in the worst circumstances. A foundational book.</p><div class="res-pillar">Motivation</div></a>
+      <a href="https://www.attachedthebook.com/" target="_blank" class="res-card"><div class="res-type">📗 Book</div><div class="res-name">Attached — Amir Levine</div><p class="res-desc">Attachment theory and how it shapes every relationship you've ever had. Required reading.</p><div class="res-pillar">Relationships</div></a>
+    </div>
+  </div>
+
+  <div class="lib-section">
+    <div class="lib-header"><span class="lib-icon">🎥</span><span class="lib-title">YOUTUBE CHANNELS</span><span class="lib-count">8 CHANNELS</span></div>
+    <div class="res-grid">
+      <a href="https://www.youtube.com/@JeffNippard" target="_blank" class="res-card"><div class="res-type">🎥 YouTube</div><div class="res-name">Jeff Nippard</div><p class="res-desc">Evidence-based fitness content. Everything is researched and cited. The best training channel on YouTube.</p><div class="res-pillar">Health</div></a>
+      <a href="https://www.youtube.com/@hubermanlab" target="_blank" class="res-card"><div class="res-type">🎥 YouTube</div><div class="res-name">Huberman Lab</div><p class="res-desc">Neuroscience for everyday life — sleep, focus, motivation, hormones, relationships. Dense and genuinely useful.</p><div class="res-pillar">Health / Mental</div></a>
+      <a href="https://www.youtube.com/@TherapyinaNutshell" target="_blank" class="res-card"><div class="res-type">🎥 YouTube</div><div class="res-name">Therapy in a Nutshell</div><p class="res-desc">Mental health explained clearly by a licensed therapist. Practical, compassionate, and evidence-based.</p><div class="res-pillar">Mental Health</div></a>
+      <a href="https://www.youtube.com/@GrahamStephan" target="_blank" class="res-card"><div class="res-type">🎥 YouTube</div><div class="res-name">Graham Stephan</div><p class="res-desc">Personal finance and real estate investing. Data-driven and aimed at younger audiences building wealth.</p><div class="res-pillar">Finance</div></a>
+      <a href="https://www.youtube.com/@BenFelixCSI" target="_blank" class="res-card"><div class="res-type">🎥 YouTube</div><div class="res-name">Ben Felix</div><p class="res-desc">Evidence-based investing without hype. No market predictions — just research, logic, and index funds.</p><div class="res-pillar">Investing</div></a>
+      <a href="https://www.youtube.com/@JeffSu" target="_blank" class="res-card"><div class="res-type">🎥 YouTube</div><div class="res-name">Jeff Su</div><p class="res-desc">Practical career skills: LinkedIn, resumes, interview prep, salary negotiation. Actionable and honest.</p><div class="res-pillar">Career</div></a>
+      <a href="https://www.youtube.com/@jamesclear" target="_blank" class="res-card"><div class="res-type">🎥 YouTube</div><div class="res-name">James Clear</div><p class="res-desc">Short videos on habits, decision-making, and continuous improvement. Practical and evidence-based.</p><div class="res-pillar">Discipline</div></a>
+      <a href="https://www.youtube.com/@PursuitofWonder" target="_blank" class="res-card"><div class="res-type">🎥 YouTube</div><div class="res-name">Pursuit of Wonder</div><p class="res-desc">Philosophical essays on meaning, ambition, and how to live. For the man asking bigger questions.</p><div class="res-pillar">Motivation</div></a>
+    </div>
+  </div>
+
+  <div class="lib-section">
+    <div class="lib-header"><span class="lib-icon">📱</span><span class="lib-title">APPS & TOOLS</span><span class="lib-count">8 TOOLS</span></div>
+    <div class="res-grid">
+      <a href="https://www.ynab.com/" target="_blank" class="res-card"><div class="res-type">📱 App</div><div class="res-name">YNAB</div><p class="res-desc">The best budgeting app on the market. Zero-based budgeting that actually changes behaviour.</p><div class="res-pillar">Finance</div></a>
+      <a href="https://www.strong.app/" target="_blank" class="res-card"><div class="res-type">📱 App</div><div class="res-name">Strong</div><p class="res-desc">The simplest workout tracker available. Log sets, track progressive overload, see progress.</p><div class="res-pillar">Health</div></a>
+      <a href="https://cronometer.com/" target="_blank" class="res-card"><div class="res-type">📱 App</div><div class="res-name">Cronometer</div><p class="res-desc">More accurate than MyFitnessPal for tracking micronutrients alongside macros.</p><div class="res-pillar">Health</div></a>
+      <a href="https://www.wealthsimple.com/" target="_blank" class="res-card"><div class="res-type">📱 App — Canada</div><div class="res-name">Wealthsimple</div><p class="res-desc">Free to use, commission-free trades, TFSA/RRSP accounts. Easiest way for Canadians to invest.</p><div class="res-pillar">Investing</div></a>
+      <a href="https://investor.vanguard.com/" target="_blank" class="res-card"><div class="res-type">🌐 Platform — US</div><div class="res-name">Vanguard</div><p class="res-desc">Where index fund investing was born. Low fees, long track record, built for long-term investors.</p><div class="res-pillar">Investing</div></a>
+      <a href="https://www.creditkarma.com/" target="_blank" class="res-card"><div class="res-type">📱 App</div><div class="res-name">Credit Karma</div><p class="res-desc">Free credit score monitoring with explanations of what's affecting your score and how to improve it.</p><div class="res-pillar">Finance</div></a>
+      <a href="https://woebothealth.com/" target="_blank" class="res-card"><div class="res-type">📱 App</div><div class="res-name">Woebot</div><p class="res-desc">AI-powered mental health chatbot using CBT techniques. Free, available 24/7, evidence-based.</p><div class="res-pillar">Mental Health</div></a>
+      <a href="https://habitica.com/" target="_blank" class="res-card"><div class="res-type">📱 App</div><div class="res-name">Habitica</div><p class="res-desc">Turns your habits into an RPG. Earn XP, level up characters, join parties. Surprisingly effective.</p><div class="res-pillar">Discipline</div></a>
+    </div>
+  </div>
+
+  <div class="lib-section">
+    <div class="lib-header"><span class="lib-icon">📞</span><span class="lib-title">CRISIS & SUPPORT LINES</span><span class="lib-count">6 RESOURCES</span></div>
+    <p style="font-size:0.88rem;color:var(--muted);margin-bottom:28px;max-width:600px;line-height:1.7;">If you're in crisis or struggling beyond what self-help can reach — these resources exist specifically for that. Please use them. There is no strength in suffering alone when trained support is available.</p>
+    <div class="crisis-grid">
+      <a href="https://988lifeline.org/" target="_blank" class="crisis-card"><div class="crisis-name">988 SUICIDE & CRISIS LIFELINE</div><div class="crisis-num">Call or Text: 988</div><p class="crisis-desc">US and Canada. Free, confidential, available 24/7. For any mental health crisis — not just suicidal ideation.</p></a>
+      <a href="https://www.samaritans.org/" target="_blank" class="crisis-card"><div class="crisis-name">SAMARITANS (UK)</div><div class="crisis-num">Call: 116 123</div><p class="crisis-desc">Free, confidential, 24/7. For anyone struggling emotionally or in crisis in the UK and Ireland.</p></a>
+      <a href="https://www.lifeline.org.au/" target="_blank" class="crisis-card"><div class="crisis-name">LIFELINE AUSTRALIA</div><div class="crisis-num">Call: 13 11 14</div><p class="crisis-desc">24/7 crisis support for Australians. Also available via chat at lifeline.org.au.</p></a>
+      <a href="https://www.samhsa.gov/find-help/national-helpline" target="_blank" class="crisis-card"><div class="crisis-name">SAMHSA ADDICTION HELPLINE</div><div class="crisis-num">Call: 1-800-662-4357</div><p class="crisis-desc">Free, confidential treatment referrals for substance use disorders. Available 24/7 in the US.</p></a>
+      <a href="https://www.psychologytoday.com/us/therapists" target="_blank" class="crisis-card"><div class="crisis-name">FIND A THERAPIST</div><div class="crisis-num">psychologytoday.com</div><p class="crisis-desc">Filter by location, cost, specialty, and insurance. The best directory for finding professional mental health support.</p></a>
+      <a href="https://www.allianceforeatingdisorders.com/" target="_blank" class="crisis-card"><div class="crisis-name">EATING DISORDER HELPLINE</div><div class="crisis-num">Call: 1-866-662-1235</div><p class="crisis-desc">The National Alliance for Eating Disorders helpline. For men struggling with disordered eating.</p></a>
+    </div>
+  </div>
+
+</div>
+
+<div class="cta-band">
+  <h2>ACCESS ALL OF THIS INSIDE THE BLUEPRINT</h2>
+  <p>Resources, guides, trackers, and a structured path through all 11 pillars. Start free today.</p>
+  <a href="create-account.html" class="btn-primary">⚡ Start Free</a>
+  <a href="index.html" class="btn-ghost">← Back to Home</a>
+</div>
+
+<footer>
+  <a href="index.html" class="footer-logo">THE YOUNG MAN <span>BLUEPRINT</span></a>
+  <div class="footer-links">
+    <a href="index.html#pillars">Pillars</a>
+    <a href="faq.html">FAQ</a>
+    <a href="blog.html">Blog</a>
+    <a href="community.html">Community</a>
+    <a href="login.html">Log In</a>
+  </div>
+  <div class="footer-copy">© 2025 THE YOUNG MAN BLUEPRINT</div>
+</footer>
+</body>
+</html>

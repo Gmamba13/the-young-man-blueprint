@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Log In — The Young Man Blueprint</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --deep: #111318;
+    --panel: #16191f;
+    --border: #22262e;
+    --orange: #e8500a;
+    --orange-glow: #ff6820;
+    --amber: #f5a623;
+    --white: #f0ede8;
+    --muted: #7a7f8a;
+    --green: #2dba6e;
+    --red: #e84040;
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+    --font-mono: 'Space Mono', monospace;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: var(--font-body);
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* LEFT PANEL */
+  .left-panel {
+    background: var(--deep);
+    border-right: 1px solid var(--border);
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .grid-bg {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(232,80,10,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(232,80,10,0.04) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+
+  .glow {
+    position: absolute; bottom: -100px; left: -100px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(232,80,10,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .left-logo {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+    color: var(--white);
+    text-decoration: none;
+    position: relative; z-index: 1;
+  }
+  .left-logo span { color: var(--orange); }
+
+  .left-content {
+    position: relative; z-index: 1;
+  }
+
+  .left-tag {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 3px;
+    color: var(--orange);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .left-tag::before {
+    content: ''; display: block;
+    width: 30px; height: 1px;
+    background: var(--orange);
+  }
+
+  .left-headline {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 5vw, 5rem);
+    line-height: 0.95;
+    letter-spacing: 1px;
+    margin-bottom: 24px;
+  }
+  .left-headline span { color: var(--orange); }
+
+  .left-desc {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 360px;
+    font-weight: 300;
+  }
+
+  .pillars-preview {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    margin-top: 32px;
+  }
+  .pill {
+    font-size: 0.7rem;
+    font-family: var(--font-mono);
+    letter-spacing: 1px;
+    padding: 5px 12px;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    color: var(--muted);
+  }
+
+  .left-footer {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--border);
+    letter-spacing: 2px;
+    position: relative; z-index: 1;
+  }
+
+  /* RIGHT PANEL */
+  .right-panel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 40px;
+    background: var(--black);
+  }
+
+  .login-box {
+    width: 100%;
+    max-width: 420px;
+  }
+
+  .login-title {
+    font-family: var(--font-display);
+    font-size: 2.8rem;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+  .login-sub {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-bottom: 40px;
+  }
+  .login-sub a {
+    color: var(--orange);
+    text-decoration: none;
+  }
+  .login-sub a:hover { text-decoration: underline; }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+  .form-group label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .form-group input {
+    width: 100%;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    color: var(--white);
+    padding: 14px 16px;
+    font-size: 0.95rem;
+    font-family: var(--font-body);
+    border-radius: 2px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-group input:focus { border-color: var(--orange); }
+  .form-group input::placeholder { color: var(--muted); }
+
+  .forgot {
+    display: block;
+    text-align: right;
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-decoration: none;
+    margin-top: -12px;
+    margin-bottom: 28px;
+    transition: color 0.2s;
+  }
+  .forgot:hover { color: var(--orange); }
+
+  .btn-login {
+    width: 100%;
+    background: var(--orange);
+    color: var(--white);
+    border: none;
+    padding: 16px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-family: var(--font-body);
+    border-radius: 2px;
+    transition: all 0.2s;
+    position: relative; overflow: hidden;
+  }
+  .btn-login::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.08) 50%, transparent 100%);
+    transform: translateX(-100%);
+    transition: transform 0.4s;
+  }
+  .btn-login:hover::after { transform: translateX(100%); }
+  .btn-login:hover { background: var(--orange-glow); box-shadow: 0 8px 30px rgba(232,80,10,0.3); }
+
+  .divider {
+    display: flex; align-items: center; gap: 12px;
+    margin: 28px 0;
+    color: var(--muted);
+    font-size: 0.72rem;
+    font-family: var(--font-mono);
+    letter-spacing: 2px;
+  }
+  .divider::before, .divider::after {
+    content: ''; flex: 1;
+    height: 1px; background: var(--border);
+  }
+
+  .btn-google {
+    width: 100%;
+    background: transparent;
+    color: var(--white);
+    border: 1px solid var(--border);
+    padding: 14px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: var(--font-body);
+    border-radius: 2px;
+    transition: all 0.2s;
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+  }
+  .btn-google:hover { border-color: var(--muted); color: var(--white); }
+
+  .signup-prompt {
+    text-align: center;
+    margin-top: 32px;
+    font-size: 0.82rem;
+    color: var(--muted);
+  }
+  .signup-prompt a {
+    color: var(--orange);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .signup-prompt a:hover { text-decoration: underline; }
+
+  .error-msg {
+    display: none;
+    background: rgba(232,64,64,0.1);
+    border: 1px solid rgba(232,64,64,0.3);
+    color: var(--red);
+    padding: 12px 16px;
+    font-size: 0.8rem;
+    border-radius: 2px;
+    margin-bottom: 20px;
+    font-family: var(--font-mono);
+    letter-spacing: 1px;
+  }
+  .error-msg.show { display: block; }
+
+  @media (max-width: 800px) {
+    body { grid-template-columns: 1fr; }
+    .left-panel { display: none; }
+    .right-panel { padding: 40px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- LEFT PANEL -->
+<div class="left-panel">
+  <div class="grid-bg"></div>
+  <div class="glow"></div>
+
+  <a href="index.html" class="left-logo">THE YOUNG MAN <span>BLUEPRINT</span></a>
+
+  <div class="left-content">
+    <div class="left-tag">Members Portal</div>
+    <div class="left-headline">WELCOME<br><span>BACK.</span></div>
+    <p class="left-desc">Your dashboard, your habits, your roadmap — everything you've been building is waiting for you.</p>
+
+    <div class="pillars-preview">
+      <span class="pill">💪 Health</span>
+      <span class="pill">🧠 Mental</span>
+      <span class="pill">💰 Finances</span>
+      <span class="pill">📈 Investing</span>
+      <span class="pill">🎯 Career</span>
+      <span class="pill">🤝 Relationships</span>
+      <span class="pill">🔥 Discipline</span>
+      <span class="pill">⚡ Motivation</span>
+      <span class="pill">🪞 Appearance</span>
+      <span class="pill">🚫 Addiction</span>
+      <span class="pill">📚 Resources</span>
+    </div>
+  </div>
+
+  <div class="left-footer">© 2025 THE YOUNG MAN BLUEPRINT</div>
+</div>
+
+<!-- RIGHT PANEL -->
+<div class="right-panel">
+  <div class="login-box">
+    <div class="login-title">LOG IN</div>
+    <p class="login-sub">Don't have an account? <a href="index.html#pricing">Start for free →</a></p>
+
+    <div class="error-msg" id="error-msg">⚠ Incorrect email or password. Try again.</div>
+
+    <div class="form-group">
+      <label>Email Address</label>
+      <input type="email" id="email" placeholder="your@email.com">
+    </div>
+
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" id="password" placeholder="••••••••">
+    </div>
+
+    <a href="#" class="forgot">Forgot your password?</a>
+
+    <button class="btn-login" onclick="handleLogin()">Log In To My Blueprint</button>
+
+    <div class="divider">or continue with</div>
+
+    <button class="btn-google" onclick="handleLogin()">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+        <path d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908c1.702-1.567 2.684-3.874 2.684-6.615z" fill="#4285F4"/>
+        <path d="M9 18c2.43 0 4.467-.806 5.956-2.18l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 009 18z" fill="#34A853"/>
+        <path d="M3.964 10.71A5.41 5.41 0 013.682 9c0-.593.102-1.17.282-1.71V4.958H.957A8.996 8.996 0 000 9c0 1.452.348 2.827.957 4.042l3.007-2.332z" fill="#FBBC05"/>
+        <path d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 00.957 4.958L3.964 6.29C4.672 4.163 6.656 3.58 9 3.58z" fill="#EA4335"/>
+      </svg>
+      Continue with Google
+    </button>
+
+    <p class="signup-prompt">New here? <a href="index.html">Learn about The Blueprint →</a></p>
+  </div>
+</div>
+
+<script>
+  function handleLogin() {
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value.trim();
+    const error = document.getElementById('error-msg');
+
+    if (email && password) {
+      const btn = document.querySelector('.btn-login');
+      // Check if returning user exists in localStorage
+      const existing = localStorage.getItem('tmb_user');
+      if (!existing) {
+        // First time — create a basic profile from email
+        const name = email.split('@')[0].replace(/[^a-zA-Z]/g,' ').trim() || 'User';
+        const profile = {
+          name: name.charAt(0).toUpperCase() + name.slice(1),
+          email: email,
+          totalXP: 0,
+          streak: 0,
+          lastMissionDate: null,
+          totalMissions: 0,
+          activePillars: [],
+          missions: {},
+          habits: {},
+          earnedBadges: [],
+          createdAt: new Date().toISOString()
+        };
+        localStorage.setItem('tmb_user', JSON.stringify(profile));
+      }
+      btn.textContent = 'Logging In...';
+      btn.style.background = 'var(--green)';
+      setTimeout(() => { window.location.href = 'dashboard.html'; }, 900);
+    } else {
+      error.classList.add('show');
+      setTimeout(() => error.classList.remove('show'), 3000);
+    }
+  }
+
+  // Allow Enter key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') handleLogin();
+  });
+</script>
+
+</body>
+</html>

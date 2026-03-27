@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Settings — The Young Man Blueprint</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--black:#0a0a0a;--deep:#111318;--panel:#16191f;--border:#22262e;--orange:#e8500a;--orange-glow:#ff6820;--amber:#f5a623;--white:#f0ede8;--muted:#7a7f8a;--green:#2dba6e;--red:#e84040;--font-display:'Bebas Neue',sans-serif;--font-body:'DM Sans',sans-serif;--font-mono:'Space Mono',monospace;--sidebar-w:260px;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--black);color:var(--white);font-family:var(--font-body);font-size:15px;line-height:1.6;min-height:100vh;}
+::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-track{background:var(--black);}::-webkit-scrollbar-thumb{background:var(--orange);border-radius:2px;}
+/* SIDEBAR */
+.sidebar{background:var(--deep);border-right:1px solid var(--border);display:flex;flex-direction:column;position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;overflow-y:auto;overflow-x:hidden;z-index:100;}
+.sidebar-logo{font-family:var(--font-display);font-size:1rem;letter-spacing:2px;color:var(--white);padding:22px 24px;border-bottom:1px solid var(--border);display:block;text-decoration:none;line-height:1.3;}
+.sidebar-logo span{color:var(--orange);}
+.sidebar-user{padding:16px 24px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;}
+.user-avatar{width:38px;height:38px;background:var(--orange);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:1.1rem;color:var(--white);flex-shrink:0;}
+.user-name{font-size:0.83rem;font-weight:500;}
+.user-level{font-family:var(--font-mono);font-size:0.56rem;color:var(--orange);letter-spacing:2px;margin-top:2px;}
+.xp-mini{padding:12px 24px;border-bottom:1px solid var(--border);}
+.xp-mini-label{display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:0.54rem;color:var(--muted);letter-spacing:1px;margin-bottom:6px;}
+.xp-bar{height:4px;background:var(--border);border-radius:2px;overflow:hidden;}
+.xp-fill{height:100%;background:linear-gradient(90deg,var(--orange),var(--amber));border-radius:2px;}
+.sidebar-nav{padding:10px 0;flex:1;}
+.nav-section-label{font-family:var(--font-mono);font-size:0.54rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);padding:12px 24px 5px;}
+.nav-item{display:flex;align-items:center;gap:10px;padding:9px 24px;font-size:0.82rem;color:var(--muted);cursor:pointer;transition:all 0.15s;border-left:2px solid transparent;text-decoration:none;}
+.nav-item:hover{color:var(--white);background:rgba(255,255,255,0.03);}
+.nav-item.active{color:var(--white);border-left-color:var(--orange);background:rgba(232,80,10,0.06);}
+.nav-item .icon{font-size:0.9rem;width:18px;text-align:center;flex-shrink:0;}
+.sidebar-footer{padding:16px 24px;border-top:1px solid var(--border);}
+.logout-btn{display:flex;align-items:center;gap:10px;font-size:0.78rem;color:var(--muted);background:none;border:none;cursor:pointer;font-family:var(--font-body);transition:color 0.2s;}
+.logout-btn:hover{color:var(--red);}
+/* MAIN */
+.main{margin-left:var(--sidebar-w);padding:36px 40px;min-height:100vh;max-width:900px;}
+.page-header{margin-bottom:36px;}
+.page-title{font-family:var(--font-display);font-size:2.2rem;letter-spacing:1px;margin-bottom:6px;}
+.page-sub{font-size:0.88rem;color:var(--muted);}
+/* SETTINGS SECTIONS */
+.settings-section{background:var(--panel);border:1px solid var(--border);border-radius:2px;margin-bottom:20px;overflow:hidden;}
+.section-header{padding:18px 24px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;}
+.section-icon{font-size:1.2rem;}
+.section-title{font-family:var(--font-display);font-size:1.1rem;letter-spacing:1px;}
+.section-desc{font-size:0.75rem;color:var(--muted);margin-left:auto;}
+.setting-row{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;border-bottom:1px solid var(--border);gap:20px;}
+.setting-row:last-child{border:none;}
+.setting-info{flex:1;}
+.setting-label{font-size:0.88rem;font-weight:500;margin-bottom:2px;}
+.setting-hint{font-size:0.75rem;color:var(--muted);line-height:1.4;}
+/* TOGGLE */
+.toggle{position:relative;width:44px;height:24px;flex-shrink:0;}
+.toggle input{opacity:0;width:0;height:0;}
+.toggle-slider{position:absolute;inset:0;background:var(--border);border-radius:12px;cursor:pointer;transition:background 0.2s;}
+.toggle-slider::before{content:'';position:absolute;width:18px;height:18px;left:3px;top:3px;background:var(--muted);border-radius:50%;transition:all 0.2s;}
+.toggle input:checked+.toggle-slider{background:var(--orange);}
+.toggle input:checked+.toggle-slider::before{transform:translateX(20px);background:var(--white);}
+/* INPUTS */
+.setting-input{background:var(--deep);border:1px solid var(--border);color:var(--white);padding:9px 14px;font-size:0.85rem;font-family:var(--font-body);border-radius:2px;outline:none;transition:border-color 0.2s;min-width:200px;}
+.setting-input:focus{border-color:var(--orange);}
+.setting-select{background:var(--deep);border:1px solid var(--border);color:var(--white);padding:9px 14px;font-size:0.85rem;font-family:var(--font-body);border-radius:2px;outline:none;cursor:pointer;min-width:160px;}
+.setting-select option{background:var(--panel);}
+/* BUTTONS */
+.btn-save{background:var(--orange);color:var(--white);border:none;padding:9px 20px;font-size:0.78rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;font-family:var(--font-body);border-radius:2px;transition:background 0.2s;flex-shrink:0;}
+.btn-save:hover{background:var(--orange-glow);}
+.btn-danger{background:transparent;color:var(--red);border:1px solid var(--red);padding:9px 20px;font-size:0.78rem;letter-spacing:1px;cursor:pointer;font-family:var(--font-body);border-radius:2px;transition:all 0.2s;flex-shrink:0;}
+.btn-danger:hover{background:var(--red);color:var(--white);}
+.btn-muted{background:transparent;color:var(--muted);border:1px solid var(--border);padding:9px 20px;font-size:0.78rem;letter-spacing:1px;cursor:pointer;font-family:var(--font-body);border-radius:2px;transition:all 0.2s;flex-shrink:0;}
+.btn-muted:hover{color:var(--white);border-color:var(--muted);}
+/* AVATAR PICKER */
+.avatar-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px;}
+.avatar-opt{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3rem;border:2px solid var(--border);cursor:pointer;transition:all 0.15s;}
+.avatar-opt:hover,.avatar-opt.sel{border-color:var(--orange);}
+/* PROGRESS BAR */
+.progress-wrap{width:100%;background:var(--border);border-radius:2px;height:6px;overflow:hidden;margin-top:6px;}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--orange),var(--amber));border-radius:2px;transition:width 0.5s;}
+/* STATS GRID */
+.stats-mini{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:20px 24px;}
+.stat-mini{background:var(--deep);border:1px solid var(--border);padding:16px;border-radius:2px;text-align:center;}
+.stat-mini-val{font-family:var(--font-display);font-size:1.8rem;color:var(--orange);line-height:1;}
+.stat-mini-lbl{font-family:var(--font-mono);font-size:0.56rem;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-top:4px;}
+/* DANGER ZONE */
+.danger-zone{border-color:rgba(232,64,64,0.3);}
+.danger-zone .section-header{border-bottom-color:rgba(232,64,64,0.3);}
+/* TOAST */
+.toast{position:fixed;bottom:24px;right:24px;background:var(--green);color:var(--white);padding:12px 20px;border-radius:2px;font-size:0.82rem;font-family:var(--font-mono);letter-spacing:1px;transform:translateY(80px);opacity:0;transition:all 0.3s;z-index:500;}
+.toast.show{transform:translateY(0);opacity:1;}
+/* MOBILE */
+.mobile-menu-btn{display:none;position:fixed;top:14px;left:14px;z-index:200;background:var(--panel);border:1px solid var(--border);padding:9px 13px;border-radius:2px;cursor:pointer;color:var(--white);font-size:1rem;}
+.mob-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:99;}
+.mob-overlay.show{display:block;}
+@media(max-width:768px){.sidebar{transform:translateX(-100%);transition:transform 0.3s;}.sidebar.open{transform:translateX(0);}.main{margin-left:0;padding:60px 16px 20px;}.mobile-menu-btn{display:flex;}.stats-mini{grid-template-columns:repeat(2,1fr);}.setting-input,.setting-select{min-width:120px;}}
+</style>
+</head>
+<body>
+<button class="mobile-menu-btn" onclick="toggleSidebar()">☰</button>
+<div class="mob-overlay" id="mob-overlay" onclick="toggleSidebar()"></div>
+<div class="toast" id="toast"></div>
+
+<!-- SIDEBAR -->
+<div class="sidebar" id="sidebar">
+  <a href="index.html" class="sidebar-logo">THE YOUNG MAN <span>BLUEPRINT</span></a>
+  <div class="sidebar-user">
+    <div class="user-avatar" id="sb-avatar">?</div>
+    <div><div class="user-name" id="sb-name">Loading...</div><div class="user-level" id="sb-level">LEVEL 1</div></div>
+  </div>
+  <div class="xp-mini">
+    <div class="xp-mini-label"><span id="sb-xp-cur">0 XP</span><span id="sb-xp-next">1000 → Level 2</span></div>
+    <div class="xp-bar"><div class="xp-fill" id="sb-xp-bar" style="width:0%"></div></div>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-section-label">Main</div>
+    <a class="nav-item" href="dashboard.html"><span class="icon">🏠</span> Dashboard</a>
+    <a class="nav-item" href="index.html#roadmap"><span class="icon">🗺️</span> My Roadmap</a>
+    <a class="nav-item" href="dashboard.html#habits"><span class="icon">🔥</span> Habit Tracker</a>
+    <a class="nav-item" href="dashboard.html#badges"><span class="icon">🏆</span> Badges</a>
+    <div class="nav-section-label">Pillars</div>
+    <a class="nav-item" href="health.html"><span class="icon">💪</span> Physical Health</a>
+    <a class="nav-item" href="mental-health.html"><span class="icon">🧠</span> Mental Health</a>
+    <a class="nav-item" href="finances.html"><span class="icon">💰</span> Finances</a>
+    <a class="nav-item" href="investing.html"><span class="icon">📈</span> Investing</a>
+    <a class="nav-item" href="career.html"><span class="icon">🎯</span> Career</a>
+    <a class="nav-item" href="relationships.html"><span class="icon">🤝</span> Relationships</a>
+    <a class="nav-item" href="discipline.html"><span class="icon">🔥</span> Discipline</a>
+    <a class="nav-item" href="motivation.html"><span class="icon">⚡</span> Motivation</a>
+    <a class="nav-item" href="appearance.html"><span class="icon">🪞</span> Appearance</a>
+    <a class="nav-item" href="addiction.html"><span class="icon">🚫</span> Addiction</a>
+    <a class="nav-item" href="resources.html"><span class="icon">📚</span> Resources</a>
+    <div class="nav-section-label">Account</div>
+    <a class="nav-item active" href="settings.html"><span class="icon">⚙️</span> Settings</a>
+  </nav>
+  <div class="sidebar-footer">
+    <button class="logout-btn" onclick="logout()"><span>→</span> Log Out</button>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+  <div class="page-header">
+    <div class="page-title">⚙️ SETTINGS</div>
+    <p class="page-sub">Manage your profile, preferences, notifications, and account.</p>
+  </div>
+
+  <!-- PROFILE -->
+  <div class="settings-section">
+    <div class="section-header">
+      <span class="section-icon">👤</span>
+      <span class="section-title">PROFILE</span>
+    </div>
+
+    <div class="setting-row">
+      <div class="setting-info">
+        <div class="setting-label">Display Name</div>
+        <div class="setting-hint">This is shown on your dashboard and badges.</div>
+      </div>
+      <div style="display:flex;gap:10px;align-items:center;">
+        <input type="text" class="setting-input" id="profile-name" placeholder="Your name">
+        <button class="btn-save" onclick="saveName()">Save</button>
+      </div>
+    </div>
+
+    <div class="setting-row">
+      <div class="setting-info">
+        <div class="setting-label">Email Address</div>
+        <div class="setting-hint">Used for account recovery and notifications.</div>
+      </div>
+      <div style="display:flex;gap:10px;align-items:center;">
+        <input type="email" class="setting-input" id="profile-email" placeholder="your@email.com">
+        <button class="btn-save" onclick="saveEmail()">Save</button>
+      </div>
+    </div>
+
+    <div class="setting-row">
+      <div class="setting-info">
+        <div class="setting-label">Avatar Colour</div>
+        <div class="setting-hint">Personalise your avatar in the sidebar.</div>
+      </div>
+      <div class="avatar-row">
+        <div class="avatar-opt sel" style="background:#e8500a;" data-color="#e8500a" onclick="selectColor(this)"></div>
+        <div class="avatar-opt" style="background:#2dba6e;" data-color="#2dba6e" onclick="selectColor(this)"></div>
+        <div class="avatar-opt" style="background:#2d7bba;" data-color="#2d7bba" onclick="selectColor(this)"></div>
+        <div class="avatar-opt" style="background:#f5a623;" data-color="#f5a623" onclick="selectColor(this)"></div>
+        <div class="avatar-opt" style="background:#7a5cc0;" data-color="#7a5cc0" onclick="selectColor(this)"></div>
+        <div class="avatar-opt" style="background:#e84040;" data-color="#e84040" onclick="selectColor(this)"></div>
+      </div>
+    </div>
+
+    <div class="setting-row">
+      <div class="setting-info">
+        <div class="setting-label">Current Plan</div>
+        <div class="setting-hint">Your active subscription tier.</div>
+      </div>
+      <div style="display:flex;gap:10px;align-items:center;">
+        <span id="plan-label" style="font-family:var(--font-mono);font-size:0.75rem;color:var(--orange);letter-spacing:2px;padding:6px 14px;border:1px solid rgba(232,80,10,0.4);border-radius:2px;">FREE</span>
+        <a href="index.html#pricing" class="btn-save" style="text-decoration:none;display:inline-block;">Upgrade</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- MY PROGRESS -->
+  <div class="settings-section">
+    <div class="section-header">
+      <span class="section-icon">📊</span>
+      <span class="section-title">MY PROGRESS</span>
+      <span class="section-desc">Read-only</span>
+    </div>
+    <div class="stats-mini">
+      <div class="stat-mini"><div class="stat-mini-val" id="s-xp">0</div><div class="stat-mini-lbl">Total XP</div></div>
+      <div class="stat-mini"><div class="stat-mini-val" id="s-level">1</div><div class="stat-mini-lbl">Level</div></div>
+      <div class="stat-mini"><div class="stat-mini-val" id="s-streak">0</div><div class="stat-mini-lbl">Day Streak</div></div>
+      <div class="stat-mini"><div class="stat-mini-val" id="s-missions">0</div><div class="stat-mini-lbl">Missions Done</div></div>
+      <div class="stat-mini"><div class="stat-mini-val" id="s-pillars">0</div><div class="stat-mini-lbl">Pillars Active</div></div>
+      <div class="stat-mini"><div class="stat-mini-val" id="s-badges">0</div><div class="stat-mini-lbl">Badges Earned</div></div>
+    </div>
+    <div style="padding:0 24px 20px;">
+      <div style="font-family:var(--font-mono);font-size:0.6rem;color:var(--muted);letter-spacing:2px;margin-bottom:8px;">LEVEL PROGRESS</div>
+      <div class="progress-wrap"><div class="progress-fill" id="s-xp-bar" style="width:0%"></div></div>
+      <div style="display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:0.56rem;color:var(--muted);margin-top:5px;">
+        <span id="s-xp-cur">0 XP</span><span id="s-xp-next">1000 to Level 2</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- NOTIFICATIONS -->
+  <div class="settings-section">
+    <div class="section-header">
+      <span class="section-icon">🔔</span>
+      <span class="section-title">NOTIFICATIONS</span>
+    </div>
+    <div class="setting-row">
+      <div class="setting-info">
+        <div class="setting-label">Daily Mission Reminder</div>
+        <div class="setting-hint">Get reminded to complete your daily missions.</div>
+      </div>
+      <label class="toggle"><input type="checkbox" id="notif-daily" onchange="savePref('notifDaily',this.checked)"><span class="toggle-slider"></span></label>
+    </div>
+    <div class="setting-row">
+      <div class="setting-info">
+        <div class="setting-label">Streak Warning</div>
+        <div class="setting-hint">Alert when your streak is at risk of breaking.</div>
+      </div>
+      <label class="toggle"><input type="checkbox" id="notif-streak" onchange="savePref('notifStreak',this.checked)"><span class="toggle-slider"></span></label>
+    </div>
+    <div class="setting-row">
+      <div class="setting-info">
+        <div class="setting-label">Badge Unlocked</div>
+        <div class="setting-hint">Notify when you unlock a new badge.</div>
+      </div>
+      <label class="toggle"><input type="checkbox" id="notif-badge" checked onchange="savePref('notifBadge',this.checked)"><span class="toggle-slider"></span></label>
+    </div>
+    <div class="setting-row">
+      <div class="setting-info">
+        <div class="setting-label">Weekly Summary</div>
+        <div class="setting-hint">Weekly email report on your progress across pillars.</div>
+      </div>
+      <label class="toggle"><input type="checkbox" id="notif-weekly" onchange="savePref('notifWeekly',this.checked)"><span class="toggle-slider"></span></label>
+    </div>
+  </div>
+
+  <!-- DISPLAY -->
+  <div class="settings-section">
+    <div class="section-header">
+      <span class="section-icon">🎨</span>
+      <span class="section-title">DISPLAY & PREFERENCES</span>
+    </div>
+    <div class="setting-row">
+      <div class="setting-info">
+        <div class="setting-label">Primary Goal</div>
+        <div class="setting-hint">Your main area of focus — shown on your roadmap.</div>
+      </div>
+      <select class="setting-select" id="pref-goal" onchange="savePref('goal',this.value)">
+        <option value="">Choose a focus...</option>
+        <option value="health">💪 Physical Health</option>
+        <option value="mental">🧠 Mental Health</option>
+        <option value="finances">💰 Finances</option>
+        <option value="career">🎯 Career</option>
+        <option value="discipline">🔥 Discipline</option>
+        <option value="relationships">🤝 Relationships</option>
+      </select>
+    </div>
+    <div class="setting-row">
+      <div class="setting-info">
+        <div class="setting-label">Show XP Animations</div>
+        <div class="setting-hint">Flash effect and level-up animations when XP is earned.</div>
+      </div>
+      <label class="toggle"><input type="checkbox" id="pref-anim" checked onchange="savePref('animations',this.checked)"><span class="toggle-slider"></span></label>
+    </div>
+    <div class="setting-row">
+      <div class="setting-info">
+        <div class="setting-label">Compact Mode</div>
+        <div class="setting-hint">Reduce spacing in the dashboard for more content on screen.</div>
+      </div>
+      <label class="toggle"><input type="checkbox" id="pref-compact" onchange="savePref('compact',this.checked)"><span class="toggle-slider"></span></label>
+    </div>
+    <div class="setting-row">
+      <div class="setting-info">
+        <div class="setting-label">Weekly Reset Day</div>
+        <div class="setting-hint">When your habit tracker week resets.</div>
+      </div>
+      <select class="setting-select" id="pref-reset" onchange="savePref('resetDay',this.value)">
+        <option value="monday">Monday</option>
+        <option value="sunday">Sunday</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- PRIVACY -->
+  <div class="settings-section">
+    <div class="section-header">
+      <span class="section-icon">🔒</span>
+      <span class="section-title">PRIVACY</span>
+    </div>
+    <div class="setting-row">
+      <div class="setting-info">
+        <div class="setting-label">Profile Visible in Community</div>
+        <div class="setting-hint">Show your name and streak in the community leaderboard.</div>
+      </div>
+      <label class="toggle"><input type="checkbox" id="priv-community" checked onchange="savePref('communityVisible',this.checked)"><span class="toggle-slider"></span></label>
+    </div>
+    <div class="setting-row">
+      <div class="setting-info">
+        <div class="setting-label">Share Progress on Badges</div>
+        <div class="setting-hint">Allow others to see badges you've earned.</div>
+      </div>
+      <label class="toggle"><input type="checkbox" id="priv-badges" checked onchange="savePref('badgesPublic',this.checked)"><span class="toggle-slider"></span></label>
+    </div>
+    <div class="setting-row">
+      <div class="setting-info">
+        <div class="setting-label">Data Usage for Improvement</div>
+        <div class="setting-hint">Allow anonymous usage data to help improve The Blueprint.</div>
+      </div>
+      <label class="toggle"><input type="checkbox" id="priv-data" checked onchange="savePref('dataUsage',this.checked)"><span class="toggle-slider"></span></label>
+    </div>
+  </div>
+
+  <!-- DATA -->
+  <div class="settings-section">
+    <div class="section-header">
+      <span class="section-icon">💾</span>
+      <span class="section-title">DATA & EXPORT</span>
+    </div>
+    <div class="setting-row">
+      <div class="setting-info">
+        <div class="setting-label">Export My Data</div>
+        <div class="setting-hint">Download all your progress data as a JSON file.</div>
+      </div>
+      <button class="btn-muted" onclick="exportData()">Download JSON</button>
+    </div>
+    <div class="setting-row">
+      <div class="setting-info">
+        <div class="setting-label">Reset Progress</div>
+        <div class="setting-hint">Wipe all XP, habits, missions and badges. Profile is kept.</div>
+      </div>
+      <button class="btn-danger" onclick="resetProgress()">Reset Progress</button>
+    </div>
+  </div>
+
+  <!-- DANGER ZONE -->
+  <div class="settings-section danger-zone">
+    <div class="section-header">
+      <span class="section-icon">⚠️</span>
+      <span class="section-title">DANGER ZONE</span>
+    </div>
+    <div class="setting-row">
+      <div class="setting-info">
+        <div class="setting-label">Log Out of All Devices</div>
+        <div class="setting-hint">End your session and return to the login page.</div>
+      </div>
+      <button class="btn-danger" onclick="logout()">Log Out</button>
+    </div>
+    <div class="setting-row">
+      <div class="setting-info">
+        <div class="setting-label" style="color:var(--red);">Delete Account</div>
+        <div class="setting-hint">Permanently delete your account and all data. This cannot be undone.</div>
+      </div>
+      <button class="btn-danger" onclick="deleteAccount()">Delete Account</button>
+    </div>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+const XP_PER_LEVEL=1000;
+const LEVELS=['Recruit','Builder','Grinder','Achiever','Elite','Blueprint Master'];
+function getProfile(){const u=localStorage.getItem('tmb_user');if(!u){window.location.href='login.html';return null;}return JSON.parse(u);}
+function saveProfile(p){localStorage.setItem('tmb_user',JSON.stringify(p));}
+function getLevel(xp){return Math.floor(xp/XP_PER_LEVEL)+1;}
+function getLevelName(xp){const l=getLevel(xp)-1;return LEVELS[Math.min(l,LEVELS.length-1)];}
+
+function showToast(msg){
+  const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2500);
+}
+
+function init(){
+  const p=getProfile();if(!p)return;
+  // Sidebar
+  document.getElementById('sb-avatar').textContent=(p.name||'?')[0].toUpperCase();
+  document.getElementById('sb-avatar').style.background=p.avatarColor||'#e8500a';
+  document.getElementById('sb-name').textContent=p.name||'User';
+  const xp=p.totalXP||0;const level=getLevel(xp);
+  document.getElementById('sb-level').textContent=`LEVEL ${level} — ${getLevelName(xp).toUpperCase()}`;
+  const pct=((xp%XP_PER_LEVEL)/XP_PER_LEVEL)*100;
+  document.getElementById('sb-xp-cur').textContent=xp+' XP';
+  document.getElementById('sb-xp-bar').style.width=pct+'%';
+  const xpToNext=XP_PER_LEVEL-(xp%XP_PER_LEVEL);
+  document.getElementById('sb-xp-next').textContent=xpToNext+' → Level '+(level+1);
+  // Profile fields
+  document.getElementById('profile-name').value=p.name||'';
+  document.getElementById('profile-email').value=p.email||'';
+  document.getElementById('plan-label').textContent=(p.plan||'free').toUpperCase();
+  // Stats
+  document.getElementById('s-xp').textContent=xp;
+  document.getElementById('s-level').textContent=level;
+  document.getElementById('s-streak').textContent=p.streak||0;
+  document.getElementById('s-missions').textContent=p.totalMissions||0;
+  document.getElementById('s-pillars').textContent=(p.activePillars||[]).length;
+  document.getElementById('s-badges').textContent=(p.earnedBadges||[]).length;
+  document.getElementById('s-xp-bar').style.width=pct+'%';
+  document.getElementById('s-xp-cur').textContent=xp+' XP';
+  document.getElementById('s-xp-next').textContent=xpToNext+' to Level '+(level+1);
+  // Preferences
+  const prefs=p.prefs||{};
+  document.getElementById('notif-daily').checked=!!prefs.notifDaily;
+  document.getElementById('notif-streak').checked=!!prefs.notifStreak;
+  document.getElementById('notif-badge').checked=prefs.notifBadge!==false;
+  document.getElementById('notif-weekly').checked=!!prefs.notifWeekly;
+  document.getElementById('pref-goal').value=prefs.goal||'';
+  document.getElementById('pref-anim').checked=prefs.animations!==false;
+  document.getElementById('pref-compact').checked=!!prefs.compact;
+  document.getElementById('pref-reset').value=prefs.resetDay||'monday';
+  document.getElementById('priv-community').checked=prefs.communityVisible!==false;
+  document.getElementById('priv-badges').checked=prefs.badgesPublic!==false;
+  document.getElementById('priv-data').checked=prefs.dataUsage!==false;
+  // Avatar color
+  const color=p.avatarColor||'#e8500a';
+  document.querySelectorAll('.avatar-opt').forEach(a=>{
+    a.classList.toggle('sel',a.dataset.color===color);
+  });
+}
+
+function saveName(){
+  const name=document.getElementById('profile-name').value.trim();
+  if(!name){showToast('⚠ Name cannot be empty');return;}
+  const p=getProfile();p.name=name;saveProfile(p);
+  document.getElementById('sb-name').textContent=name;
+  document.getElementById('sb-avatar').textContent=name[0].toUpperCase();
+  showToast('✓ Name saved');
+}
+
+function saveEmail(){
+  const email=document.getElementById('profile-email').value.trim();
+  if(!email.includes('@')){showToast('⚠ Enter a valid email');return;}
+  const p=getProfile();p.email=email;saveProfile(p);showToast('✓ Email saved');
+}
+
+function selectColor(el){
+  document.querySelectorAll('.avatar-opt').forEach(a=>a.classList.remove('sel'));
+  el.classList.add('sel');
+  const color=el.dataset.color;
+  const p=getProfile();p.avatarColor=color;saveProfile(p);
+  document.getElementById('sb-avatar').style.background=color;
+  showToast('✓ Avatar colour updated');
+}
+
+function savePref(key,value){
+  const p=getProfile();if(!p.prefs)p.prefs={};
+  p.prefs[key]=value;saveProfile(p);showToast('✓ Saved');
+}
+
+function exportData(){
+  const p=getProfile();if(!p)return;
+  const blob=new Blob([JSON.stringify(p,null,2)],{type:'application/json'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');a.href=url;a.download='blueprint-data.json';a.click();
+  URL.revokeObjectURL(url);showToast('✓ Data exported');
+}
+
+function resetProgress(){
+  if(!confirm('Reset all progress? This wipes your XP, missions, habits, and badges. Your profile is kept.\n\nThis cannot be undone.'))return;
+  const p=getProfile();
+  p.totalXP=0;p.streak=0;p.totalMissions=0;p.lastMissionDate=null;
+  p.activePillars=[];p.missions={};p.habitData={};p.customHabits=[];p.earnedBadges=[];
+  saveProfile(p);init();showToast('✓ Progress reset');
+}
+
+function deleteAccount(){
+  if(!confirm('DELETE YOUR ACCOUNT?\n\nThis permanently removes all your data and cannot be undone.'))return;
+  if(!confirm('Are you absolutely sure? There is no recovery.'))return;
+  localStorage.removeItem('tmb_user');window.location.href='index.html';
+}
+
+function logout(){localStorage.removeItem('tmb_user');window.location.href='login.html';}
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('mob-overlay').classList.toggle('show');}
+
+init();
+</script>
+</body>
+</html>
