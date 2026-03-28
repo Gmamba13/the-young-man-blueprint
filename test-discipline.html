@@ -151,6 +151,8 @@ const STRATS={
 function showStrategy(id){document.querySelectorAll('.strategy-card').forEach(c=>c.classList.remove('active'));document.querySelector(`[onclick="showStrategy('${id}')"]`).classList.add('active');const s=STRATS[id];const d=document.getElementById('strat-detail');d.className='strategy-detail show';d.innerHTML=`<div class="sd-title">${s.t}</div>${s.steps.map((st,i)=>`<div class="sd-step"><span class="sd-num">0${i+1}</span><span>${st}</span></div>`).join('')}`;}
 updateSliders();
 
+
+
 window.onload = function() { updateSliders(); };
 </script>
 </body>
