@@ -3,169 +3,154 @@
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Motivation Model — The Young Man Blueprint</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-:root{--black:#0a0a0a;--deep:#111318;--panel:#16191f;--border:#22262e;--orange:#e8500a;--amber:#f5a623;--white:#f0ede8;--muted:#7a7f8a;--green:#2dba6e;--red:#e84040;--font-display:'Bebas Neue',sans-serif;--font-body:'DM Sans',sans-serif;--font-mono:'Space Mono',monospace;}
+:root{--black:#0a0a0a;--deep:#111318;--panel:#16191f;--border:#22262e;--orange:#e8500a;--amber:#f5a623;--white:#f0ede8;--muted:#7a7f8a;--green:#2dba6e;--red:#e84040;}
 *{box-sizing:border-box;margin:0;padding:0;}
-body{background:var(--black);color:var(--white);font-family:var(--font-body);min-height:100vh;}
-.header{padding:24px 40px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:var(--deep);}
-.back-btn{font-family:var(--font-mono);font-size:0.7rem;letter-spacing:2px;color:var(--muted);text-decoration:none;}.back-btn:hover{color:var(--orange);}
-.ht{font-family:var(--font-display);font-size:1.4rem;letter-spacing:2px;}.ht span{color:var(--orange);}
-.wrap{max-width:900px;margin:0 auto;padding:60px 24px;}
-.eyebrow{font-family:var(--font-mono);font-size:0.7rem;letter-spacing:3px;color:var(--amber);text-transform:uppercase;margin-bottom:16px;text-align:center;}
-.big{font-family:var(--font-display);font-size:clamp(2.5rem,6vw,5rem);letter-spacing:2px;line-height:1;margin-bottom:16px;text-align:center;}
-.sub{color:var(--muted);font-size:0.95rem;line-height:1.7;max-width:500px;margin:0 auto 48px;text-align:center;}
-.gate-box{background:var(--panel);border:1px solid var(--amber);padding:32px;border-radius:4px;text-align:center;margin-bottom:40px;}
-.gate-box h3{font-family:var(--font-display);font-size:1.6rem;letter-spacing:1px;margin-bottom:8px;}
-.gate-box p{font-size:0.85rem;color:var(--muted);margin-bottom:20px;}
-.gate-input{background:var(--deep);border:1px solid var(--border);color:var(--white);padding:12px 16px;font-size:0.9rem;font-family:var(--font-body);border-radius:2px;outline:none;width:100%;max-width:320px;margin-bottom:12px;display:block;margin-left:auto;margin-right:auto;}
-.gate-input:focus{border-color:var(--orange);}
-.gate-btn{background:var(--orange);color:var(--white);border:none;padding:12px 32px;font-size:0.82rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;font-family:var(--font-body);border-radius:2px;}
-.model{display:none;}
-/* MOTIVATION TYPES */
-.types-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:24px;}
-@media(max-width:700px){.types-grid{grid-template-columns:1fr;}}
-.type-card{background:var(--panel);border:1px solid var(--border);padding:22px;border-radius:4px;cursor:pointer;transition:all 0.25s;}
-.type-card:hover,.type-card.active{border-color:var(--amber);}
-.type-card.active{background:rgba(245,166,35,0.06);}
-.tc-icon{font-size:2rem;margin-bottom:10px;}
-.tc-title{font-family:var(--font-display);font-size:1rem;letter-spacing:1px;margin-bottom:6px;}
-.tc-desc{font-size:0.74rem;color:var(--muted);line-height:1.4;}
-.type-detail{background:var(--deep);border:1px solid var(--amber);padding:28px;border-radius:4px;margin-bottom:24px;display:none;animation:si 0.3s ease;}
-.type-detail.show{display:block;}
-@keyframes si{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
-.td-title{font-family:var(--font-display);font-size:1.4rem;letter-spacing:1px;color:var(--amber);margin-bottom:10px;}
-.td-text{color:var(--muted);font-size:0.85rem;line-height:1.7;margin-bottom:14px;}
-.td-example{background:var(--panel);border-left:3px solid var(--amber);padding:12px 16px;font-size:0.82rem;color:var(--muted);border-radius:0 4px 4px 0;margin-bottom:10px;}
-.td-example strong{color:var(--white);}
-/* PURPOSE FINDER */
-.purpose-panel{background:var(--panel);border:1px solid var(--border);padding:32px;border-radius:4px;margin-bottom:24px;}
-.pp-title{font-family:var(--font-display);font-size:1.4rem;letter-spacing:1px;margin-bottom:8px;}
-.pp-sub{color:var(--muted);font-size:0.85rem;margin-bottom:28px;}
-.question-area{margin-bottom:20px;}
-.qa-label{font-size:0.88rem;font-weight:500;margin-bottom:8px;}
-.qa-hint{font-size:0.76rem;color:var(--muted);margin-bottom:10px;font-style:italic;}
-textarea{width:100%;background:var(--deep);border:1px solid var(--border);color:var(--white);padding:12px 14px;font-size:0.85rem;font-family:var(--font-body);border-radius:2px;outline:none;resize:vertical;min-height:80px;transition:border-color 0.2s;}
+body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif;min-height:100vh;}
+.hdr{padding:20px 40px;border-bottom:1px solid var(--border);background:var(--deep);display:flex;justify-content:space-between;align-items:center;}
+.back{font-family:'Space Mono',monospace;font-size:0.7rem;letter-spacing:2px;color:var(--muted);text-decoration:none;}.back:hover{color:var(--orange);}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:2px;}.logo span{color:var(--orange);}
+.wrap{max-width:860px;margin:0 auto;padding:48px 24px;}
+.eyebrow{font-family:'Space Mono',monospace;font-size:0.68rem;letter-spacing:3px;text-transform:uppercase;color:var(--amber);margin-bottom:14px;text-align:center;}
+.bigtitle{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,6vw,4.5rem);letter-spacing:2px;line-height:1;margin-bottom:14px;text-align:center;}
+.sub{color:var(--muted);font-size:0.9rem;line-height:1.7;max-width:480px;margin:0 auto 40px;text-align:center;}
+.section{background:var(--panel);border:1px solid var(--border);padding:28px;border-radius:4px;margin-bottom:20px;}
+.sec-title{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:1px;margin-bottom:6px;}
+.sec-sub{color:var(--muted);font-size:0.82rem;margin-bottom:20px;}
+.type-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px;}
+@media(max-width:580px){.type-grid{grid-template-columns:1fr 1fr;}}
+.tc{background:var(--deep);border:1.5px solid var(--border);padding:18px;border-radius:4px;cursor:pointer;transition:all 0.2s;text-align:center;}
+.tc:hover,.tc.on{border-color:var(--amber);}
+.tc-icon{font-size:1.8rem;margin-bottom:8px;}
+.tc-title{font-family:'Bebas Neue',sans-serif;font-size:0.9rem;letter-spacing:1px;margin-bottom:4px;}
+.tc-desc{font-size:0.72rem;color:var(--muted);}
+.type-detail{background:var(--deep);border-left:3px solid var(--amber);padding:20px;border-radius:0 4px 4px 0;display:none;}
+.type-detail.on{display:block;}
+.td-title{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--amber);letter-spacing:1px;margin-bottom:8px;}
+.td-body{color:var(--muted);font-size:0.83rem;line-height:1.6;margin-bottom:10px;}
+.td-ex{background:var(--panel);border-left:2px solid var(--amber);padding:9px 13px;font-size:0.79rem;color:var(--muted);margin-bottom:7px;}
+.td-ex b{color:var(--white);}
+textarea{width:100%;background:var(--deep);border:1px solid var(--border);color:var(--white);padding:12px 14px;font-size:0.85rem;font-family:'DM Sans',sans-serif;border-radius:2px;outline:none;resize:vertical;min-height:70px;margin-bottom:12px;}
 textarea:focus{border-color:var(--amber);}
-.generate-btn{background:var(--amber);color:var(--black);border:none;padding:14px 28px;font-size:0.82rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;border-radius:2px;font-family:var(--font-body);transition:all 0.2s;}
-.generate-btn:hover{background:var(--orange);color:var(--white);}
-.purpose-result{background:var(--deep);border:1px solid var(--amber);padding:24px;border-radius:4px;margin-top:20px;display:none;}
-.pr-label{font-family:var(--font-mono);font-size:0.62rem;letter-spacing:3px;color:var(--amber);text-transform:uppercase;margin-bottom:10px;}
-.pr-statement{font-family:var(--font-display);font-size:1.3rem;letter-spacing:1px;line-height:1.3;color:var(--white);}
-/* BURNOUT METER */
-.burnout-panel{background:var(--panel);border:1px solid var(--border);padding:32px;border-radius:4px;margin-bottom:24px;}
-.burnout-checks{display:flex;flex-direction:column;gap:12px;margin-bottom:24px;}
-.burnout-check{display:flex;align-items:center;gap:14px;padding:12px;background:var(--deep);border:1.5px solid var(--border);border-radius:4px;cursor:pointer;transition:all 0.15s;font-size:0.85rem;}
-.burnout-check:hover{border-color:var(--red);}
-.burnout-check.checked{border-color:var(--red);background:rgba(232,64,64,0.06);}
-.bc-box{width:20px;height:20px;border-radius:4px;border:1.5px solid var(--border);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:0.7rem;}
-.burnout-check.checked .bc-box{background:var(--red);border-color:var(--red);color:var(--white);}
-.burnout-meter{background:var(--border);border-radius:2px;height:12px;overflow:hidden;margin-bottom:8px;}
-.bm-fill{height:100%;border-radius:2px;transition:width 0.5s;background:linear-gradient(90deg,var(--green),var(--amber),var(--red));}
-.bm-labels{display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:0.58rem;color:var(--muted);}
-.bm-verdict{background:var(--deep);border:1px solid var(--border);padding:16px;border-radius:4px;margin-top:14px;font-size:0.84rem;color:var(--muted);line-height:1.6;}
+.qa-label{font-size:0.86rem;font-weight:500;margin-bottom:5px;}
+.qa-hint{font-size:0.74rem;color:var(--muted);margin-bottom:8px;font-style:italic;}
+.gen-btn{background:var(--amber);color:var(--black);border:none;padding:12px 28px;font-size:0.82rem;font-weight:700;letter-spacing:2px;cursor:pointer;border-radius:2px;font-family:'DM Sans',sans-serif;}
+.purpose-result{background:var(--deep);border:1px solid var(--amber);padding:20px;border-radius:4px;margin-top:16px;display:none;}
+.pr-lbl{font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:3px;color:var(--amber);margin-bottom:8px;}
+.pr-stmt{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:1px;line-height:1.4;}
+.burnout-item{display:flex;align-items:center;gap:12px;padding:11px;background:var(--deep);border:1.5px solid var(--border);border-radius:4px;margin-bottom:8px;cursor:pointer;font-size:0.83rem;transition:all 0.15s;}
+.burnout-item:hover,.burnout-item.on{border-color:var(--red);}
+.bi-box{width:18px;height:18px;border:1.5px solid var(--border);border-radius:3px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:0.65rem;}
+.burnout-item.on .bi-box{background:var(--red);border-color:var(--red);color:var(--white);}
+.bm-bar{background:var(--border);border-radius:2px;height:10px;overflow:hidden;margin:14px 0 6px;}
+.bm-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--green),var(--amber),var(--red));transition:width 0.4s;}
+.bm-labels{display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:0.56rem;color:var(--muted);margin-bottom:10px;}
+.bm-verdict{background:var(--deep);padding:14px;border-radius:4px;font-size:0.83rem;color:var(--muted);line-height:1.5;border:1px solid var(--border);}
 </style>
 </head>
 <body>
-<div class="header"><a href="motivation.html" class="back-btn">← BACK TO MOTIVATION</a><div class="ht">THE YOUNG MAN <span>BLUEPRINT</span></div><div style="font-family:var(--font-mono);font-size:0.65rem;color:var(--muted);letter-spacing:2px;">MOTIVATION MODEL</div></div>
+<div class="hdr"><a href="motivation.html" class="back">← BACK TO MOTIVATION</a><div class="logo">THE YOUNG MAN <span>BLUEPRINT</span></div><div style="font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--muted);letter-spacing:2px;">MOTIVATION MODEL</div></div>
 <div class="wrap">
-  <div class="eyebrow">⚡ Motivation Interactive Model</div>
-  <h1 class="big">WHY YOU DO WHAT YOU DO</h1>
-  <p class="sub">Motivation is misunderstood. It's not a feeling you wait for — it's a system you build. Explore your motivation type, find your purpose, and check your burnout level.</p>
-  
-  <div class="model" id="model">
+  <div class="eyebrow">⚡ Interactive Motivation Model</div>
+  <h1 class="bigtitle">WHY YOU DO WHAT YOU DO</h1>
+  <p class="sub">Motivation is not a feeling you wait for — it's a system you build. Explore your type, find your purpose, and check your burnout level.</p>
 
-    <!-- MOTIVATION TYPES -->
-    <div style="background:var(--panel);border:1px solid var(--border);padding:32px;border-radius:4px;margin-bottom:24px;">
-      <div class="pp-title">THE 6 TYPES OF MOTIVATION — Which One Drives You?</div>
-      <div class="pp-sub">Click each type to understand how it works and whether it's working for you.</div>
-      <div class="types-grid">
-        <div class="type-card" onclick="showType('fear')"><div class="tc-icon">😰</div><div class="tc-title">FEAR-BASED</div><div class="tc-desc">Motivated by avoiding pain, failure, or embarrassment.</div></div>
-        <div class="type-card" onclick="showType('purpose')"><div class="tc-icon">🧭</div><div class="tc-title">PURPOSE-BASED</div><div class="tc-desc">Driven by meaning, mission, and something bigger.</div></div>
-        <div class="type-card" onclick="showType('identity')"><div class="tc-icon">🪪</div><div class="tc-title">IDENTITY-BASED</div><div class="tc-desc">Motivated by who you are becoming, not what you want.</div></div>
-        <div class="type-card" onclick="showType('external')"><div class="tc-icon">💰</div><div class="tc-title">EXTERNAL</div><div class="tc-desc">Driven by money, status, approval, and rewards.</div></div>
-        <div class="type-card" onclick="showType('competitive')"><div class="tc-icon">🏆</div><div class="tc-title">COMPETITIVE</div><div class="tc-desc">Fueled by comparing yourself to others and winning.</div></div>
-        <div class="type-card" onclick="showType('intrinsic')"><div class="tc-icon">❤️</div><div class="tc-title">INTRINSIC</div><div class="tc-desc">Motivated by the work itself — you love what you do.</div></div>
-      </div>
-      <div class="type-detail" id="type-detail"></div>
+  <div class="section">
+    <div class="sec-title">6 TYPES OF MOTIVATION — WHICH ONE DRIVES YOU?</div>
+    <div class="sec-sub">Click each type to understand how it works and whether it's working for you.</div>
+    <div class="type-grid">
+      <div class="tc on" id="t-fear" onclick="showType('fear')"><div class="tc-icon">😰</div><div class="tc-title">FEAR-BASED</div><div class="tc-desc">Motivated by avoiding pain or failure.</div></div>
+      <div class="tc" id="t-purpose" onclick="showType('purpose')"><div class="tc-icon">🧭</div><div class="tc-title">PURPOSE-BASED</div><div class="tc-desc">Driven by meaning and mission.</div></div>
+      <div class="tc" id="t-identity" onclick="showType('identity')"><div class="tc-icon">🪪</div><div class="tc-title">IDENTITY-BASED</div><div class="tc-desc">Motivated by who you're becoming.</div></div>
+      <div class="tc" id="t-external" onclick="showType('external')"><div class="tc-icon">💰</div><div class="tc-title">EXTERNAL</div><div class="tc-desc">Driven by money, status, approval.</div></div>
+      <div class="tc" id="t-competitive" onclick="showType('competitive')"><div class="tc-icon">🏆</div><div class="tc-title">COMPETITIVE</div><div class="tc-desc">Fueled by comparing and winning.</div></div>
+      <div class="tc" id="t-intrinsic" onclick="showType('intrinsic')"><div class="tc-icon">❤️</div><div class="tc-title">INTRINSIC</div><div class="tc-desc">You love the work itself.</div></div>
     </div>
-
-    <!-- PURPOSE FINDER -->
-    <div class="purpose-panel">
-      <div class="pp-title">THE PURPOSE FINDER — Build Your "Why"</div>
-      <div class="pp-sub">Answer these questions honestly. Based on your answers, we'll generate a purpose statement you can come back to when motivation fades.</div>
-      <div class="question-area"><div class="qa-label">1. What makes you angry when you see it in the world?</div><div class="qa-hint">Your anger often points to what you deeply care about.</div><textarea id="q1" placeholder="e.g. Men drifting without direction. People staying in poverty because nobody taught them about money."></textarea></div>
-      <div class="question-area"><div class="qa-label">2. What comes naturally to you that others find difficult?</div><div class="qa-hint">Your natural strengths are clues to your contribution.</div><textarea id="q2" placeholder="e.g. Staying calm under pressure. Explaining complex things simply. Physical endurance."></textarea></div>
-      <div class="question-area"><div class="qa-label">3. What would you do every day even if no one paid you?</div><div class="qa-hint">Intrinsic motivation is your most durable fuel source.</div><textarea id="q3" placeholder="e.g. Train. Build. Write. Help people solve problems."></textarea></div>
-      <button class="generate-btn" onclick="generatePurpose()">⚡ Generate My Purpose Statement</button>
-      <div class="purpose-result" id="purpose-result"><div class="pr-label">YOUR DRAFT PURPOSE STATEMENT</div><div class="pr-statement" id="pr-statement"></div><p style="color:var(--muted);font-size:0.76rem;margin-top:12px;">This is a starting point — refine it. Your "why" should make you uncomfortable when you're not living up to it.</p></div>
-    </div>
-
-    <!-- BURNOUT CHECKER -->
-    <div class="burnout-panel">
-      <div class="pp-title">BURNOUT METER — Where Are You Right Now?</div>
-      <div class="pp-sub">Check every statement that applies to you right now. Watch your burnout level update.</div>
-      <div class="burnout-checks">
-        <div class="burnout-check" onclick="toggleBurnout(this,10)"><div class="bc-box"></div>I feel mentally exhausted most days even when I haven't done much</div>
-        <div class="burnout-check" onclick="toggleBurnout(this,10)"><div class="bc-box"></div>Things that used to excite me feel pointless or meaningless</div>
-        <div class="burnout-check" onclick="toggleBurnout(this,8)"><div class="bc-box"></div>I'm going through the motions but not really present in what I'm doing</div>
-        <div class="burnout-check" onclick="toggleBurnout(this,8)"><div class="bc-box"></div>I struggle to get started on tasks I know I should do</div>
-        <div class="burnout-check" onclick="toggleBurnout(this,7)"><div class="bc-box"></div>I feel cynical or detached from goals I used to care about</div>
-        <div class="burnout-check" onclick="toggleBurnout(this,7)"><div class="bc-box"></div>My sleep hasn't restored my energy in a long time</div>
-        <div class="burnout-check" onclick="toggleBurnout(this,6)"><div class="bc-box"></div>I feel like I'm constantly running behind with no end in sight</div>
-        <div class="burnout-check" onclick="toggleBurnout(this,6)"><div class="bc-box"></div>Small inconveniences make me disproportionately frustrated or irritable</div>
-        <div class="burnout-check" onclick="toggleBurnout(this,5)"><div class="bc-box"></div>I've been isolating — avoiding friends or activities I usually enjoy</div>
-        <div class="burnout-check" onclick="toggleBurnout(this,5)"><div class="bc-box"></div>I find myself relying more on alcohol, food, or screens to feel okay</div>
-      </div>
-      <div style="font-family:var(--font-mono);font-size:0.65rem;letter-spacing:2px;color:var(--muted);margin-bottom:8px;">BURNOUT LEVEL</div>
-      <div class="burnout-meter"><div class="bm-fill" id="bm-fill" style="width:0%"></div></div>
-      <div class="bm-labels"><span>FRESH</span><span>TIRED</span><span>BURNING OUT</span></div>
-      <div class="bm-verdict" id="bm-verdict">Check the boxes above to see your burnout level.</div>
-    </div>
-    <div style="text-align:center;margin-top:16px;"><a href="motivation.html" style="background:var(--orange);color:var(--white);padding:12px 28px;font-size:0.82rem;font-weight:700;letter-spacing:2px;text-decoration:none;border-radius:2px;display:inline-block;">← Back to Motivation Pillar</a></div>
+    <div class="type-detail on" id="type-detail"></div>
   </div>
+
+  <div class="section">
+    <div class="sec-title">THE PURPOSE FINDER</div>
+    <div class="sec-sub">Answer these three questions. We'll generate a purpose statement you can come back to when motivation fades.</div>
+    <div style="margin-bottom:14px;"><div class="qa-label">1. What makes you angry when you see it in the world?</div><div class="qa-hint">Your anger often points to what you deeply care about.</div><textarea id="q1" placeholder="e.g. Men drifting without direction. People stuck in poverty because nobody taught them about money."></textarea></div>
+    <div style="margin-bottom:14px;"><div class="qa-label">2. What comes naturally to you that others find difficult?</div><div class="qa-hint">Your natural strengths are clues to your contribution.</div><textarea id="q2" placeholder="e.g. Staying calm under pressure. Explaining complex things simply."></textarea></div>
+    <div style="margin-bottom:16px;"><div class="qa-label">3. What would you do every day even if no one paid you?</div><div class="qa-hint">Intrinsic motivation is your most durable fuel.</div><textarea id="q3" placeholder="e.g. Train. Build. Write. Help people solve problems."></textarea></div>
+    <button class="gen-btn" onclick="generatePurpose()">⚡ Generate My Purpose Statement</button>
+    <div class="purpose-result" id="purpose-result"><div class="pr-lbl">YOUR DRAFT PURPOSE STATEMENT</div><div class="pr-stmt" id="pr-stmt"></div><p style="color:var(--muted);font-size:0.74rem;margin-top:10px;">Refine this. Your why should make you uncomfortable when you're not living up to it.</p></div>
+  </div>
+
+  <div class="section">
+    <div class="sec-title">BURNOUT METER</div>
+    <div class="sec-sub">Check every statement that applies to you right now. Watch your level update.</div>
+    <div id="burnout-items">
+      <div class="burnout-item" onclick="toggleBurnout(this,10)"><div class="bi-box"></div>I feel mentally exhausted most days even when I haven't done much</div>
+      <div class="burnout-item" onclick="toggleBurnout(this,10)"><div class="bi-box"></div>Things that used to excite me feel pointless or meaningless</div>
+      <div class="burnout-item" onclick="toggleBurnout(this,8)"><div class="bi-box"></div>I'm going through the motions but not really present in what I'm doing</div>
+      <div class="burnout-item" onclick="toggleBurnout(this,8)"><div class="bi-box"></div>I struggle to get started on tasks I know I should do</div>
+      <div class="burnout-item" onclick="toggleBurnout(this,7)"><div class="bi-box"></div>I feel cynical or detached from goals I used to care about</div>
+      <div class="burnout-item" onclick="toggleBurnout(this,7)"><div class="bi-box"></div>My sleep hasn't restored my energy in a long time</div>
+      <div class="burnout-item" onclick="toggleBurnout(this,6)"><div class="bi-box"></div>Small things make me disproportionately frustrated or irritable</div>
+      <div class="burnout-item" onclick="toggleBurnout(this,6)"><div class="bi-box"></div>I've been isolating — avoiding friends or activities I usually enjoy</div>
+      <div class="burnout-item" onclick="toggleBurnout(this,5)"><div class="bi-box"></div>I find myself relying more on alcohol, food, or screens to feel okay</div>
+      <div class="burnout-item" onclick="toggleBurnout(this,5)"><div class="bi-box"></div>I feel like I'm constantly running behind with no end in sight</div>
+    </div>
+    <div class="bm-bar"><div class="bm-fill" id="bm-fill" style="width:0%"></div></div>
+    <div class="bm-labels"><span>FRESH</span><span>TIRED</span><span>BURNING OUT</span></div>
+    <div class="bm-verdict" id="bm-verdict">Check the boxes above to see your burnout level.</div>
+  </div>
+  <div style="text-align:center;margin-top:8px;"><a href="motivation.html" style="background:var(--orange);color:var(--white);padding:12px 28px;font-size:0.82rem;font-weight:700;letter-spacing:2px;text-decoration:none;border-radius:2px;display:inline-block;">← Back to Motivation</a></div>
 </div>
 <script>
-
-
-
-const TYPES={
-  fear:{t:'😰 FEAR-BASED MOTIVATION',body:'Fear is real fuel — it\'s what gets men out of poverty, out of bad relationships, and off the couch. But it\'s finite. Fear-based motivation burns out once the threat feels manageable. Men who use only fear as motivation often self-sabotage once they\'re comfortable.',ex:'You started working out because you were embarrassed at the pool. You started saving because you were terrified of going broke. You got good grades because you feared disappointing your parents.',action:'Use fear as the ignition — not the fuel. Fear gets you started. Purpose keeps you going. Find what you\'re building toward, not just what you\'re running from.'},
-  purpose:{t:'🧭 PURPOSE-BASED MOTIVATION',body:'This is the most durable form of motivation. When you know WHY you\'re doing something — and the why is meaningful — external circumstances stop mattering as much. You get up early for a reason. You push through difficulty for a reason.',ex:'Men who become great fathers because they had a bad one. Men who build wealth because they grew up without it and want their kids to have more. Men who get healthy because they watched someone they love die from neglect.',action:'Do the Purpose Finder exercise below. Your purpose doesn\'t have to be poetic — it just has to be true for you.'},
-  identity:{t:'🪪 IDENTITY-BASED MOTIVATION',body:'You don\'t rise to the level of your goals. You fall to the level of your systems and your identity. When who you are is tied to a behavior, the behavior becomes automatic. You don\'t motivate yourself to work out — you work out because that\'s what you do.',ex:'"I\'m not a smoker" vs "I\'m trying to quit." "I train" vs "I\'m trying to get in shape." The language shift is the identity shift.',action:'Decide who you are becoming — then start casting votes for that person. Every small action is a vote. Enough votes and the identity is real.'},
-  external:{t:'💰 EXTERNAL MOTIVATION',body:'Money, status, approval, and trophies work. They\'re also shallow and unreliable when the external reward disappears. External motivation builds performance — it rarely builds meaning. It\'s also the most common trap: you optimize your life for the reward and lose track of the point.',ex:'Working 80-hour weeks for a title. Chasing a body for approval. Staying in a job you hate for the salary.',action:'Use external rewards as checkpoints, not the destination. Pair every external goal with an internal one. Why does the money matter? What does the status enable? Get beneath the surface.'},
-  competitive:{t:'🏆 COMPETITIVE MOTIVATION',body:'Comparison is a tool — not a habit. Men who compete well use specific benchmarks to push themselves to a level they wouldn\'t reach alone. Men who compete badly get stuck in endless comparison loops that destroy satisfaction.',ex:'Training harder because your friend is stronger than you. Studying more because someone outscored you. Using social proof of what\'s possible to raise your ceiling.',action:'Pick your comparison targets carefully. Compare to slightly ahead of you — not so far ahead that it\'s demoralizing. Better: compete with your past self. Are you better than you were 6 months ago?'},
-  intrinsic:{t:'❤️ INTRINSIC MOTIVATION',body:'Intrinsic motivation is the holy grail — you do the work because the work itself is the reward. It\'s rare, and it usually comes after years of practice in a domain. The mistake men make is waiting to feel intrinsic motivation before starting.',ex:'The writer who loses track of time writing. The programmer who codes on weekends for fun. The athlete who trains even in the off-season.',action:'Intrinsic motivation follows mastery, not the other way around. You get good at something and it becomes meaningful. So get started. Don\'t wait to love it before you do it.'},
+var TYPES={
+  fear:{t:"😰 FEAR-BASED MOTIVATION",b:"Fear is real fuel — it gets men out of poverty, bad relationships, and off the couch. But it's finite. Fear burns out once the threat feels manageable. Men who use only fear often self-sabotage once they're comfortable.",ex:"You started working out because you were embarrassed. You started saving because you feared going broke.",action:"Use fear as the ignition — not the fuel. Fear gets you started. Purpose keeps you going. Find what you're building toward, not just what you're running from."},
+  purpose:{t:"🧭 PURPOSE-BASED MOTIVATION",b:"This is the most durable form of motivation. When you know WHY you're doing something — and the why is meaningful — external circumstances stop mattering. You get up early for a reason.",ex:"Men who become great fathers because they had a bad one. Men who build wealth because they grew up without it.",action:"Do the Purpose Finder exercise below. Your purpose doesn't have to be poetic — it just has to be true for you."},
+  identity:{t:"🪪 IDENTITY-BASED MOTIVATION",b:"You don't rise to your goals. You fall to the level of your identity. When who you are is tied to a behaviour, the behaviour becomes automatic. You don't motivate yourself to work out — you work out because that's what you do.",ex:"'I'm not a smoker' vs 'I'm trying to quit.' The language shift is the identity shift.",action:"Decide who you are becoming — then start casting votes for that person. Every small action is a vote."},
+  external:{t:"💰 EXTERNAL MOTIVATION",b:"Money, status, approval, and trophies work. They're also shallow and unreliable when the external reward disappears. External motivation builds performance — it rarely builds meaning.",ex:"Working 80-hour weeks for a title. Chasing a body for approval. Staying in a job you hate for the salary.",action:"Use external rewards as checkpoints, not the destination. Pair every external goal with an internal one. Why does the money matter?"},
+  competitive:{t:"🏆 COMPETITIVE MOTIVATION",b:"Comparison is a tool — not a habit. Men who compete well use specific benchmarks to push themselves further. Men who compete badly get stuck in endless loops that destroy satisfaction.",ex:"Training harder because your friend is stronger. Studying more because someone outscored you.",action:"Pick your comparison targets carefully. Compare to slightly ahead — not so far that it's demoralizing. Better yet: compete with your past self."},
+  intrinsic:{t:"❤️ INTRINSIC MOTIVATION",b:"This is the holy grail — you do the work because the work itself is the reward. It's rare, and it usually comes after years of practice. The mistake is waiting to feel intrinsic motivation before starting.",ex:"The writer who loses track of time writing. The programmer who codes on weekends for fun.",action:"Intrinsic motivation follows mastery, not the other way around. Get good at something and it becomes meaningful. Start. Don't wait to love it."}
 };
-function showType(id){document.querySelectorAll('.type-card').forEach(c=>c.classList.remove('active'));document.querySelector(`[onclick="showType('${id}')"]`).classList.add('active');const t=TYPES[id];const d=document.getElementById('type-detail');d.className='type-detail show';d.innerHTML=`<div class="td-title">${t.t}</div><div class="td-text">${t.body}</div><div class="td-example"><strong>Examples:</strong> ${t.ex}</div><div class="td-example"><strong style="color:var(--orange);">What to do:</strong> ${t.action}</div>`;}
-
+function showType(id){
+  document.querySelectorAll('.tc').forEach(function(c){c.classList.remove('on');});
+  document.getElementById('t-'+id).classList.add('on');
+  var a=TYPES[id];
+  var d=document.getElementById('type-detail');
+  d.className='type-detail on';
+  d.innerHTML='<div class="td-title">'+a.t+'</div><div class="td-body">'+a.b+'</div><div class="td-ex"><b>Examples:</b> '+a.ex+'</div><div class="td-ex"><b style="color:var(--orange);">What to do:</b> '+a.action+'</div>';
+}
 function generatePurpose(){
-  const q1=document.getElementById('q1').value.trim();const q2=document.getElementById('q2').value.trim();const q3=document.getElementById('q3').value.trim();
+  var q1=document.getElementById('q1').value.trim();
+  var q2=document.getElementById('q2').value.trim();
+  var q3=document.getElementById('q3').value.trim();
   if(!q1&&!q2&&!q3){alert('Answer at least one question first.');return;}
-  let stmt='';
-  if(q1)stmt+=`I exist to fight against ${q1.toLowerCase().replace(/\.$/,'')}. `;
-  if(q2)stmt+=`I bring ${q2.toLowerCase().replace(/\.$/,'')} to everything I do. `;
-  if(q3)stmt+=`I am most alive when I am ${q3.toLowerCase().replace(/\.$/,'')}.`;
-  document.getElementById('pr-statement').textContent=stmt.trim();
+  var stmt='';
+  if(q1)stmt+='I exist to fight against '+q1.toLowerCase().replace(/\.$/,'')+'. ';
+  if(q2)stmt+='I bring '+q2.toLowerCase().replace(/\.$/,'')+' to everything I do. ';
+  if(q3)stmt+='I am most alive when I am '+q3.toLowerCase().replace(/\.$/,'')+'.';
+  document.getElementById('pr-stmt').textContent=stmt.trim();
   document.getElementById('purpose-result').style.display='block';
 }
-
-let burnoutScore=0;
-const burnoutScores=new Map();
+var burnoutScore=0;
+var burnoutMap=new Map();
 function toggleBurnout(el,pts){
-  if(el.classList.contains('checked')){el.classList.remove('checked');el.querySelector('.bc-box').textContent='';burnoutScore-=burnoutScores.get(el)||0;burnoutScores.delete(el);}
-  else{el.classList.add('checked');el.querySelector('.bc-box').textContent='✓';burnoutScores.set(el,pts);burnoutScore+=pts;}
-  const pct=Math.min(100,burnoutScore);document.getElementById('bm-fill').style.width=pct+'%';
-  let verdict;
-  if(pct===0)verdict='No burnout indicators. Either you\'re in great shape — or you\'re not being honest with yourself. Come back after a tough week.';
-  else if(pct<25)verdict='Low burnout. Some tiredness but no major alarms. Make sure you\'re protecting rest, sleep, and time off from your goals.';
-  else if(pct<50)verdict='Moderate burnout building. You\'re feeling the strain. Add one recovery activity — walks, sleep, or complete disconnection. Something has to give.';
-  else if(pct<75)verdict='High burnout. You\'re running on fumes. This level of depletion doesn\'t fix itself — it builds. Something needs to pause or change.';
-  else verdict='Severe burnout. This is a real signal — not just tiredness. Talk to someone. Scale back aggressively. Burnout at this level can take months to recover from if you don\'t act now.';
-  document.getElementById('bm-verdict').textContent=verdict;
+  if(el.classList.contains('on')){
+    el.classList.remove('on');el.querySelector('.bi-box').textContent='';
+    burnoutScore-=burnoutMap.get(el)||0;burnoutMap.delete(el);
+  } else {
+    el.classList.add('on');el.querySelector('.bi-box').textContent='✓';
+    burnoutMap.set(el,pts);burnoutScore+=pts;
+  }
+  var pct=Math.min(100,Math.round((burnoutScore/72)*100));
+  document.getElementById('bm-fill').style.width=pct+'%';
+  var v;
+  if(pct===0)v='No burnout indicators. Either you\'re in great shape — or you\'re not being honest with yourself.';
+  else if(pct<25)v='Low burnout. Some tiredness but no major alarms. Protect your rest.';
+  else if(pct<50)v='Moderate burnout building. Add one recovery activity — walks, sleep, or complete disconnection.';
+  else if(pct<75)v='High burnout. You\'re running on fumes. Something needs to pause or change.';
+  else v='Severe burnout. This is a real signal. Talk to someone. Scale back aggressively.';
+  document.getElementById('bm-verdict').textContent=v;
 }
-
-window.onload = function() { showType("fear"); };
+window.onload=function(){showType('fear');};
 </script>
 </body>
 </html>
