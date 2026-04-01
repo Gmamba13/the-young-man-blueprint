@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Career Path Finder — The Young Man Blueprint</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
@@ -9,116 +10,158 @@
 *{box-sizing:border-box;margin:0;padding:0;}
 body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif;min-height:100vh;}
 .hdr{padding:20px 40px;border-bottom:1px solid var(--border);background:var(--deep);display:flex;justify-content:space-between;align-items:center;}
-.back{font-family:'Space Mono',monospace;font-size:0.7rem;letter-spacing:2px;color:var(--muted);text-decoration:none;}.back:hover{color:var(--orange);}
-.logo{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:2px;}.logo span{color:var(--orange);}
+.back{font-family:'Space Mono',monospace;font-size:0.7rem;letter-spacing:2px;color:var(--muted);text-decoration:none;}
+.back:hover{color:var(--orange);}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:2px;}
+.logo span{color:var(--orange);}
 .wrap{max-width:760px;margin:0 auto;padding:48px 24px;}
-.eyebrow{font-family:'Space Mono',monospace;font-size:0.68rem;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;text-align:center;}
-.title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,6vw,4.5rem);letter-spacing:2px;line-height:1;margin-bottom:14px;text-align:center;}
-.sub{color:var(--muted);font-size:0.9rem;line-height:1.7;max-width:480px;margin:0 auto 40px;text-align:center;}
+.eyebrow{font-family:'Space Mono',monospace;font-size:0.68rem;letter-spacing:3px;text-transform:uppercase;color:var(--amber);margin-bottom:14px;text-align:center;}
+.bigtitle{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,6vw,4.5rem);letter-spacing:2px;line-height:1;margin-bottom:14px;text-align:center;}
+.sub{color:var(--muted);font-size:0.9rem;line-height:1.7;max-width:480px;margin:0 auto 36px;text-align:center;}
 .prog-top{display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--muted);margin-bottom:8px;}
-.prog-bar{background:var(--border);border-radius:2px;height:5px;overflow:hidden;margin-bottom:32px;}
-.prog-fill{height:100%;background:linear-gradient(90deg,var(--orange),var(--amber));border-radius:2px;transition:width 0.4s;}
-.q-card{background:var(--panel);border:1px solid var(--border);padding:32px;border-radius:4px;margin-bottom:20px;}
-.q-cat{font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:3px;color:var(--orange);text-transform:uppercase;margin-bottom:10px;}
+.prog-bar{background:var(--border);border-radius:2px;height:5px;overflow:hidden;margin-bottom:28px;}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--amber),var(--orange));border-radius:2px;transition:width 0.4s;}
+.q-card{background:var(--panel);border:1px solid var(--border);padding:32px;border-radius:4px;margin-bottom:18px;}
+.q-num{font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:3px;color:var(--amber);margin-bottom:10px;}
 .q-text{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:1px;line-height:1.2;margin-bottom:22px;}
-.opts{display:flex;flex-direction:column;gap:10px;}
-.opt{background:var(--deep);border:1.5px solid var(--border);padding:14px 18px;border-radius:4px;cursor:pointer;font-size:0.86rem;display:flex;align-items:center;gap:12px;transition:all 0.15s;}
-.opt:hover{border-color:var(--orange);background:#1a1e26;}.opt.sel{border-color:var(--orange);background:rgba(232,80,10,0.1);}
-.dot{width:16px;height:16px;border-radius:50%;border:1.5px solid var(--border);flex-shrink:0;}.opt.sel .dot{background:var(--orange);border-color:var(--orange);}
-.navrow{display:flex;justify-content:flex-end;gap:12px;margin-top:16px;}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+@media(max-width:560px){.opts{grid-template-columns:1fr;}}
+.opt{background:var(--deep);border:1.5px solid var(--border);padding:14px;border-radius:4px;cursor:pointer;transition:all 0.15s;}
+.opt:hover,.opt.sel{border-color:var(--amber);background:rgba(245,166,35,0.08);}
+.opt-letter{font-family:'Bebas Neue',sans-serif;font-size:1rem;color:var(--amber);margin-bottom:3px;}
+.opt-text{font-size:0.82rem;color:var(--muted);}
+.navrow{display:flex;justify-content:flex-end;gap:12px;margin-top:14px;}
 .btn-next{background:var(--orange);color:var(--white);border:none;padding:12px 28px;font-size:0.82rem;font-weight:700;letter-spacing:2px;cursor:pointer;border-radius:2px;}
 .btn-prev{background:transparent;color:var(--muted);border:1px solid var(--border);padding:12px 20px;font-size:0.82rem;cursor:pointer;border-radius:2px;}
-.results{display:none;}
-.score-big{font-family:'Bebas Neue',sans-serif;font-size:6rem;text-align:center;line-height:1;margin-bottom:6px;}
-.score-lbl{font-family:'Space Mono',monospace;font-size:0.65rem;color:var(--muted);letter-spacing:2px;text-align:center;margin-bottom:28px;}
-.res-box{background:var(--panel);border:1px solid var(--border);padding:28px;border-radius:4px;margin-bottom:16px;}
-.res-title{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:1px;margin-bottom:10px;}
-.res-desc{color:var(--muted);font-size:0.86rem;line-height:1.7;}
-.rec{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--border);font-size:0.82rem;color:var(--muted);}.rec:last-child{border:none;}
-.retake{background:transparent;color:var(--orange);border:1px solid var(--orange);padding:11px 22px;font-size:0.78rem;font-family:'DM Sans',sans-serif;letter-spacing:2px;text-transform:uppercase;cursor:pointer;border-radius:2px;margin-right:10px;}
-.back-btn{background:var(--orange);color:var(--white);padding:11px 22px;font-size:0.78rem;font-weight:700;letter-spacing:2px;text-decoration:none;border-radius:2px;display:inline-block;}
-.cat-row{margin-bottom:14px;}.cat-top{display:flex;justify-content:space-between;font-size:0.8rem;margin-bottom:5px;}.cat-bg{background:var(--border);border-radius:2px;height:7px;overflow:hidden;}.cat-fill{height:100%;border-radius:2px;transition:width 0.7s;}
+.res-box{background:var(--panel);border:1px solid var(--border);padding:26px;border-radius:4px;margin-bottom:14px;}
+.res-title{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:1px;margin-bottom:8px;}
+.res-desc{color:var(--muted);font-size:0.85rem;line-height:1.7;}
+.rec{display:flex;gap:12px;padding:9px 0;border-bottom:1px solid var(--border);font-size:0.82rem;color:var(--muted);}
+.rec:last-child{border:none;}
+.retake-btn{background:transparent;color:var(--orange);border:1px solid var(--orange);padding:11px 22px;font-size:0.78rem;font-family:'DM Sans',sans-serif;letter-spacing:2px;text-transform:uppercase;cursor:pointer;border-radius:2px;margin-right:10px;}
+.back-link{background:var(--orange);color:var(--white);padding:11px 22px;font-size:0.78rem;font-weight:700;letter-spacing:2px;text-decoration:none;border-radius:2px;display:inline-block;}
 </style>
 </head>
 <body>
-<div class="hdr"><a href="career.html" class="back">← BACK TO CAREER</a><div class="logo">THE YOUNG MAN <span>BLUEPRINT</span></div><div style="font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--muted);letter-spacing:2px;">CAREER FINDER</div></div>
-<div class="wrap">
-<div class="eyebrow" style="color:var(--amber);">🎯 Career Path Questionnaire</div>
-<h1 class="title">FIND YOUR DIRECTION</h1>
-<p class="sub">Answer honestly. This isn't about what sounds impressive — it's about finding the path that actually fits you. Takes 5 minutes.</p>
-<div id="test-wrap">
-  <div class="prog-top"><span id="pc">1 / 12</span><span id="pp">0%</span></div>
-  <div class="prog-bar"><div class="prog-fill" id="pf" style="width:0%"></div></div>
-  <div id="qw"></div>
-  <div class="navrow"><button class="btn-prev" id="bp" onclick="prev()" style="display:none;">← Back</button><button class="btn-next" id="bn" onclick="next()">Next →</button></div>
+<div class="hdr">
+  <a href="career.html" class="back">← BACK TO CAREER</a>
+  <div class="logo">THE YOUNG MAN <span>BLUEPRINT</span></div>
+  <div style="font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--muted);letter-spacing:2px;">CAREER FINDER</div>
 </div>
-<div class="results" id="results"></div>
+<div class="wrap">
+  <div class="eyebrow">🎯 Career Path Questionnaire</div>
+  <h1 class="bigtitle">FIND YOUR DIRECTION</h1>
+  <p class="sub">Answer honestly. This isn't about what sounds impressive — it's about finding the path that actually fits you. Takes 5 minutes.</p>
+  <div id="test-section">
+    <div class="prog-top"><span id="prog-lbl">Question 1 of 12</span><span id="prog-pct">8%</span></div>
+    <div class="prog-bar"><div class="prog-fill" id="prog-fill" style="width:8%"></div></div>
+    <div id="qcard"></div>
+    <div class="navrow">
+      <button class="btn-prev" id="btn-prev" onclick="prev()" style="display:none;">← Back</button>
+      <button class="btn-next" id="btn-next" onclick="next()">Next →</button>
+    </div>
+  </div>
+  <div id="results" style="display:none;"></div>
 </div>
 
 <script>
-
-const Q=[
-{text:"When you solve a problem, you prefer to:",opts:[{t:"Break it down logically step by step",k:"T"},{t:"Find a creative or unconventional solution",k:"C"},{t:"Talk it through with people",k:"H"},{t:"Use your hands or build something physical",k:"T2"}]},
-{text:"What work environment energizes you most?",opts:[{t:"Working independently on complex tasks",k:"T"},{t:"Fast-paced — deals and targets",k:"B"},{t:"Creative or flexible location",k:"C"},{t:"Outdoors or on a job site",k:"T2"}]},
-{text:"How do you feel about working with data and numbers?",opts:[{t:"Love it — patterns and logic satisfy me",k:"T"},{t:"Fine when it drives business decisions",k:"B"},{t:"Prefer to avoid it where possible",k:"C"},{t:"Use it practically but don't enjoy it",k:"T2"}]},
-{text:"What motivates you most about work?",opts:[{t:"Building things that scale or automate",k:"T"},{t:"Making money and building something of my own",k:"B"},{t:"Creating things people feel something about",k:"C"},{t:"Directly helping or impacting people",k:"H"}]},
-{text:"How do you feel about talking to people all day?",opts:[{t:"Prefer minimal interaction — deep focus work",k:"T"},{t:"Love it — I thrive in persuasion",k:"B"},{t:"Fine in small doses",k:"C"},{t:"That's the point — I want to work with people",k:"H"}]},
-{text:"How important is seeing the physical result of your work?",opts:[{t:"Not important — I work in the abstract",k:"T"},{t:"Somewhat — I like seeing business results",k:"B"},{t:"Very — I want to hold what I've made",k:"C"},{t:"Critical — I need to see a tangible outcome",k:"T2"}]},
-{text:"How do you feel about starting your own business?",opts:[{t:"Maybe — but I'd want stable income first",k:"T"},{t:"That's the goal — I want to own something",k:"B"},{t:"Yes — I want creative and financial freedom",k:"C"},{t:"I'd rather be the best tradesman and charge accordingly",k:"T2"}]},
-{text:"What subjects did you enjoy most in school?",opts:[{t:"Math, science, or computer science",k:"T"},{t:"Business, economics, or social studies",k:"B"},{t:"Art, music, writing, or design",k:"C"},{t:"Shop class, tech ed, or physical education",k:"T2"}]},
-{text:"How do you feel about continuous learning?",opts:[{t:"Love it — especially technical skills",k:"T"},{t:"Yes — to grow my income",k:"B"},{t:"Yes — especially creative tools",k:"C"},{t:"Yes — hands-on apprenticeship style",k:"T2"}]},
-{text:"What's your relationship with money?",opts:[{t:"I want high income through high-value skills",k:"T"},{t:"I want unlimited upside — I'll build it",k:"B"},{t:"Sustainable income doing what I love",k:"C"},{t:"Great hourly rate with no ceiling",k:"T2"}]},
-{text:"How do you feel about 9-5 office work?",opts:[{t:"Fine if the work is interesting",k:"T"},{t:"Temporary — until I build my own thing",k:"B"},{t:"Not ideal — I need flexibility",k:"C"},{t:"I'd rather be out doing the work",k:"T2"}]},
-{text:"Which future excites you most?",opts:[{t:"Senior software engineer at a tech firm",k:"T"},{t:"Own a business with a team and real revenue",k:"B"},{t:"Creative director with a strong reputation",k:"C"},{t:"Master electrician or contractor — booked solid",k:"T2"}]}
+var QUESTIONS = [
+  {text:"When you solve a problem, you prefer to:",opts:[{t:"Break it down logically step by step",k:"T"},{t:"Find a creative or unconventional solution",k:"C"},{t:"Talk it through with people",k:"H"},{t:"Use your hands or build something physical",k:"T2"}]},
+  {text:"What work environment energizes you most?",opts:[{t:"Working independently on complex tasks",k:"T"},{t:"Fast-paced with deals and targets",k:"B"},{t:"Creative or flexible location",k:"C"},{t:"Outdoors or on a job site",k:"T2"}]},
+  {text:"How do you feel about working with data and numbers?",opts:[{t:"Love it — patterns and logic satisfy me",k:"T"},{t:"Fine when it drives business decisions",k:"B"},{t:"Prefer to avoid it",k:"C"},{t:"Use it practically but don't enjoy it",k:"T2"}]},
+  {text:"What motivates you most about work?",opts:[{t:"Building things that scale or automate",k:"T"},{t:"Making money and building something of my own",k:"B"},{t:"Creating things people feel something about",k:"C"},{t:"Directly helping or impacting people",k:"H"}]},
+  {text:"How do you feel about talking to people all day?",opts:[{t:"Prefer minimal interaction — deep focus",k:"T"},{t:"Love it — I thrive in persuasion",k:"B"},{t:"Fine in small doses",k:"C"},{t:"That's the point — I want to work with people",k:"H"}]},
+  {text:"How important is seeing the physical result of your work?",opts:[{t:"Not important — I work in the abstract",k:"T"},{t:"Somewhat — I like seeing business results",k:"B"},{t:"Very — I want to hold what I've made",k:"C"},{t:"Critical — I need a tangible outcome",k:"T2"}]},
+  {text:"How do you feel about starting your own business?",opts:[{t:"Maybe — but I'd want stable income first",k:"T"},{t:"That's the goal — I want to own something",k:"B"},{t:"Yes — creative and financial freedom",k:"C"},{t:"I'd rather be the best tradesman and charge well",k:"T2"}]},
+  {text:"What subjects did you enjoy most in school?",opts:[{t:"Math, science, or computer science",k:"T"},{t:"Business, economics, or social studies",k:"B"},{t:"Art, music, writing, or design",k:"C"},{t:"Shop class, tech ed, or physical education",k:"T2"}]},
+  {text:"How do you feel about continuous learning?",opts:[{t:"Love it — especially technical skills",k:"T"},{t:"Yes — to grow my income",k:"B"},{t:"Yes — especially creative tools",k:"C"},{t:"Yes — hands-on apprenticeship style",k:"T2"}]},
+  {text:"What's your relationship with money and income?",opts:[{t:"High income through high-value skills",k:"T"},{t:"Unlimited upside — I'll build it myself",k:"B"},{t:"Sustainable income doing what I love",k:"C"},{t:"Great hourly rate with no ceiling",k:"T2"}]},
+  {text:"How do you feel about 9-5 office work?",opts:[{t:"Fine if the work is interesting",k:"T"},{t:"Temporary — until I build my own thing",k:"B"},{t:"Not ideal — I need flexibility",k:"C"},{t:"I'd rather be out doing the work",k:"T2"}]},
+  {text:"Which future excites you most?",opts:[{t:"Senior software engineer at a tech firm",k:"T"},{t:"Own a business with real revenue",k:"B"},{t:"Creative director with a strong reputation",k:"C"},{t:"Master electrician or contractor — booked solid",k:"T2"}]}
 ];
 
+var ARCHETYPES = {
+  T:{name:"TECH & ENGINEERING",icon:"💻",desc:"You think logically, love systems, and want high-value skills that scale. The tech world rewards exactly your kind of mind — and the ceiling is high.",paths:["Software Developer — $80K–$180K+","Data Analyst / Scientist — $70K–$150K","Cybersecurity — $80K–$170K","Cloud / DevOps Engineer — $90K–$180K"],steps:["Learn Python or JavaScript — freeCodeCamp or Boot.dev","Build 3 portfolio projects on GitHub","Apply for junior roles — you don't need a degree","Network on LinkedIn — most jobs are referrals"]},
+  B:{name:"BUSINESS & ENTREPRENEURSHIP",icon:"📊",desc:"You want to build, own, and scale. You're motivated by the upside and not afraid of the risk. The path is harder — but so is the reward.",paths:["Sales & Business Dev — $60K–$200K+ OTE","Marketing & Growth — $65K–$140K","Entrepreneurship — unlimited upside","Finance & Investment — $80K–$200K+"],steps:["Learn sales — read Never Split the Difference","Get a job in B2B sales or business development","Study where value gets created in your industry","Start a side project while you have stable income"]},
+  C:{name:"CREATIVE & DIGITAL MEDIA",icon:"🎨",desc:"You want to make things that matter. The creative economy is massive — the key is monetizing your craft, not just making it.",paths:["Graphic / UX Designer — $60K–$130K","Video & Film Production — $50K–$200K+","Copywriter / Content — $55K–$120K","Music / Audio Production — variable"],steps:["Pick one medium and go deep","Build a public portfolio of 10+ real pieces","Find your first paid client — even for $100","Study how the people ahead of you charge"]},
+  H:{name:"HEALTHCARE & HUMAN SERVICES",icon:"🤝",desc:"You want your work to directly matter to people. This has incredible job security and genuine impact.",paths:["Nursing / Paramedic — $55K–$110K","Personal Training / Physio — $50K–$120K","Social Work / Counselling — $50K–$90K","Education support — $50K–$85K"],steps:["Research the role — shadow or volunteer first","Look into college programs or certifications","This field rewards character as much as competence","Consider public vs private vs nonprofit sector"]},
+  T2:{name:"SKILLED TRADES",icon:"🔧",desc:"You want to work with your hands, see real results, and get paid well. The trades are booming — tradesmen are retiring faster than they're being replaced.",paths:["Electrician — $80K–$150K+ licensed","Plumber — $75K–$140K+ licensed","HVAC Technician — $65K–$120K","Construction Management — $80K–$160K"],steps:["Research apprenticeship programs in your area","Apply for a pre-apprenticeship or find a journeyman","Understand union vs non-union in your region","Goal: journeyman → master ticket → your own company"]}
+};
 
-var cur=0,ans=[];
-function render(){
-  var q=Q[cur],s=ans[cur];
-  var w=document.getElementById('qw');
-  var opts=q.opts.map(function(o,i){
-    return '<div class="opt'+(s===i?' sel':'')+'" onclick="pick('+i+')"><div class="dot"></div><span>'+o.t+'</span></div>';
-  }).join('');
-  w.innerHTML='<div class="q-card">'+(q.cat?'<div class="q-cat">'+q.cat+'</div>':'')+'<div class="q-text">'+q.text+'</div><div class="opts">'+opts+'</div></div>';
-  var pct=Math.round(((cur+1)/Q.length)*100);
-  document.getElementById('pf').style.width=pct+'%';
-  document.getElementById('pp').textContent=pct+'%';
-  document.getElementById('pc').textContent=(cur+1)+' / '+Q.length;
-  document.getElementById('bp').style.display=cur>0?'block':'none';
-  document.getElementById('bn').textContent=cur===Q.length-1?'See My Results →':'Next →';
+var cur = 0;
+var ans = [];
+
+function render() {
+  var q = QUESTIONS[cur];
+  var sel = ans[cur];
+  var optsHTML = '';
+  for (var i = 0; i < q.opts.length; i++) {
+    var cls = (sel === i) ? ' sel' : '';
+    optsHTML += '<div class="opt' + cls + '" onclick="pick(' + i + ')"><div class="opt-letter">' + String.fromCharCode(65+i) + '</div><div class="opt-text">' + q.opts[i].t + '</div></div>';
+  }
+  document.getElementById('qcard').innerHTML = '<div class="q-card"><div class="q-num">QUESTION ' + (cur+1) + ' OF ' + QUESTIONS.length + '</div><div class="q-text">' + q.text + '</div><div class="opts">' + optsHTML + '</div></div>';
+  var pct = Math.round(((cur+1) / QUESTIONS.length) * 100);
+  document.getElementById('prog-fill').style.width = pct + '%';
+  document.getElementById('prog-pct').textContent = pct + '%';
+  document.getElementById('prog-lbl').textContent = 'Question ' + (cur+1) + ' of ' + QUESTIONS.length;
+  document.getElementById('btn-prev').style.display = cur > 0 ? 'block' : 'none';
+  document.getElementById('btn-next').textContent = cur === QUESTIONS.length - 1 ? 'See My Results →' : 'Next →';
 }
-function pick(i){ans[cur]=i;render();}
-function next(){
-  if(ans[cur]===undefined){
-    document.querySelectorAll('.opt').forEach(function(o){o.style.borderColor='var(--red)';});
-    setTimeout(function(){document.querySelectorAll('.opt').forEach(function(o){o.style.borderColor='';});},1200);
+
+function pick(i) {
+  ans[cur] = i;
+  render();
+}
+
+function next() {
+  if (ans[cur] === undefined) {
+    var opts = document.querySelectorAll('.opt');
+    for (var i = 0; i < opts.length; i++) opts[i].style.borderColor = 'var(--red)';
+    setTimeout(function() {
+      var opts2 = document.querySelectorAll('.opt');
+      for (var i = 0; i < opts2.length; i++) opts2[i].style.borderColor = '';
+    }, 1200);
     return;
   }
-  if(cur<Q.length-1){cur++;render();}else{showResults();}
+  if (cur < QUESTIONS.length - 1) {
+    cur++;
+    render();
+  } else {
+    showResults();
+  }
 }
-function prev(){if(cur>0){cur--;render();}}
-function retake(){cur=0;ans=[];document.getElementById('results').style.display='none';document.getElementById('test-wrap').style.display='block';render();}
-function showResults(){
-  document.getElementById('test-wrap').style.display='none';
-  var r=document.getElementById('results');r.style.display='block';
-  var scores={T:0,B:0,C:0,H:0,T2:0};
-  Q.forEach(function(q,i){if(ans[i]!==undefined)scores[q.opts[ans[i]].k]++;});
-  var top=Object.entries(scores).sort(function(a,b){return b[1]-a[1];})[0][0];
-  var A={
-    T:{name:"TECH & ENGINEERING",icon:"💻",desc:"You think logically, love systems, and want high-value skills that scale. The tech world rewards exactly your kind of mind.",paths:["Software Developer — $80K–$180K+","Data Analyst — $70K–$150K","Cybersecurity — $80K–$170K","Cloud Engineer — $90K–$180K"],steps:["Learn Python or JavaScript — freeCodeCamp or Boot.dev","Build 3 portfolio projects on GitHub","Apply for junior roles — no degree required","Network on LinkedIn — most jobs are referrals"]},
-    B:{name:"BUSINESS & ENTREPRENEURSHIP",icon:"📊",desc:"You want to build, own, and scale. You're motivated by the upside and you're not afraid of the risk.",paths:["Sales & Business Dev — $60K–$200K+","Marketing & Growth — $65K–$140K","Entrepreneurship — unlimited upside","Finance — $80K–$200K+"],steps:["Learn sales — read Never Split the Difference","Get a job in B2B sales or business development","Study where value gets created in your industry","Start a side project while you have stable income"]},
-    C:{name:"CREATIVE & DIGITAL MEDIA",icon:"🎨",desc:"You want to make things that matter. The creative economy is massive — the key is monetizing your craft.",paths:["Graphic / UX Designer — $60K–$130K","Video & Film Production — $50K–$200K+","Copywriter — $55K–$120K freelance","Music / Audio Production — variable"],steps:["Pick one medium and go deep","Build a public portfolio of 10+ pieces","Find your first paid client — even for $100","Study how the people ahead of you charge"]},
-    H:{name:"HEALTHCARE & HUMAN SERVICES",icon:"🤝",desc:"You want your work to directly matter to people. This has incredible job security and genuine impact.",paths:["Nursing / Paramedic — $55K–$110K","Personal Training — $50K–$120K","Social Work / Counselling — $50K–$90K","Aged care or education support — $50K–$85K"],steps:["Research your specific role — shadow or volunteer","Look into college programs or certifications","This field rewards character as much as competence","Consider public vs private vs nonprofit sector"]},
-    T2:{name:"SKILLED TRADES",icon:"🔧",desc:"You want to work with your hands, see real results, and get paid well. The trades are booming.",paths:["Electrician — $80K–$150K+ licensed","Plumber — $75K–$140K+ licensed","HVAC Technician — $65K–$120K","Construction Management — $80K–$160K"],steps:["Research apprenticeship programs in your area","Apply for a pre-apprenticeship or find a journeyman","Understand union vs non-union in your region","Goal: journeyman ticket → master ticket → your own company"]},
-  };
-  var a=A[top];
-  r.innerHTML='<div class="res-box" style="border-color:var(--amber)"><div style="font-size:2.5rem;margin-bottom:8px;">'+a.icon+'</div><div style="font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:3px;color:var(--amber);margin-bottom:6px;">YOUR ARCHETYPE</div><div class="res-title">'+a.name+'</div><p class="res-desc">'+a.desc+'</p></div>'
-  +'<div class="res-box"><div class="res-title" style="font-size:1.1rem;margin-bottom:12px;">BEST CAREER PATHS</div>'+a.paths.map(function(p){return '<div class="rec"><span>🎯</span><span>'+p+'</span></div>';}).join('')+'</div>'
-  +'<div class="res-box"><div class="res-title" style="font-size:1.1rem;margin-bottom:12px;">YOUR NEXT 4 MOVES</div>'+a.steps.map(function(s,i){return '<div class="rec"><span style="font-family:'Space Mono',monospace;font-size:0.7rem;color:var(--orange);flex-shrink:0;">0'+(i+1)+'</span><span>'+s+'</span></div>';}).join('')+'</div>'
-  +'<div style="text-align:center;margin-top:20px;"><button class="retake" onclick="retake()">↩ Retake</button><a href="career.html" class="back-btn">← Back to Career</a></div>';
-}
-window.onload=function(){render();};
 
+function prev() {
+  if (cur > 0) { cur--; render(); }
+}
+
+function showResults() {
+  document.getElementById('test-section').style.display = 'none';
+  var scores = {T:0, B:0, C:0, H:0, T2:0};
+  for (var i = 0; i < QUESTIONS.length; i++) {
+    if (ans[i] !== undefined) scores[QUESTIONS[i].opts[ans[i]].k]++;
+  }
+  var top = 'T'; var topScore = 0;
+  for (var key in scores) {
+    if (scores[key] > topScore) { topScore = scores[key]; top = key; }
+  }
+  var a = ARCHETYPES[top];
+  var pathsHTML = '';
+  for (var i = 0; i < a.paths.length; i++) pathsHTML += '<div class="rec"><span>🎯</span><span>' + a.paths[i] + '</span></div>';
+  var stepsHTML = '';
+  for (var i = 0; i < a.steps.length; i++) stepsHTML += '<div class="rec"><span style="font-family:\'Space Mono\',monospace;font-size:0.7rem;color:var(--orange);flex-shrink:0;">0' + (i+1) + '</span><span>' + a.steps[i] + '</span></div>';
+  document.getElementById('results').style.display = 'block';
+  document.getElementById('results').innerHTML = '<div class="res-box" style="border-color:var(--amber);text-align:center;"><div style="font-size:2.5rem;margin-bottom:8px;">' + a.icon + '</div><div style="font-family:\'Space Mono\',monospace;font-size:0.6rem;letter-spacing:3px;color:var(--amber);margin-bottom:8px;">YOUR ARCHETYPE</div><div class="res-title">' + a.name + '</div><p class="res-desc">' + a.desc + '</p></div><div class="res-box"><div class="res-title" style="font-size:1.1rem;margin-bottom:12px;">BEST CAREER PATHS</div>' + pathsHTML + '</div><div class="res-box"><div class="res-title" style="font-size:1.1rem;margin-bottom:12px;">YOUR NEXT 4 MOVES</div>' + stepsHTML + '</div><div style="text-align:center;margin-top:20px;"><button class="retake-btn" onclick="retake()">↩ Retake</button><a href="career.html" class="back-link">← Back to Career</a></div>';
+}
+
+function retake() {
+  cur = 0; ans = [];
+  document.getElementById('results').style.display = 'none';
+  document.getElementById('test-section').style.display = 'block';
+  render();
+}
+
+render();
 </script>
-</body></html>
+</body>
+</html>
