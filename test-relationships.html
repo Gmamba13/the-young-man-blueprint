@@ -54,7 +54,9 @@ body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif
 </div>
 <div class="results" id="results"></div>
 </div>
+
 <script>
+
 const Q=[
 {cat:"👥 Friendships",text:"How many genuine friends do you have — people you could call in a crisis?",opts:[{t:"None",s:0},{t:"1",s:1},{t:"2–3",s:2},{t:"4 or more",s:3}]},
 {cat:"👥 Friendships",text:"When did you last spend real time with a friend (not online)?",opts:[{t:"I can't remember",s:0},{t:"Over a month ago",s:1},{t:"A couple of weeks",s:2},{t:"This week",s:3}]},
@@ -69,8 +71,8 @@ const Q=[
 {cat:"🔋 Energy",text:"After spending time with the main people in your life, how do you feel?",opts:[{t:"Drained and exhausted",s:0},{t:"Often drained",s:1},{t:"Mixed",s:2},{t:"Mostly energized and supported",s:3}]},
 {cat:"🔋 Energy",text:"Do you have relationships you know you should end or reassess?",opts:[{t:"Several",s:0},{t:"One significant one",s:1},{t:"Maybe — I'm unsure",s:2},{t:"No — my circle feels right",s:3}]}
 ];
-</script>
-<script>
+
+
 var cur=0,ans=[];
 function render(){
   var q=Q[cur],s=ans[cur];
@@ -120,4 +122,6 @@ function showResults(){
   +'<div style="text-align:center;margin-top:20px;"><button class="retake" onclick="retake()">↩ Retake</button><a href="relationships.html" class="back-btn">← Back to Relationships</a></div>';
 }
 window.onload=function(){render();};
-</script></body></html>
+
+</script>
+</body></html>

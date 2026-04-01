@@ -54,7 +54,9 @@ body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif
 </div>
 <div class="results" id="results"></div>
 </div>
+
 <script>
+
 const Q=[
 {text:"When you solve a problem, you prefer to:",opts:[{t:"Break it down logically step by step",k:"T"},{t:"Find a creative or unconventional solution",k:"C"},{t:"Talk it through with people",k:"H"},{t:"Use your hands or build something physical",k:"T2"}]},
 {text:"What work environment energizes you most?",opts:[{t:"Working independently on complex tasks",k:"T"},{t:"Fast-paced — deals and targets",k:"B"},{t:"Creative or flexible location",k:"C"},{t:"Outdoors or on a job site",k:"T2"}]},
@@ -69,8 +71,8 @@ const Q=[
 {text:"How do you feel about 9-5 office work?",opts:[{t:"Fine if the work is interesting",k:"T"},{t:"Temporary — until I build my own thing",k:"B"},{t:"Not ideal — I need flexibility",k:"C"},{t:"I'd rather be out doing the work",k:"T2"}]},
 {text:"Which future excites you most?",opts:[{t:"Senior software engineer at a tech firm",k:"T"},{t:"Own a business with a team and real revenue",k:"B"},{t:"Creative director with a strong reputation",k:"C"},{t:"Master electrician or contractor — booked solid",k:"T2"}]}
 ];
-</script>
-<script>
+
+
 var cur=0,ans=[];
 function render(){
   var q=Q[cur],s=ans[cur];
@@ -117,4 +119,6 @@ function showResults(){
   +'<div style="text-align:center;margin-top:20px;"><button class="retake" onclick="retake()">↩ Retake</button><a href="career.html" class="back-btn">← Back to Career</a></div>';
 }
 window.onload=function(){render();};
-</script></body></html>
+
+</script>
+</body></html>
