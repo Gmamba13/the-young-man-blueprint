@@ -1,546 +1,253 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Young Man Blueprint — Take Control of Your Life</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --black: #0a0a0a;
-    --deep: #111318;
-    --panel: #16191f;
-    --border: #22262e;
-    --orange: #e8500a;
-    --orange-glow: #ff6820;
-    --amber: #f5a623;
-    --white: #f0ede8;
-    --muted: #7a7f8a;
-    --green: #2dba6e;
-    --red: #e84040;
-    --blue: #2d7bba;
-    --font-display: 'Bebas Neue', sans-serif;
-    --font-body: 'DM Sans', sans-serif;
-    --font-mono: 'Space Mono', monospace;
-  }
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-  body { background: var(--black); color: var(--white); font-family: var(--font-body); font-size: 16px; line-height: 1.6; overflow-x: hidden; }
-  ::-webkit-scrollbar { width: 4px; } ::-webkit-scrollbar-track { background: var(--black); } ::-webkit-scrollbar-thumb { background: var(--orange); border-radius: 2px; }
+THE YOUNG MAN BLUEPRINT
 
-  /* NAV */
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 18px 40px; background: rgba(10,10,10,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
-  .nav-logo { font-family: var(--font-display); font-size: 1.3rem; letter-spacing: 2px; color: var(--white); text-decoration: none; }
-  .nav-logo span { color: var(--orange); }
-  .nav-links { display: flex; gap: 28px; align-items: center; }
-  .nav-links a { font-size: 0.78rem; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
-  .nav-links a:hover { color: var(--white); }
-  .nav-cta { background: var(--orange) !important; color: var(--white) !important; padding: 10px 22px; border-radius: 2px; font-weight: 700 !important; }
-  .nav-cta:hover { background: var(--orange-glow) !important; }
 
-  /* HERO */
-  .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 140px 40px 80px; position: relative; overflow: hidden; }
-  .hero-grid-bg { position: absolute; inset: 0; background-image: linear-gradient(rgba(232,80,10,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(232,80,10,0.04) 1px, transparent 1px); background-size: 60px 60px; animation: gridPulse 8s ease-in-out infinite; }
-  @keyframes gridPulse { 0%, 100% { opacity: 0.6; } 50% { opacity: 1; } }
-  .hero-glow { position: absolute; top: 20%; left: -10%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(232,80,10,0.15) 0%, transparent 70%); pointer-events: none; }
-  .hero-tag { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 3px; color: var(--orange); text-transform: uppercase; margin-bottom: 24px; display: flex; align-items: center; gap: 12px; }
-  .hero-tag::before { content: ''; display: block; width: 40px; height: 1px; background: var(--orange); }
-  .hero h1 { font-family: var(--font-display); font-size: clamp(4rem, 10vw, 9rem); line-height: 0.92; letter-spacing: 2px; color: var(--white); max-width: 900px; position: relative; z-index: 1; }
-  .hero h1 em { font-style: normal; color: var(--orange); display: block; }
-  .hero-sub { font-size: 1.1rem; color: var(--muted); max-width: 520px; margin: 28px 0 44px; font-weight: 300; line-height: 1.7; position: relative; z-index: 1; }
-  .hero-actions { display: flex; gap: 16px; align-items: center; position: relative; z-index: 1; }
-  .btn-primary { display: inline-flex; align-items: center; gap: 10px; background: var(--orange); color: var(--white); font-family: var(--font-body); font-size: 0.85rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; padding: 16px 32px; border-radius: 2px; border: none; cursor: pointer; transition: all 0.2s; position: relative; overflow: hidden; }
-  .btn-primary:hover { background: var(--orange-glow); transform: translateY(-1px); box-shadow: 0 8px 30px rgba(232,80,10,0.35); }
-  .btn-ghost { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: var(--muted); font-size: 0.85rem; font-weight: 500; letter-spacing: 1px; text-decoration: none; padding: 16px 20px; border: 1px solid var(--border); border-radius: 2px; cursor: pointer; transition: all 0.2s; }
-  .btn-ghost:hover { color: var(--white); border-color: var(--muted); }
-  .hero-stats { display: flex; gap: 48px; margin-top: 72px; padding-top: 40px; border-top: 1px solid var(--border); position: relative; z-index: 1; }
-  .stat-num { font-family: var(--font-display); font-size: 2.6rem; color: var(--white); line-height: 1; }
-  .stat-num span { color: var(--orange); }
-  .stat-label { font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-top: 4px; }
+YOU ALREADY KNOW SOMETHING HAS TO CHANGE
+TAKE
+ACTIONABLE
+CONTROL TODAY.
+Health, finances, career, relationships, discipline — every area of your life, so you can move up in life. One structured platform. Built for young men who are ready to change.
+⚡ BEGIN YOUR JOURNEY — FREE See What's Inside →
+11+
+LIFE PILLARS COVERED
+10
+STRUCTURED STEPS
+30+
+GUIDES & TOOLS
+$0
+TO START
+THE SYSTEM
+EVERY PILLAR. ONE PLATFORM.
+You weren't given a roadmap. Nobody sat you down and taught you this stuff. That's what The Blueprint is for.
+💪
+PHYSICAL HEALTH
+Training, nutrition, sleep. Build the body that commands respect.
+GUIDES + TRACKERS →
+🧠
+MENTAL HEALTH
+Anxiety, depression, clarity. Tools without the stigma.
+RESOURCES + EXERCISES →
+💰
+FINANCES
+Budget, debt, savings. The boring stuff that matters.
+INTERACTIVE CHARTS →
+📈
+INVESTING
+Index funds, compound growth. Start with $50.
+CALCULATORS + GUIDES →
+🎯
+CAREER
+Resume, skills, salary negotiation. Build toward something real.
+ROADMAPS + TEMPLATES →
+🤝
+RELATIONSHIPS
+Friendship, dating, communication. Connections that last.
+FRAMEWORKS + EXERCISES →
+🔥
+DISCIPLINE
+Habit systems, accountability protocols. Consistency over intensity.
+HABIT TRACKERS →
+⚡
+MOTIVATION
+Identity-based drive, purpose finding, handling burnout.
+JOURNALING + REFLECTION →
+🪞
+APPEARANCE
+Style, grooming, posture. How you show up matters.
+STYLE GUIDES →
+🚫
+ADDICTION
+Non-judgmental frameworks for breaking bad habit loops.
+RECOVERY PROTOCOLS →
+📚
+RESOURCES
+Books, podcasts, tools, crisis helplines. Curated for quality.
+CURATED LIBRARY →
+🗺️
+YOUR ROADMAP
+A personalized path through all 11 pillars. XP, badges, milestones.
+CORE FEATURE →
+YOUR COMMAND CENTER
+THE DASHBOARD EVERY MAN DESERVES
+Track every pillar, earn XP for completed actions, hit milestones, and see your life transform in real time.
+→
+XP & Level System
+Complete challenges across all pillars to level up your Blueprint rank.
+→
+Daily Mission Stack
+5 targeted daily tasks across your weakest pillars to force real progress.
+→
+Weekly Reports
+Auto-generated summaries showing where you improved and where to focus.
 
-  /* PILLARS */
-  .section { padding: 100px 40px; max-width: 1400px; margin: 0 auto; }
-  .section-label { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 3px; color: var(--orange); text-transform: uppercase; margin-bottom: 16px; }
-  .section-title { font-family: var(--font-display); font-size: clamp(2.8rem, 5vw, 4.5rem); line-height: 1; margin-bottom: 16px; }
-  .section-sub { color: var(--muted); max-width: 480px; font-size: 0.95rem; font-weight: 300; margin-bottom: 60px; }
-  .pillars-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; }
-  .pillar { background: var(--panel); border: 1px solid var(--border); padding: 32px 28px; cursor: pointer; transition: all 0.25s; position: relative; overflow: hidden; text-decoration: none; display: block; }
-  .pillar::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--orange); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
-  .pillar:hover::before { transform: scaleX(1); }
-  .pillar:hover { background: #1a1e26; transform: translateY(-2px); }
-  .pillar-icon { font-size: 1.8rem; margin-bottom: 16px; display: block; }
-  .pillar-title { font-family: var(--font-display); font-size: 1.4rem; letter-spacing: 1px; margin-bottom: 8px; }
-  .pillar-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
-  .pillar-tag { display: inline-block; margin-top: 16px; font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 2px; color: var(--orange); text-transform: uppercase; border: 1px solid rgba(232,80,10,0.3); padding: 3px 8px; border-radius: 1px; }
-  .pillar.highlight { background: rgba(232,80,10,0.06); border-color: rgba(232,80,10,0.3); }
 
-  /* DASHBOARD SECTION */
-  .dashboard-section { background: var(--deep); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 100px 40px; }
-  .dash-inner { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
-  .dash-ui { background: var(--panel); border: 1px solid var(--border); border-radius: 4px; overflow: hidden; box-shadow: 0 40px 80px rgba(0,0,0,0.5); }
-  .dash-bar { background: #1a1e26; padding: 12px 20px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid var(--border); }
-  .dash-dot { width: 10px; height: 10px; border-radius: 50%; }
-  .dash-dot.r { background: var(--red); } .dash-dot.y { background: var(--amber); } .dash-dot.g { background: var(--green); }
-  .dash-title-bar { font-family: var(--font-mono); font-size: 0.7rem; color: var(--muted); margin-left: auto; letter-spacing: 1px; }
-  .dash-body { padding: 28px; }
-  .dash-welcome { font-family: var(--font-display); font-size: 1.6rem; letter-spacing: 1px; margin-bottom: 24px; }
-  .dash-welcome span { color: var(--orange); }
-  .xp-bar-wrap { background: var(--border); border-radius: 2px; height: 8px; margin-bottom: 6px; overflow: hidden; }
-  .xp-bar-fill { height: 100%; background: linear-gradient(90deg, var(--orange), var(--amber)); width: 67%; border-radius: 2px; animation: xpFill 2s ease-out forwards; }
-  @keyframes xpFill { from { width: 0; } to { width: 67%; } }
-  .xp-meta { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.65rem; color: var(--muted); margin-bottom: 28px; }
-  .dash-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 24px; }
-  .dash-card { background: var(--deep); border: 1px solid var(--border); padding: 16px; border-radius: 3px; }
-  .dash-card-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 2px; color: var(--muted); margin-bottom: 8px; }
-  .dash-card-val { font-family: var(--font-display); font-size: 1.8rem; color: var(--white); }
-  .dash-card-val.up { color: var(--green); } .dash-card-val.fire { color: var(--orange); }
-  .dash-tasks { margin-top: 4px; }
-  .task-item { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 0.82rem; color: var(--muted); }
-  .task-check { width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.6rem; flex-shrink: 0; border: 1px solid var(--border); background: var(--deep); color: var(--muted); }
-  .task-check.done { background: var(--orange); border-color: var(--orange); color: var(--white); }
-  .task-item.done-item { color: var(--white); text-decoration: line-through; text-decoration-color: rgba(240,237,232,0.2); }
 
-  /* ROADMAP */
-  .roadmap-section { padding: 100px 40px; max-width: 1400px; margin: 0 auto; }
-  .roadmap-wrap { position: relative; padding-left: 60px; margin-top: 60px; }
-  .roadmap-line { position: absolute; left: 20px; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--orange), var(--border)); }
-  .roadmap-phase { position: relative; margin-bottom: 48px; padding: 32px; background: var(--panel); border: 1px solid var(--border); border-left: 3px solid var(--orange); border-radius: 2px; transition: all 0.2s; }
-  .roadmap-phase:hover { border-color: var(--orange); background: #1a1e26; }
-  .roadmap-phase::before { content: ''; position: absolute; left: -48px; top: 32px; width: 18px; height: 18px; background: var(--orange); border-radius: 50%; box-shadow: 0 0 0 4px var(--black), 0 0 0 6px var(--orange); }
-  .phase-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
-  .phase-label { font-family: var(--font-mono); font-size: 0.7rem; color: var(--orange); letter-spacing: 2px; }
-  .phase-badge { background: rgba(232,80,10,0.12); border: 1px solid rgba(232,80,10,0.3); color: var(--orange); font-size: 0.7rem; font-family: var(--font-mono); padding: 4px 10px; border-radius: 2px; }
-  .phase-title { font-family: var(--font-display); font-size: 1.6rem; margin-bottom: 10px; }
-  .phase-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
-  .phase-milestones { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
-  .milestone-chip { font-size: 0.72rem; padding: 5px 12px; border: 1px solid var(--border); border-radius: 20px; color: var(--muted); font-family: var(--font-mono); letter-spacing: 1px; }
+BLUEPRINT / dashboard
+WELCOME BACK, MARCUS
+LEVEL 7 → LEVEL 8 PROGRESS
 
-  /* TRACKER */
-  .tracker-section { background: var(--deep); border-top: 1px solid var(--border); padding: 100px 40px; }
-  .tracker-inner { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1.2fr 1fr; gap: 80px; align-items: start; }
-  .habit-tracker { background: var(--panel); border: 1px solid var(--border); border-radius: 3px; overflow: hidden; }
-  .tracker-header { padding: 20px 24px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
-  .tracker-title-sm { font-family: var(--font-display); font-size: 1.2rem; letter-spacing: 1px; }
-  .tracker-week { font-family: var(--font-mono); font-size: 0.65rem; color: var(--muted); letter-spacing: 2px; }
-  .habit-row { display: grid; grid-template-columns: 1fr repeat(7, 36px); gap: 6px; align-items: center; padding: 14px 24px; border-bottom: 1px solid var(--border); }
-  .habit-row:last-child { border: none; }
-  .habit-name { font-size: 0.82rem; display: flex; align-items: center; gap: 8px; }
-  .habit-cell { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; cursor: pointer; transition: all 0.15s; border: 1px solid var(--border); background: var(--deep); color: var(--muted); }
-  .habit-cell.done { background: var(--orange); border-color: var(--orange); color: var(--white); }
-  .habit-cell:hover:not(.done) { border-color: var(--orange); }
-  .streak-display { padding: 20px 24px; background: rgba(232,80,10,0.06); border-top: 1px solid var(--border); display: flex; gap: 24px; }
-  .streak-item { text-align: center; }
-  .streak-num { font-family: var(--font-display); font-size: 1.8rem; color: var(--orange); }
-  .streak-lbl { font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
-  .rewards-row { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 32px; }
-  .badge { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 16px; background: var(--panel); border: 1px solid var(--border); border-radius: 4px; min-width: 80px; opacity: 0.4; transition: all 0.2s; }
-  .badge.earned { opacity: 1; border-color: var(--amber); background: rgba(245,166,35,0.06); }
-  .badge-icon { font-size: 1.6rem; }
-  .badge-name { font-size: 0.6rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); text-align: center; }
-  .badge.earned .badge-name { color: var(--amber); }
+2,340 XP earned
+3,500 XP to unlock
+CURRENT STREAK
+🔥 14
+NET WORTH ↑
++$840
+WORKOUTS THIS WEEK
+4/5
+SLEEP AVG
+7.2h
+TODAY'S MISSIONS
+✓ Morning cold exposure (2 min) ✓ Log daily spending Read 20 pages Evening reflection journal
+THE PATH
+YOUR 10-STEP BLUEPRINT
+Ten steps that move you from where you are now to where you need to be. Each step unlocks based on your XP progress — personalized to you.
 
-  /* PRICING */
-  .pricing-section { background: var(--deep); border-top: 1px solid var(--border); padding: 100px 40px; }
-  .pricing-inner { max-width: 1200px; margin: 0 auto; }
-  .pricing-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; margin-top: 60px; max-width: 800px; }
-  .price-card { background: var(--panel); border: 1px solid var(--border); padding: 40px 32px; position: relative; transition: transform 0.2s; }
-  .price-card:hover { transform: translateY(-4px); }
-  .price-card.featured { border-color: var(--orange); background: #161208; }
-  .featured-tag { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--orange); color: var(--white); font-size: 0.65rem; font-family: var(--font-mono); letter-spacing: 2px; padding: 4px 14px; text-transform: uppercase; }
-  .price-tier { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 3px; color: var(--muted); text-transform: uppercase; margin-bottom: 20px; }
-  .price-amount { font-family: var(--font-display); font-size: 3.5rem; line-height: 1; color: var(--white); margin-bottom: 4px; }
-  .price-amount sup { font-size: 1.2rem; vertical-align: top; margin-top: 12px; display: inline-block; }
-  .price-period { font-size: 0.78rem; color: var(--muted); margin-bottom: 32px; }
-  .price-features { list-style: none; margin-bottom: 36px; }
-  .price-features li { display: flex; align-items: flex-start; gap: 10px; font-size: 0.85rem; color: var(--muted); padding: 8px 0; border-bottom: 1px solid var(--border); }
-  .price-features li:last-child { border: none; }
-  .price-features li .check { color: var(--green); font-size: 0.8rem; flex-shrink: 0; margin-top: 2px; }
-  .price-features li .x { color: var(--border); font-size: 0.8rem; flex-shrink: 0; margin-top: 2px; }
+Step 01
+DAY 1
+TAKE STOCK
+Honestly assess where you are. Sleep, finances, mental state, relationships. No judgement — just truth. You can't fix what you won't look at.
+🧠 Mental audit
+💵 Net worth snapshot
+📋 Pillar self-assessment
+Step 02
+WEEK 1
+STABILIZE YOUR BODY
+Sleep 7–9 hours. Drink water. Move daily. These three things alone will change your energy, mood, and mental clarity within a week.
+🛌 Sleep schedule set
+💧 2L water daily
+🚶 Daily movement
+Step 03
+WEEK 2
+STOP THE BLEEDING
+Identify the one habit, behaviour, or pattern doing the most damage right now. Stop it. Whether it's spending, porn, substances, or avoidance — this is step three.
+🚫 Worst habit identified
+📵 First 7-day clean
+🔒 Triggers mapped
+Step 04
+WEEK 3–4
+BUILD YOUR MONEY FLOOR
+Get a budget. Know what's coming in and going out. Save your first $500 emergency fund. Credit score checked. This is your financial foundation.
+💰 Budget created
+🏦 $500 saved
+📊 Credit checked
+Step 05
+MONTH 2
+BUILD YOUR PHYSICAL FOUNDATION
+Start a training program you can maintain. 3 days a week is enough. Nail your protein target. Your body is the hardware — everything else runs on it.
+💪 Training program started
+🥩 Protein target hit
+⚡ 2-week workout streak
+Step 06
+MONTH 2–3
+GET YOUR MIND RIGHT
+Journal daily. Understand your anxiety, anger, or emptiness — don't just suppress it. If therapy is needed, book it. This is strength, not weakness.
+✍️ Daily journaling
+🧠 Therapy/counselling explored
+🔥 30-day mission streak
+Step 07
+MONTH 3–4
+LOCK IN YOUR CAREER PATH
+Know what you're building toward. Pick the skill. Update the resume. Have one real career conversation. Salary negotiation starts now.
+🎯 Career direction chosen
+📄 Resume updated
+🤝 One career conversation
+Step 08
+MONTH 4–5
+START BUILDING WEALTH
+Open a TFSA or Roth IRA. Buy your first index fund. Even $50. Automate it. The money habit is more important than the amount at this stage.
+📈 Investment account opened
+💸 First investment made
+🔄 Auto-invest set up
+Step 09
+MONTH 5–8
+STRENGTHEN YOUR RELATIONSHIPS
+Reach out to men you've lost touch with. Be honest in your close relationships. Cut the ones draining you. Build the kind of connections that actually sustain you.
+🤝 3 real friendships invested in
+✂️ Toxic ties addressed
+💬 Honest conversations had
+Step 10
+MONTH 9–12
+BLUEPRINT COMPLETE — NOW LEAD
+You've built all 11 pillars. You're not the same man. Now your job is to maintain, optimize, and help the next man. The real work never ends — it just changes.
+🏆 All pillars active
+💰 6-month runway saved
+📚 Mentoring another man
+⭐ Blueprint Elite rank
+WEEKLY HABITS
+WEEK OF MAR 17
 
-  /* CTA BAND */
-  .cta-band { background: var(--orange); padding: 80px 40px; text-align: center; }
-  .cta-band h2 { font-family: var(--font-display); font-size: clamp(3rem, 7vw, 5.5rem); color: var(--white); line-height: 1; margin-bottom: 20px; }
-  .cta-band p { color: rgba(255,255,255,0.8); max-width: 440px; margin: 0 auto 36px; font-size: 0.95rem; }
-
-  /* FOOTER */
-  footer { background: var(--black); border-top: 1px solid var(--border); padding: 60px 40px 40px; }
-  .footer-inner { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; }
-  .footer-tagline { font-size: 0.82rem; color: var(--muted); max-width: 240px; line-height: 1.6; margin-top: 12px; }
-  .footer-col h4 { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; }
-  .footer-col ul { list-style: none; }
-  .footer-col ul li { margin-bottom: 10px; }
-  .footer-col ul li a { font-size: 0.85rem; color: var(--muted); text-decoration: none; transition: color 0.2s; }
-  .footer-col ul li a:hover { color: var(--white); }
-  .footer-bottom { max-width: 1400px; margin: 0 auto; padding-top: 40px; margin-top: 40px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
-  .footer-copy { font-size: 0.75rem; color: var(--muted); font-family: var(--font-mono); }
-
-  /* MODAL */
-  .modal-overlay { display: none; position: fixed; inset: 0; z-index: 200; background: rgba(10,10,10,0.95); align-items: center; justify-content: center; }
-  .modal-overlay.open { display: flex; }
-  .modal { background: var(--panel); border: 1px solid var(--border); padding: 52px; max-width: 480px; width: 90%; position: relative; }
-  .modal-close { position: absolute; top: 20px; right: 24px; background: none; border: none; color: var(--muted); font-size: 1.4rem; cursor: pointer; transition: color 0.2s; }
-  .modal-close:hover { color: var(--white); }
-  .modal h2 { font-family: var(--font-display); font-size: 2.2rem; margin-bottom: 8px; }
-  .modal p { font-size: 0.85rem; color: var(--muted); margin-bottom: 32px; }
-  .form-group { margin-bottom: 18px; }
-  .form-group label { display: block; font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; font-family: var(--font-mono); }
-  .form-group input, .form-group select { width: 100%; background: var(--deep); border: 1px solid var(--border); color: var(--white); padding: 12px 16px; font-size: 0.9rem; font-family: var(--font-body); border-radius: 2px; outline: none; transition: border-color 0.2s; }
-  .form-group input:focus, .form-group select:focus { border-color: var(--orange); }
-  .form-group select option { background: var(--panel); }
-  .form-submit { width: 100%; background: var(--orange); color: var(--white); border: none; padding: 16px; font-size: 0.85rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; font-family: var(--font-body); transition: background 0.2s; border-radius: 2px; margin-top: 8px; }
-  .form-submit:hover { background: var(--orange-glow); }
-
-  /* ANIMATIONS */
-  .fade-up { opacity: 0; transform: translateY(30px); animation: fadeUp 0.7s ease forwards; }
-  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
-  .delay-1 { animation-delay: 0.1s; } .delay-2 { animation-delay: 0.2s; } .delay-3 { animation-delay: 0.3s; } .delay-4 { animation-delay: 0.4s; }
-
-  @media (max-width: 900px) {
-    nav { padding: 16px 20px; } .nav-links { display: none; }
-    .hero { padding: 120px 20px 60px; } .hero-stats { gap: 24px; flex-wrap: wrap; }
-    .section { padding: 60px 20px; } .pillars-grid { grid-template-columns: repeat(2, 1fr); }
-    .dash-inner, .tracker-inner { grid-template-columns: 1fr; gap: 40px; }
-    .pricing-grid { grid-template-columns: 1fr; }
-    .footer-inner { grid-template-columns: 1fr 1fr; gap: 40px; }
-  }
-</style>
-</head>
-<body>
-
-<!-- NAV -->
-<nav>
-  <a href="index.html" class="nav-logo">THE YOUNG MAN <span>BLUEPRINT</span></a>
-  <div class="nav-links">
-    <a href="#pillars">Pillars</a>
-    <a href="#roadmap">Roadmap</a>
-    <a href="blog.html">Blog</a>
-    <a href="faq.html">FAQ</a>
-    <a href="community.html">Community</a>
-    <a id="nav-auth-link" id="nav-auth-link" id="nav-auth-link" id="nav-auth-link" id="nav-auth-link" href="login.html">Log In</a>
-    <a href="create-account.html" class="nav-cta">Start Free</a>
-  </div>
-</nav>
-
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-grid-bg"></div>
-  <div class="hero-glow"></div>
-  <div class="hero-tag fade-up">You already know something has to change</div>
-  <h1 class="fade-up delay-1">
-    TAKE
-    <em>ACTIONABLE</em>
-    CONTROL TODAY.
-  </h1>
-  <p class="hero-sub fade-up delay-2">Health, finances, career, relationships, discipline — every area of your life, so you can move <strong style="color:var(--white);">up in life</strong>. One structured platform. Built for young men who are ready to change.</p>
-  <div class="hero-actions fade-up delay-3">
-    <a href="create-account.html" class="btn-primary">⚡ Begin Your Journey — Free</a>
-    <a href="#pillars" class="btn-ghost">See What's Inside →</a>
-  </div>
-  <div class="hero-stats fade-up delay-4">
-    <div class="stat"><div class="stat-num">11<span>+</span></div><div class="stat-label">Life Pillars Covered</div></div>
-    <div class="stat"><div class="stat-num">10</div><div class="stat-label">Structured Steps</div></div>
-    <div class="stat"><div class="stat-num">30<span>+</span></div><div class="stat-label">Guides & Tools</div></div>
-    <div class="stat"><div class="stat-num">$0</div><div class="stat-label">To Start</div></div>
-  </div>
-</section>
-
-<!-- PILLARS -->
-<section id="pillars" style="background: var(--deep); border-top: 1px solid var(--border);">
-  <div class="section">
-    <div class="section-label">The System</div>
-    <h2 class="section-title">EVERY PILLAR. ONE PLATFORM.</h2>
-    <p class="section-sub">You weren't given a roadmap. Nobody sat you down and taught you this stuff. That's what The Blueprint is for.</p>
-    <div class="pillars-grid">
-      <a href="health.html" class="pillar"><span class="pillar-icon">💪</span><div class="pillar-title">PHYSICAL HEALTH</div><p class="pillar-desc">Training, nutrition, sleep. Build the body that commands respect.</p><span class="pillar-tag">Guides + Trackers →</span></a>
-      <a href="mental-health.html" class="pillar"><span class="pillar-icon">🧠</span><div class="pillar-title">MENTAL HEALTH</div><p class="pillar-desc">Anxiety, depression, clarity. Tools without the stigma.</p><span class="pillar-tag">Resources + Exercises →</span></a>
-      <a href="finances.html" class="pillar"><span class="pillar-icon">💰</span><div class="pillar-title">FINANCES</div><p class="pillar-desc">Budget, debt, savings. The boring stuff that matters.</p><span class="pillar-tag">Interactive Charts →</span></a>
-      <a href="investing.html" class="pillar"><span class="pillar-icon">📈</span><div class="pillar-title">INVESTING</div><p class="pillar-desc">Index funds, compound growth. Start with $50.</p><span class="pillar-tag">Calculators + Guides →</span></a>
-      <a href="career.html" class="pillar"><span class="pillar-icon">🎯</span><div class="pillar-title">CAREER</div><p class="pillar-desc">Resume, skills, salary negotiation. Build toward something real.</p><span class="pillar-tag">Roadmaps + Templates →</span></a>
-      <a href="relationships.html" class="pillar"><span class="pillar-icon">🤝</span><div class="pillar-title">RELATIONSHIPS</div><p class="pillar-desc">Friendship, dating, communication. Connections that last.</p><span class="pillar-tag">Frameworks + Exercises →</span></a>
-      <a href="discipline.html" class="pillar"><span class="pillar-icon">🔥</span><div class="pillar-title">DISCIPLINE</div><p class="pillar-desc">Habit systems, accountability protocols. Consistency over intensity.</p><span class="pillar-tag">Habit Trackers →</span></a>
-      <a href="motivation.html" class="pillar"><span class="pillar-icon">⚡</span><div class="pillar-title">MOTIVATION</div><p class="pillar-desc">Identity-based drive, purpose finding, handling burnout.</p><span class="pillar-tag">Journaling + Reflection →</span></a>
-      <a href="appearance.html" class="pillar"><span class="pillar-icon">🪞</span><div class="pillar-title">APPEARANCE</div><p class="pillar-desc">Style, grooming, posture. How you show up matters.</p><span class="pillar-tag">Style Guides →</span></a>
-      <a href="addiction.html" class="pillar"><span class="pillar-icon">🚫</span><div class="pillar-title">ADDICTION</div><p class="pillar-desc">Non-judgmental frameworks for breaking bad habit loops.</p><span class="pillar-tag">Recovery Protocols →</span></a>
-      <a href="resources.html" class="pillar"><span class="pillar-icon">📚</span><div class="pillar-title">RESOURCES</div><p class="pillar-desc">Books, podcasts, tools, crisis helplines. Curated for quality.</p><span class="pillar-tag">Curated Library →</span></a>
-      <a href="create-account.html" class="pillar highlight"><span class="pillar-icon">🗺️</span><div class="pillar-title">YOUR ROADMAP</div><p class="pillar-desc">A personalized path through all 11 pillars. XP, badges, milestones.</p><span class="pillar-tag" style="background:var(--orange);color:var(--white);border-color:var(--orange);">Core Feature →</span></a>
-    </div>
-  </div>
-</section>
-
-<!-- DASHBOARD PREVIEW -->
-<div class="dashboard-section" id="dashboard">
-  <div class="dash-inner">
-    <div>
-      <div class="section-label">Your Command Center</div>
-      <h2 class="section-title">THE DASHBOARD EVERY MAN DESERVES</h2>
-      <p class="section-sub" style="margin-bottom:32px;">Track every pillar, earn XP for completed actions, hit milestones, and see your life transform in real time.</p>
-      <div style="display:flex;flex-direction:column;gap:16px;">
-        <div style="display:flex;gap:16px;align-items:flex-start;"><div style="color:var(--orange);font-size:1.1rem;margin-top:2px;">→</div><div><div style="font-weight:500;margin-bottom:2px;">XP & Level System</div><div style="font-size:0.82rem;color:var(--muted);">Complete challenges across all pillars to level up your Blueprint rank.</div></div></div>
-        <div style="display:flex;gap:16px;align-items:flex-start;"><div style="color:var(--orange);font-size:1.1rem;margin-top:2px;">→</div><div><div style="font-weight:500;margin-bottom:2px;">Daily Mission Stack</div><div style="font-size:0.82rem;color:var(--muted);">5 targeted daily tasks across your weakest pillars to force real progress.</div></div></div>
-        <div style="display:flex;gap:16px;align-items:flex-start;"><div style="color:var(--orange);font-size:1.1rem;margin-top:2px;">→</div><div><div style="font-weight:500;margin-bottom:2px;">Weekly Reports</div><div style="font-size:0.82rem;color:var(--muted);">Auto-generated summaries showing where you improved and where to focus.</div></div></div>
-      </div>
-    </div>
-    <div class="dash-ui">
-      <div class="dash-bar"><div class="dash-dot r"></div><div class="dash-dot y"></div><div class="dash-dot g"></div><div class="dash-title-bar">BLUEPRINT / dashboard</div></div>
-      <div class="dash-body">
-        <div class="dash-welcome">WELCOME BACK, <span>MARCUS</span></div>
-        <div style="font-family:var(--font-mono);font-size:0.65rem;color:var(--muted);margin-bottom:6px;">LEVEL 7 → LEVEL 8 PROGRESS</div>
-        <div class="xp-bar-wrap"><div class="xp-bar-fill"></div></div>
-        <div class="xp-meta"><span>2,340 XP earned</span><span>3,500 XP to unlock</span></div>
-        <div class="dash-cards">
-          <div class="dash-card"><div class="dash-card-label">Current Streak</div><div class="dash-card-val fire">🔥 14</div></div>
-          <div class="dash-card"><div class="dash-card-label">Net Worth ↑</div><div class="dash-card-val up">+$840</div></div>
-          <div class="dash-card"><div class="dash-card-label">Workouts This Week</div><div class="dash-card-val">4/5</div></div>
-          <div class="dash-card"><div class="dash-card-label">Sleep Avg</div><div class="dash-card-val">7.2h</div></div>
-        </div>
-        <div style="font-family:var(--font-mono);font-size:0.65rem;color:var(--muted);margin-bottom:4px;">TODAY'S MISSIONS</div>
-        <div class="dash-tasks">
-          <div class="task-item done-item"><div class="task-check done">✓</div> Morning cold exposure (2 min)</div>
-          <div class="task-item done-item"><div class="task-check done">✓</div> Log daily spending</div>
-          <div class="task-item"><div class="task-check"></div> Read 20 pages</div>
-          <div class="task-item"><div class="task-check"></div> Evening reflection journal</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ROADMAP -->
-<section id="roadmap" style="border-top:1px solid var(--border);">
-  <div class="roadmap-section">
-    <div class="section-label">The Path</div>
-    <h2 class="section-title">YOUR 10-STEP BLUEPRINT</h2>
-    <p class="section-sub">Ten steps that move you from where you are now to where you need to be. Each step unlocks based on your XP progress — personalized to you.</p>
-    <div class="roadmap-wrap">
-      <div class="roadmap-line"></div>
-      <div class="roadmap-phase"><div class="phase-header"><span class="phase-label">Step 01</span><span class="phase-badge">DAY 1</span></div><div class="phase-title">TAKE STOCK</div><p class="phase-desc">Honestly assess where you are. Sleep, finances, mental state, relationships. No judgement — just truth. You can't fix what you won't look at.</p><div class="phase-milestones"><span class="milestone-chip">🧠 Mental audit</span><span class="milestone-chip">💵 Net worth snapshot</span><span class="milestone-chip">📋 Pillar self-assessment</span></div></div>
-      <div class="roadmap-phase"><div class="phase-header"><span class="phase-label">Step 02</span><span class="phase-badge">WEEK 1</span></div><div class="phase-title">STABILIZE YOUR BODY</div><p class="phase-desc">Sleep 7–9 hours. Drink water. Move daily. These three things alone will change your energy, mood, and mental clarity within a week.</p><div class="phase-milestones"><span class="milestone-chip">🛌 Sleep schedule set</span><span class="milestone-chip">💧 2L water daily</span><span class="milestone-chip">🚶 Daily movement</span></div></div>
-      <div class="roadmap-phase"><div class="phase-header"><span class="phase-label">Step 03</span><span class="phase-badge">WEEK 2</span></div><div class="phase-title">STOP THE BLEEDING</div><p class="phase-desc">Identify the one habit, behaviour, or pattern doing the most damage right now. Stop it. Whether it's spending, porn, substances, or avoidance — this is step three.</p><div class="phase-milestones"><span class="milestone-chip">🚫 Worst habit identified</span><span class="milestone-chip">📵 First 7-day clean</span><span class="milestone-chip">🔒 Triggers mapped</span></div></div>
-      <div class="roadmap-phase"><div class="phase-header"><span class="phase-label">Step 04</span><span class="phase-badge">WEEK 3–4</span></div><div class="phase-title">BUILD YOUR MONEY FLOOR</div><p class="phase-desc">Get a budget. Know what's coming in and going out. Save your first $500 emergency fund. Credit score checked. This is your financial foundation.</p><div class="phase-milestones"><span class="milestone-chip">💰 Budget created</span><span class="milestone-chip">🏦 $500 saved</span><span class="milestone-chip">📊 Credit checked</span></div></div>
-      <div class="roadmap-phase"><div class="phase-header"><span class="phase-label">Step 05</span><span class="phase-badge">MONTH 2</span></div><div class="phase-title">BUILD YOUR PHYSICAL FOUNDATION</div><p class="phase-desc">Start a training program you can maintain. 3 days a week is enough. Nail your protein target. Your body is the hardware — everything else runs on it.</p><div class="phase-milestones"><span class="milestone-chip">💪 Training program started</span><span class="milestone-chip">🥩 Protein target hit</span><span class="milestone-chip">⚡ 2-week workout streak</span></div></div>
-      <div class="roadmap-phase"><div class="phase-header"><span class="phase-label">Step 06</span><span class="phase-badge">MONTH 2–3</span></div><div class="phase-title">GET YOUR MIND RIGHT</div><p class="phase-desc">Journal daily. Understand your anxiety, anger, or emptiness — don't just suppress it. If therapy is needed, book it. This is strength, not weakness.</p><div class="phase-milestones"><span class="milestone-chip">✍️ Daily journaling</span><span class="milestone-chip">🧠 Therapy/counselling explored</span><span class="milestone-chip">🔥 30-day mission streak</span></div></div>
-      <div class="roadmap-phase"><div class="phase-header"><span class="phase-label">Step 07</span><span class="phase-badge">MONTH 3–4</span></div><div class="phase-title">LOCK IN YOUR CAREER PATH</div><p class="phase-desc">Know what you're building toward. Pick the skill. Update the resume. Have one real career conversation. Salary negotiation starts now.</p><div class="phase-milestones"><span class="milestone-chip">🎯 Career direction chosen</span><span class="milestone-chip">📄 Resume updated</span><span class="milestone-chip">🤝 One career conversation</span></div></div>
-      <div class="roadmap-phase"><div class="phase-header"><span class="phase-label">Step 08</span><span class="phase-badge">MONTH 4–5</span></div><div class="phase-title">START BUILDING WEALTH</div><p class="phase-desc">Open a TFSA or Roth IRA. Buy your first index fund. Even $50. Automate it. The money habit is more important than the amount at this stage.</p><div class="phase-milestones"><span class="milestone-chip">📈 Investment account opened</span><span class="milestone-chip">💸 First investment made</span><span class="milestone-chip">🔄 Auto-invest set up</span></div></div>
-      <div class="roadmap-phase"><div class="phase-header"><span class="phase-label">Step 09</span><span class="phase-badge">MONTH 5–8</span></div><div class="phase-title">STRENGTHEN YOUR RELATIONSHIPS</div><p class="phase-desc">Reach out to men you've lost touch with. Be honest in your close relationships. Cut the ones draining you. Build the kind of connections that actually sustain you.</p><div class="phase-milestones"><span class="milestone-chip">🤝 3 real friendships invested in</span><span class="milestone-chip">✂️ Toxic ties addressed</span><span class="milestone-chip">💬 Honest conversations had</span></div></div>
-      <div class="roadmap-phase"><div class="phase-header"><span class="phase-label">Step 10</span><span class="phase-badge">MONTH 9–12</span></div><div class="phase-title">BLUEPRINT COMPLETE — NOW LEAD</div><p class="phase-desc">You've built all 11 pillars. You're not the same man. Now your job is to maintain, optimize, and help the next man. The real work never ends — it just changes.</p><div class="phase-milestones"><span class="milestone-chip">🏆 All pillars active</span><span class="milestone-chip">💰 6-month runway saved</span><span class="milestone-chip">📚 Mentoring another man</span><span class="milestone-chip">⭐ Blueprint Elite rank</span></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- HABIT TRACKER -->
-<div class="tracker-section" id="tracker">
-  <div class="tracker-inner">
-    <div class="habit-tracker">
-      <div class="tracker-header"><div class="tracker-title-sm">WEEKLY HABITS</div><div class="tracker-week">WEEK OF MAR 17</div></div>
-      <div style="display:grid;grid-template-columns:1fr repeat(7,36px);gap:6px;padding:10px 24px;border-bottom:1px solid var(--border);">
-        <div></div>
-        <div style="font-size:0.6rem;text-align:center;color:var(--muted);font-family:var(--font-mono);">M</div><div style="font-size:0.6rem;text-align:center;color:var(--muted);font-family:var(--font-mono);">T</div><div style="font-size:0.6rem;text-align:center;color:var(--muted);font-family:var(--font-mono);">W</div><div style="font-size:0.6rem;text-align:center;color:var(--muted);font-family:var(--font-mono);">T</div><div style="font-size:0.6rem;text-align:center;color:var(--muted);font-family:var(--font-mono);">F</div><div style="font-size:0.6rem;text-align:center;color:var(--muted);font-family:var(--font-mono);">S</div><div style="font-size:0.6rem;text-align:center;color:var(--muted);font-family:var(--font-mono);">S</div>
-      </div>
-      <div class="habit-row"><div class="habit-name"><span>💪</span> Workout</div><div class="habit-cell done" onclick="toggleCell(this)">✓</div><div class="habit-cell done" onclick="toggleCell(this)">✓</div><div class="habit-cell" onclick="toggleCell(this)"></div><div class="habit-cell done" onclick="toggleCell(this)">✓</div><div class="habit-cell done" onclick="toggleCell(this)">✓</div><div class="habit-cell" onclick="toggleCell(this)"></div><div class="habit-cell" onclick="toggleCell(this)"></div></div>
-      <div class="habit-row"><div class="habit-name"><span>💧</span> Hydration</div><div class="habit-cell done" onclick="toggleCell(this)">✓</div><div class="habit-cell done" onclick="toggleCell(this)">✓</div><div class="habit-cell done" onclick="toggleCell(this)">✓</div><div class="habit-cell done" onclick="toggleCell(this)">✓</div><div class="habit-cell done" onclick="toggleCell(this)">✓</div><div class="habit-cell" onclick="toggleCell(this)"></div><div class="habit-cell" onclick="toggleCell(this)"></div></div>
-      <div class="habit-row"><div class="habit-name"><span>📚</span> Reading</div><div class="habit-cell done" onclick="toggleCell(this)">✓</div><div class="habit-cell" onclick="toggleCell(this)"></div><div class="habit-cell done" onclick="toggleCell(this)">✓</div><div class="habit-cell done" onclick="toggleCell(this)">✓</div><div class="habit-cell" onclick="toggleCell(this)"></div><div class="habit-cell" onclick="toggleCell(this)"></div><div class="habit-cell" onclick="toggleCell(this)"></div></div>
-      <div class="habit-row"><div class="habit-name"><span>💰</span> Log Spend</div><div class="habit-cell done" onclick="toggleCell(this)">✓</div><div class="habit-cell done" onclick="toggleCell(this)">✓</div><div class="habit-cell done" onclick="toggleCell(this)">✓</div><div class="habit-cell done" onclick="toggleCell(this)">✓</div><div class="habit-cell done" onclick="toggleCell(this)">✓</div><div class="habit-cell" onclick="toggleCell(this)"></div><div class="habit-cell" onclick="toggleCell(this)"></div></div>
-      <div class="habit-row"><div class="habit-name"><span>🧠</span> Journal</div><div class="habit-cell" onclick="toggleCell(this)"></div><div class="habit-cell done" onclick="toggleCell(this)">✓</div><div class="habit-cell" onclick="toggleCell(this)"></div><div class="habit-cell done" onclick="toggleCell(this)">✓</div><div class="habit-cell" onclick="toggleCell(this)"></div><div class="habit-cell" onclick="toggleCell(this)"></div><div class="habit-cell" onclick="toggleCell(this)"></div></div>
-      <div class="streak-display">
-        <div class="streak-item"><div class="streak-num">14</div><div class="streak-lbl">Day Streak</div></div>
-        <div class="streak-item"><div class="streak-num">78%</div><div class="streak-lbl">Completion</div></div>
-        <div class="streak-item"><div class="streak-num">+340</div><div class="streak-lbl">XP This Week</div></div>
-      </div>
-    </div>
-    <div>
-      <div class="section-label">Interactive Tracker</div>
-      <h2 class="section-title">HABITS TRACKED. PROGRESS REAL.</h2>
-      <p class="section-sub">Your weekly habit tracker lives in your dashboard — fillable, color-coded, streak-tracking. Navigate back through previous weeks to see your history.</p>
-      <div class="rewards-row">
-        <div class="badge earned"><div class="badge-icon">🔥</div><div class="badge-name">14-Day Streak</div></div>
-        <div class="badge earned"><div class="badge-icon">💰</div><div class="badge-name">First Saver</div></div>
-        <div class="badge earned"><div class="badge-icon">💪</div><div class="badge-name">Iron Week</div></div>
-        <div class="badge"><div class="badge-icon">🧠</div><div class="badge-name">Mind Forge</div></div>
-        <div class="badge"><div class="badge-icon">⭐</div><div class="badge-name">Elite</div></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- PRICING -->
-<section id="pricing" style="border-top:1px solid var(--border);">
-  <div class="pricing-section">
-    <div class="pricing-inner">
-      <div class="section-label">Simple Pricing</div>
-      <h2 class="section-title">INVEST IN YOURSELF</h2>
-      <p class="section-sub">One cup of coffee a week. That's what it costs to have a complete system working for you 24/7.</p>
-      <div class="pricing-grid">
-        <div class="price-card" style="max-width:440px;margin:0 auto;">
-          <div class="price-tier" style="color:var(--orange);">FREE ACCESS</div>
-          <div class="price-amount"><sup>$</sup>0</div>
-          <div class="price-period">Sign up free — no credit card</div>
-          <ul class="price-features">
-            <li><span class="check">✓</span> All 11 pillar guides & resources</li>
-            <li><span class="check">✓</span> Interactive tests & assessments</li>
-            <li><span class="check">✓</span> Community access</li>
-            <li><span class="check">✓</span> Blog & articles</li>
-            <li><span class="x">✗</span> Blueprint 10-step roadmap</li>
-            <li><span class="x">✗</span> XP system & level tracking</li>
-            <li><span class="x">✗</span> Habit tracker & streaks</li>
-            <li><span class="x">✗</span> Daily missions & badges</li>
-          </ul>
-          <a href="create-account.html" class="btn-ghost" style="display:block;text-align:center;">Sign Up Free</a>
-        </div>
-        <div class="price-card featured" style="max-width:440px;margin:0 auto;">
-          <div class="featured-tag">FULL ACCESS</div>
-          <div class="price-tier">The Blueprint</div>
-          <div class="price-amount"><sup>$</sup>9</div>
-          <div class="price-period">per month · cancel anytime</div>
-          <ul class="price-features">
-            <li><span class="check">✓</span> Everything in free, plus:</li>
-            <li><span class="check">✓</span> Full 10-step Blueprint roadmap</li>
-            <li><span class="check">✓</span> XP system — level up through 6 ranks</li>
-            <li><span class="check">✓</span> Habit tracker + week history</li>
-            <li><span class="check">✓</span> Daily missions & badge rewards</li>
-            <li><span class="check">✓</span> Weekly progress reports</li>
-            <li><span class="check">✓</span> Finance + investing tools</li>
-          </ul>
-          <button onclick="showWaitlist()" class="btn-primary" style="display:block;text-align:center;width:100%;cursor:pointer;border:none;">Join Waitlist — $9/month →</button>
-          <p style="font-family:var(--font-mono);font-size:0.58rem;color:var(--muted);letter-spacing:1px;text-align:center;margin-top:8px;">PAID PLAN LAUNCHING SOON</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA BAND -->
-<div class="cta-band">
-  <h2>STOP WAITING. START YOUR BLUEPRINT.</h2>
-  <p>Free to start. No credit card. Every day you wait is a day someone else is building the life you want.</p>
-  <a href="create-account.html" class="btn-primary" style="background:var(--black);">Begin Your Journey — It's Free →</a>
-</div>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-inner">
-    <div>
-      <a href="index.html" class="nav-logo" style="display:block;margin-bottom:12px;">THE YOUNG MAN <span style="color:var(--orange);">BLUEPRINT</span></a>
-      <p class="footer-tagline">The complete operating system for young men ready to build something real.</p>
-    </div>
-    <div class="footer-col"><h4>Platform</h4><ul><li><a href="#pillars">The 11 Pillars</a></li><li><a href="dashboard.html">Dashboard</a></li><li><a href="#roadmap">Roadmap</a></li><li><a href="#tracker">Habit Tracker</a></li><li><a href="finances.html">Finance Tools</a></li></ul></div>
-    <div class="footer-col"><h4>Resources</h4><ul><li><a href="resources.html">Free Guides</a></li><li><a href="resources.html">Book List</a></li><li><a href="resources.html">Crisis Helplines</a></li><li><a href="community.html">Community</a></li><li><a href="blog.html">Blog</a></li></ul></div>
-    <div class="footer-col"><h4>Company</h4><ul><li><a href="#pricing">Pricing</a></li><li><a href="faq.html">FAQ</a></li><li><a href="faq.html">Contact</a></li><li><a id="nav-auth-link" id="nav-auth-link" id="nav-auth-link" id="nav-auth-link" href="login.html">Log In</a></li><li><a href="create-account.html">Sign Up</a></li></ul></div>
-  </div>
-  <div class="footer-bottom">
-    <div class="footer-copy">© 2026 THE YOUNG MAN BLUEPRINT. ALL RIGHTS RESERVED.</div>
-    <div class="footer-copy" style="color:var(--orange);">BUILT FOR MEN WHO REFUSE TO SETTLE.</div>
-  </div>
-</footer>
-
-<!-- WAITLIST MODAL -->
-<div id="waitlist-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:500;align-items:center;justify-content:center;">
-  <div style="background:var(--panel);border:1px solid var(--border);padding:40px;max-width:480px;width:90%;position:relative;border-top:3px solid var(--orange);">
-    <button onclick="closeWaitlist()" style="position:absolute;top:14px;right:18px;background:none;border:none;color:var(--muted);font-size:1.3rem;cursor:pointer;">✕</button>
-    <div style="font-family:var(--font-mono);font-size:0.65rem;letter-spacing:3px;color:var(--orange);text-transform:uppercase;margin-bottom:10px;">Coming Soon</div>
-    <div style="font-family:var(--font-display);font-size:2rem;letter-spacing:1px;margin-bottom:8px;">JOIN THE WAITLIST</div>
-    <p style="color:var(--muted);font-size:0.86rem;line-height:1.6;margin-bottom:24px;">The $9/month Blueprint plan is launching soon. Drop your email and you'll be first to know — and first to get access.</p>
-    <div id="waitlist-success" style="display:none;background:rgba(45,186,110,0.1);border:1px solid var(--green);color:var(--green);padding:14px;border-radius:2px;font-size:0.82rem;font-family:var(--font-mono);letter-spacing:1px;margin-bottom:16px;">✓ YOU'RE ON THE LIST — WE'LL BE IN TOUCH.</div>
-    <input type="email" id="waitlist-email" placeholder="your@email.com" style="width:100%;background:var(--deep);border:1px solid var(--border);color:var(--white);padding:13px 16px;font-size:0.9rem;font-family:var(--font-body);border-radius:2px;outline:none;margin-bottom:12px;" onfocus="this.style.borderColor='var(--orange)'" onblur="this.style.borderColor='var(--border)'" onkeydown="if(event.key==='Enter')submitWaitlist()">
-    <button onclick="submitWaitlist()" id="waitlist-btn" style="width:100%;background:var(--orange);color:var(--white);border:none;padding:14px;font-size:0.82rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;font-family:var(--font-body);border-radius:2px;">Notify Me When It Launches →</button>
-  </div>
-</div>
-
-<script>
-function showWaitlist(){document.getElementById('waitlist-overlay').style.display='flex';}
-function closeWaitlist(){document.getElementById('waitlist-overlay').style.display='none';}
-async function submitWaitlist(){
-  const email=document.getElementById('waitlist-email').value.trim();
-  const btn=document.getElementById('waitlist-btn');
-  if(!email||!email.includes('@')){
-    document.getElementById('waitlist-email').style.borderColor='var(--red)';
-    setTimeout(()=>document.getElementById('waitlist-email').style.borderColor='var(--border)',1500);
-    return;
-  }
-  btn.textContent='Adding you...';btn.disabled=true;
-  try{
-    await fetch('https://api.web3forms.com/submit',{
-      method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
-      body:JSON.stringify({access_key:'c52038bd-53c9-42d0-ac49-a4185c9a3296',subject:'New Waitlist Signup — Blueprint $9/month',from_name:'Blueprint Waitlist',email:email,message:'New waitlist signup: '+email})
-    });
-  }catch(e){}
-  btn.textContent='Notify Me When It Launches →';btn.disabled=false;
-  document.getElementById('waitlist-success').style.display='block';
-  document.getElementById('waitlist-email').value='';
-}
-document.getElementById('waitlist-overlay').addEventListener('click',function(e){if(e.target===this)closeWaitlist();});
-</script>
-<div class="modal-overlay" id="modal">
-  <div class="modal">
-    <button class="modal-close" onclick="closeModal()">✕</button>
-    <h2>START YOUR JOURNEY</h2>
-    <p>Free account. No credit card. Full access to Phase 1. Start building today.</p>
-    <div class="form-group"><label>First Name</label><input type="text" placeholder="Marcus" id="m-name"></div>
-    <div class="form-group"><label>Email Address</label><input type="email" placeholder="marcus@email.com" id="m-email"></div>
-    <div class="form-group">
-      <label>Biggest Struggle Right Now</label>
-      <select id="m-struggle">
-        <option value="">Choose your starting pillar...</option>
-        <option>Mental Health</option><option>Finances / Money</option>
-        <option>Physical Health / Fitness</option><option>Career / Direction</option>
-        <option>Relationships</option><option>Addiction / Bad Habits</option>
-        <option>Discipline / Motivation</option><option>All of the above (real one)</option>
-      </select>
-    </div>
-    <button class="form-submit" id="modal-submit" onclick="handleModalSignup()">⚡ Create My Free Account</button>
-    <p style="text-align:center;font-size:0.72rem;color:var(--muted);margin-top:16px;margin-bottom:0;">No spam, ever.</p>
-  </div>
-</div>
-
-<script>
-function openModal(){ document.getElementById('modal').classList.add('open'); document.body.style.overflow='hidden'; }
-function closeModal(){ document.getElementById('modal').classList.remove('open'); document.body.style.overflow=''; }
-document.getElementById('modal').addEventListener('click', function(e){ if(e.target===this) closeModal(); });
-document.addEventListener('keydown', e => { if(e.key==='Escape') closeModal(); });
-
-function toggleCell(cell){
-  if(cell.classList.contains('done')){ cell.classList.remove('done'); cell.textContent=''; }
-  else { cell.classList.add('done'); cell.textContent='✓'; }
-}
-
-async function handleModalSignup(){
-  const name = document.getElementById('m-name').value.trim();
-  const email = document.getElementById('m-email').value.trim();
-  const struggle = document.getElementById('m-struggle').value;
-  const btn = document.getElementById('modal-submit');
-  if(!name || !email.includes('@')){
-    btn.style.background='var(--red)'; btn.textContent='⚠ Please fill in name and email';
-    setTimeout(()=>{ btn.style.background=''; btn.textContent='⚡ Create My Free Account'; }, 2000);
-    return;
-  }
-  const profile = { name, email, struggle, totalXP:0, streak:0, lastMissionDate:null, totalMissions:0, activePillars:[], missions:{}, habitData:{}, earnedBadges:[], createdAt: new Date().toISOString() };
-  localStorage.setItem('tmb_user', JSON.stringify(profile));
-  btn.textContent='⏳ Sending confirmation...'; btn.disabled=true;
-  try {
-    await fetch('https://api.web3forms.com/submit', {
-      method:'POST',
-      headers:{'Content-Type':'application/json','Accept':'application/json'},
-      body: JSON.stringify({
-        access_key: 'c52038bd-53c9-42d0-ac49-a4185c9a3296',
-        subject: 'Welcome to The Young Man Blueprint',
-        from_name: 'The Young Man Blueprint',
-        name, email,
-        message: `Hi ${name},\n\nYour account has been created. Welcome to The Young Man Blueprint.\n\nYour starting pillar: ${struggle||'Not specified'}\n\nBegin Phase 1 here:\nhttps://gmamba13.github.io/the-young-man-blueprint/dashboard.html\n\n— The Young Man Blueprint`,
-        replyto: email,
-      })
-    });
-  } catch(e){ console.warn('Email failed:', e); }
-  btn.textContent='✓ Account Created!'; btn.style.background='var(--green)';
-  setTimeout(()=>{ window.location.href='thankyou.html'; }, 1000);
-}
-
-// Scroll reveal
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if(e.isIntersecting){ e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; } });
-}, { threshold: 0.08 });
-document.querySelectorAll('.pillar, .roadmap-phase, .price-card').forEach(el => {
-  el.style.opacity='0'; el.style.transform='translateY(20px)'; el.style.transition='opacity 0.5s ease, transform 0.5s ease';
-  observer.observe(el);
-});
-</script>
-</body>
-</html>
+M
+T
+W
+T
+F
+S
+S
+💪
+Workout✓✓✓✓
+💧
+Hydration✓✓✓✓✓
+📚
+Reading✓✓✓
+💰
+Log Spend✓✓✓✓✓
+🧠
+Journal✓✓
+14
+DAY STREAK
+78%
+COMPLETION
++340
+XP THIS WEEK
+INTERACTIVE TRACKER
+HABITS TRACKED. PROGRESS REAL.
+Your weekly habit tracker lives in your dashboard — fillable, color-coded, streak-tracking. Navigate back through previous weeks to see your history.
+🔥
+14-DAY STREAK
+💰
+FIRST SAVER
+💪
+IRON WEEK
+🧠
+MIND FORGE
+⭐
+ELITE
+SIMPLE PRICING
+INVEST IN YOURSELF
+One cup of coffee a week. That's what it costs to have a complete system working for you 24/7.
+FREE ACCESS
+$0
+Sign up free — no credit card
+		✓ All 11 pillar guides & resources ✓ Interactive tests & assessments ✓ Community access ✓ Blog & articles ✗ Blueprint 10-step roadmap ✗ XP system & level tracking ✗ Habit tracker & streaks ✗ Daily missions & badges
+Sign Up Free
+FULL ACCESS
+THE BLUEPRINT
+$9
+per month · cancel anytime
+		✓ Everything in free, plus: ✓ Full 10-step Blueprint roadmap ✓ XP system — level up through 6 ranks ✓ Habit tracker + week history ✓ Daily missions & badge rewards ✓ Weekly progress reports ✓ Finance + investing tools
+JOIN WAITLIST — $9/MONTH →
+PAID PLAN LAUNCHING SOON
+STOP WAITING. START YOUR BLUEPRINT.
+Free to start. No credit card. Every day you wait is a day someone else is building the life you want.
+BEGIN YOUR JOURNEY — IT'S FREE →
+THE YOUNG MAN BLUEPRINT
+The complete operating system for young men ready to build something real.
+PLATFORM
+		The 11 Pillars
+		Dashboard
+		Roadmap
+		Habit Tracker
+		Finance Tools
+RESOURCES
+		Free Guides
+		Book List
+		Crisis Helplines
+		Community
+		Blog
+COMPANY
+		Pricing
+		FAQ
+		Contact
+		Log In
+		Sign Up
+© 2026 THE YOUNG MAN BLUEPRINT. ALL RIGHTS RESERVED.
+BUILT FOR MEN WHO REFUSE TO SETTLE.
