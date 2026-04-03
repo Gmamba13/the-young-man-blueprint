@@ -504,10 +504,10 @@ function resetProgress(){
 function deleteAccount(){
   if(!confirm('DELETE YOUR ACCOUNT?\n\nThis permanently removes all your data and cannot be undone.'))return;
   if(!confirm('Are you absolutely sure? There is no recovery.'))return;
-  localStorage.removeItem('tmb_user');window.location.href='index.html';
+  localStorage.removeItem('tmb_user');sessionStorage.removeItem('tmb_session');window.location.href='index.html';
 }
 
-function logout(){localStorage.removeItem('tmb_user');window.location.href='login.html';}
+function logout(){localStorage.removeItem('tmb_user');sessionStorage.removeItem('tmb_session');window.location.href='login.html';}
 function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('mob-overlay').classList.toggle('show');}
 
 init();

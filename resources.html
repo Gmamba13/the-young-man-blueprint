@@ -70,10 +70,25 @@
     <a href="blog.html">Blog</a>
     <a href="community.html">Community</a>
     <a href="faq.html">FAQ</a>
-    <a href="login.html">Log In</a>
-    <a href="create-account.html" class="nav-cta">Start Free</a>
+    <a id="nav-auth-link" href="login.html">Log In</a>
+    <a id="nav-cta-link" href="create-account.html" class="nav-cta">Start Free</a>
   </div>
 </nav>
+<script>
+(function(){
+  try {
+    var u = localStorage.getItem('tmb_user');
+    if(u && u !== 'null') {
+      // Mark session active
+      sessionStorage.setItem('tmb_session', '1');
+      var el = document.getElementById('nav-auth-link');
+      var cta = document.getElementById('nav-cta-link');
+      if(el){ el.textContent = 'Dashboard'; el.href = 'dashboard.html'; }
+      if(cta){ cta.textContent = 'My Dashboard →'; cta.href = 'dashboard.html'; }
+    }
+  } catch(e){}
+})();
+</script>
 
 <div class="hero">
   <div class="hero-grid"></div>

@@ -194,9 +194,14 @@ body{background:var(--black);color:var(--white);font-family:var(--font-body);fon
 (function(){
   try {
     var p = localStorage.getItem('tmb_user');
+    var sess = sessionStorage.getItem('tmb_session');
+    // Logged out if no profile, or if session was explicitly cleared (logout)
     if(!p || p === 'null' || p === 'undefined') {
       window.location.replace('login.html');
+      return;
     }
+    // Set session marker so nav pages know user is active
+    sessionStorage.setItem('tmb_session', '1');
   } catch(e){
     window.location.replace('login.html');
   }
@@ -722,7 +727,7 @@ function renderBadges(p){
 }
 
 // ── MISC ─────────────────────────────────────────────
-function logout(){localStorage.removeItem('tmb_user');location.href='login.html';}
+function logout(){localStorage.removeItem('tmb_user');sessionStorage.removeItem('tmb_session');location.href='login.html';}
 function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('mob-overlay').classList.toggle('show');}
 document.querySelectorAll('.modal-overlay').forEach(m=>{m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('open');});});
 
