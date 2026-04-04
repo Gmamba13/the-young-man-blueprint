@@ -54,19 +54,19 @@
   .step-title { font-family: var(--font-display); font-size: 1.1rem; letter-spacing: 1px; margin-bottom: 6px; }
   .step-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
   /* EMAIL GATE */
-
-
-
-
-
-
-
-
-
-
-
-
-
+  .gate-section { position: relative; }
+  .gate-preview { max-height: 320px; overflow: hidden; position: relative; }
+  .gate-preview::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 200px; background: linear-gradient(to bottom, transparent, var(--black)); }
+  .gate-box { background: var(--panel); border: 1px solid var(--orange); padding: 48px 40px; text-align: center; margin-top: 0; }
+  .gate-icon { font-size: 2rem; margin-bottom: 16px; }
+  .gate-title { font-family: var(--font-display); font-size: 2rem; margin-bottom: 10px; }
+  .gate-sub { font-size: 0.88rem; color: var(--muted); max-width: 400px; margin: 0 auto 28px; line-height: 1.6; }
+  .gate-form { display: flex; gap: 0; max-width: 440px; margin: 0 auto; }
+  .gate-input { flex: 1; background: var(--deep); border: 1px solid var(--border); border-right: none; color: var(--white); padding: 14px 16px; font-size: 0.9rem; font-family: var(--font-body); outline: none; }
+  .gate-input:focus { border-color: var(--orange); }
+  .gate-input::placeholder { color: var(--muted); }
+  .gate-btn { background: var(--orange); color: var(--white); border: none; padding: 14px 24px; font-size: 0.78rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; font-family: var(--font-body); transition: background 0.2s; white-space: nowrap; }
+  .gate-btn:hover { background: var(--orange-glow); }
   /* RESOURCES */
   .resources-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 40px; }
   .resource-card { background: var(--panel); border: 1px solid var(--border); padding: 22px; transition: all 0.2s; text-decoration: none; display: block; }
@@ -97,7 +97,7 @@
     nav { padding: 16px 20px; } .nav-links { display: none; }
     .hero { padding: 120px 20px 40px; } .page-wrap { padding: 0 20px; }
     .cards-grid, .steps-grid, .resources-grid { grid-template-columns: 1fr; }
-  
+    .gate-form { flex-direction: column; } .gate-input { border-right: 1px solid var(--border); border-bottom: none; }
     footer { flex-direction: column; gap: 20px; text-align: center; }
   }
 </style>
@@ -110,23 +110,10 @@
     <a href="index.html#roadmap">Roadmap</a>
     <a href="blog.html">Blog</a>
     <a href="faq.html">FAQ</a>
-    <a id="nav-auth-link" href="login.html">Log In</a>
-    <a id="nav-cta-link" href="create-account.html" class="nav-cta">Start Free</a>
+    <a href="login.html">Log In</a>
+    <a href="create-account.html" class="nav-cta">Start Free</a>
   </div>
 </nav>
-<script>
-(function(){
-  try {
-    var u = localStorage.getItem('tmb_user');
-    if(u) {
-      var el = document.getElementById('nav-auth-link');
-      var cta = document.getElementById('nav-cta-link');
-      if(el) { el.textContent = 'Dashboard'; el.href = 'dashboard.html'; }
-      if(cta) { cta.textContent = 'Dashboard →'; cta.href = 'dashboard.html'; }
-    }
-  } catch(e){}
-})();
-</script>
 
 <!-- HERO -->
 <section class="hero">
@@ -166,8 +153,8 @@
   </div>
 
   <!-- EMAIL GATE -->
-  <div class="section">
-    <div>
+  <div class="section gate-section">
+    <div class="gate-preview">
       <div class="section-label">The Action Plan</div>
       <h2 class="section-title">WHERE TO START</h2>
       <p class="section-body">Start here. These are practical, low-barrier steps that build self-awareness and create space between stimulus and response.</p>
@@ -177,7 +164,15 @@
 
       </div>
     </div>
-    
+    <div class="gate-box">
+      <div class="gate-icon">🔓</div>
+      <div class="gate-title">UNLOCK THE FULL GUIDE</div>
+      <p class="gate-sub">Enter your email to get free access to the full action plan, resources, and tools for this pillar.</p>
+      <div class="gate-form">
+        <input type="email" class="gate-input" placeholder="your@email.com">
+        <button class="gate-btn" onclick="unlockContent(this)">Unlock Free →</button>
+      </div>
+    </div>
   </div>
 
   <!-- RESOURCES -->
@@ -197,32 +192,6 @@
 
 </div>
 
-
-
-<style>
-.test-cta-box{background:var(--panel);border:1px solid var(--border);border-top:3px solid var(--orange);padding:40px;margin:48px 0;max-width:860px;display:flex;align-items:center;gap:28px;}
-.tcb-icon{font-size:3rem;flex-shrink:0;}
-.tcb-body{flex:1;}
-.tcb-label{font-family:var(--font-mono);font-size:0.62rem;letter-spacing:3px;color:var(--orange);text-transform:uppercase;margin-bottom:8px;}
-.tcb-title{font-family:var(--font-display);font-size:1.8rem;letter-spacing:1px;margin-bottom:8px;}
-.tcb-desc{color:var(--muted);font-size:0.88rem;line-height:1.6;margin-bottom:18px;}
-.tcb-btn{display:inline-block;background:var(--orange);color:var(--white);text-decoration:none;padding:12px 28px;font-size:0.8rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;border-radius:2px;}
-.tcb-btn:hover{background:#ff6820;}
-@media(max-width:600px){.test-cta-box{flex-direction:column;text-align:center;}}
-</style>
-
-<div class="page-wrap">
-  <div class="test-cta-box">
-    <div class="tcb-icon">🧠</div>
-    <div class="tcb-body">
-      <div class="tcb-label">📊 Free Interactive Assessment</div>
-      <div class="tcb-title">MENTAL HEALTH CHECK-IN</div>
-      <p class="tcb-desc">An honest 14-question check-in covering mood, anxiety, coping and energy. Takes 4 minutes. Everything stays on your device.</p>
-      <a href="test-mental.html" class="tcb-btn">Take the Assessment →</a>
-    </div>
-  </div>
-</div>
-
 <div class="cta-band">
   <h2>READY TO BUILD?</h2>
   <p>The Blueprint covers all 11 pillars — track your progress, earn XP, and see real change.</p>
@@ -239,11 +208,28 @@
     <a href="community.html">Community</a>
     <a href="login.html">Log In</a>
   </div>
-  <div class="footer-copy">© 2026 THE YOUNG MAN BLUEPRINT</div>
+  <div class="footer-copy">© 2025 THE YOUNG MAN BLUEPRINT</div>
 </footer>
 
 <script>
-
+function unlockContent(btn) {
+  const input = btn.parentElement.querySelector('.gate-input');
+  if (!input.value.includes('@')) {
+    input.style.borderColor = 'var(--red)';
+    input.placeholder = 'Enter a valid email';
+    return;
+  }
+  btn.textContent = '✓ Unlocked!';
+  btn.style.background = 'var(--green)';
+  setTimeout(() => {
+    document.querySelector('.gate-section .gate-box').style.display = 'none';
+    document.querySelector('.gate-preview').style.maxHeight = 'none';
+    document.querySelector('.gate-preview::after') && (document.querySelector('.gate-preview').style.setProperty('--after-display', 'none'));
+    document.getElementById('resources-section').style.display = 'block';
+    document.querySelector('.gate-preview').classList.remove('gate-preview');
+    window.location.href = 'thankyou.html';
+  }, 800);
+}
 </script>
 </body>
 </html>
