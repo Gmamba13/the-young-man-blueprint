@@ -423,16 +423,16 @@ const ALL_BADGES=[
 
 // 10-STEP ROADMAP
 const STEPS=[
-  {num:1,name:'Take Stock',xpStart:0,xpEnd:100,desc:'Honestly assess where you are right now.'},
-  {num:2,name:'Stabilize Your Body',xpStart:100,xpEnd:300,desc:'Sleep, hydration, daily movement.'},
-  {num:3,name:'Stop the Bleeding',xpStart:300,xpEnd:500,desc:'Identify and stop your worst habit.'},
-  {num:4,name:'Build Your Money Floor',xpStart:500,xpEnd:750,desc:'Budget created, $500 saved.'},
-  {num:5,name:'Build Your Physical Foundation',xpStart:750,xpEnd:1100,desc:'Training program, protein target.'},
-  {num:6,name:'Get Your Mind Right',xpStart:1100,xpEnd:1500,desc:'Daily journaling, 30-day streak.'},
-  {num:7,name:'Lock In Your Career Path',xpStart:1500,xpEnd:2000,desc:'Direction chosen, resume updated.'},
-  {num:8,name:'Start Building Wealth',xpStart:2000,xpEnd:2600,desc:'Investment account opened.'},
-  {num:9,name:'Strengthen Relationships',xpStart:2600,xpEnd:3200,desc:'Real friendships invested in.'},
-  {num:10,name:'Blueprint Complete — Lead',xpStart:3200,xpEnd:5000,desc:'All pillars active. Now mentor others.'},
+  {num:1,name:'Level 1',xpStart:0,xpEnd:500,desc:'You've started. Build your first habits and complete your daily missions.'},
+  {num:2,name:'Level 2',xpStart:500,xpEnd:1500,desc:'Consistency is taking hold. Keep your streak alive and add more pillars.'},
+  {num:3,name:'Level 3',xpStart:1500,xpEnd:3000,desc:'You're building real momentum. Your habits are becoming automatic.'},
+  {num:4,name:'Level 4',xpStart:3000,xpEnd:5000,desc:'Solid foundation in place. Time to go deeper on your weakest areas.'},
+  {num:5,name:'Level 5',xpStart:5000,xpEnd:8000,desc:'You're operating differently. Most men never reach this point.'},
+  {num:6,name:'Level 6',xpStart:8000,xpEnd:12000,desc:'Your systems are working without you forcing them. Keep stacking.'},
+  {num:7,name:'Level 7',xpStart:12000,xpEnd:17000,desc:'You've built what most men only talk about. Now optimise every area.'},
+  {num:8,name:'Level 8',xpStart:17000,xpEnd:23000,desc:'Elite consistency. Your discipline is your identity now.'},
+  {num:9,name:'Level 9',xpStart:23000,xpEnd:30000,desc:'Near the top. All pillars active. Leading by example.'},
+  {num:10,name:'Level 10',xpStart:30000,xpEnd:50000,desc:'Blueprint Complete. You've built the life. Now help the next man do the same.'},
 ];
 
 // ── HELPERS ──────────────────────────────────────────
@@ -565,7 +565,7 @@ function renderRoadmap(p){
   const body=document.getElementById('roadmap-body');body.innerHTML='';
   let currentStep=0;
   STEPS.forEach((s,i)=>{if(xp>=s.xpStart)currentStep=i;});
-  document.getElementById('rmap-step-tag').textContent='Step '+(currentStep+1)+' of 10';
+  document.getElementById('rmap-step-tag').textContent='Level '+(currentStep+1)+' of 10';
   STEPS.forEach((s,i)=>{
     const isDone=xp>=s.xpEnd;
     const isActive=i===currentStep&&!isDone;
