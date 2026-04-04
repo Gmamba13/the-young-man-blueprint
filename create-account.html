@@ -6,134 +6,771 @@
 <title>Create Account — The Young Man Blueprint</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-  :root{--black:#0a0a0a;--deep:#111318;--panel:#16191f;--border:#22262e;--orange:#e8500a;--orange-glow:#ff6820;--amber:#f5a623;--white:#f0ede8;--muted:#7a7f8a;--green:#2dba6e;--red:#e84040;--font-display:'Bebas Neue',sans-serif;--font-body:'DM Sans',sans-serif;--font-mono:'Space Mono',monospace;}
-  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-  body{background:var(--black);color:var(--white);font-family:var(--font-body);min-height:100vh;display:grid;grid-template-columns:1fr 1fr;}
-  .left-panel{background:var(--deep);border-right:1px solid var(--border);padding:60px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;}
-  .grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(232,80,10,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(232,80,10,0.04) 1px,transparent 1px);background-size:50px 50px;}
-  .glow{position:absolute;bottom:-100px;right:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(232,80,10,0.1) 0%,transparent 70%);pointer-events:none;}
-  .left-logo{font-family:var(--font-display);font-size:1.3rem;letter-spacing:2px;color:var(--white);text-decoration:none;position:relative;z-index:1;}
-  .left-logo span{color:var(--orange);}
-  .left-content{position:relative;z-index:1;}
-  .left-tag{font-family:var(--font-mono);font-size:0.68rem;letter-spacing:3px;color:var(--orange);text-transform:uppercase;margin-bottom:16px;}
-  .left-headline{font-family:var(--font-display);font-size:clamp(2.8rem,4vw,4.5rem);line-height:0.95;margin-bottom:20px;}
-  .left-headline span{color:var(--orange);}
-  .left-desc{font-size:0.88rem;color:var(--muted);line-height:1.7;max-width:360px;font-weight:300;}
-  .perks{margin-top:32px;display:flex;flex-direction:column;gap:14px;}
-  .perk{display:flex;align-items:flex-start;gap:12px;font-size:0.85rem;}
-  .perk-icon{color:var(--green);font-size:1rem;flex-shrink:0;margin-top:1px;}
-  .perk-text{color:var(--muted);}
-  .perk-text strong{color:var(--white);}
-  .left-footer{font-family:var(--font-mono);font-size:0.65rem;color:var(--border);letter-spacing:2px;position:relative;z-index:1;}
-  .right-panel{display:flex;align-items:center;justify-content:center;padding:60px 40px;background:var(--black);}
-  .signup-box{width:100%;max-width:440px;}
-  .signup-title{font-family:var(--font-display);font-size:2.6rem;letter-spacing:1px;margin-bottom:6px;}
-  .signup-sub{font-size:0.85rem;color:var(--muted);margin-bottom:36px;}
-  .signup-sub a{color:var(--orange);text-decoration:none;}
-  .form-group{margin-bottom:18px;}
-  .form-group label{display:block;font-family:var(--font-mono);font-size:0.62rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
-  .form-group input, .form-group select{width:100%;background:var(--panel);border:1px solid var(--border);color:var(--white);padding:13px 16px;font-size:0.92rem;font-family:var(--font-body);border-radius:2px;outline:none;transition:border-color 0.2s;}
-  .form-group input:focus,.form-group select:focus{border-color:var(--orange);}
-  .form-group input::placeholder{color:var(--muted);}
-  .form-group select option{background:var(--panel);}
-  .plan-toggle{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-bottom:24px;border:1px solid var(--border);}
-  .plan-btn{padding:14px;text-align:center;cursor:pointer;font-size:0.82rem;color:var(--muted);transition:all 0.2s;border:none;background:transparent;font-family:var(--font-body);}
-  .plan-btn.active{background:var(--orange);color:var(--white);font-weight:700;}
-  .plan-label{font-family:var(--font-mono);font-size:0.62rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}
-  .btn-signup{width:100%;background:var(--orange);color:var(--white);border:none;padding:16px;font-size:0.85rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;font-family:var(--font-body);border-radius:2px;transition:all 0.2s;margin-top:8px;}
-  .btn-signup:hover{background:var(--orange-glow);}
-  .terms{text-align:center;font-size:0.72rem;color:var(--muted);margin-top:16px;}
-  .terms a{color:var(--muted);text-decoration:underline;}
-  @media(max-width:800px){body{grid-template-columns:1fr;}.left-panel{display:none;}.right-panel{padding:40px 24px;}}
+:root{--black:#0a0a0a;--deep:#111318;--panel:#16191f;--border:#22262e;--orange:#e8500a;--orange-glow:#ff6820;--amber:#f5a623;--white:#f0ede8;--muted:#7a7f8a;--green:#2dba6e;--red:#e84040;--font-display:'Bebas Neue',sans-serif;--font-body:'DM Sans',sans-serif;--font-mono:'Space Mono',monospace;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--black);color:var(--white);font-family:var(--font-body);min-height:100vh;}
+::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-track{background:var(--black);}::-webkit-scrollbar-thumb{background:var(--orange);border-radius:2px;}
+
+/* ── STEP 1: SIGNUP ── */
+.signup-screen{display:grid;grid-template-columns:1fr 1fr;min-height:100vh;}
+.left-panel{background:var(--deep);border-right:1px solid var(--border);padding:60px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;}
+.grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(232,80,10,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(232,80,10,0.04) 1px,transparent 1px);background-size:50px 50px;}
+.glow{position:absolute;bottom:-100px;right:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(232,80,10,0.1) 0%,transparent 70%);pointer-events:none;}
+.left-logo{font-family:var(--font-display);font-size:1.3rem;letter-spacing:2px;color:var(--white);text-decoration:none;position:relative;z-index:1;}
+.left-logo span{color:var(--orange);}
+.left-content{position:relative;z-index:1;}
+.left-tag{font-family:var(--font-mono);font-size:0.68rem;letter-spacing:3px;color:var(--orange);text-transform:uppercase;margin-bottom:16px;}
+.left-headline{font-family:var(--font-display);font-size:clamp(2.8rem,4vw,4.5rem);line-height:0.95;margin-bottom:20px;}
+.left-headline span{color:var(--orange);}
+.left-desc{font-size:0.88rem;color:var(--muted);line-height:1.7;max-width:360px;font-weight:300;}
+.perks{margin-top:32px;display:flex;flex-direction:column;gap:14px;}
+.perk{display:flex;align-items:flex-start;gap:12px;font-size:0.85rem;}
+.perk-icon{color:var(--green);font-size:1rem;flex-shrink:0;margin-top:1px;}
+.perk-text{color:var(--muted);}
+.perk-text strong{color:var(--white);}
+.left-footer{font-family:var(--font-mono);font-size:0.65rem;color:var(--border);letter-spacing:2px;position:relative;z-index:1;}
+.right-panel{display:flex;align-items:center;justify-content:center;padding:60px 40px;background:var(--black);}
+.signup-box{width:100%;max-width:440px;}
+.signup-title{font-family:var(--font-display);font-size:2.6rem;letter-spacing:1px;margin-bottom:6px;}
+.signup-sub{font-size:0.85rem;color:var(--muted);margin-bottom:36px;}
+.signup-sub a{color:var(--orange);text-decoration:none;}
+.form-group{margin-bottom:18px;}
+.form-group label{display:block;font-family:var(--font-mono);font-size:0.62rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.form-group input{width:100%;background:var(--panel);border:1px solid var(--border);color:var(--white);padding:13px 16px;font-size:0.92rem;font-family:var(--font-body);border-radius:2px;outline:none;transition:border-color 0.2s;}
+.form-group input:focus{border-color:var(--orange);}
+.form-group input::placeholder{color:var(--muted);}
+.btn-primary{width:100%;background:var(--orange);color:var(--white);border:none;padding:16px;font-size:0.85rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;font-family:var(--font-body);border-radius:2px;transition:all 0.2s;margin-top:8px;}
+.btn-primary:hover{background:var(--orange-glow);}
+.terms-text{text-align:center;font-size:0.72rem;color:var(--muted);margin-top:16px;}
+
+/* ── STEP 2: QUIZ ── */
+.quiz-screen{display:none;min-height:100vh;padding:60px 24px;background:var(--black);}
+.quiz-inner{max-width:680px;margin:0 auto;}
+.quiz-logo{font-family:var(--font-display);font-size:1.2rem;letter-spacing:2px;color:var(--white);text-decoration:none;display:block;margin-bottom:48px;}
+.quiz-logo span{color:var(--orange);}
+.progress-wrap{margin-bottom:48px;}
+.progress-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.progress-label{font-family:var(--font-mono);font-size:0.62rem;letter-spacing:2px;color:var(--muted);}
+.progress-count{font-family:var(--font-mono);font-size:0.62rem;color:var(--orange);}
+.progress-bar{height:4px;background:var(--border);border-radius:2px;overflow:hidden;}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--orange),var(--amber));border-radius:2px;transition:width 0.5s ease;}
+.q-eyebrow{font-family:var(--font-mono);font-size:0.65rem;letter-spacing:3px;color:var(--orange);text-transform:uppercase;margin-bottom:14px;}
+.q-title{font-family:var(--font-display);font-size:clamp(2rem,5vw,3.5rem);letter-spacing:1px;line-height:1.05;margin-bottom:10px;}
+.q-sub{color:var(--muted);font-size:0.88rem;margin-bottom:32px;line-height:1.6;}
+.options-grid{display:flex;flex-direction:column;gap:12px;margin-bottom:32px;}
+.opt-card{background:var(--panel);border:2px solid var(--border);padding:18px 22px;border-radius:4px;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;gap:16px;}
+.opt-card:hover{border-color:var(--orange);background:#1a1e26;transform:translateX(4px);}
+.opt-card.selected{border-color:var(--orange);background:rgba(232,80,10,0.1);}
+.opt-icon{font-size:1.4rem;flex-shrink:0;width:36px;text-align:center;}
+.opt-body{flex:1;}
+.opt-title{font-size:0.95rem;font-weight:600;margin-bottom:3px;}
+.opt-desc{font-size:0.76rem;color:var(--muted);line-height:1.4;}
+.opt-check{width:22px;height:22px;border-radius:50%;border:2px solid var(--border);flex-shrink:0;transition:all 0.2s;display:flex;align-items:center;justify-content:center;font-size:0.65rem;}
+.opt-card.selected .opt-check{background:var(--orange);border-color:var(--orange);color:var(--white);}
+.quiz-nav{display:flex;justify-content:flex-end;gap:12px;}
+.btn-next-quiz{background:var(--orange);color:var(--white);border:none;padding:14px 32px;font-size:0.82rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;border-radius:2px;transition:background 0.2s;}
+.btn-next-quiz:hover{background:var(--orange-glow);}
+.btn-back-quiz{background:transparent;color:var(--muted);border:1px solid var(--border);padding:14px 22px;font-size:0.82rem;cursor:pointer;border-radius:2px;transition:all 0.2s;}
+.btn-back-quiz:hover{color:var(--white);}
+.q-card-anim{animation:qIn 0.35s ease;}
+@keyframes qIn{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+
+/* ── STEP 3: RESULT ── */
+.result-screen{display:none;min-height:100vh;background:var(--black);}
+.result-hero{background:var(--deep);border-bottom:1px solid var(--border);padding:80px 40px;text-align:center;position:relative;overflow:hidden;}
+.result-hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(232,80,10,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(232,80,10,0.04) 1px,transparent 1px);background-size:60px 60px;}
+.result-hero-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(232,80,10,0.1) 0%,transparent 70%);pointer-events:none;}
+.result-tag{font-family:var(--font-mono);font-size:0.7rem;letter-spacing:3px;color:var(--orange);text-transform:uppercase;margin-bottom:16px;position:relative;z-index:1;}
+.result-name{font-family:var(--font-display);font-size:clamp(2.5rem,6vw,5rem);letter-spacing:2px;line-height:1;margin-bottom:12px;position:relative;z-index:1;}
+.result-name span{color:var(--orange);}
+.result-subtitle{color:var(--muted);font-size:0.95rem;line-height:1.7;max-width:520px;margin:0 auto 32px;position:relative;z-index:1;}
+.result-body{max-width:900px;margin:0 auto;padding:60px 24px;}
+/* PROFILE CARD */
+.profile-card{background:var(--panel);border:1px solid var(--border);border-top:3px solid var(--orange);padding:32px;border-radius:4px;margin-bottom:24px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+@media(max-width:700px){.profile-card{grid-template-columns:1fr 1fr;}}
+.pc-item{text-align:center;padding:16px;}
+.pc-icon{font-size:2rem;margin-bottom:8px;}
+.pc-label{font-family:var(--font-mono);font-size:0.58rem;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:5px;}
+.pc-value{font-family:var(--font-display);font-size:1.1rem;letter-spacing:1px;}
+/* YOUR START */
+.your-start{background:var(--panel);border:1px solid var(--border);padding:32px;border-radius:4px;margin-bottom:24px;}
+.ys-label{font-family:var(--font-mono);font-size:0.65rem;letter-spacing:3px;color:var(--orange);text-transform:uppercase;margin-bottom:16px;}
+.ys-title{font-family:var(--font-display);font-size:1.8rem;letter-spacing:1px;margin-bottom:12px;}
+.ys-desc{color:var(--muted);font-size:0.9rem;line-height:1.7;margin-bottom:24px;}
+.ys-steps{display:flex;flex-direction:column;gap:0;}
+.ys-step{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid var(--border);}
+.ys-step:last-child{border:none;}
+.ys-num{font-family:var(--font-display);font-size:1.3rem;color:var(--orange);flex-shrink:0;width:28px;line-height:1;}
+.ys-step-text{font-size:0.85rem;color:var(--muted);line-height:1.6;}
+.ys-step-text strong{color:var(--white);display:block;margin-bottom:2px;}
+/* PILLARS */
+.pillars-rec{background:var(--panel);border:1px solid var(--border);padding:32px;border-radius:4px;margin-bottom:32px;}
+.pillars-grid-sm{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px;}
+@media(max-width:500px){.pillars-grid-sm{grid-template-columns:1fr 1fr;}}
+.pillar-chip{background:var(--deep);border:1px solid var(--border);padding:14px 10px;text-align:center;border-radius:4px;transition:all 0.2s;}
+.pillar-chip.priority{border-color:rgba(232,80,10,0.4);background:rgba(232,80,10,0.06);}
+.pc-icon-sm{font-size:1.3rem;margin-bottom:5px;}
+.pc-name-sm{font-family:var(--font-mono);font-size:0.56rem;letter-spacing:1px;color:var(--muted);text-transform:uppercase;}
+.pc-badge{font-family:var(--font-mono);font-size:0.5rem;color:var(--orange);letter-spacing:1px;margin-top:3px;}
+/* CTA */
+.result-cta{text-align:center;padding:40px 0;}
+.btn-dashboard{display:inline-block;background:var(--orange);color:var(--white);text-decoration:none;padding:18px 48px;font-size:0.9rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;border-radius:2px;transition:background 0.2s;border:none;cursor:pointer;}
+.btn-dashboard:hover{background:var(--orange-glow);}
+.result-note{font-family:var(--font-mono);font-size:0.62rem;color:var(--muted);letter-spacing:2px;margin-top:12px;}
+
+@media(max-width:800px){.signup-screen{grid-template-columns:1fr;}.left-panel{display:none;}.right-panel{padding:40px 24px;}}
 </style>
 </head>
 <body>
 
-<div class="left-panel">
-  <div class="grid-bg"></div>
-  <div class="glow"></div>
-  <a href="index.html" class="left-logo">THE YOUNG MAN <span>BLUEPRINT</span></a>
-  <div class="left-content">
-    <div class="left-tag">Start Free Today</div>
-    <div class="left-headline">BEGIN YOUR<br><span>BLUEPRINT.</span></div>
-    <p class="left-desc">Everything you were never taught — about health, money, relationships, and your mind — in one structured place.</p>
-    <div class="perks">
-      <div class="perk"><span class="perk-icon">✓</span><div class="perk-text"><strong>Free plan available</strong> — no credit card needed</div></div>
-      <div class="perk"><span class="perk-icon">✓</span><div class="perk-text"><strong>All 11 pillars</strong> covered in the paid plan</div></div>
-      <div class="perk"><span class="perk-icon">✓</span><div class="perk-text"><strong>XP, roadmap, and habit tracker</strong> from day one</div></div>
-      <div class="perk"><span class="perk-icon">✓</span><div class="perk-text"><strong>Cancel anytime</strong> — no lock-in, no games</div></div>
-      <div class="perk"><span class="perk-icon">✓</span><div class="perk-text"><strong>7-day money-back guarantee</strong> on paid plans</div></div>
+<!-- ══════════════════════════════════════════════════
+     STEP 1 — SIGNUP
+══════════════════════════════════════════════════ -->
+<div class="signup-screen" id="screen-signup">
+  <div class="left-panel">
+    <div class="grid-bg"></div><div class="glow"></div>
+    <a href="index.html" class="left-logo">THE YOUNG MAN <span>BLUEPRINT</span></a>
+    <div class="left-content">
+      <div class="left-tag">Two minutes. That's all it takes.</div>
+      <div class="left-headline">LET'S FIGURE<br>OUT WHERE<br><span>YOU START.</span></div>
+      <p class="left-desc">Sign up, then answer 5 honest questions. We'll generate your personalised starting point — the exact step, the exact focus, the exact reason why.</p>
+      <div class="perks">
+        <div class="perk"><span class="perk-icon">✓</span><div class="perk-text"><strong>Personalised roadmap</strong> based on your answers</div></div>
+        <div class="perk"><span class="perk-icon">✓</span><div class="perk-text"><strong>No generic advice</strong> — your situation, your starting point</div></div>
+        <div class="perk"><span class="perk-icon">✓</span><div class="perk-text"><strong>Free to start</strong> — no credit card needed</div></div>
+        <div class="perk"><span class="perk-icon">✓</span><div class="perk-text"><strong>Takes 2 minutes</strong> — 5 questions, honest answers</div></div>
+      </div>
+    </div>
+    <div class="left-footer">© 2026 THE YOUNG MAN BLUEPRINT</div>
+  </div>
+  <div class="right-panel">
+    <div class="signup-box">
+      <div class="signup-title">CREATE ACCOUNT</div>
+      <p class="signup-sub">Already have one? <a href="login.html">Log in →</a></p>
+      <div class="form-group"><label>First Name</label><input type="text" id="fname" placeholder="Marcus" onkeydown="if(event.key==='Enter')startSignup()"></div>
+      <div class="form-group"><label>Email Address</label><input type="email" id="email" placeholder="marcus@email.com" onkeydown="if(event.key==='Enter')startSignup()"></div>
+      <div class="form-group"><label>Password</label><input type="password" id="password" placeholder="Min. 8 characters" onkeydown="if(event.key==='Enter')startSignup()"></div>
+      <div id="signup-error" style="display:none;background:rgba(232,64,64,0.1);border:1px solid var(--red);color:var(--red);padding:12px 14px;border-radius:2px;font-size:0.82rem;margin-bottom:12px;"></div>
+      <button class="btn-primary" id="signup-btn" onclick="startSignup()">⚡ Continue — Find My Starting Point</button>
+      <p class="terms-text">Free to start. No credit card. Takes 2 minutes.</p>
     </div>
   </div>
-  <div class="left-footer">© 2025 THE YOUNG MAN BLUEPRINT</div>
 </div>
 
-<div class="right-panel">
-  <div class="signup-box">
-    <div class="signup-title">CREATE ACCOUNT</div>
-    <p class="signup-sub">Already have one? <a href="login.html">Log in →</a></p>
+<!-- ══════════════════════════════════════════════════
+     STEP 2 — QUIZ
+══════════════════════════════════════════════════ -->
+<div class="quiz-screen" id="screen-quiz">
+  <div class="quiz-inner">
+    <a href="index.html" class="quiz-logo">THE YOUNG MAN <span>BLUEPRINT</span></a>
+    <div class="progress-wrap">
+      <div class="progress-top">
+        <span class="progress-label" id="q-label">QUESTION 1 OF 5</span>
+        <span class="progress-count" id="q-pct">20%</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" id="q-prog" style="width:20%"></div></div>
+    </div>
+    <div id="q-container" class="q-card-anim"></div>
+    <div class="quiz-nav">
+      <button class="btn-back-quiz" id="btn-back" onclick="prevQ()" style="display:none;">← Back</button>
+      <button class="btn-next-quiz" id="btn-next" onclick="nextQ()">Next →</button>
+    </div>
+  </div>
+</div>
 
-    <div class="plan-label">Choose Your Plan</div>
-    <div class="plan-toggle">
-      <button class="plan-btn active" onclick="selectPlan(this,'free')">Starter — Free</button>
-      <button class="plan-btn" onclick="selectPlan(this,'paid')">Blueprint — $19/mo</button>
+<!-- ══════════════════════════════════════════════════
+     STEP 3 — PERSONALISED RESULT
+══════════════════════════════════════════════════ -->
+<div class="result-screen" id="screen-result">
+  <div class="result-hero">
+    <div class="result-hero-grid"></div>
+    <div class="result-hero-glow"></div>
+    <div class="result-tag">Your Personalised Blueprint</div>
+    <div class="result-name" id="res-name">HERE'S WHERE <span>YOU START.</span></div>
+    <p class="result-subtitle" id="res-subtitle">Based on your answers, here's what we know about where you are right now — and exactly what to focus on first.</p>
+  </div>
+  <div class="result-body">
+    <div class="profile-card" id="res-profile"></div>
+    <div class="your-start" id="res-start"></div>
+    <div class="pillars-rec" id="res-pillars"></div>
+    <div class="result-cta">
+      <div id="commit-msg" style="background:rgba(232,80,10,0.08);border:1px solid rgba(232,80,10,0.2);padding:20px 28px;border-radius:4px;margin-bottom:28px;font-size:0.9rem;color:var(--muted);line-height:1.7;font-style:italic;max-width:560px;margin-left:auto;margin-right:auto;"></div>
+      <button class="btn-dashboard" onclick="goToDashboard()">⚡ Go To My Dashboard</button>
+      <p class="result-note">YOUR ROADMAP IS READY — LET'S BUILD.</p>
     </div>
-
-    <div class="form-group">
-      <label>First Name</label>
-      <input type="text" placeholder="Marcus" id="fname">
-    </div>
-    <div class="form-group">
-      <label>Email Address</label>
-      <input type="email" placeholder="marcus@email.com" id="email">
-    </div>
-    <div class="form-group">
-      <label>Password</label>
-      <input type="password" placeholder="Min. 8 characters" id="password">
-    </div>
-    <div class="form-group">
-      <label>Biggest Struggle Right Now</label>
-      <select id="struggle">
-        <option value="">Choose your starting pillar...</option>
-        <option>Mental Health</option>
-        <option>Finances / Money</option>
-        <option>Physical Health / Fitness</option>
-        <option>Career / Direction</option>
-        <option>Relationships</option>
-        <option>Addiction / Bad Habits</option>
-        <option>Discipline / Motivation</option>
-        <option>All of the above (real one)</option>
-      </select>
-    </div>
-
-    <button class="btn-signup" onclick="handleSignup()">⚡ Create My Account</button>
-    <p class="terms">By signing up you agree to our <a href="#">Terms</a> and <a href="#">Privacy Policy</a>. No spam, ever.</p>
   </div>
 </div>
 
 <script>
-let selectedPlan = 'free';
-function selectPlan(btn, plan) {
-  selectedPlan = plan;
-  document.querySelectorAll('.plan-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
+// ── QUIZ DATA ─────────────────────────────────────────────────────────
+var QUESTIONS = [
+  {
+    id: 'age',
+    eyebrow: 'Question 1 of 20 — The Basics',
+    title: 'How old are you?',
+    sub: 'Your age shapes where you should start. No wrong answer.',
+    opts: [
+      {icon:'🎒', title:'16–18', desc:'Still in school. Just starting to think about the future.', val:'16-18'},
+      {icon:'🎓', title:'19–22', desc:'College age or just out. Big decisions ahead.', val:'19-22'},
+      {icon:'💼', title:'23–27', desc:'Early career. Figuring out money, direction, and identity.', val:'23-27'},
+      {icon:'🔑', title:'28–35', desc:'Established but feeling behind or stuck. Ready to change that.', val:'28-35'},
+    ]
+  },
+  {
+    id: 'struggle',
+    eyebrow: 'Question 2 of 20 — The Real One',
+    title: 'What\'s actually costing you the most right now?',
+    sub: 'Be honest. This is the most important question. You can only pick one.',
+    opts: [
+      {icon:'💸', title:'Money and finances', desc:'Living paycheck to paycheck, no savings, or just clueless about money.', val:'finances'},
+      {icon:'🧠', title:'Mental health and headspace', desc:'Anxiety, emptiness, low motivation, or just not feeling right.', val:'mental'},
+      {icon:'🎯', title:'No direction or career clarity', desc:'Don\'t know what you\'re building toward. Drifting.', val:'career'},
+      {icon:'🤝', title:'Loneliness and relationships', desc:'No real friends, struggling with dating, or feeling disconnected.', val:'relationships'},
+      {icon:'💪', title:'Body and physical health', desc:'Out of shape, no energy, bad sleep, or never trained consistently.', val:'health'},
+      {icon:'🔥', title:'Bad habits and addiction', desc:'Porn, weed, alcohol, gaming, phone — something is eating your time and energy.', val:'addiction'},
+    ]
+  },
+  {
+    id: 'finances',
+    eyebrow: 'Question 3 of 20 — Money',
+    title: 'What does your financial situation look like right now?',
+    sub: 'Honest answer only. This shapes the finance section of your roadmap.',
+    opts: [
+      {icon:'🪨', title:'Rock bottom', desc:'In debt, no savings, can barely cover basics. Surviving, not building.', val:'rock_bottom'},
+      {icon:'📉', title:'Getting by', desc:'Covering my bills but nothing left over. No savings, no plan.', val:'getting_by'},
+      {icon:'🏗️', title:'Starting to build', desc:'I have some savings and a rough budget. Not where I want to be.', val:'building'},
+      {icon:'📈', title:'Stable and growing', desc:'Good financial base. Now I want to grow it — invest, build wealth.', val:'stable'},
+    ]
+  },
+  {
+    id: 'situation',
+    eyebrow: 'Question 4 of 20 — Your World',
+    title: 'What does your day-to-day life look like?',
+    sub: 'This helps us understand your constraints and what\'s actually possible right now.',
+    opts: [
+      {icon:'📚', title:'In school or college', desc:'Student. Balancing studies, limited money, figuring out life.', val:'student'},
+      {icon:'💼', title:'Working full time', desc:'Employed. Money coming in but time is the constraint.', val:'working'},
+      {icon:'🔄', title:'Working but want more', desc:'Employed but underpaid, unfulfilled, or want to change direction.', val:'working_unfulfilled'},
+      {icon:'🌀', title:'Not working or studying', desc:'Between things. Too much time, not enough structure or direction.', val:'idle'},
+    ]
+  },
+  {
+    id: 'social',
+    eyebrow: 'Question 5 of 20 — Your People',
+    title: 'How is your social life and support network?',
+    sub: 'No judgement. This is one of the most important factors in whether men actually change.',
+    opts: [
+      {icon:'🚪', title:'Isolated', desc:'I don\'t really have close friends. I\'m mostly alone and I know it.', val:'isolated'},
+      {icon:'🌫️', title:'Surface level', desc:'I have people around but nobody really knows me. It\'s shallow.', val:'shallow'},
+      {icon:'🤝', title:'A few solid ones', desc:'I have 1-3 people I trust. Not many but they\'re real.', val:'some'},
+      {icon:'💪', title:'Strong network', desc:'I\'m well connected. This isn\'t my issue.', val:'strong'},
+    ]
+  },
+  {
+    id: 'sleep',
+    eyebrow: 'Question 6 of 20 — Physical Health',
+    title: 'How is your sleep right now?',
+    sub: 'Sleep is the foundation of everything. Be honest about it.',
+    opts: [
+      {icon:'💀', title:'Terrible', desc:'Under 5 hours most nights. Wake up exhausted every day.', val:'terrible'},
+      {icon:'😴', title:'Poor', desc:'5–6 hours. Groggy most mornings. Running on caffeine.', val:'poor'},
+      {icon:'😐', title:'Average', desc:'6–7 hours. Some good nights, some bad. Not consistent.', val:'average'},
+      {icon:'✅', title:'Solid', desc:'7–9 hours consistently. I wake up rested most days.', val:'solid'},
+    ]
+  },
+  {
+    id: 'training',
+    eyebrow: 'Question 7 of 20 — Physical Health',
+    title: 'How often do you train or exercise?',
+    sub: 'Any kind of intentional physical activity counts.',
+    opts: [
+      {icon:'🛋️', title:'Never or rarely', desc:'I don\'t have a consistent routine. Maybe once a month if that.', val:'never'},
+      {icon:'🚶', title:'1–2 times a week', desc:'I move sometimes but it\'s inconsistent.', val:'sometimes'},
+      {icon:'💪', title:'3–4 times a week', desc:'I train regularly. It\'s part of my week.', val:'regular'},
+      {icon:'🏆', title:'5+ times a week', desc:'Training is a serious part of my life.', val:'serious'},
+    ]
+  },
+  {
+    id: 'diet',
+    eyebrow: 'Question 8 of 20 — Physical Health',
+    title: 'How would you describe your diet?',
+    sub: 'No judgement — just an honest picture of where things are.',
+    opts: [
+      {icon:'🍟', title:'Pretty bad', desc:'Fast food most days, no tracking, no real awareness of what I eat.', val:'bad'},
+      {icon:'🤷', title:'Hit and miss', desc:'Some good days, some bad. No real structure or intention.', val:'inconsistent'},
+      {icon:'🥗', title:'Decent', desc:'I eat reasonably well but could be more intentional about protein and nutrition.', val:'decent'},
+      {icon:'🎯', title:'On point', desc:'I track or at least think about what I eat. Protein, portions, quality.', val:'good'},
+    ]
+  },
+  {
+    id: 'mental_state',
+    eyebrow: 'Question 9 of 20 — Mental Health',
+    title: 'How would you honestly describe your mental state day-to-day?',
+    sub: 'Not how you\'d describe it to others. How it actually feels.',
+    opts: [
+      {icon:'🌑', title:'Dark', desc:'Depressed, hopeless, or struggling to see the point. Some days are very hard.', val:'dark'},
+      {icon:'🌧️', title:'Low', desc:'Flat, empty, or anxious most of the time. Functioning but not well.', val:'low'},
+      {icon:'⛅', title:'Variable', desc:'Some good days, some bad. I manage but I\'m not where I want to be mentally.', val:'variable'},
+      {icon:'☀️', title:'Solid', desc:'Generally good. I have hard days but I know how to handle them.', val:'solid'},
+    ]
+  },
+  {
+    id: 'anxiety',
+    eyebrow: 'Question 10 of 20 — Mental Health',
+    title: 'How much does anxiety affect your daily life?',
+    sub: 'Anxiety shows up differently for different men. Pick what\'s closest.',
+    opts: [
+      {icon:'🔴', title:'A lot', desc:'Anxiety limits me regularly — social situations, decisions, daily tasks.', val:'high'},
+      {icon:'🟡', title:'Sometimes', desc:'I feel it in certain situations. It\'s manageable but noticeable.', val:'medium'},
+      {icon:'🟢', title:'Rarely', desc:'I get anxious occasionally but it doesn\'t run my life.', val:'low'},
+      {icon:'⚪', title:'Not really', desc:'Anxiety isn\'t something I deal with much.', val:'none'},
+    ]
+  },
+  {
+    id: 'motivation',
+    eyebrow: 'Question 11 of 20 — Drive',
+    title: 'What best describes your relationship with motivation right now?',
+    sub: 'Honest — not what you wish it was.',
+    opts: [
+      {icon:'🪫', title:'Completely burnt out', desc:'I have zero drive right now. Everything feels pointless or exhausting.', val:'burnt_out'},
+      {icon:'📉', title:'Low and unreliable', desc:'I get motivated occasionally but it never sticks. Lots of starts, few finishes.', val:'low'},
+      {icon:'🔄', title:'Decent but inconsistent', desc:'I can get going but I lose momentum when things get hard.', val:'inconsistent'},
+      {icon:'⚡', title:'Driven', desc:'I have real drive. What I need is direction and systems, not motivation.', val:'driven'},
+    ]
+  },
+  {
+    id: 'self_awareness',
+    eyebrow: 'Question 12 of 20 — Self-Knowledge',
+    title: 'How well do you understand why you do the things you do?',
+    sub: 'This is about emotional self-awareness — knowing your patterns and triggers.',
+    opts: [
+      {icon:'🌫️', title:'Not at all', desc:'My emotions confuse me. I react to things and often don\'t know why.', val:'low'},
+      {icon:'🔍', title:'Starting to understand', desc:'I\'m becoming more aware but still have a lot of blind spots.', val:'developing'},
+      {icon:'💡', title:'Reasonably self-aware', desc:'I understand most of my patterns. I know my triggers and tendencies.', val:'good'},
+      {icon:'🧭', title:'Very self-aware', desc:'I can identify and name my emotions. I know how my past shapes my present.', val:'high'},
+    ]
+  },
+  {
+    id: 'career_clarity',
+    eyebrow: 'Question 13 of 20 — Career',
+    title: 'How clear are you on what you want from your career?',
+    sub: 'Not what you think you should want. What you actually want.',
+    opts: [
+      {icon:'🌀', title:'No idea', desc:'I genuinely don\'t know what I want. Feels like I\'m just going through the motions.', val:'none'},
+      {icon:'🌫️', title:'Vague idea', desc:'I have a rough sense of direction but nothing concrete or committed to.', val:'vague'},
+      {icon:'🗺️', title:'Getting clearer', desc:'I know the direction. Still figuring out the specific path and steps.', val:'developing'},
+      {icon:'🎯', title:'Clear and committed', desc:'I know exactly what I\'m building toward. I just need to execute.', val:'clear'},
+    ]
+  },
+  {
+    id: 'income',
+    eyebrow: 'Question 14 of 20 — Money',
+    title: 'How do you feel about your income right now?',
+    sub: 'Not your exact number. Just where you are relative to where you need to be.',
+    opts: [
+      {icon:'🚨', title:'Not enough to live on', desc:'I genuinely struggle to cover my basics. Income is the #1 problem.', val:'insufficient'},
+      {icon:'😤', title:'Enough but not satisfying', desc:'I can survive but I feel underpaid and stuck. No upward path is clear.', val:'stagnant'},
+      {icon:'📊', title:'Decent, could be better', desc:'I earn okay. I want to grow it but it\'s not urgent.', val:'decent'},
+      {icon:'💪', title:'Good — this isn\'t my issue', desc:'Income is not the constraint right now.', val:'good'},
+    ]
+  },
+  {
+    id: 'debt',
+    eyebrow: 'Question 15 of 20 — Money',
+    title: 'Do you have debt?',
+    sub: 'Student loans, credit cards, car payments, personal loans — all of it.',
+    opts: [
+      {icon:'🔴', title:'Yes — significant and stressful', desc:'Debt is one of the biggest stressors in my life right now.', val:'heavy'},
+      {icon:'🟡', title:'Yes — manageable', desc:'I have debt but I\'m on top of it. It\'s not spiralling.', val:'manageable'},
+      {icon:'🟢', title:'Minimal', desc:'A small amount I\'m chipping away at. Not a major problem.', val:'minimal'},
+      {icon:'⚪', title:'No debt', desc:'I\'m debt-free.', val:'none'},
+    ]
+  },
+  {
+    id: 'role_model',
+    eyebrow: 'Question 16 of 20 — Your Foundation',
+    title: 'Did you have a strong male role model growing up?',
+    sub: 'Father, uncle, coach, mentor — anyone. This shapes a lot more than people realise.',
+    opts: [
+      {icon:'🚫', title:'No — I had no one like that', desc:'I had to figure things out alone. No real male guidance.', val:'none'},
+      {icon:'⚡', title:'Sort of — it was complicated', desc:'There was someone but the relationship was difficult or inconsistent.', val:'complicated'},
+      {icon:'👤', title:'Some — not a major influence', desc:'I had a male figure around but they weren\'t a strong role model.', val:'some'},
+      {icon:'🧭', title:'Yes — a real one', desc:'I had strong male guidance growing up. It shaped who I am.', val:'yes'},
+    ]
+  },
+  {
+    id: 'bad_habits',
+    eyebrow: 'Question 17 of 20 — Habits',
+    title: 'What\'s the habit you\'d most want to break?',
+    sub: 'The one you already know is costing you. Pick the closest.',
+    opts: [
+      {icon:'📱', title:'Phone and social media', desc:'Endless scrolling, doom scrolling, or apps eating hours of my day.', val:'phone'},
+      {icon:'🍺', title:'Alcohol or substances', desc:'Drinking too much, smoking, weed — more than I\'d like to admit.', val:'substances'},
+      {icon:'🎮', title:'Gaming or entertainment', desc:'Gaming, YouTube, Netflix — disappears into hours without me noticing.', val:'gaming'},
+      {icon:'🔞', title:'Pornography', desc:'It\'s affecting my motivation, relationships, or how I see myself.', val:'porn'},
+      {icon:'🛋️', title:'Laziness and avoidance', desc:'Procrastination, avoiding hard things, staying comfortable.', val:'avoidance'},
+      {icon:'✅', title:'None major', desc:'I don\'t have a significant bad habit I\'m battling right now.', val:'none'},
+    ]
+  },
+  {
+    id: 'biggest_fear',
+    eyebrow: 'Question 18 of 20 — What\'s Underneath',
+    title: 'What\'s your biggest fear about your future?',
+    sub: 'The one that keeps you up at 3am. The one you don\'t say out loud.',
+    opts: [
+      {icon:'💸', title:'Being broke or stuck financially', desc:'Never earning enough. Being trapped by money my whole life.', val:'broke'},
+      {icon:'👻', title:'Ending up alone', desc:'No real partner, no real friends. A life without deep connection.', val:'alone'},
+      {icon:'🌀', title:'Wasting my potential', desc:'Dying having never really done anything. Looking back with regret.', val:'wasted'},
+      {icon:'😔', title:'Never feeling good enough', desc:'Imposter syndrome, shame, or a persistent feeling that I\'m behind.', val:'inadequate'},
+      {icon:'🔒', title:'Being stuck where I am', desc:'That this — right now — is as good as it gets. No change possible.', val:'stuck'},
+    ]
+  },
+  {
+    id: 'past_attempts',
+    eyebrow: 'Question 19 of 20 — History',
+    title: 'Have you tried to change before and given up?',
+    sub: 'Most men have. This shapes how we approach your roadmap.',
+    opts: [
+      {icon:'🔁', title:'Many times', desc:'I start things, make progress, then fall back. It\'s a frustrating cycle.', val:'many'},
+      {icon:'📉', title:'A few times', desc:'I\'ve had some attempts. Some lasted longer than others.', val:'some'},
+      {icon:'1️⃣', title:'Once or twice', desc:'I\'ve tried once or twice. Didn\'t stick for long.', val:'once'},
+      {icon:'🆕', title:'This is my first real attempt', desc:'I haven\'t seriously tried before. This feels different.', val:'first'},
+    ]
+  },
+  {
+    id: 'commitment',
+    eyebrow: 'Question 20 of 20 — The Decision',
+    title: 'How serious are you about actually changing?',
+    sub: 'The last question. And the most important one. Be honest with yourself.',
+    opts: [
+      {icon:'🔥', title:'Completely serious', desc:'I\'m done drifting. I\'m ready to do the actual work, not just read about it.', val:'serious'},
+      {icon:'💪', title:'Pretty serious', desc:'I\'m motivated right now. I want to build real momentum this time.', val:'motivated'},
+      {icon:'🤔', title:'Curious but unsure', desc:'I\'m interested. Not sure if I\'ll follow through. Worth finding out.', val:'curious'},
+      {icon:'👀', title:'Just looking around', desc:'Exploring for now. Not ready to commit to anything major.', val:'exploring'},
+    ]
+  }
+];
+
+// ── USER DATA ─────────────────────────────────────────────────────────
+var userData = {};
+var answers = {};
+var currentQ = 0;
+
+// ── STEP 1: SIGNUP ────────────────────────────────────────────────────
+function startSignup() {
+  var fname = document.getElementById('fname').value.trim();
+  var email = document.getElementById('email').value.trim();
+  var pw = document.getElementById('password').value.trim();
+  var errBox = document.getElementById('signup-error');
+  var btn = document.getElementById('signup-btn');
+
+  if (!fname) { showErr('Please enter your first name.'); return; }
+  if (!email || !email.includes('@')) { showErr('Please enter a valid email address.'); return; }
+  if (pw.length < 8) { showErr('Password must be at least 8 characters.'); return; }
+
+  errBox.style.display = 'none';
+  userData = { name: fname, email: email, password: pw };
+
+  btn.textContent = 'Setting up...';
+  btn.disabled = true;
+
+  setTimeout(function() {
+    document.getElementById('screen-signup').style.display = 'none';
+    document.getElementById('screen-quiz').style.display = 'block';
+    window.scrollTo(0, 0);
+    renderQ();
+  }, 400);
 }
-function handleSignup() {
-  const fname = document.getElementById('fname').value.trim();
-  const email = document.getElementById('email').value.trim();
-  const pw = document.getElementById('password').value.trim();
-  const btn = document.querySelector('.btn-signup');
-  if (!fname || !email.includes('@') || pw.length < 8) {
-    btn.textContent = '⚠ Please fill in all fields correctly';
-    btn.style.background = 'var(--red)';
-    setTimeout(() => { btn.textContent = '⚡ Create My Account'; btn.style.background = ''; }, 2000);
+
+function showErr(msg) {
+  var e = document.getElementById('signup-error');
+  e.textContent = msg;
+  e.style.display = 'block';
+  document.getElementById('signup-btn').textContent = '⚡ Continue — Find My Starting Point';
+  document.getElementById('signup-btn').disabled = false;
+}
+
+// ── STEP 2: QUIZ ──────────────────────────────────────────────────────
+function renderQ() {
+  var q = QUESTIONS[currentQ];
+  var sel = answers[q.id];
+  var pct = Math.round(((currentQ + 1) / QUESTIONS.length) * 100);
+
+  document.getElementById('q-label').textContent = 'QUESTION ' + (currentQ + 1) + ' OF ' + QUESTIONS.length;
+  document.getElementById('q-pct').textContent = pct + '%';
+  document.getElementById('q-prog').style.width = pct + '%';
+  document.getElementById('btn-back').style.display = currentQ > 0 ? 'block' : 'none';
+  document.getElementById('btn-next').textContent = currentQ === QUESTIONS.length - 1 ? 'See My Blueprint →' : 'Next →';
+
+  var optsHTML = q.opts.map(function(o) {
+    var isSelected = sel === o.val;
+    return '<div class="opt-card' + (isSelected ? ' selected' : '') + '" onclick="selectOpt(\'' + o.val + '\')">' +
+      '<div class="opt-icon">' + o.icon + '</div>' +
+      '<div class="opt-body"><div class="opt-title">' + o.title + '</div><div class="opt-desc">' + o.desc + '</div></div>' +
+      '<div class="opt-check">' + (isSelected ? '✓' : '') + '</div>' +
+      '</div>';
+  }).join('');
+
+  var container = document.getElementById('q-container');
+  container.className = 'q-card-anim';
+  container.innerHTML = '<div class="q-eyebrow">' + q.eyebrow + '</div>' +
+    '<div class="q-title">' + q.title + '</div>' +
+    '<p class="q-sub">' + q.sub + '</p>' +
+    '<div class="options-grid">' + optsHTML + '</div>';
+}
+
+function selectOpt(val) {
+  answers[QUESTIONS[currentQ].id] = val;
+  renderQ();
+}
+
+function nextQ() {
+  var q = QUESTIONS[currentQ];
+  if (!answers[q.id]) {
+    var cards = document.querySelectorAll('.opt-card');
+    cards.forEach(function(c) { c.style.borderColor = 'var(--red)'; });
+    setTimeout(function() { cards.forEach(function(c) { c.style.borderColor = ''; }); }, 1200);
     return;
   }
-  btn.textContent = '✓ Account Created!';
-  btn.style.background = 'var(--green)';
-  setTimeout(() => { window.location.href = 'thankyou.html'; }, 900);
+  if (currentQ < QUESTIONS.length - 1) {
+    currentQ++;
+    window.scrollTo(0, 0);
+    renderQ();
+  } else {
+    showResult();
+  }
 }
-document.addEventListener('keydown', e => { if (e.key === 'Enter') handleSignup(); });
+
+function prevQ() {
+  if (currentQ > 0) {
+    currentQ--;
+    window.scrollTo(0, 0);
+    renderQ();
+  }
+}
+
+// ── STEP 3: PERSONALISED RESULT ───────────────────────────────────────
+function showResult() {
+  document.getElementById('screen-quiz').style.display = 'none';
+  document.getElementById('screen-result').style.display = 'block';
+  window.scrollTo(0, 0);
+
+  var a = answers;
+  var name = userData.name;
+
+  // ─ Generate personalised content based on answers ─
+  var startStep, startTitle, startDesc, steps, priorityPillars;
+  var struggle = a.struggle;
+  var finances = a.finances;
+  var situation = a.situation;
+  var social = a.social;
+  var age = a.age;
+
+  // Determine starting step based on combination of answers
+  if (finances === 'rock_bottom' || situation === 'idle') {
+    startStep = 'STEP 03 — STOP THE BLEEDING';
+    startTitle = 'Your first move is damage control.';
+    startDesc = 'Before you build anything, you need to stop what\'s actively working against you. Based on where you are financially and day-to-day, you\'re in emergency stabilisation mode — and that\'s okay. Most men start here. Your job right now is simple: identify the single thing draining you most, and stop it this week.';
+    steps = [
+      {title: 'Do a brutal audit', text: 'Write down everything that\'s costing you — money, time, energy, and headspace. Don\'t judge it. Just list it. This takes 20 minutes and it will shock you.'},
+      {title: 'Identify the worst one', text: 'One thing on that list is doing more damage than all the others. You already know what it is. That\'s your starting point.'},
+      {title: 'Stop it for 7 days', text: 'Don\'t commit to forever. Commit to 7 days. Track it. That\'s your first win.'},
+      {title: 'Get a budget — any budget', text: 'Open a note on your phone. Write income. Write expenses. Anything left is yours to work with. If nothing is left, you need to look at income, not just spending.'},
+    ];
+  } else if (struggle === 'mental' || social === 'isolated') {
+    startStep = 'STEP 06 — GET YOUR MIND RIGHT';
+    startTitle = 'Your foundation is your headspace.';
+    startDesc = 'You can\'t build a career, a body, or relationships on a broken foundation. The fact that you named this honestly puts you ahead of most men who ignore it for years. Your starting point is your mental state — not because everything else doesn\'t matter, but because nothing else will stick until this is better.';
+    steps = [
+      {title: 'Start a 5-minute daily journal', text: 'Morning or night. Write what happened, what you felt, and one thing you want tomorrow. Not Instagram-worthy. Just honest.'},
+      {title: 'Name one person to reach out to', text: 'One text. Doesn\'t have to be deep. Just reopen a connection that\'s gone quiet. Isolation compounds. This breaks the loop.'},
+      {title: 'Walk every day', text: 'Not a workout. A 20-minute walk with no phone. Your nervous system needs this more than you know.'},
+      {title: 'Consider a professional', text: 'Therapy isn\'t weakness. It\'s the most efficient way to understand why you operate the way you do. Even 4 sessions changes things.'},
+    ];
+  } else if (struggle === 'career' || situation === 'working_unfulfilled') {
+    startStep = 'STEP 07 — LOCK IN YOUR CAREER PATH';
+    startTitle = 'Direction is your most urgent problem.';
+    startDesc = 'You have the basics covered but you\'re building toward the wrong thing — or nothing at all. Drifting in your 20s feels harmless until you\'re 30 and realise you\'ve been running in place. Your starting point is getting clear on what you\'re actually building toward.';
+    steps = [
+      {title: 'Take the Career Path Finder', text: 'It takes 5 minutes. It tells you which archetype fits you and what the realistic paths look like. Stop guessing.'},
+      {title: 'Update your resume this week', text: 'Even if you\'re not job hunting. Seeing your experience on paper forces clarity about what you have and what you\'re missing.'},
+      {title: 'Have one real career conversation', text: 'Find someone doing what you want to do. LinkedIn message, family connection, whatever. Ask them three questions. That\'s it.'},
+      {title: 'Pick one skill and go deep for 90 days', text: 'The generalist trap kills careers. What\'s the one thing you could be genuinely good at? Commit to 90 days of focused practice.'},
+    ];
+  } else if (struggle === 'health') {
+    startStep = 'STEP 05 — BUILD YOUR PHYSICAL FOUNDATION';
+    startTitle = 'Your body is the hardware everything else runs on.';
+    startDesc = 'Sleep, training, and nutrition aren\'t separate from your career, mental health, and relationships — they are the foundation of all of them. A man who sleeps 8 hours, moves his body, and eats enough protein thinks differently, earns differently, and shows up differently. This is your starting point.';
+    steps = [
+      {title: 'Fix sleep first', text: 'Set a consistent bedtime and wake time — same on weekends. 7-9 hours. This is the highest ROI health change you can make and it costs nothing.'},
+      {title: 'Start training 3 days a week', text: 'Not 5. Not 6. Three. Push/Pull/Legs or any simple program. The only rule is you show up. Intensity comes later. Consistency comes first.'},
+      {title: 'Hit your protein target', text: '0.8g per pound of bodyweight. Track it for two weeks. You\'re almost certainly not hitting it. This is your diet starting point.'},
+      {title: 'Drink 2–3 litres of water daily', text: 'Not an energy drink. Not coffee. Water. Set an alarm if you have to. Most men are chronically dehydrated and don\'t know it affects everything.'},
+    ];
+  } else if (struggle === 'addiction') {
+    startStep = 'STEP 03 — STOP THE BLEEDING';
+    startTitle = 'Something is taking more than it\'s giving.';
+    startDesc = 'You\'re aware enough to name it — that\'s already more honest than most men. Whether it\'s porn, weed, alcohol, gambling, or your phone, the pattern is the same: it provides short-term relief and long-term drain. You don\'t need to quit forever today. You need to understand the loop — and break it once, then again, then again.';
+    steps = [
+      {title: 'Name the habit and the trigger', text: 'When does it happen? What emotion precedes it? Boredom? Loneliness? Stress? You can\'t break a loop you haven\'t identified.'},
+      {title: '7-day experiment', text: 'Don\'t commit to forever. That\'s overwhelming. Commit to 7 days clean from the habit. Track it. One week of clarity tells you more than a year of vague intentions.'},
+      {title: 'Replace, don\'t just remove', text: 'The void left by a bad habit needs to be filled. Walk, gym, call someone, read. Something that uses the same time slot.'},
+      {title: 'Use the Addiction Model tool', text: 'The interactive tool in Pillar 10 walks you through the habit loop and the five stages of change. It takes 15 minutes and it\'s honest.'},
+    ];
+  } else {
+    startStep = 'STEP 01 — TAKE STOCK';
+    startTitle = 'Start with a clear picture of where you actually are.';
+    startDesc = 'You\'re in a solid position — more solid than most. Your starting point is clarity: a full honest audit of all 11 areas of your life. Not to fix everything at once, but to know exactly which areas are strong, which are weak, and what the highest-value focus is right now.';
+    steps = [
+      {title: 'Complete the 11-pillar assessment', text: 'Each pillar has an interactive test. Complete them this week. Score yourself honestly. The gaps you find will tell you exactly where to focus.'},
+      {title: 'Identify your top 3 priorities', text: 'Based on your scores, pick the three areas that will have the most impact on your life if you improve them. These become your active pillars.'},
+      {title: 'Set one target per priority', text: 'One concrete, measurable target for each of your three priorities. Not "get fit." "Train 3x/week for 8 weeks."'},
+      {title: 'Start your habit tracker', text: 'Add your first 3 daily habits to the tracker. The XP system will do the rest.'},
+    ];
+  }
+
+  // Priority pillars based on answers
+  var allPillars = [
+    {id:'health', icon:'💪', name:'Health', priority: struggle==='health' || a.sleep==='terrible' || a.sleep==='poor' || a.training==='never' || a.diet==='bad'},
+    {id:'mental', icon:'🧠', name:'Mental', priority: struggle==='mental' || social==='isolated' || a.mental_state==='dark' || a.mental_state==='low' || a.anxiety==='high' || a.motivation==='burnt_out'},
+    {id:'finances', icon:'💰', name:'Finances', priority: struggle==='finances' || finances==='rock_bottom' || a.income==='insufficient' || a.debt==='heavy'},
+    {id:'investing', icon:'📈', name:'Investing', priority: finances==='stable' || a.income==='good'},
+    {id:'career', icon:'🎯', name:'Career', priority: struggle==='career' || situation==='working_unfulfilled' || a.career_clarity==='none' || a.career_clarity==='vague'},
+    {id:'relations', icon:'🤝', name:'Relations', priority: struggle==='relationships' || social==='isolated' || social==='shallow' || a.biggest_fear==='alone'},
+    {id:'discipline', icon:'🔥', name:'Discipline', priority: situation==='idle' || a.motivation==='low' || a.past_attempts==='many' || a.motivation==='burnt_out'},
+    {id:'motivation', icon:'⚡', name:'Motivation', priority: a.motivation==='burnt_out' || a.motivation==='low' || a.biggest_fear==='wasted' || a.biggest_fear==='stuck'},
+    {id:'appearance', icon:'🪞', name:'Appearance', priority: false},
+    {id:'addiction', icon:'🚫', name:'Addiction', priority: struggle==='addiction' || a.bad_habits==='porn' || a.bad_habits==='substances'},
+    {id:'resources', icon:'📚', name:'Resources', priority: a.role_model==='none'},
+  ];
+
+  // Age label
+  var ageLabel = age || 'Your age';
+  var situationLabel = {student:'Student', working:'Working', working_unfulfilled:'Working (want more)', idle:'Between things'}[situation] || situation;
+  var financeLabel = {rock_bottom:'Rock bottom', getting_by:'Getting by', building:'Building', stable:'Stable'}[finances] || finances;
+  var socialLabel = {isolated:'Isolated', shallow:'Surface level', some:'A few solid ones', strong:'Strong network'}[social] || social;
+
+  // Commitment message
+  var commitMsg = {
+    serious: 'You said you\'re completely serious. That\'s the only thing that matters. Everything in your Blueprint is built around that.',
+    motivated: 'You\'re motivated right now. Use it. Momentum built in the first week determines whether you\'re still here in month three.',
+    curious: 'Curiosity got you here. Let\'s give it a reason to stay. Start with one thing this week and see how it feels.',
+    exploring: 'No pressure. Your starting point is ready when you are. The roadmap doesn\'t expire.'
+  }[a.commitment] || '';
+
+  document.getElementById('res-name').innerHTML = 'HERE\'S WHERE YOU<br><span>START, ' + name.toUpperCase() + '.</span>';
+  document.getElementById('res-subtitle').textContent = 'Based on your 20 answers, here\'s what we know about where you are — and the exact steps that will move the needle for you specifically.';
+
+  // Build a richer summary line
+  var sleepLabel = {terrible:'Terrible', poor:'Poor', average:'Average', solid:'Solid'}[a.sleep] || '—';
+  var trainingLabel = {never:'None', sometimes:'1-2x/week', regular:'3-4x/week', serious:'5+/week'}[a.training] || '—';
+  var mentalLabel = {dark:'Dark', low:'Low', variable:'Variable', solid:'Good'}[a.mental_state] || '—';
+  var commitLabel = {serious:'Completely serious', motivated:'Pretty serious', curious:'Curious', exploring:'Just looking'}[a.commitment] || '—';
+
+  // Profile card — 6 stats
+  document.getElementById('res-profile').innerHTML =
+    '<div class="pc-item"><div class="pc-icon">📍</div><div class="pc-label">Starting Level</div><div class="pc-value" style="font-size:0.8rem;color:var(--orange);">LEVEL 1</div></div>' +
+    '<div class="pc-item"><div class="pc-icon">😴</div><div class="pc-label">Sleep Quality</div><div class="pc-value" style="font-size:0.9rem;">' + sleepLabel + '</div></div>' +
+    '<div class="pc-item"><div class="pc-icon">💪</div><div class="pc-label">Training</div><div class="pc-value" style="font-size:0.9rem;">' + trainingLabel + '</div></div>' +
+    '<div class="pc-item"><div class="pc-icon">🧠</div><div class="pc-label">Mental State</div><div class="pc-value" style="font-size:0.9rem;">' + mentalLabel + '</div></div>' +
+    '<div class="pc-item"><div class="pc-icon">💰</div><div class="pc-label">Finances</div><div class="pc-value" style="font-size:0.9rem;">' + financeLabel + '</div></div>' +
+    '<div class="pc-item"><div class="pc-icon">🔥</div><div class="pc-label">Commitment</div><div class="pc-value" style="font-size:0.9rem;">' + commitLabel + '</div></div>';
+
+  // Your start
+  var stepsHTML = steps.map(function(s, i) {
+    return '<div class="ys-step"><div class="ys-num">0' + (i+1) + '</div><div class="ys-step-text"><strong>' + s.title + '</strong>' + s.text + '</div></div>';
+  }).join('');
+
+  document.getElementById('res-start').innerHTML =
+    '<div class="ys-label">📋 Your Personalised Starting Point</div>' +
+    '<div class="ys-title">' + startTitle + '</div>' +
+    '<p class="ys-desc">' + startDesc + '</p>' +
+    '<div class="ys-steps">' + stepsHTML + '</div>';
+
+  // Pillars
+  var pillarsHTML = allPillars.map(function(p) {
+    return '<div class="pillar-chip' + (p.priority ? ' priority' : '') + '">' +
+      '<div class="pc-icon-sm">' + p.icon + '</div>' +
+      '<div class="pc-name-sm">' + p.name + '</div>' +
+      (p.priority ? '<div class="pc-badge">START HERE</div>' : '') +
+      '</div>';
+  }).join('');
+
+  document.getElementById('res-pillars').innerHTML =
+    '<div class="ys-label">🎯 Your Priority Pillars</div>' +
+    '<p style="color:var(--muted);font-size:0.85rem;margin-bottom:4px;">Orange-highlighted pillars are where you should start based on your answers. All 11 are available to you.</p>' +
+    '<div class="pillars-grid-sm">' + pillarsHTML + '</div>';
+
+  // Commitment message
+  if (commitMsg) {
+    document.getElementById('commit-msg').textContent = '"' + commitMsg + '"';
+  } else {
+    document.getElementById('commit-msg').style.display = 'none';
+  }
+
+  // Save full profile to localStorage
+  var priorityPillarIds = allPillars.filter(function(p) { return p.priority; }).map(function(p) { return p.id; });
+  var profile = {
+    name: userData.name,
+    email: userData.email,
+    plan: 'free',
+    age: age,
+    struggle: struggle,
+    finances: finances,
+    situation: situation,
+    social: social,
+    sleep: a.sleep,
+    training: a.training,
+    diet: a.diet,
+    mental_state: a.mental_state,
+    anxiety: a.anxiety,
+    motivation: a.motivation,
+    self_awareness: a.self_awareness,
+    career_clarity: a.career_clarity,
+    income: a.income,
+    debt: a.debt,
+    role_model: a.role_model,
+    bad_habits: a.bad_habits,
+    biggest_fear: a.biggest_fear,
+    past_attempts: a.past_attempts,
+    commitment: a.commitment,
+    totalXP: 0,
+    streak: 0,
+    lastMissionDate: null,
+    totalMissions: 0,
+    activePillars: priorityPillarIds,
+    missions: {},
+    habitData: {},
+    customHabits: null,
+    customMissions: null,
+    earnedBadges: [],
+    avatarColor: '#e8500a',
+    createdAt: new Date().toISOString()
+  };
+
+  try { localStorage.setItem('tmb_user', JSON.stringify(profile)); } catch(e) {}
+
+  // Send welcome email
+  try {
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        access_key: 'c52038bd-53c9-42d0-ac49-a4185c9a3296',
+        subject: 'Welcome to The Young Man Blueprint — ' + userData.name,
+        from_name: 'The Young Man Blueprint',
+        name: userData.name,
+        email: userData.email,
+        message: 'Hi ' + userData.name + ',\n\nYour Blueprint is ready.\n\nYour starting point: ' + startStep + '\n\nHead to your dashboard:\nhttps://gmamba13.github.io/the-young-man-blueprint/dashboard.html\n\n— The Young Man Blueprint',
+        replyto: userData.email
+      })
+    });
+  } catch(e) {}
+}
+
+function goToDashboard() {
+  window.location.href = 'dashboard.html';
+}
 </script>
 </body>
 </html>

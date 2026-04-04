@@ -62,10 +62,25 @@
     <a href="index.html#pillars">Pillars</a>
     <a href="blog.html">Blog</a>
     <a href="community.html">Community</a>
-    <a href="login.html">Log In</a>
-    <a href="create-account.html" class="nav-cta">Start Free</a>
+    <a id="nav-auth-link" href="login.html">Log In</a>
+    <a id="nav-cta-link" href="create-account.html" class="nav-cta">Start Free</a>
   </div>
 </nav>
+<script>
+(function(){
+  try {
+    var u = localStorage.getItem('tmb_user');
+    if(u && u !== 'null') {
+      // Mark session active
+      sessionStorage.setItem('tmb_session', '1');
+      var el = document.getElementById('nav-auth-link');
+      var cta = document.getElementById('nav-cta-link');
+      if(el){ el.textContent = 'Dashboard'; el.href = 'dashboard.html'; }
+      if(cta){ cta.textContent = 'My Dashboard →'; cta.href = 'dashboard.html'; }
+    }
+  } catch(e){}
+})();
+</script>
 
 <div class="hero">
   <div class="hero-grid"></div>
@@ -121,15 +136,15 @@
         <span class="faq-q-text">Is there a free version?</span>
         <span class="faq-icon">+</span>
       </div>
-      <div class="faq-answer"><div class="faq-answer-inner">Yes. The free Starter plan gives you access to 3 pillars, the Phase 1 roadmap, a basic habit tracker, and 10 guides. You can use this indefinitely with no credit card required. The free version is designed to give you a genuine sense of value — not a crippled demo.</div></div>
+      <div class="faq-answer"><div class="faq-answer-inner">Yes. The free plan gives you full access to all 11 pillar guides and resources, all interactive tests and assessments, the blog, and the community — no credit card required. You can use this indefinitely. The paid plan ($9/month) unlocks the Blueprint 10-step roadmap, XP system, habit tracker, daily missions, and badge rewards.</div></div>
     </div>
 
     <div class="faq-item">
       <div class="faq-question" onclick="toggle(this)">
-        <span class="faq-q-text">What do I get with the $19/month plan?</span>
+        <span class="faq-q-text">What do I get with the $9/month plan?</span>
         <span class="faq-icon">+</span>
       </div>
-      <div class="faq-answer"><div class="faq-answer-inner">Full access to all 11 pillars, the complete 4-phase roadmap, the full habit tracker with streaks, 30+ guides and templates, AI daily check-ins, finance and investing tools, the badge and rewards system, and access to the private community. Cancel any time — no lock-in.</div></div>
+      <div class="faq-answer"><div class="faq-answer-inner">Everything in the free plan, plus: the full 10-step Blueprint roadmap personalized to your XP progress, the habit tracker with week history and streaks, daily missions, the XP and level system, badge rewards, weekly progress reports, and finance and investing tools. Cancel any time.</div></div>
     </div>
 
     <div class="faq-item">
@@ -157,7 +172,7 @@
         <span class="faq-q-text">How does the roadmap work?</span>
         <span class="faq-icon">+</span>
       </div>
-      <div class="faq-answer"><div class="faq-answer-inner">The Blueprint Roadmap has 4 phases: Foundation, Rebuild, Momentum, and Blueprint Complete. Each phase has milestones across multiple pillars. You work through them sequentially, earning XP for completed actions. Your dashboard shows your progress across all phases and tells you exactly what to focus on next — so you're never wondering what to do.</div></div>
+      <div class="faq-answer"><div class="faq-answer-inner">The Blueprint Roadmap has 10 steps — from Take Stock all the way to Blueprint Complete. Each step has clear milestones and unlocks based on your XP progress. You work through them sequentially, earning XP for completed actions. Your dashboard shows exactly where you are and what to focus on next — so you're never wondering what to do.</div></div>
     </div>
 
     <div class="faq-item">
@@ -215,11 +230,30 @@
 
 </div>
 
-<div class="cta-band">
-  <h2>STILL HAVE QUESTIONS?</h2>
-  <p>Start free and see for yourself. No credit card. No pressure. Just a clearer path forward.</p>
-  <a href="create-account.html" class="btn-primary">⚡ Start Free Today</a>
-  <a href="index.html" class="btn-ghost">← Back to Home</a>
+<div class="cta-band" style="background:var(--deep);border-top:1px solid var(--border);padding:80px 40px;">
+  <div style="max-width:600px;margin:0 auto;text-align:left;">
+    <div style="font-family:var(--font-mono);font-size:0.7rem;letter-spacing:3px;color:var(--orange);text-transform:uppercase;margin-bottom:16px;">Still Have Questions?</div>
+    <h2 style="font-family:var(--font-display);font-size:clamp(2rem,4vw,3rem);color:var(--white);margin-bottom:12px;letter-spacing:1px;">SEND US A MESSAGE</h2>
+    <p style="color:var(--muted);margin-bottom:36px;font-size:0.9rem;line-height:1.7;">Can't find your answer above? Send us a message and we'll get back to you within 24 hours.</p>
+    <div style="background:var(--panel);border:1px solid var(--border);padding:36px;border-radius:4px;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
+        <div>
+          <label style="display:block;font-family:var(--font-mono);font-size:0.62rem;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:8px;">Your Name</label>
+          <input type="text" id="contact-name" placeholder="Marcus" style="width:100%;background:var(--deep);border:1px solid var(--border);color:var(--white);padding:12px 14px;font-size:0.88rem;font-family:var(--font-body);border-radius:2px;outline:none;" onfocus="this.style.borderColor='var(--orange)'" onblur="this.style.borderColor='var(--border)'">
+        </div>
+        <div>
+          <label style="display:block;font-family:var(--font-mono);font-size:0.62rem;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:8px;">Your Email</label>
+          <input type="email" id="contact-email" placeholder="marcus@email.com" style="width:100%;background:var(--deep);border:1px solid var(--border);color:var(--white);padding:12px 14px;font-size:0.88rem;font-family:var(--font-body);border-radius:2px;outline:none;" onfocus="this.style.borderColor='var(--orange)'" onblur="this.style.borderColor='var(--border)'">
+        </div>
+      </div>
+      <div style="margin-bottom:16px;">
+        <label style="display:block;font-family:var(--font-mono);font-size:0.62rem;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:8px;">Your Question</label>
+        <textarea id="contact-msg" rows="4" placeholder="What's on your mind..." style="width:100%;background:var(--deep);border:1px solid var(--border);color:var(--white);padding:12px 14px;font-size:0.88rem;font-family:var(--font-body);border-radius:2px;outline:none;resize:vertical;" onfocus="this.style.borderColor='var(--orange)'" onblur="this.style.borderColor='var(--border)'"></textarea>
+      </div>
+      <button id="contact-btn" onclick="sendContact()" style="background:var(--orange);color:var(--white);border:none;padding:14px 28px;font-size:0.82rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;font-family:var(--font-body);border-radius:2px;width:100%;">Send Message →</button>
+      <p id="contact-success" style="display:none;text-align:center;color:var(--green);font-family:var(--font-mono);font-size:0.72rem;letter-spacing:2px;margin-top:14px;">✓ MESSAGE SENT — WE'LL BE IN TOUCH WITHIN 24 HOURS.</p>
+    </div>
+  </div>
 </div>
 
 <footer>
@@ -231,7 +265,7 @@
     <a href="community.html">Community</a>
     <a href="login.html">Log In</a>
   </div>
-  <div class="footer-copy">© 2025 THE YOUNG MAN BLUEPRINT</div>
+  <div class="footer-copy">© 2026 THE YOUNG MAN BLUEPRINT</div>
 </footer>
 
 <script>
@@ -240,6 +274,27 @@ function toggle(btn) {
   const isOpen = item.classList.contains('open');
   document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
   if (!isOpen) item.classList.add('open');
+}
+async function sendContact() {
+  const name = document.getElementById('contact-name').value.trim();
+  const email = document.getElementById('contact-email').value.trim();
+  const msg = document.getElementById('contact-msg').value.trim();
+  const btn = document.getElementById('contact-btn');
+  if (!name || !email.includes('@') || !msg) {
+    btn.style.background='var(--red)'; btn.textContent='⚠ Please fill in all fields';
+    setTimeout(()=>{ btn.style.background='var(--orange)'; btn.textContent='Send Message →'; },2000);
+    return;
+  }
+  btn.textContent='⏳ Sending...'; btn.disabled=true;
+  try {
+    await fetch('https://api.web3forms.com/submit', {
+      method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body: JSON.stringify({ access_key:'c52038bd-53c9-42d0-ac49-a4185c9a3296', subject:'New Question — Blueprint FAQ', from_name:name, name, email, message:msg, replyto:email })
+    });
+  } catch(e){}
+  btn.style.background='var(--green)'; btn.textContent='✓ Sent!';
+  document.getElementById('contact-success').style.display='block';
+  ['contact-name','contact-email','contact-msg'].forEach(id=>document.getElementById(id).value='');
 }
 </script>
 </body>

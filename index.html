@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Young Man Blueprint — Take Actionable Control</title>
+<title>The Young Man Blueprint — Take Control of Your Life</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -19,918 +19,189 @@
     --green: #2dba6e;
     --red: #e84040;
     --blue: #2d7bba;
-
     --font-display: 'Bebas Neue', sans-serif;
     --font-body: 'DM Sans', sans-serif;
     --font-mono: 'Space Mono', monospace;
   }
-
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   html { scroll-behavior: smooth; }
+  body { background: var(--black); color: var(--white); font-family: var(--font-body); font-size: 16px; line-height: 1.6; overflow-x: hidden; }
+  ::-webkit-scrollbar { width: 4px; } ::-webkit-scrollbar-track { background: var(--black); } ::-webkit-scrollbar-thumb { background: var(--orange); border-radius: 2px; }
 
-  body {
-    background: var(--black);
-    color: var(--white);
-    font-family: var(--font-body);
-    font-size: 16px;
-    line-height: 1.6;
-    overflow-x: hidden;
-  }
-
-  /* ── SCROLLBAR ── */
-  ::-webkit-scrollbar { width: 4px; }
-  ::-webkit-scrollbar-track { background: var(--black); }
-  ::-webkit-scrollbar-thumb { background: var(--orange); border-radius: 2px; }
-
-  /* ── NAV ── */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 18px 40px;
-    background: rgba(10,10,10,0.92);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .nav-logo {
-    font-family: var(--font-display);
-    font-size: 2rem;
-    letter-spacing: 4px;
-    color: var(--white);
-  }
+  /* NAV */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 18px 40px; background: rgba(10,10,10,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+  .nav-logo { font-family: var(--font-display); font-size: 1.3rem; letter-spacing: 2px; color: var(--white); text-decoration: none; }
   .nav-logo span { color: var(--orange); }
-
-  .nav-links { display: flex; gap: 32px; align-items: center; }
-  .nav-links a {
-    font-size: 0.78rem;
-    font-weight: 500;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--muted);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
+  .nav-links { display: flex; gap: 28px; align-items: center; }
+  .nav-links a { font-size: 0.78rem; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
   .nav-links a:hover { color: var(--white); }
-
-  .nav-cta {
-    background: var(--orange);
-    color: var(--white) !important;
-    padding: 10px 22px;
-    border-radius: 2px;
-    font-weight: 700 !important;
-    letter-spacing: 2px;
-    transition: background 0.2s !important;
-  }
+  .nav-cta { background: var(--orange) !important; color: var(--white) !important; padding: 10px 22px; border-radius: 2px; font-weight: 700 !important; }
   .nav-cta:hover { background: var(--orange-glow) !important; }
 
-  /* ── HERO ── */
-  .hero {
-    min-height: 100vh;
-    display: flex; flex-direction: column; justify-content: center;
-    padding: 140px 40px 80px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero-grid-bg {
-    position: absolute; inset: 0;
-    background-image:
-      linear-gradient(rgba(232,80,10,0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(232,80,10,0.04) 1px, transparent 1px);
-    background-size: 60px 60px;
-    animation: gridPulse 8s ease-in-out infinite;
-  }
-
-  @keyframes gridPulse {
-    0%, 100% { opacity: 0.6; }
-    50% { opacity: 1; }
-  }
-
-  .hero-glow {
-    position: absolute;
-    top: 20%; left: -10%;
-    width: 600px; height: 600px;
-    background: radial-gradient(circle, rgba(232,80,10,0.15) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .hero-tag {
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    letter-spacing: 3px;
-    color: var(--orange);
-    text-transform: uppercase;
-    margin-bottom: 24px;
-    display: flex; align-items: center; gap: 12px;
-  }
-  .hero-tag::before {
-    content: '';
-    display: block; width: 40px; height: 1px;
-    background: var(--orange);
-  }
-
-  .hero h1 {
-    font-family: var(--font-display);
-    font-size: clamp(4rem, 10vw, 9rem);
-    line-height: 0.92;
-    letter-spacing: 2px;
-    color: var(--white);
-    max-width: 900px;
-    position: relative;
-    z-index: 1;
-  }
-
-  .hero h1 em {
-    font-style: normal;
-    color: var(--orange);
-    display: block;
-  }
-
-  .hero-sub {
-    font-size: 1.1rem;
-    color: var(--muted);
-    max-width: 520px;
-    margin: 28px 0 44px;
-    font-weight: 300;
-    line-height: 1.7;
-    position: relative; z-index: 1;
-  }
-
-  .hero-actions {
-    display: flex; gap: 16px; align-items: center;
-    position: relative; z-index: 1;
-  }
-
-  .btn-primary {
-    display: inline-flex; align-items: center; gap: 10px;
-    background: var(--orange);
-    color: var(--white);
-    font-family: var(--font-body);
-    font-size: 0.85rem;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    text-decoration: none;
-    padding: 16px 32px;
-    border-radius: 2px;
-    border: none; cursor: pointer;
-    transition: all 0.2s;
-    position: relative; overflow: hidden;
-  }
-  .btn-primary::after {
-    content: '';
-    position: absolute; inset: 0;
-    background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.08) 50%, transparent 100%);
-    transform: translateX(-100%);
-    transition: transform 0.4s;
-  }
-  .btn-primary:hover::after { transform: translateX(100%); }
+  /* HERO */
+  .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 140px 40px 80px; position: relative; overflow: hidden; }
+  .hero-grid-bg { position: absolute; inset: 0; background-image: linear-gradient(rgba(232,80,10,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(232,80,10,0.04) 1px, transparent 1px); background-size: 60px 60px; animation: gridPulse 8s ease-in-out infinite; }
+  @keyframes gridPulse { 0%, 100% { opacity: 0.6; } 50% { opacity: 1; } }
+  .hero-glow { position: absolute; top: 20%; left: -10%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(232,80,10,0.15) 0%, transparent 70%); pointer-events: none; }
+  .hero-tag { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 3px; color: var(--orange); text-transform: uppercase; margin-bottom: 24px; display: flex; align-items: center; gap: 12px; }
+  .hero-tag::before { content: ''; display: block; width: 40px; height: 1px; background: var(--orange); }
+  .hero h1 { font-family: var(--font-display); font-size: clamp(4rem, 10vw, 9rem); line-height: 0.92; letter-spacing: 2px; color: var(--white); max-width: 900px; position: relative; z-index: 1; }
+  .hero h1 em { font-style: normal; color: var(--orange); display: block; }
+  .hero-sub { font-size: 1.1rem; color: var(--muted); max-width: 520px; margin: 28px 0 44px; font-weight: 300; line-height: 1.7; position: relative; z-index: 1; }
+  .hero-actions { display: flex; gap: 16px; align-items: center; position: relative; z-index: 1; }
+  .btn-primary { display: inline-flex; align-items: center; gap: 10px; background: var(--orange); color: var(--white); font-family: var(--font-body); font-size: 0.85rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; padding: 16px 32px; border-radius: 2px; border: none; cursor: pointer; transition: all 0.2s; position: relative; overflow: hidden; }
   .btn-primary:hover { background: var(--orange-glow); transform: translateY(-1px); box-shadow: 0 8px 30px rgba(232,80,10,0.35); }
-
-  .btn-ghost {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: transparent;
-    color: var(--muted);
-    font-size: 0.85rem;
-    font-weight: 500;
-    letter-spacing: 1px;
-    text-decoration: none;
-    padding: 16px 20px;
-    border: 1px solid var(--border);
-    border-radius: 2px;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
+  .btn-ghost { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: var(--muted); font-size: 0.85rem; font-weight: 500; letter-spacing: 1px; text-decoration: none; padding: 16px 20px; border: 1px solid var(--border); border-radius: 2px; cursor: pointer; transition: all 0.2s; }
   .btn-ghost:hover { color: var(--white); border-color: var(--muted); }
-
-  .hero-stats {
-    display: flex; gap: 48px;
-    margin-top: 72px;
-    padding-top: 40px;
-    border-top: 1px solid var(--border);
-    position: relative; z-index: 1;
-  }
-
-  .stat-num {
-    font-family: var(--font-display);
-    font-size: 2.6rem;
-    color: var(--white);
-    line-height: 1;
-  }
+  .hero-stats { display: flex; gap: 48px; margin-top: 72px; padding-top: 40px; border-top: 1px solid var(--border); position: relative; z-index: 1; }
+  .stat-num { font-family: var(--font-display); font-size: 2.6rem; color: var(--white); line-height: 1; }
   .stat-num span { color: var(--orange); }
-  .stat-label {
-    font-size: 0.75rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-top: 4px;
-  }
+  .stat-label { font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-top: 4px; }
 
-  /* ── PILLARS GRID ── */
-  .section {
-    padding: 100px 40px;
-    max-width: 1400px;
-    margin: 0 auto;
-  }
-
-  .section-label {
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    letter-spacing: 3px;
-    color: var(--orange);
-    text-transform: uppercase;
-    margin-bottom: 16px;
-  }
-
-  .section-title {
-    font-family: var(--font-display);
-    font-size: clamp(2.8rem, 5vw, 4.5rem);
-    line-height: 1;
-    margin-bottom: 16px;
-  }
-
-  .section-sub {
-    color: var(--muted);
-    max-width: 480px;
-    font-size: 0.95rem;
-    font-weight: 300;
-    margin-bottom: 60px;
-  }
-
-  .pillars-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2px;
-  }
-
-  .pillar {
-    background: var(--panel);
-    padding: 32px 28px;
-    border: 1px solid var(--border);
-    cursor: pointer;
-    transition: all 0.25s;
-    position: relative;
-    overflow: hidden;
-  }
-  .pillar::before {
-    content: '';
-    position: absolute; bottom: 0; left: 0; right: 0;
-    height: 2px;
-    background: var(--orange);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.3s;
-  }
+  /* PILLARS */
+  .section { padding: 100px 40px; max-width: 1400px; margin: 0 auto; }
+  .section-label { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 3px; color: var(--orange); text-transform: uppercase; margin-bottom: 16px; }
+  .section-title { font-family: var(--font-display); font-size: clamp(2.8rem, 5vw, 4.5rem); line-height: 1; margin-bottom: 16px; }
+  .section-sub { color: var(--muted); max-width: 480px; font-size: 0.95rem; font-weight: 300; margin-bottom: 60px; }
+  .pillars-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; }
+  .pillar { background: var(--panel); border: 1px solid var(--border); padding: 32px 28px; cursor: pointer; transition: all 0.25s; position: relative; overflow: hidden; text-decoration: none; display: block; }
+  .pillar::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--orange); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
   .pillar:hover::before { transform: scaleX(1); }
   .pillar:hover { background: #1a1e26; transform: translateY(-2px); }
+  .pillar-icon { font-size: 1.8rem; margin-bottom: 16px; display: block; }
+  .pillar-title { font-family: var(--font-display); font-size: 1.4rem; letter-spacing: 1px; margin-bottom: 8px; }
+  .pillar-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
+  .pillar-tag { display: inline-block; margin-top: 16px; font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 2px; color: var(--orange); text-transform: uppercase; border: 1px solid rgba(232,80,10,0.3); padding: 3px 8px; border-radius: 1px; }
+  .pillar.highlight { background: rgba(232,80,10,0.06); border-color: rgba(232,80,10,0.3); }
 
-  .pillar-icon {
-    font-size: 1.8rem;
-    margin-bottom: 16px;
-    display: block;
-  }
-
-  .pillar-title {
-    font-family: var(--font-display);
-    font-size: 1.4rem;
-    letter-spacing: 1px;
-    margin-bottom: 8px;
-  }
-
-  .pillar-desc {
-    font-size: 0.82rem;
-    color: var(--muted);
-    line-height: 1.5;
-  }
-
-  .pillar-tag {
-    display: inline-block;
-    margin-top: 16px;
-    font-family: var(--font-mono);
-    font-size: 0.65rem;
-    letter-spacing: 2px;
-    color: var(--orange);
-    text-transform: uppercase;
-    border: 1px solid rgba(232,80,10,0.3);
-    padding: 3px 8px;
-    border-radius: 1px;
-  }
-
-  /* ── DASHBOARD PREVIEW ── */
-  .dashboard-section {
-    background: var(--deep);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    padding: 100px 40px;
-  }
-
-  .dash-inner {
-    max-width: 1400px; margin: 0 auto;
-    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
-  }
-
-  .dash-ui {
-    background: var(--panel);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    overflow: hidden;
-    box-shadow: 0 40px 80px rgba(0,0,0,0.5);
-  }
-
-  .dash-bar {
-    background: #1a1e26;
-    padding: 12px 20px;
-    display: flex; align-items: center; gap: 8px;
-    border-bottom: 1px solid var(--border);
-  }
+  /* DASHBOARD SECTION */
+  .dashboard-section { background: var(--deep); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 100px 40px; }
+  .dash-inner { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .dash-ui { background: var(--panel); border: 1px solid var(--border); border-radius: 4px; overflow: hidden; box-shadow: 0 40px 80px rgba(0,0,0,0.5); }
+  .dash-bar { background: #1a1e26; padding: 12px 20px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid var(--border); }
   .dash-dot { width: 10px; height: 10px; border-radius: 50%; }
-  .dash-dot.r { background: var(--red); }
-  .dash-dot.y { background: var(--amber); }
-  .dash-dot.g { background: var(--green); }
-
-  .dash-title-bar {
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    color: var(--muted);
-    margin-left: auto;
-    letter-spacing: 1px;
-  }
-
+  .dash-dot.r { background: var(--red); } .dash-dot.y { background: var(--amber); } .dash-dot.g { background: var(--green); }
+  .dash-title-bar { font-family: var(--font-mono); font-size: 0.7rem; color: var(--muted); margin-left: auto; letter-spacing: 1px; }
   .dash-body { padding: 28px; }
-
-  .dash-welcome {
-    font-family: var(--font-display);
-    font-size: 1.6rem;
-    letter-spacing: 1px;
-    margin-bottom: 24px;
-  }
+  .dash-welcome { font-family: var(--font-display); font-size: 1.6rem; letter-spacing: 1px; margin-bottom: 24px; }
   .dash-welcome span { color: var(--orange); }
-
-  .xp-bar-wrap {
-    background: var(--border);
-    border-radius: 2px;
-    height: 8px;
-    margin-bottom: 6px;
-    overflow: hidden;
-  }
-  .xp-bar-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--orange), var(--amber));
-    width: 67%;
-    border-radius: 2px;
-    animation: xpFill 2s ease-out forwards;
-  }
+  .xp-bar-wrap { background: var(--border); border-radius: 2px; height: 8px; margin-bottom: 6px; overflow: hidden; }
+  .xp-bar-fill { height: 100%; background: linear-gradient(90deg, var(--orange), var(--amber)); width: 67%; border-radius: 2px; animation: xpFill 2s ease-out forwards; }
   @keyframes xpFill { from { width: 0; } to { width: 67%; } }
-
-  .xp-meta {
-    display: flex; justify-content: space-between;
-    font-family: var(--font-mono);
-    font-size: 0.65rem;
-    color: var(--muted);
-    margin-bottom: 28px;
-  }
-
-  .dash-cards {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
-    margin-bottom: 24px;
-  }
-
-  .dash-card {
-    background: var(--deep);
-    border: 1px solid var(--border);
-    padding: 16px;
-    border-radius: 3px;
-  }
-  .dash-card-label {
-    font-size: 0.65rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: var(--muted);
-    margin-bottom: 8px;
-  }
-  .dash-card-val {
-    font-family: var(--font-display);
-    font-size: 1.8rem;
-    color: var(--white);
-  }
-  .dash-card-val.up { color: var(--green); }
-  .dash-card-val.fire { color: var(--orange); }
-
+  .xp-meta { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.65rem; color: var(--muted); margin-bottom: 28px; }
+  .dash-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 24px; }
+  .dash-card { background: var(--deep); border: 1px solid var(--border); padding: 16px; border-radius: 3px; }
+  .dash-card-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 2px; color: var(--muted); margin-bottom: 8px; }
+  .dash-card-val { font-family: var(--font-display); font-size: 1.8rem; color: var(--white); }
+  .dash-card-val.up { color: var(--green); } .dash-card-val.fire { color: var(--orange); }
   .dash-tasks { margin-top: 4px; }
-  .task-item {
-    display: flex; align-items: center; gap: 12px;
-    padding: 10px 0;
-    border-bottom: 1px solid var(--border);
-    font-size: 0.82rem;
-    color: var(--muted);
-  }
-  .task-check {
-    width: 18px; height: 18px;
-    border: 1px solid var(--border);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 0.6rem;
-    flex-shrink: 0;
-  }
+  .task-item { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 0.82rem; color: var(--muted); }
+  .task-check { width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.6rem; flex-shrink: 0; border: 1px solid var(--border); background: var(--deep); color: var(--muted); }
   .task-check.done { background: var(--orange); border-color: var(--orange); color: var(--white); }
   .task-item.done-item { color: var(--white); text-decoration: line-through; text-decoration-color: rgba(240,237,232,0.2); }
 
-  /* ── ROADMAP ── */
-  .roadmap-section {
-    padding: 100px 40px;
-    max-width: 1400px; margin: 0 auto;
-  }
-
-  .roadmap-wrap {
-    position: relative;
-    padding-left: 60px;
-    margin-top: 60px;
-  }
-
-  .roadmap-line {
-    position: absolute;
-    left: 20px; top: 0; bottom: 0;
-    width: 2px;
-    background: linear-gradient(to bottom, var(--orange), var(--border));
-  }
-
-  .roadmap-phase {
-    position: relative;
-    margin-bottom: 48px;
-    padding: 32px;
-    background: var(--panel);
-    border: 1px solid var(--border);
-    border-left: 3px solid var(--orange);
-    border-radius: 2px;
-    transition: all 0.2s;
-  }
+  /* ROADMAP */
+  .roadmap-section { padding: 100px 40px; max-width: 1400px; margin: 0 auto; }
+  .roadmap-wrap { position: relative; padding-left: 60px; margin-top: 60px; }
+  .roadmap-line { position: absolute; left: 20px; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--orange), var(--border)); }
+  .roadmap-phase { position: relative; margin-bottom: 48px; padding: 32px; background: var(--panel); border: 1px solid var(--border); border-left: 3px solid var(--orange); border-radius: 2px; transition: all 0.2s; }
   .roadmap-phase:hover { border-color: var(--orange); background: #1a1e26; }
+  .roadmap-phase::before { content: ''; position: absolute; left: -48px; top: 32px; width: 18px; height: 18px; background: var(--orange); border-radius: 50%; box-shadow: 0 0 0 4px var(--black), 0 0 0 6px var(--orange); }
+  .phase-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+  .phase-label { font-family: var(--font-mono); font-size: 0.7rem; color: var(--orange); letter-spacing: 2px; }
+  .phase-badge { background: rgba(232,80,10,0.12); border: 1px solid rgba(232,80,10,0.3); color: var(--orange); font-size: 0.7rem; font-family: var(--font-mono); padding: 4px 10px; border-radius: 2px; }
+  .phase-title { font-family: var(--font-display); font-size: 1.6rem; margin-bottom: 10px; }
+  .phase-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+  .phase-milestones { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+  .milestone-chip { font-size: 0.72rem; padding: 5px 12px; border: 1px solid var(--border); border-radius: 20px; color: var(--muted); font-family: var(--font-mono); letter-spacing: 1px; }
 
-  .roadmap-phase::before {
-    content: '';
-    position: absolute;
-    left: -48px; top: 32px;
-    width: 18px; height: 18px;
-    background: var(--orange);
-    border-radius: 50%;
-    box-shadow: 0 0 0 4px var(--black), 0 0 0 6px var(--orange);
-  }
-
-  .phase-header {
-    display: flex; align-items: center; justify-content: space-between;
-    margin-bottom: 12px;
-  }
-
-  .phase-label {
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    color: var(--orange);
-    letter-spacing: 2px;
-  }
-
-  .phase-badge {
-    background: rgba(232,80,10,0.12);
-    border: 1px solid rgba(232,80,10,0.3);
-    color: var(--orange);
-    font-size: 0.7rem;
-    font-family: var(--font-mono);
-    padding: 4px 10px;
-    border-radius: 2px;
-  }
-
-  .phase-title {
-    font-family: var(--font-display);
-    font-size: 1.6rem;
-    margin-bottom: 10px;
-  }
-
-  .phase-desc {
-    font-size: 0.85rem;
-    color: var(--muted);
-    line-height: 1.6;
-  }
-
-  .phase-milestones {
-    display: flex; flex-wrap: wrap; gap: 8px;
-    margin-top: 16px;
-  }
-
-  .milestone-chip {
-    font-size: 0.72rem;
-    padding: 5px 12px;
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    color: var(--muted);
-    font-family: var(--font-mono);
-    letter-spacing: 1px;
-  }
-
-  /* ── PRICING ── */
-  .pricing-section {
-    background: var(--deep);
-    border-top: 1px solid var(--border);
-    padding: 100px 40px;
-  }
-
-  .pricing-inner {
-    max-width: 1200px; margin: 0 auto;
-  }
-
-  .pricing-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-    margin-top: 60px;
-  }
-
-  .price-card {
-    background: var(--panel);
-    border: 1px solid var(--border);
-    padding: 40px 32px;
-    position: relative;
-    transition: transform 0.2s;
-  }
-  .price-card:hover { transform: translateY(-4px); }
-
-  .price-card.featured {
-    border-color: var(--orange);
-    background: #161208;
-  }
-
-  .featured-tag {
-    position: absolute;
-    top: -12px; left: 50%; transform: translateX(-50%);
-    background: var(--orange);
-    color: var(--white);
-    font-size: 0.65rem;
-    font-family: var(--font-mono);
-    letter-spacing: 2px;
-    padding: 4px 14px;
-    text-transform: uppercase;
-  }
-
-  .price-tier {
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    letter-spacing: 3px;
-    color: var(--muted);
-    text-transform: uppercase;
-    margin-bottom: 20px;
-  }
-
-  .price-amount {
-    font-family: var(--font-display);
-    font-size: 3.5rem;
-    line-height: 1;
-    color: var(--white);
-    margin-bottom: 4px;
-  }
-  .price-amount sup {
-    font-size: 1.2rem;
-    vertical-align: top;
-    margin-top: 12px;
-    display: inline-block;
-  }
-
-  .price-period {
-    font-size: 0.78rem;
-    color: var(--muted);
-    margin-bottom: 32px;
-  }
-
-  .price-features {
-    list-style: none;
-    margin-bottom: 36px;
-  }
-  .price-features li {
-    display: flex; align-items: flex-start; gap: 10px;
-    font-size: 0.85rem;
-    color: var(--muted);
-    padding: 8px 0;
-    border-bottom: 1px solid var(--border);
-  }
-  .price-features li:last-child { border: none; }
-  .price-features li .check { color: var(--green); font-size: 0.8rem; flex-shrink: 0; margin-top: 2px; }
-  .price-features li .x { color: var(--border); font-size: 0.8rem; flex-shrink: 0; margin-top: 2px; }
-
-  /* ── REVENUE MODEL ── */
-  .revenue-section {
-    padding: 100px 40px;
-    max-width: 1400px; margin: 0 auto;
-  }
-
-  .revenue-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
-    margin-top: 60px;
-  }
-
-  .rev-card {
-    background: var(--panel);
-    border: 1px solid var(--border);
-    padding: 36px 28px;
-    border-top: 3px solid var(--orange);
-  }
-
-  .rev-icon { font-size: 1.6rem; margin-bottom: 16px; }
-  .rev-stream {
-    font-family: var(--font-display);
-    font-size: 1.3rem;
-    letter-spacing: 1px;
-    margin-bottom: 8px;
-  }
-  .rev-amount {
-    font-family: var(--font-mono);
-    font-size: 1.1rem;
-    color: var(--orange);
-    margin-bottom: 12px;
-  }
-  .rev-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
-
-  .revenue-total {
-    margin-top: 48px;
-    padding: 40px;
-    background: var(--panel);
-    border: 1px solid var(--orange);
-    display: flex; align-items: center; justify-content: space-between;
-  }
-
-  .total-label { font-size: 0.78rem; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); }
-  .total-amount {
-    font-family: var(--font-display);
-    font-size: 3rem;
-    color: var(--orange);
-  }
-  .total-note { font-size: 0.78rem; color: var(--muted); max-width: 300px; text-align: right; line-height: 1.5; }
-
-  /* ── TRACKER DEMO ── */
-  .tracker-section {
-    background: var(--deep);
-    border-top: 1px solid var(--border);
-    padding: 100px 40px;
-  }
-
-  .tracker-inner {
-    max-width: 1400px; margin: 0 auto;
-    display: grid; grid-template-columns: 1.2fr 1fr; gap: 80px; align-items: start;
-  }
-
-  .habit-tracker {
-    background: var(--panel);
-    border: 1px solid var(--border);
-    border-radius: 3px;
-    overflow: hidden;
-  }
-
-  .tracker-header {
-    padding: 20px 24px;
-    border-bottom: 1px solid var(--border);
-    display: flex; justify-content: space-between; align-items: center;
-  }
-  .tracker-title-sm {
-    font-family: var(--font-display);
-    font-size: 1.2rem;
-    letter-spacing: 1px;
-  }
-  .tracker-week {
-    font-family: var(--font-mono);
-    font-size: 0.65rem;
-    color: var(--muted);
-    letter-spacing: 2px;
-  }
-
-  .habit-row {
-    display: grid;
-    grid-template-columns: 1fr repeat(7, 36px);
-    gap: 6px;
-    align-items: center;
-    padding: 14px 24px;
-    border-bottom: 1px solid var(--border);
-  }
+  /* TRACKER */
+  .tracker-section { background: var(--deep); border-top: 1px solid var(--border); padding: 100px 40px; }
+  .tracker-inner { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1.2fr 1fr; gap: 80px; align-items: start; }
+  .habit-tracker { background: var(--panel); border: 1px solid var(--border); border-radius: 3px; overflow: hidden; }
+  .tracker-header { padding: 20px 24px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+  .tracker-title-sm { font-family: var(--font-display); font-size: 1.2rem; letter-spacing: 1px; }
+  .tracker-week { font-family: var(--font-mono); font-size: 0.65rem; color: var(--muted); letter-spacing: 2px; }
+  .habit-row { display: grid; grid-template-columns: 1fr repeat(7, 36px); gap: 6px; align-items: center; padding: 14px 24px; border-bottom: 1px solid var(--border); }
   .habit-row:last-child { border: none; }
-
-  .habit-name {
-    font-size: 0.82rem;
-    display: flex; align-items: center; gap: 8px;
-  }
-  .habit-name .em { font-size: 1rem; }
-
-  .habit-cell {
-    width: 36px; height: 36px;
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 0.7rem;
-    cursor: pointer;
-    transition: all 0.15s;
-    border: 1px solid var(--border);
-    background: var(--deep);
-    color: var(--muted);
-  }
+  .habit-name { font-size: 0.82rem; display: flex; align-items: center; gap: 8px; }
+  .habit-cell { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; cursor: pointer; transition: all 0.15s; border: 1px solid var(--border); background: var(--deep); color: var(--muted); }
   .habit-cell.done { background: var(--orange); border-color: var(--orange); color: var(--white); }
-  .habit-cell.skip { background: var(--deep); border-color: var(--border); opacity: 0.4; }
-  .habit-cell:hover:not(.skip) { border-color: var(--orange); }
-
-  .streak-display {
-    padding: 20px 24px;
-    background: rgba(232,80,10,0.06);
-    border-top: 1px solid var(--border);
-    display: flex; gap: 24px;
-  }
-
-  .streak-item {
-    text-align: center;
-  }
-  .streak-num {
-    font-family: var(--font-display);
-    font-size: 1.8rem;
-    color: var(--orange);
-  }
-  .streak-lbl {
-    font-size: 0.65rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
-
-  /* ── REWARDS ── */
-  .rewards-row {
-    display: flex; gap: 16px; flex-wrap: wrap; margin-top: 32px;
-  }
-
-  .badge {
-    display: flex; flex-direction: column; align-items: center;
-    gap: 6px; padding: 16px;
-    background: var(--panel);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    min-width: 80px;
-    opacity: 0.4;
-    transition: all 0.2s;
-  }
-  .badge.earned {
-    opacity: 1;
-    border-color: var(--amber);
-    background: rgba(245,166,35,0.06);
-  }
+  .habit-cell:hover:not(.done) { border-color: var(--orange); }
+  .streak-display { padding: 20px 24px; background: rgba(232,80,10,0.06); border-top: 1px solid var(--border); display: flex; gap: 24px; }
+  .streak-item { text-align: center; }
+  .streak-num { font-family: var(--font-display); font-size: 1.8rem; color: var(--orange); }
+  .streak-lbl { font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
+  .rewards-row { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 32px; }
+  .badge { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 16px; background: var(--panel); border: 1px solid var(--border); border-radius: 4px; min-width: 80px; opacity: 0.4; transition: all 0.2s; }
+  .badge.earned { opacity: 1; border-color: var(--amber); background: rgba(245,166,35,0.06); }
   .badge-icon { font-size: 1.6rem; }
   .badge-name { font-size: 0.6rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); text-align: center; }
   .badge.earned .badge-name { color: var(--amber); }
 
-  /* ── FOOTER ── */
-  footer {
-    background: var(--black);
-    border-top: 1px solid var(--border);
-    padding: 60px 40px 40px;
-  }
+  /* PRICING */
+  .pricing-section { background: var(--deep); border-top: 1px solid var(--border); padding: 100px 40px; }
+  .pricing-inner { max-width: 1200px; margin: 0 auto; }
+  .pricing-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; margin-top: 60px; max-width: 800px; }
+  .price-card { background: var(--panel); border: 1px solid var(--border); padding: 40px 32px; position: relative; transition: transform 0.2s; }
+  .price-card:hover { transform: translateY(-4px); }
+  .price-card.featured { border-color: var(--orange); background: #161208; }
+  .featured-tag { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--orange); color: var(--white); font-size: 0.65rem; font-family: var(--font-mono); letter-spacing: 2px; padding: 4px 14px; text-transform: uppercase; }
+  .price-tier { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 3px; color: var(--muted); text-transform: uppercase; margin-bottom: 20px; }
+  .price-amount { font-family: var(--font-display); font-size: 3.5rem; line-height: 1; color: var(--white); margin-bottom: 4px; }
+  .price-amount sup { font-size: 1.2rem; vertical-align: top; margin-top: 12px; display: inline-block; }
+  .price-period { font-size: 0.78rem; color: var(--muted); margin-bottom: 32px; }
+  .price-features { list-style: none; margin-bottom: 36px; }
+  .price-features li { display: flex; align-items: flex-start; gap: 10px; font-size: 0.85rem; color: var(--muted); padding: 8px 0; border-bottom: 1px solid var(--border); }
+  .price-features li:last-child { border: none; }
+  .price-features li .check { color: var(--green); font-size: 0.8rem; flex-shrink: 0; margin-top: 2px; }
+  .price-features li .x { color: var(--border); font-size: 0.8rem; flex-shrink: 0; margin-top: 2px; }
 
-  .footer-inner {
-    max-width: 1400px; margin: 0 auto;
-    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px;
-  }
+  /* CTA BAND */
+  .cta-band { background: var(--orange); padding: 80px 40px; text-align: center; }
+  .cta-band h2 { font-family: var(--font-display); font-size: clamp(3rem, 7vw, 5.5rem); color: var(--white); line-height: 1; margin-bottom: 20px; }
+  .cta-band p { color: rgba(255,255,255,0.8); max-width: 440px; margin: 0 auto 36px; font-size: 0.95rem; }
 
-  .footer-brand .nav-logo { font-size: 1.6rem; margin-bottom: 12px; display: block; }
-  .footer-tagline { font-size: 0.82rem; color: var(--muted); max-width: 240px; line-height: 1.6; }
-
-  .footer-col h4 {
-    font-family: var(--font-mono);
-    font-size: 0.65rem;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 20px;
-  }
-
+  /* FOOTER */
+  footer { background: var(--black); border-top: 1px solid var(--border); padding: 60px 40px 40px; }
+  .footer-inner { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; }
+  .footer-tagline { font-size: 0.82rem; color: var(--muted); max-width: 240px; line-height: 1.6; margin-top: 12px; }
+  .footer-col h4 { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; }
   .footer-col ul { list-style: none; }
   .footer-col ul li { margin-bottom: 10px; }
-  .footer-col ul li a {
-    font-size: 0.85rem;
-    color: var(--muted);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
+  .footer-col ul li a { font-size: 0.85rem; color: var(--muted); text-decoration: none; transition: color 0.2s; }
   .footer-col ul li a:hover { color: var(--white); }
+  .footer-bottom { max-width: 1400px; margin: 0 auto; padding-top: 40px; margin-top: 40px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+  .footer-copy { font-size: 0.75rem; color: var(--muted); font-family: var(--font-mono); }
 
-  .footer-bottom {
-    max-width: 1400px; margin: 0 auto;
-    padding-top: 40px;
-    margin-top: 40px;
-    border-top: 1px solid var(--border);
-    display: flex; justify-content: space-between; align-items: center;
-  }
-
-  .footer-copy {
-    font-size: 0.75rem;
-    color: var(--muted);
-    font-family: var(--font-mono);
-  }
-
-  /* ── ANIMATIONS ── */
-  .fade-up {
-    opacity: 0;
-    transform: translateY(30px);
-    animation: fadeUp 0.7s ease forwards;
-  }
-
-  @keyframes fadeUp {
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .delay-1 { animation-delay: 0.1s; }
-  .delay-2 { animation-delay: 0.2s; }
-  .delay-3 { animation-delay: 0.3s; }
-  .delay-4 { animation-delay: 0.4s; }
-  .delay-5 { animation-delay: 0.6s; }
-
-  /* ── MODAL/SIGNUP ── */
-  .modal-overlay {
-    display: none;
-    position: fixed; inset: 0; z-index: 200;
-    background: rgba(10,10,10,0.95);
-    align-items: center; justify-content: center;
-  }
+  /* MODAL */
+  .modal-overlay { display: none; position: fixed; inset: 0; z-index: 200; background: rgba(10,10,10,0.95); align-items: center; justify-content: center; }
   .modal-overlay.open { display: flex; }
-
-  .modal {
-    background: var(--panel);
-    border: 1px solid var(--border);
-    padding: 52px;
-    max-width: 480px; width: 90%;
-    position: relative;
-  }
-
-  .modal-close {
-    position: absolute; top: 20px; right: 24px;
-    background: none; border: none;
-    color: var(--muted); font-size: 1.4rem; cursor: pointer;
-    transition: color 0.2s;
-  }
+  .modal { background: var(--panel); border: 1px solid var(--border); padding: 52px; max-width: 480px; width: 90%; position: relative; }
+  .modal-close { position: absolute; top: 20px; right: 24px; background: none; border: none; color: var(--muted); font-size: 1.4rem; cursor: pointer; transition: color 0.2s; }
   .modal-close:hover { color: var(--white); }
-
-  .modal h2 {
-    font-family: var(--font-display);
-    font-size: 2.2rem;
-    margin-bottom: 8px;
-  }
+  .modal h2 { font-family: var(--font-display); font-size: 2.2rem; margin-bottom: 8px; }
   .modal p { font-size: 0.85rem; color: var(--muted); margin-bottom: 32px; }
-
   .form-group { margin-bottom: 18px; }
-  .form-group label {
-    display: block;
-    font-size: 0.72rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 8px;
-    font-family: var(--font-mono);
-  }
-  .form-group input, .form-group select {
-    width: 100%;
-    background: var(--deep);
-    border: 1px solid var(--border);
-    color: var(--white);
-    padding: 12px 16px;
-    font-size: 0.9rem;
-    font-family: var(--font-body);
-    border-radius: 2px;
-    outline: none;
-    transition: border-color 0.2s;
-  }
+  .form-group label { display: block; font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; font-family: var(--font-mono); }
+  .form-group input, .form-group select { width: 100%; background: var(--deep); border: 1px solid var(--border); color: var(--white); padding: 12px 16px; font-size: 0.9rem; font-family: var(--font-body); border-radius: 2px; outline: none; transition: border-color 0.2s; }
   .form-group input:focus, .form-group select:focus { border-color: var(--orange); }
   .form-group select option { background: var(--panel); }
-
-  .form-submit {
-    width: 100%;
-    background: var(--orange);
-    color: var(--white);
-    border: none;
-    padding: 16px;
-    font-size: 0.85rem;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    cursor: pointer;
-    font-family: var(--font-body);
-    transition: background 0.2s;
-    border-radius: 2px;
-    margin-top: 8px;
-  }
+  .form-submit { width: 100%; background: var(--orange); color: var(--white); border: none; padding: 16px; font-size: 0.85rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; font-family: var(--font-body); transition: background 0.2s; border-radius: 2px; margin-top: 8px; }
   .form-submit:hover { background: var(--orange-glow); }
 
-  /* ── RESPONSIVE ── */
+  /* ANIMATIONS */
+  .fade-up { opacity: 0; transform: translateY(30px); animation: fadeUp 0.7s ease forwards; }
+  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+  .delay-1 { animation-delay: 0.1s; } .delay-2 { animation-delay: 0.2s; } .delay-3 { animation-delay: 0.3s; } .delay-4 { animation-delay: 0.4s; }
+
   @media (max-width: 900px) {
-    nav { padding: 16px 20px; }
-    .nav-links { display: none; }
-    .hero { padding: 120px 20px 60px; }
-    .hero-stats { gap: 24px; flex-wrap: wrap; }
-    .section { padding: 60px 20px; }
-    .pillars-grid { grid-template-columns: repeat(2, 1fr); }
-    .dash-inner { grid-template-columns: 1fr; gap: 40px; }
-    .tracker-inner { grid-template-columns: 1fr; gap: 40px; }
+    nav { padding: 16px 20px; } .nav-links { display: none; }
+    .hero { padding: 120px 20px 60px; } .hero-stats { gap: 24px; flex-wrap: wrap; }
+    .section { padding: 60px 20px; } .pillars-grid { grid-template-columns: repeat(2, 1fr); }
+    .dash-inner, .tracker-inner { grid-template-columns: 1fr; gap: 40px; }
     .pricing-grid { grid-template-columns: 1fr; }
-    .revenue-grid { grid-template-columns: 1fr; }
     .footer-inner { grid-template-columns: 1fr 1fr; gap: 40px; }
-    .revenue-total { flex-direction: column; gap: 12px; }
-    .total-note { text-align: left; }
   }
 </style>
 </head>
@@ -938,59 +209,51 @@
 
 <!-- NAV -->
 <nav>
-  <span class="nav-logo" style="font-size: 1.3rem; letter-spacing: 2px;">THE YOUNG MAN <span>BLUEPRINT</span></span>
+  <a href="index.html" class="nav-logo">THE YOUNG MAN <span>BLUEPRINT</span></a>
   <div class="nav-links">
     <a href="#pillars">Pillars</a>
+    <a href="#roadmap">Roadmap</a>
     <a href="blog.html">Blog</a>
-    <a href="community.html">Community</a>
     <a href="faq.html">FAQ</a>
-    <a href="resources.html">Resources</a>
-    <a href="login.html">Log In</a>
-    <a href="create-account.html" class="nav-cta">Start Free</a>
+    <a href="community.html">Community</a>
+    <a id="nav-auth-link" href="login.html">Log In</a>
+    <a id="nav-cta-link" href="create-account.html" class="nav-cta">Start Free</a>
   </div>
 </nav>
+<script>
+(function(){
+  try {
+    var u = localStorage.getItem('tmb_user');
+    if(u && u !== 'null' && u !== 'undefined') {
+      var el = document.getElementById('nav-auth-link');
+      var cta = document.getElementById('nav-cta-link');
+      if(el){ el.textContent = 'Dashboard'; el.href = 'dashboard.html'; }
+      if(cta){ cta.textContent = 'My Dashboard →'; cta.href = 'dashboard.html'; }
+    }
+  } catch(e){}
+})();
+</script>
 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-grid-bg"></div>
   <div class="hero-glow"></div>
-
   <div class="hero-tag fade-up">You already know something has to change</div>
-
   <h1 class="fade-up delay-1">
     TAKE
     <em>ACTIONABLE</em>
     CONTROL TODAY.
   </h1>
-
-  <p class="hero-sub fade-up delay-2">
-    The complete operating system for young men. Health, career, finances, relationships, mental strength — every pillar, one platform, built to last.
-  </p>
-
+  <p class="hero-sub fade-up delay-2">Health, finances, career, relationships, discipline — every area of your life, so you can move <strong style="color:var(--white);">up in life</strong>. One structured platform. Built for young men who are ready to change.</p>
   <div class="hero-actions fade-up delay-3">
-    <a href="#" class="btn-primary" onclick="openModal()">
-      ⚡ Begin Your Journey — Free
-    </a>
+    <a href="create-account.html" class="btn-primary">⚡ Begin Your Journey — Free</a>
     <a href="#pillars" class="btn-ghost">See What's Inside →</a>
   </div>
-
   <div class="hero-stats fade-up delay-4">
-    <div class="stat">
-      <div class="stat-num">11<span>+</span></div>
-      <div class="stat-label">Life Pillars Covered</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">4</div>
-      <div class="stat-label">Structured Phases</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">30<span>+</span></div>
-      <div class="stat-label">Guides & Tools</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">$0</div>
-      <div class="stat-label">To Start</div>
-    </div>
+    <div class="stat"><div class="stat-num">11<span>+</span></div><div class="stat-label">Life Pillars Covered</div></div>
+    <div class="stat"><div class="stat-num">10</div><div class="stat-label">Structured Steps</div></div>
+    <div class="stat"><div class="stat-num">30<span>+</span></div><div class="stat-label">Guides & Tools</div></div>
+    <div class="stat"><div class="stat-num">$0</div><div class="stat-label">To Start</div></div>
   </div>
 </section>
 
@@ -998,82 +261,21 @@
 <section id="pillars" style="background: var(--deep); border-top: 1px solid var(--border);">
   <div class="section">
     <div class="section-label">The System</div>
-    <h2 class="section-title">EVERY PILLAR.<br>ONE PLATFORM.</h2>
+    <h2 class="section-title">EVERY PILLAR. ONE PLATFORM.</h2>
     <p class="section-sub">You weren't given a roadmap. Nobody sat you down and taught you this stuff. That's what The Blueprint is for.</p>
-
     <div class="pillars-grid">
-      <div class="pillar" onclick="window.location.href='health.html'" style="cursor:pointer;">
-        <span class="pillar-icon">💪</span>
-        <div class="pillar-title">PHYSICAL HEALTH</div>
-        <p class="pillar-desc">Training splits, nutrition targets, sleep tracking, body composition goals. Build the body that commands respect.</p>
-        <span class="pillar-tag">Guides + Trackers →</span>
-      </div>
-      <div class="pillar" onclick="window.location.href='mental-health.html'" style="cursor:pointer;">
-        <span class="pillar-icon">🧠</span>
-        <div class="pillar-title">MENTAL HEALTH</div>
-        <p class="pillar-desc">Understand anxiety, depression, and stress. Practical tools without the stigma. You're not weak for working on your mind.</p>
-        <span class="pillar-tag">Resources + Exercises →</span>
-      </div>
-      <div class="pillar" onclick="window.location.href='finances.html'" style="cursor:pointer;">
-        <span class="pillar-icon">💰</span>
-        <div class="pillar-title">FINANCES</div>
-        <p class="pillar-desc">Budgeting frameworks, debt payoff strategies, emergency fund targets, and credit score building — the boring stuff that matters.</p>
-        <span class="pillar-tag">Interactive Charts →</span>
-      </div>
-      <div class="pillar" onclick="window.location.href='investing.html'" style="cursor:pointer;">
-        <span class="pillar-icon">📈</span>
-        <div class="pillar-title">INVESTING</div>
-        <p class="pillar-desc">Index funds, compound growth calculators, portfolio basics. Start with $50. Learn what Wall Street doesn't want you to know.</p>
-        <span class="pillar-tag">Calculators + Guides →</span>
-      </div>
-      <div class="pillar" onclick="window.location.href='career.html'" style="cursor:pointer;">
-        <span class="pillar-icon">🎯</span>
-        <div class="pillar-title">CAREER</div>
-        <p class="pillar-desc">Resume builders, salary negotiation scripts, skill roadmaps for tech, trades, business. Figure out what you're building toward.</p>
-        <span class="pillar-tag">Roadmaps + Templates →</span>
-      </div>
-      <div class="pillar" onclick="window.location.href='relationships.html'" style="cursor:pointer;">
-        <span class="pillar-icon">🤝</span>
-        <div class="pillar-title">RELATIONSHIPS</div>
-        <p class="pillar-desc">Friendship, dating with integrity, communication frameworks. Build connections that actually mean something.</p>
-        <span class="pillar-tag">Frameworks + Exercises →</span>
-      </div>
-      <div class="pillar" onclick="window.location.href='discipline.html'" style="cursor:pointer;">
-        <span class="pillar-icon">🔥</span>
-        <div class="pillar-title">DISCIPLINE</div>
-        <p class="pillar-desc">Daily habit systems, accountability protocols, temptation management. Discipline isn't punishment.</p>
-        <span class="pillar-tag">Habit Trackers →</span>
-      </div>
-      <div class="pillar" onclick="window.location.href='motivation.html'" style="cursor:pointer;">
-        <span class="pillar-icon">⚡</span>
-        <div class="pillar-title">MOTIVATION</div>
-        <p class="pillar-desc">Beyond hype. Identity-based drive, purpose finding, dealing with burnout and the dark nights.</p>
-        <span class="pillar-tag">Journaling + Reflection →</span>
-      </div>
-      <div class="pillar" onclick="window.location.href='appearance.html'" style="cursor:pointer;">
-        <span class="pillar-icon">🪞</span>
-        <div class="pillar-title">APPEARANCE</div>
-        <p class="pillar-desc">Style by budget, grooming basics, posture, presence. How you show up on the outside signals how you feel on the inside.</p>
-        <span class="pillar-tag">Style Guides →</span>
-      </div>
-      <div class="pillar" onclick="window.location.href='addiction.html'" style="cursor:pointer;">
-        <span class="pillar-icon">🚫</span>
-        <div class="pillar-title">ADDICTION</div>
-        <p class="pillar-desc">Pornography, alcohol, weed, phones. Non-judgmental breakdowns of how habits form and how to actually break them.</p>
-        <span class="pillar-tag">Recovery Protocols →</span>
-      </div>
-      <div class="pillar" onclick="window.location.href='resources.html'" style="cursor:pointer;">
-        <span class="pillar-icon">📚</span>
-        <div class="pillar-title">RESOURCES</div>
-        <p class="pillar-desc">Curated books, podcasts, free courses, crisis helplines, therapist directories, vetted communities.</p>
-        <span class="pillar-tag">Curated Library →</span>
-      </div>
-      <div class="pillar" onclick="openModal()" style="cursor:pointer; background: rgba(232,80,10,0.06); border-color: rgba(232,80,10,0.3);">
-        <span class="pillar-icon">🗺️</span>
-        <div class="pillar-title">YOUR ROADMAP</div>
-        <p class="pillar-desc">A personalized path through all 11 pillars. Earn XP, unlock badges, hit milestones. Your progress, made visible.</p>
-        <span class="pillar-tag" style="background: var(--orange); color: var(--white); border-color: var(--orange);">Core Feature →</span>
-      </div>
+      <a href="health.html" class="pillar"><span class="pillar-icon">💪</span><div class="pillar-title">PHYSICAL HEALTH</div><p class="pillar-desc">Training, nutrition, sleep. Build the body that commands respect.</p><span class="pillar-tag">Guides + Trackers →</span></a>
+      <a href="mental-health.html" class="pillar"><span class="pillar-icon">🧠</span><div class="pillar-title">MENTAL HEALTH</div><p class="pillar-desc">Anxiety, depression, clarity. Tools without the stigma.</p><span class="pillar-tag">Resources + Exercises →</span></a>
+      <a href="finances.html" class="pillar"><span class="pillar-icon">💰</span><div class="pillar-title">FINANCES</div><p class="pillar-desc">Budget, debt, savings. The boring stuff that matters.</p><span class="pillar-tag">Interactive Charts →</span></a>
+      <a href="investing.html" class="pillar"><span class="pillar-icon">📈</span><div class="pillar-title">INVESTING</div><p class="pillar-desc">Index funds, compound growth. Start with $50.</p><span class="pillar-tag">Calculators + Guides →</span></a>
+      <a href="career.html" class="pillar"><span class="pillar-icon">🎯</span><div class="pillar-title">CAREER</div><p class="pillar-desc">Resume, skills, salary negotiation. Build toward something real.</p><span class="pillar-tag">Roadmaps + Templates →</span></a>
+      <a href="relationships.html" class="pillar"><span class="pillar-icon">🤝</span><div class="pillar-title">RELATIONSHIPS</div><p class="pillar-desc">Friendship, dating, communication. Connections that last.</p><span class="pillar-tag">Frameworks + Exercises →</span></a>
+      <a href="discipline.html" class="pillar"><span class="pillar-icon">🔥</span><div class="pillar-title">DISCIPLINE</div><p class="pillar-desc">Habit systems, accountability protocols. Consistency over intensity.</p><span class="pillar-tag">Habit Trackers →</span></a>
+      <a href="motivation.html" class="pillar"><span class="pillar-icon">⚡</span><div class="pillar-title">MOTIVATION</div><p class="pillar-desc">Identity-based drive, purpose finding, handling burnout.</p><span class="pillar-tag">Journaling + Reflection →</span></a>
+      <a href="appearance.html" class="pillar"><span class="pillar-icon">🪞</span><div class="pillar-title">APPEARANCE</div><p class="pillar-desc">Style, grooming, posture. How you show up matters.</p><span class="pillar-tag">Style Guides →</span></a>
+      <a href="addiction.html" class="pillar"><span class="pillar-icon">🚫</span><div class="pillar-title">ADDICTION</div><p class="pillar-desc">Non-judgmental frameworks for breaking bad habit loops.</p><span class="pillar-tag">Recovery Protocols →</span></a>
+      <a href="resources.html" class="pillar"><span class="pillar-icon">📚</span><div class="pillar-title">RESOURCES</div><p class="pillar-desc">Books, podcasts, tools, crisis helplines. Curated for quality.</p><span class="pillar-tag">Curated Library →</span></a>
+      <a href="create-account.html" class="pillar highlight"><span class="pillar-icon">🗺️</span><div class="pillar-title">YOUR ROADMAP</div><p class="pillar-desc">A personalized path through all 11 pillars. XP, badges, milestones.</p><span class="pillar-tag" style="background:var(--orange);color:var(--white);border-color:var(--orange);">Core Feature →</span></a>
     </div>
   </div>
 </section>
@@ -1084,94 +286,32 @@
     <div>
       <div class="section-label">Your Command Center</div>
       <h2 class="section-title">THE DASHBOARD EVERY MAN DESERVES</h2>
-      <p class="section-sub">Track every pillar, earn XP for completed actions, hit milestones, and see your life transform in real time.</p>
-
-      <div style="margin-top: 32px; display: flex; flex-direction: column; gap: 16px;">
-        <div style="display: flex; gap: 16px; align-items: flex-start;">
-          <div style="color: var(--orange); font-size: 1.1rem; margin-top: 2px;">→</div>
-          <div>
-            <div style="font-weight: 500; margin-bottom: 2px;">XP & Level System</div>
-            <div style="font-size: 0.82rem; color: var(--muted);">Complete challenges across all pillars to level up your Blueprint rank.</div>
-          </div>
-        </div>
-        <div style="display: flex; gap: 16px; align-items: flex-start;">
-          <div style="color: var(--orange); font-size: 1.1rem; margin-top: 2px;">→</div>
-          <div>
-            <div style="font-weight: 500; margin-bottom: 2px;">Daily Mission Stack</div>
-            <div style="font-size: 0.82rem; color: var(--muted);">5 targeted daily tasks across your weakest pillars to force real progress.</div>
-          </div>
-        </div>
-        <div style="display: flex; gap: 16px; align-items: flex-start;">
-          <div style="color: var(--orange); font-size: 1.1rem; margin-top: 2px;">→</div>
-          <div>
-            <div style="font-weight: 500; margin-bottom: 2px;">Weekly Reports</div>
-            <div style="font-size: 0.82rem; color: var(--muted);">Auto-generated summaries showing where you improved and where to focus.</div>
-          </div>
-        </div>
+      <p class="section-sub" style="margin-bottom:32px;">Track every pillar, earn XP for completed actions, hit milestones, and see your life transform in real time.</p>
+      <div style="display:flex;flex-direction:column;gap:16px;">
+        <div style="display:flex;gap:16px;align-items:flex-start;"><div style="color:var(--orange);font-size:1.1rem;margin-top:2px;">→</div><div><div style="font-weight:500;margin-bottom:2px;">XP & Level System</div><div style="font-size:0.82rem;color:var(--muted);">Complete challenges across all pillars to level up your Blueprint rank.</div></div></div>
+        <div style="display:flex;gap:16px;align-items:flex-start;"><div style="color:var(--orange);font-size:1.1rem;margin-top:2px;">→</div><div><div style="font-weight:500;margin-bottom:2px;">Daily Mission Stack</div><div style="font-size:0.82rem;color:var(--muted);">5 targeted daily tasks across your weakest pillars to force real progress.</div></div></div>
+        <div style="display:flex;gap:16px;align-items:flex-start;"><div style="color:var(--orange);font-size:1.1rem;margin-top:2px;">→</div><div><div style="font-weight:500;margin-bottom:2px;">Weekly Reports</div><div style="font-size:0.82rem;color:var(--muted);">Auto-generated summaries showing where you improved and where to focus.</div></div></div>
       </div>
     </div>
-
-    <!-- Fake Dashboard UI -->
     <div class="dash-ui">
-      <div class="dash-bar">
-        <div class="dash-dot r"></div>
-        <div class="dash-dot y"></div>
-        <div class="dash-dot g"></div>
-        <div class="dash-title-bar">BLUEPRINT / dashboard</div>
-      </div>
+      <div class="dash-bar"><div class="dash-dot r"></div><div class="dash-dot y"></div><div class="dash-dot g"></div><div class="dash-title-bar">BLUEPRINT / dashboard</div></div>
       <div class="dash-body">
         <div class="dash-welcome">WELCOME BACK, <span>MARCUS</span></div>
-
-        <div style="font-family: var(--font-mono); font-size: 0.65rem; color: var(--muted); margin-bottom: 6px;">LEVEL 7 → LEVEL 8 PROGRESS</div>
-        <div class="xp-bar-wrap">
-          <div class="xp-bar-fill"></div>
-        </div>
-        <div class="xp-meta">
-          <span>2,340 XP earned</span>
-          <span>3,500 XP to unlock</span>
-        </div>
-
+        <div style="font-family:var(--font-mono);font-size:0.65rem;color:var(--muted);margin-bottom:6px;">LEVEL 7 → LEVEL 8 PROGRESS</div>
+        <div class="xp-bar-wrap"><div class="xp-bar-fill"></div></div>
+        <div class="xp-meta"><span>2,340 XP earned</span><span>3,500 XP to unlock</span></div>
         <div class="dash-cards">
-          <div class="dash-card">
-            <div class="dash-card-label">Current Streak</div>
-            <div class="dash-card-val fire">🔥 14</div>
-          </div>
-          <div class="dash-card">
-            <div class="dash-card-label">Net Worth ↑</div>
-            <div class="dash-card-val up">+$840</div>
-          </div>
-          <div class="dash-card">
-            <div class="dash-card-label">Workouts This Week</div>
-            <div class="dash-card-val">4/5</div>
-          </div>
-          <div class="dash-card">
-            <div class="dash-card-label">Sleep Avg</div>
-            <div class="dash-card-val">7.2h</div>
-          </div>
+          <div class="dash-card"><div class="dash-card-label">Current Streak</div><div class="dash-card-val fire">🔥 14</div></div>
+          <div class="dash-card"><div class="dash-card-label">Net Worth ↑</div><div class="dash-card-val up">+$840</div></div>
+          <div class="dash-card"><div class="dash-card-label">Workouts This Week</div><div class="dash-card-val">4/5</div></div>
+          <div class="dash-card"><div class="dash-card-label">Sleep Avg</div><div class="dash-card-val">7.2h</div></div>
         </div>
-
-        <div style="font-family: var(--font-mono); font-size: 0.65rem; color: var(--muted); margin-bottom: 4px;">TODAY'S MISSIONS</div>
+        <div style="font-family:var(--font-mono);font-size:0.65rem;color:var(--muted);margin-bottom:4px;">TODAY'S MISSIONS</div>
         <div class="dash-tasks">
-          <div class="task-item done-item">
-            <div class="task-check done">✓</div>
-            Morning cold exposure (2 min)
-          </div>
-          <div class="task-item done-item">
-            <div class="task-check done">✓</div>
-            Log daily spending
-          </div>
-          <div class="task-item">
-            <div class="task-check"></div>
-            Read 20 pages (Atomic Habits)
-          </div>
-          <div class="task-item">
-            <div class="task-check"></div>
-            Evening reflection journal
-          </div>
-          <div class="task-item">
-            <div class="task-check"></div>
-            Reach out to one person you've neglected
-          </div>
+          <div class="task-item done-item"><div class="task-check done">✓</div> Morning cold exposure (2 min)</div>
+          <div class="task-item done-item"><div class="task-check done">✓</div> Log daily spending</div>
+          <div class="task-item"><div class="task-check"></div> Read 20 pages</div>
+          <div class="task-item"><div class="task-check"></div> Evening reflection journal</div>
         </div>
       </div>
     </div>
@@ -1179,403 +319,241 @@
 </div>
 
 <!-- ROADMAP -->
-<section id="roadmap" style="border-top: 1px solid var(--border);">
+<section id="roadmap" style="border-top:1px solid var(--border);">
   <div class="roadmap-section">
     <div class="section-label">The Path</div>
-    <h2 class="section-title">YOUR BLUEPRINT ROADMAP</h2>
-    <p class="section-sub">Structured phases move you from rock bottom to solid ground to peak performance. You always know exactly where you are and what's next.</p>
-
+    <h2 class="section-title">YOUR 10-LEVEL BLUEPRINT</h2>
+    <p class="section-sub">Ten levels that move you from where you are now to where you need to be. Each level unlocks as you earn XP through real daily action — no shortcuts.</p>
     <div class="roadmap-wrap">
       <div class="roadmap-line"></div>
-
-      <div class="roadmap-phase">
-        <div class="phase-header">
-          <span class="phase-label">Phase 01</span>
-          <span class="phase-badge">WEEK 1–4</span>
-        </div>
-        <div class="phase-title">THE FOUNDATION</div>
-        <p class="phase-desc">Before you build anything you have to stabilize. Sleep, baseline nutrition, stopping the bleeding in finances, and understanding your current mental state.</p>
-        <div class="phase-milestones">
-          <span class="milestone-chip">🛌 Sleep baseline</span>
-          <span class="milestone-chip">💧 Hydration habit</span>
-          <span class="milestone-chip">💵 Budget draft</span>
-          <span class="milestone-chip">📊 Net worth snapshot</span>
-          <span class="milestone-chip">🧠 Mental audit</span>
-        </div>
-      </div>
-
-      <div class="roadmap-phase">
-        <div class="phase-header">
-          <span class="phase-label">Phase 02</span>
-          <span class="phase-badge">MONTH 2–3</span>
-        </div>
-        <div class="phase-title">THE REBUILD</div>
-        <p class="phase-desc">Now you build systems. Training programs, savings targets, career skill roadmap, break the first bad habit, and start showing up differently in relationships. Consistency beats intensity here.</p>
-        <div class="phase-milestones">
-          <span class="milestone-chip">💪 Training plan live</span>
-          <span class="milestone-chip">💰 $1K emergency fund</span>
-          <span class="milestone-chip">🎯 Career skill chosen</span>
-          <span class="milestone-chip">🚫 First habit broken</span>
-          <span class="milestone-chip">⚡ 30-day streak</span>
-        </div>
-      </div>
-
-      <div class="roadmap-phase">
-        <div class="phase-header">
-          <span class="phase-label">Phase 03</span>
-          <span class="phase-badge">MONTH 4–6</span>
-        </div>
-        <div class="phase-title">THE MOMENTUM</div>
-        <p class="phase-desc">You feel different. Your body has changed, your bank account is moving, your confidence is up. Now you stack pillars. Invest your first dollar. Upgrade your appearance. Lead in relationships.</p>
-        <div class="phase-milestones">
-          <span class="milestone-chip">📈 First investment</span>
-          <span class="milestone-chip">🪞 Style overhaul</span>
-          <span class="milestone-chip">🤝 Social expansion</span>
-          <span class="milestone-chip">🎯 Career move made</span>
-          <span class="milestone-chip">🔥 90-day streak</span>
-        </div>
-      </div>
-
-      <div class="roadmap-phase">
-        <div class="phase-header">
-          <span class="phase-label">Phase 04</span>
-          <span class="phase-badge">MONTH 7–12</span>
-        </div>
-        <div class="phase-title">THE BLUEPRINT COMPLETE</div>
-        <p class="phase-desc">You're not the same man. You mentor others, optimize your 11 pillars, and set targets most people think are impossible. This is what it means to follow the Blueprint.</p>
-        <div class="phase-milestones">
-          <span class="milestone-chip">🏆 All pillars active</span>
-          <span class="milestone-chip">📚 Mentor another man</span>
-          <span class="milestone-chip">💰 6-month runway saved</span>
-          <span class="milestone-chip">🧠 Therapist or coach</span>
-          <span class="milestone-chip">⭐ Blueprint Elite rank</span>
-        </div>
-      </div>
+      <div class="roadmap-phase"><div class="phase-header"><span class="phase-label">Level 01</span><span class="phase-badge">0 XP</span></div><p class="phase-desc">You've started. Build your first habits and complete your daily missions. Every action earns XP and moves you forward.</p><div class="phase-milestones"><span class="milestone-chip">⚡ First mission done</span><span class="milestone-chip">🔥 First habit streak</span><span class="milestone-chip">📋 Pillar activated</span></div></div>
+      <div class="roadmap-phase"><div class="phase-header"><span class="phase-label">Level 02</span><span class="phase-badge">500 XP</span></div><p class="phase-desc">Consistency is taking hold. Your daily habits are becoming a pattern. Keep your streak alive and add more pillars to your dashboard.</p><div class="phase-milestones"><span class="milestone-chip">🔄 7-day streak</span><span class="milestone-chip">💪 2 pillars active</span><span class="milestone-chip">✅ 10 missions done</span></div></div>
+      <div class="roadmap-phase"><div class="phase-header"><span class="phase-label">Level 03</span><span class="phase-badge">1,500 XP</span></div><p class="phase-desc">You're building real momentum. The habits that felt forced are starting to feel normal. Most men quit before they get here.</p><div class="phase-milestones"><span class="milestone-chip">🔥 14-day streak</span><span class="milestone-chip">🏗️ 4 pillars active</span><span class="milestone-chip">📈 25 missions done</span></div></div>
+      <div class="roadmap-phase"><div class="phase-header"><span class="phase-label">Level 04</span><span class="phase-badge">3,000 XP</span></div><p class="phase-desc">Solid foundation in place. You think differently than when you started. Time to go deeper on your weakest areas.</p><div class="phase-milestones"><span class="milestone-chip">🔥 30-day streak</span><span class="milestone-chip">💰 Emergency fund started</span><span class="milestone-chip">🎯 Career direction chosen</span></div></div>
+      <div class="roadmap-phase"><div class="phase-header"><span class="phase-label">Level 05</span><span class="phase-badge">5,000 XP</span></div><p class="phase-desc">You're operating differently. The gap between you and where you started is visible. Most men never reach this level.</p><div class="phase-milestones"><span class="milestone-chip">💪 6 pillars active</span><span class="milestone-chip">📈 First investment made</span><span class="milestone-chip">🧠 Mental health addressed</span></div></div>
+      <div class="roadmap-phase"><div class="phase-header"><span class="phase-label">Level 06</span><span class="phase-badge">8,000 XP</span></div><p class="phase-desc">Your systems are working without you forcing them. Discipline has become identity. Keep stacking wins.</p><div class="phase-milestones"><span class="milestone-chip">🔥 60-day streak</span><span class="milestone-chip">💰 $1K+ saved</span><span class="milestone-chip">🤝 Relationships invested in</span></div></div>
+      <div class="roadmap-phase"><div class="phase-header"><span class="phase-label">Level 07</span><span class="phase-badge">12,000 XP</span></div><p class="phase-desc">You've built what most men only talk about. Your habits, finances, and mindset are aligned. Now optimise every area.</p><div class="phase-milestones"><span class="milestone-chip">💪 8 pillars active</span><span class="milestone-chip">🎯 Career move made</span><span class="milestone-chip">⭐ Blueprint Achiever rank</span></div></div>
+      <div class="roadmap-phase"><div class="phase-header"><span class="phase-label">Level 08</span><span class="phase-badge">17,000 XP</span></div><p class="phase-desc">Elite consistency. You show up every day regardless of how you feel. Your discipline is your identity now.</p><div class="phase-milestones"><span class="milestone-chip">🔥 90-day streak</span><span class="milestone-chip">📈 Portfolio growing</span><span class="milestone-chip">💪 All habits automatic</span></div></div>
+      <div class="roadmap-phase"><div class="phase-header"><span class="phase-label">Level 09</span><span class="phase-badge">23,000 XP</span></div><p class="phase-desc">Near the top. All pillars active. You lead by example without having to say a word about it.</p><div class="phase-milestones"><span class="milestone-chip">🏗️ All 11 pillars active</span><span class="milestone-chip">💰 6-month runway saved</span><span class="milestone-chip">🤝 Mentoring others</span></div></div>
+      <div class="roadmap-phase"><div class="phase-header"><span class="phase-label">Level 10</span><span class="phase-badge">30,000 XP</span></div><p class="phase-desc">Blueprint Complete. You've built the life. The work never ends — it just changes. Now help the next man do the same.</p><div class="phase-milestones"><span class="milestone-chip">🏆 Blueprint Elite rank</span><span class="milestone-chip">⭐ All badges earned</span><span class="milestone-chip">📚 Mentoring another man</span></div></div>
     </div>
   </div>
 </section>
 
-<!-- HABIT TRACKER DEMO -->
+<!-- HABIT TRACKER -->
 <div class="tracker-section" id="tracker">
   <div class="tracker-inner">
-    <div>
-      <div class="section-label">Interactive Tracker</div>
-      <h2 class="section-title">HABITS TRACKED.<br>PROGRESS REAL.</h2>
-      <p class="section-sub">Your weekly habit tracker lives in your dashboard — fillable, color-coded, streak-tracking. Click the days below to try it.</p>
-
-      <div style="margin-top: 32px;">
-        <div style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--muted); letter-spacing: 2px; margin-bottom: 16px;">EARNED BADGES</div>
-        <div class="rewards-row">
-          <div class="badge earned">
-            <div class="badge-icon">🔥</div>
-            <div class="badge-name">14-Day Streak</div>
-          </div>
-          <div class="badge earned">
-            <div class="badge-icon">💰</div>
-            <div class="badge-name">Saver</div>
-          </div>
-          <div class="badge earned">
-            <div class="badge-icon">💪</div>
-            <div class="badge-name">Iron Week</div>
-          </div>
-          <div class="badge">
-            <div class="badge-icon">🧠</div>
-            <div class="badge-name">Mind Forge</div>
-          </div>
-          <div class="badge">
-            <div class="badge-icon">⭐</div>
-            <div class="badge-name">Elite</div>
-          </div>
-        </div>
+    <div class="habit-tracker">
+      <div class="tracker-header"><div class="tracker-title-sm">WEEKLY HABITS</div><div class="tracker-week">WEEK OF MAR 17</div></div>
+      <div style="display:grid;grid-template-columns:1fr repeat(7,36px);gap:6px;padding:10px 24px;border-bottom:1px solid var(--border);">
+        <div></div>
+        <div style="font-size:0.6rem;text-align:center;color:var(--muted);font-family:var(--font-mono);">M</div><div style="font-size:0.6rem;text-align:center;color:var(--muted);font-family:var(--font-mono);">T</div><div style="font-size:0.6rem;text-align:center;color:var(--muted);font-family:var(--font-mono);">W</div><div style="font-size:0.6rem;text-align:center;color:var(--muted);font-family:var(--font-mono);">T</div><div style="font-size:0.6rem;text-align:center;color:var(--muted);font-family:var(--font-mono);">F</div><div style="font-size:0.6rem;text-align:center;color:var(--muted);font-family:var(--font-mono);">S</div><div style="font-size:0.6rem;text-align:center;color:var(--muted);font-family:var(--font-mono);">S</div>
+      </div>
+      <div class="habit-row"><div class="habit-name"><span>💪</span> Workout</div><div class="habit-cell done" onclick="toggleCell(this)">✓</div><div class="habit-cell done" onclick="toggleCell(this)">✓</div><div class="habit-cell" onclick="toggleCell(this)"></div><div class="habit-cell done" onclick="toggleCell(this)">✓</div><div class="habit-cell done" onclick="toggleCell(this)">✓</div><div class="habit-cell" onclick="toggleCell(this)"></div><div class="habit-cell" onclick="toggleCell(this)"></div></div>
+      <div class="habit-row"><div class="habit-name"><span>💧</span> Hydration</div><div class="habit-cell done" onclick="toggleCell(this)">✓</div><div class="habit-cell done" onclick="toggleCell(this)">✓</div><div class="habit-cell done" onclick="toggleCell(this)">✓</div><div class="habit-cell done" onclick="toggleCell(this)">✓</div><div class="habit-cell done" onclick="toggleCell(this)">✓</div><div class="habit-cell" onclick="toggleCell(this)"></div><div class="habit-cell" onclick="toggleCell(this)"></div></div>
+      <div class="habit-row"><div class="habit-name"><span>📚</span> Reading</div><div class="habit-cell done" onclick="toggleCell(this)">✓</div><div class="habit-cell" onclick="toggleCell(this)"></div><div class="habit-cell done" onclick="toggleCell(this)">✓</div><div class="habit-cell done" onclick="toggleCell(this)">✓</div><div class="habit-cell" onclick="toggleCell(this)"></div><div class="habit-cell" onclick="toggleCell(this)"></div><div class="habit-cell" onclick="toggleCell(this)"></div></div>
+      <div class="habit-row"><div class="habit-name"><span>💰</span> Log Spend</div><div class="habit-cell done" onclick="toggleCell(this)">✓</div><div class="habit-cell done" onclick="toggleCell(this)">✓</div><div class="habit-cell done" onclick="toggleCell(this)">✓</div><div class="habit-cell done" onclick="toggleCell(this)">✓</div><div class="habit-cell done" onclick="toggleCell(this)">✓</div><div class="habit-cell" onclick="toggleCell(this)"></div><div class="habit-cell" onclick="toggleCell(this)"></div></div>
+      <div class="habit-row"><div class="habit-name"><span>🧠</span> Journal</div><div class="habit-cell" onclick="toggleCell(this)"></div><div class="habit-cell done" onclick="toggleCell(this)">✓</div><div class="habit-cell" onclick="toggleCell(this)"></div><div class="habit-cell done" onclick="toggleCell(this)">✓</div><div class="habit-cell" onclick="toggleCell(this)"></div><div class="habit-cell" onclick="toggleCell(this)"></div><div class="habit-cell" onclick="toggleCell(this)"></div></div>
+      <div class="streak-display">
+        <div class="streak-item"><div class="streak-num">14</div><div class="streak-lbl">Day Streak</div></div>
+        <div class="streak-item"><div class="streak-num">78%</div><div class="streak-lbl">Completion</div></div>
+        <div class="streak-item"><div class="streak-num">+340</div><div class="streak-lbl">XP This Week</div></div>
       </div>
     </div>
-
-    <div class="habit-tracker">
-      <div class="tracker-header">
-        <div class="tracker-title-sm">WEEKLY HABITS</div>
-        <div class="tracker-week">WEEK OF MAR 17</div>
-      </div>
-
-      <!-- Day headers -->
-      <div style="display: grid; grid-template-columns: 1fr repeat(7, 36px); gap: 6px; padding: 10px 24px; border-bottom: 1px solid var(--border);">
-        <div></div>
-        <div style="font-size: 0.6rem; text-align: center; color: var(--muted); font-family: var(--font-mono);">M</div>
-        <div style="font-size: 0.6rem; text-align: center; color: var(--muted); font-family: var(--font-mono);">T</div>
-        <div style="font-size: 0.6rem; text-align: center; color: var(--muted); font-family: var(--font-mono);">W</div>
-        <div style="font-size: 0.6rem; text-align: center; color: var(--muted); font-family: var(--font-mono);">T</div>
-        <div style="font-size: 0.6rem; text-align: center; color: var(--muted); font-family: var(--font-mono);">F</div>
-        <div style="font-size: 0.6rem; text-align: center; color: var(--muted); font-family: var(--font-mono);">S</div>
-        <div style="font-size: 0.6rem; text-align: center; color: var(--muted); font-family: var(--font-mono);">S</div>
-      </div>
-
-      <div class="habit-row">
-        <div class="habit-name"><span class="em">💪</span> Workout</div>
-        <div class="habit-cell done" onclick="toggleCell(this)">✓</div>
-        <div class="habit-cell done" onclick="toggleCell(this)">✓</div>
-        <div class="habit-cell" onclick="toggleCell(this)"></div>
-        <div class="habit-cell done" onclick="toggleCell(this)">✓</div>
-        <div class="habit-cell done" onclick="toggleCell(this)">✓</div>
-        <div class="habit-cell" onclick="toggleCell(this)"></div>
-        <div class="habit-cell skip">—</div>
-      </div>
-      <div class="habit-row">
-        <div class="habit-name"><span class="em">💧</span> Hydration</div>
-        <div class="habit-cell done" onclick="toggleCell(this)">✓</div>
-        <div class="habit-cell done" onclick="toggleCell(this)">✓</div>
-        <div class="habit-cell done" onclick="toggleCell(this)">✓</div>
-        <div class="habit-cell done" onclick="toggleCell(this)">✓</div>
-        <div class="habit-cell done" onclick="toggleCell(this)">✓</div>
-        <div class="habit-cell" onclick="toggleCell(this)"></div>
-        <div class="habit-cell" onclick="toggleCell(this)"></div>
-      </div>
-      <div class="habit-row">
-        <div class="habit-name"><span class="em">📚</span> Reading</div>
-        <div class="habit-cell done" onclick="toggleCell(this)">✓</div>
-        <div class="habit-cell" onclick="toggleCell(this)"></div>
-        <div class="habit-cell done" onclick="toggleCell(this)">✓</div>
-        <div class="habit-cell done" onclick="toggleCell(this)">✓</div>
-        <div class="habit-cell" onclick="toggleCell(this)"></div>
-        <div class="habit-cell" onclick="toggleCell(this)"></div>
-        <div class="habit-cell" onclick="toggleCell(this)"></div>
-      </div>
-      <div class="habit-row">
-        <div class="habit-name"><span class="em">💰</span> Log Spend</div>
-        <div class="habit-cell done" onclick="toggleCell(this)">✓</div>
-        <div class="habit-cell done" onclick="toggleCell(this)">✓</div>
-        <div class="habit-cell done" onclick="toggleCell(this)">✓</div>
-        <div class="habit-cell done" onclick="toggleCell(this)">✓</div>
-        <div class="habit-cell done" onclick="toggleCell(this)">✓</div>
-        <div class="habit-cell" onclick="toggleCell(this)"></div>
-        <div class="habit-cell" onclick="toggleCell(this)"></div>
-      </div>
-      <div class="habit-row">
-        <div class="habit-name"><span class="em">🧠</span> Journal</div>
-        <div class="habit-cell" onclick="toggleCell(this)"></div>
-        <div class="habit-cell done" onclick="toggleCell(this)">✓</div>
-        <div class="habit-cell" onclick="toggleCell(this)"></div>
-        <div class="habit-cell done" onclick="toggleCell(this)">✓</div>
-        <div class="habit-cell" onclick="toggleCell(this)"></div>
-        <div class="habit-cell" onclick="toggleCell(this)"></div>
-        <div class="habit-cell" onclick="toggleCell(this)"></div>
-      </div>
-
-      <div class="streak-display">
-        <div class="streak-item">
-          <div class="streak-num">14</div>
-          <div class="streak-lbl">Day Streak</div>
-        </div>
-        <div class="streak-item">
-          <div class="streak-num">78%</div>
-          <div class="streak-lbl">Completion</div>
-        </div>
-        <div class="streak-item">
-          <div class="streak-num">+340</div>
-          <div class="streak-lbl">XP This Week</div>
-        </div>
+    <div>
+      <div class="section-label">Interactive Tracker</div>
+      <h2 class="section-title">HABITS TRACKED. PROGRESS REAL.</h2>
+      <p class="section-sub">Your weekly habit tracker lives in your dashboard — fillable, color-coded, streak-tracking. Navigate back through previous weeks to see your history.</p>
+      <div class="rewards-row">
+        <div class="badge earned"><div class="badge-icon">🔥</div><div class="badge-name">14-Day Streak</div></div>
+        <div class="badge earned"><div class="badge-icon">💰</div><div class="badge-name">First Saver</div></div>
+        <div class="badge earned"><div class="badge-icon">💪</div><div class="badge-name">Iron Week</div></div>
+        <div class="badge"><div class="badge-icon">🧠</div><div class="badge-name">Mind Forge</div></div>
+        <div class="badge"><div class="badge-icon">⭐</div><div class="badge-name">Elite</div></div>
       </div>
     </div>
   </div>
 </div>
 
 <!-- PRICING -->
-<section id="pricing" style="border-top: 1px solid var(--border);">
+<section id="pricing" style="border-top:1px solid var(--border);">
   <div class="pricing-section">
     <div class="pricing-inner">
       <div class="section-label">Simple Pricing</div>
       <h2 class="section-title">INVEST IN YOURSELF</h2>
       <p class="section-sub">One cup of coffee a week. That's what it costs to have a complete system working for you 24/7.</p>
-
-      <div class="pricing-grid" style="grid-template-columns: repeat(2, 1fr); max-width: 800px;">
-        <div class="price-card">
-          <div class="price-tier">Starter</div>
+      <div class="pricing-grid">
+        <div class="price-card" style="max-width:440px;margin:0 auto;">
+          <div class="price-tier" style="color:var(--orange);">FREE ACCESS</div>
           <div class="price-amount"><sup>$</sup>0</div>
-          <div class="price-period">Free forever</div>
+          <div class="price-period">Sign up free — no credit card</div>
           <ul class="price-features">
-            <li><span class="check">✓</span> Access 3 pillars</li>
-            <li><span class="check">✓</span> Basic habit tracker</li>
-            <li><span class="check">✓</span> Phase 1 roadmap</li>
-            <li><span class="check">✓</span> 10 guides</li>
-            <li><span class="x">✗</span> AI check-ins</li>
-            <li><span class="x">✗</span> Full roadmap</li>
-            <li><span class="x">✗</span> Community access</li>
-            <li><span class="x">✗</span> Finance tools</li>
+            <li><span class="check">✓</span> All 11 pillar guides & resources</li>
+            <li><span class="check">✓</span> Interactive tests & assessments</li>
+            <li><span class="check">✓</span> Community access</li>
+            <li><span class="check">✓</span> Blog & articles</li>
+            <li><span class="x">✗</span> Blueprint 10-step roadmap</li>
+            <li><span class="x">✗</span> XP system & level tracking</li>
+            <li><span class="x">✗</span> Habit tracker & streaks</li>
+            <li><span class="x">✗</span> Daily missions & badges</li>
           </ul>
-          <a href="#" class="btn-ghost" href="create-account.html" style="display: block; text-align: center; width: 100%;">Start Free</a>
+          <a href="create-account.html" class="btn-ghost" style="display:block;text-align:center;">Sign Up Free</a>
         </div>
-
-        <div class="price-card featured">
-          <div class="featured-tag">MOST POPULAR</div>
+        <div class="price-card featured" style="max-width:440px;margin:0 auto;">
+          <div class="featured-tag">FULL ACCESS</div>
           <div class="price-tier">The Blueprint</div>
-          <div class="price-amount"><sup>$</sup>19</div>
+          <div class="price-amount"><sup>$</sup>9</div>
           <div class="price-period">per month · cancel anytime</div>
           <ul class="price-features">
-            <li><span class="check">✓</span> All 11 pillars unlocked</li>
-            <li><span class="check">✓</span> Full habit tracker + streaks</li>
-            <li><span class="check">✓</span> Complete 4-phase roadmap</li>
-            <li><span class="check">✓</span> 30+ guides + templates</li>
-            <li><span class="check">✓</span> AI daily check-ins</li>
-            <li><span class="check">✓</span> Finance + invest tools</li>
-            <li><span class="check">✓</span> Badge + rewards system</li>
-            <li><span class="check">✓</span> Private community</li>
+            <li><span class="check">✓</span> Everything in free, plus:</li>
+            <li><span class="check">✓</span> Full 10-step Blueprint roadmap</li>
+            <li><span class="check">✓</span> XP system — level up through 6 ranks</li>
+            <li><span class="check">✓</span> Habit tracker + week history</li>
+            <li><span class="check">✓</span> Daily missions & badge rewards</li>
+            <li><span class="check">✓</span> Weekly progress reports</li>
+            <li><span class="check">✓</span> Finance + investing tools</li>
           </ul>
-          <a href="#" class="btn-primary" href="create-account.html" style="display: block; text-align: center; width: 100%;">Start Your Blueprint</a>
+          <button onclick="showWaitlist()" class="btn-primary" style="display:block;text-align:center;width:100%;cursor:pointer;border:none;">Get Started — $9/month →</button>
+
         </div>
       </div>
     </div>
   </div>
 </section>
 
-
-
 <!-- CTA BAND -->
-<section style="background: var(--orange); padding: 80px 40px; text-align: center;">
-  <div style="max-width: 700px; margin: 0 auto;">
-    <div style="font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 3px; color: rgba(255,255,255,0.7); margin-bottom: 16px;">THE TIME IS NOW</div>
-    <h2 style="font-family: var(--font-display); font-size: clamp(3rem, 7vw, 5.5rem); color: var(--white); line-height: 1; margin-bottom: 20px;">STOP WAITING.<br>START YOUR BLUEPRINT.</h2>
-    <p style="color: rgba(255,255,255,0.8); max-width: 440px; margin: 0 auto 36px; font-size: 0.95rem;">Every day you wait is a day someone else is building the life you want. Begin free. No credit card. No excuses.</p>
-    <a href="#" class="btn-primary" href="create-account.html" style="background: var(--black); font-size: 0.9rem; display:inline-flex; align-items:center; text-decoration:none; padding:16px 32px; font-family:var(--font-body); font-weight:700; letter-spacing:2px; text-transform:uppercase; border-radius:2px;">Begin Your Journey — It's Free →</a>
-  </div>
-</section>
+<div class="cta-band">
+  <h2>STOP WAITING. START YOUR BLUEPRINT.</h2>
+  <p>Free to start. No credit card. Every day you wait is a day someone else is building the life you want.</p>
+  <a href="create-account.html" class="btn-primary" style="background:var(--black);">Begin Your Journey — It's Free →</a>
+</div>
 
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
-    <div class="footer-brand">
-      <span class="nav-logo" style="font-size: 1.1rem; letter-spacing: 2px;">THE YOUNG MAN <span style="color: var(--orange);">BLUEPRINT</span></span>
+    <div>
+      <a href="index.html" class="nav-logo" style="display:block;margin-bottom:12px;">THE YOUNG MAN <span style="color:var(--orange);">BLUEPRINT</span></a>
       <p class="footer-tagline">The complete operating system for young men ready to build something real.</p>
     </div>
-
-    <div class="footer-col">
-      <h4>Platform</h4>
-      <ul>
-        <li><a href="#pillars">The 11 Pillars</a></li>
-        <li><a href="dashboard.html">Dashboard</a></li>
-        <li><a href="#roadmap">Roadmap</a></li>
-        <li><a href="#tracker">Habit Tracker</a></li>
-        <li><a href="finances.html">Finance Tools</a></li>
-        <li><a href="dashboard.html">Rewards</a></li>
-      </ul>
-    </div>
-
-    <div class="footer-col">
-      <h4>Resources</h4>
-      <ul>
-        <li><a href="resources.html">Free Guides</a></li>
-        <li><a href="resources.html">Book List</a></li>
-        <li><a href="resources.html">Crisis Helplines</a></li>
-        <li><a href="community.html">Community</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="resources.html">YouTube</a></li>
-      </ul>
-    </div>
-
-    <div class="footer-col">
-      <h4>Company</h4>
-      <ul>
-        <li><a href="#">About</a></li>
-        <li><a href="#pricing">Pricing</a></li>
-        <li><a href="#">Careers</a></li>
-        <li><a href="#">Privacy Policy</a></li>
-        <li><a href="#">Terms</a></li>
-        <li><a href="faq.html">Contact</a></li>
-      </ul>
-    </div>
+    <div class="footer-col"><h4>Platform</h4><ul><li><a href="#pillars">The 11 Pillars</a></li><li><a href="dashboard.html">Dashboard</a></li><li><a href="#roadmap">Roadmap</a></li><li><a href="#tracker">Habit Tracker</a></li><li><a href="finances.html">Finance Tools</a></li></ul></div>
+    <div class="footer-col"><h4>Resources</h4><ul><li><a href="resources.html">Free Guides</a></li><li><a href="resources.html">Book List</a></li><li><a href="resources.html">Crisis Helplines</a></li><li><a href="community.html">Community</a></li><li><a href="blog.html">Blog</a></li></ul></div>
+    <div class="footer-col"><h4>Company</h4><ul><li><a href="#pricing">Pricing</a></li><li><a href="faq.html">FAQ</a></li><li><a href="faq.html">Contact</a></li><li><a href="login.html">Log In</a></li><li><a href="create-account.html">Sign Up</a></li></ul></div>
   </div>
-
   <div class="footer-bottom">
-    <div class="footer-copy">© 2025 THE YOUNG MAN BLUEPRINT. ALL RIGHTS RESERVED.</div>
-    <div class="footer-copy" style="color: var(--orange);">BUILT FOR MEN WHO REFUSE TO SETTLE.</div>
+    <div class="footer-copy">© 2026 THE YOUNG MAN BLUEPRINT. ALL RIGHTS RESERVED.</div>
+    <div class="footer-copy" style="color:var(--orange);">BUILT FOR MEN WHO REFUSE TO SETTLE.</div>
   </div>
 </footer>
 
-<!-- SIGNUP MODAL -->
+<!-- WAITLIST MODAL -->
+<div id="waitlist-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:500;align-items:center;justify-content:center;">
+  <div style="background:var(--panel);border:1px solid var(--border);padding:40px;max-width:480px;width:90%;position:relative;border-top:3px solid var(--orange);">
+    <button onclick="closeWaitlist()" style="position:absolute;top:14px;right:18px;background:none;border:none;color:var(--muted);font-size:1.3rem;cursor:pointer;">✕</button>
+    <div style="font-family:var(--font-mono);font-size:0.65rem;letter-spacing:3px;color:var(--orange);text-transform:uppercase;margin-bottom:10px;">Coming Soon</div>
+    <div style="font-family:var(--font-display);font-size:2rem;letter-spacing:1px;margin-bottom:8px;">JOIN THE WAITLIST</div>
+    <p style="color:var(--muted);font-size:0.86rem;line-height:1.6;margin-bottom:24px;">The $9/month Blueprint plan is launching soon. Drop your email and you'll be first to know — and first to get access.</p>
+    <div id="waitlist-success" style="display:none;background:rgba(45,186,110,0.1);border:1px solid var(--green);color:var(--green);padding:14px;border-radius:2px;font-size:0.82rem;font-family:var(--font-mono);letter-spacing:1px;margin-bottom:16px;">✓ YOU'RE ON THE LIST — WE'LL BE IN TOUCH.</div>
+    <input type="email" id="waitlist-email" placeholder="your@email.com" style="width:100%;background:var(--deep);border:1px solid var(--border);color:var(--white);padding:13px 16px;font-size:0.9rem;font-family:var(--font-body);border-radius:2px;outline:none;margin-bottom:12px;" onfocus="this.style.borderColor='var(--orange)'" onblur="this.style.borderColor='var(--border)'" onkeydown="if(event.key==='Enter')submitWaitlist()">
+    <button onclick="submitWaitlist()" id="waitlist-btn" style="width:100%;background:var(--orange);color:var(--white);border:none;padding:14px;font-size:0.82rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;font-family:var(--font-body);border-radius:2px;">Notify Me When It Launches →</button>
+  </div>
+</div>
+
+<script>
+function showWaitlist(){document.getElementById('waitlist-overlay').style.display='flex';}
+function closeWaitlist(){document.getElementById('waitlist-overlay').style.display='none';}
+async function submitWaitlist(){
+  const email=document.getElementById('waitlist-email').value.trim();
+  const btn=document.getElementById('waitlist-btn');
+  if(!email||!email.includes('@')){
+    document.getElementById('waitlist-email').style.borderColor='var(--red)';
+    setTimeout(()=>document.getElementById('waitlist-email').style.borderColor='var(--border)',1500);
+    return;
+  }
+  btn.textContent='Adding you...';btn.disabled=true;
+  try{
+    await fetch('https://api.web3forms.com/submit',{
+      method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({access_key:'c52038bd-53c9-42d0-ac49-a4185c9a3296',subject:'New Waitlist Signup — Blueprint $9/month',from_name:'Blueprint Waitlist',email:email,message:'New waitlist signup: '+email})
+    });
+  }catch(e){}
+  btn.textContent='Notify Me When It Launches →';btn.disabled=false;
+  document.getElementById('waitlist-success').style.display='block';
+  document.getElementById('waitlist-email').value='';
+}
+document.getElementById('waitlist-overlay').addEventListener('click',function(e){if(e.target===this)closeWaitlist();});
+</script>
 <div class="modal-overlay" id="modal">
   <div class="modal">
     <button class="modal-close" onclick="closeModal()">✕</button>
     <h2>START YOUR JOURNEY</h2>
     <p>Free account. No credit card. Full access to Phase 1. Start building today.</p>
-
-    <div class="form-group">
-      <label>First Name</label>
-      <input type="text" placeholder="Marcus">
-    </div>
-    <div class="form-group">
-      <label>Email Address</label>
-      <input type="email" placeholder="marcus@email.com">
-    </div>
+    <div class="form-group"><label>First Name</label><input type="text" placeholder="Marcus" id="m-name"></div>
+    <div class="form-group"><label>Email Address</label><input type="email" placeholder="marcus@email.com" id="m-email"></div>
     <div class="form-group">
       <label>Biggest Struggle Right Now</label>
-      <select>
+      <select id="m-struggle">
         <option value="">Choose your starting pillar...</option>
-        <option>Mental Health</option>
-        <option>Finances / Money</option>
-        <option>Physical Health / Fitness</option>
-        <option>Career / Direction</option>
-        <option>Relationships</option>
-        <option>Addiction / Bad Habits</option>
-        <option>Discipline / Motivation</option>
-        <option>All of the above (real one)</option>
+        <option>Mental Health</option><option>Finances / Money</option>
+        <option>Physical Health / Fitness</option><option>Career / Direction</option>
+        <option>Relationships</option><option>Addiction / Bad Habits</option>
+        <option>Discipline / Motivation</option><option>All of the above (real one)</option>
       </select>
     </div>
-
-    <button class="form-submit" onclick="handleSignup()">⚡ Create My Free Account</button>
-
-    <p style="text-align: center; font-size: 0.72rem; color: var(--muted); margin-top: 16px; margin-bottom: 0;">By signing up, you agree to our Terms. No spam, ever.</p>
+    <button class="form-submit" id="modal-submit" onclick="handleModalSignup()">⚡ Create My Free Account</button>
+    <p style="text-align:center;font-size:0.72rem;color:var(--muted);margin-top:16px;margin-bottom:0;">No spam, ever.</p>
   </div>
 </div>
 
 <script>
-  function openModal() {
-    document.getElementById('modal').classList.add('open');
-    document.body.style.overflow = 'hidden';
+function openModal(){ document.getElementById('modal').classList.add('open'); document.body.style.overflow='hidden'; }
+function closeModal(){ document.getElementById('modal').classList.remove('open'); document.body.style.overflow=''; }
+document.getElementById('modal').addEventListener('click', function(e){ if(e.target===this) closeModal(); });
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeModal(); });
+
+function toggleCell(cell){
+  if(cell.classList.contains('done')){ cell.classList.remove('done'); cell.textContent=''; }
+  else { cell.classList.add('done'); cell.textContent='✓'; }
+}
+
+async function handleModalSignup(){
+  const name = document.getElementById('m-name').value.trim();
+  const email = document.getElementById('m-email').value.trim();
+  const struggle = document.getElementById('m-struggle').value;
+  const btn = document.getElementById('modal-submit');
+  if(!name || !email.includes('@')){
+    btn.style.background='var(--red)'; btn.textContent='⚠ Please fill in name and email';
+    setTimeout(()=>{ btn.style.background=''; btn.textContent='⚡ Create My Free Account'; }, 2000);
+    return;
   }
-
-  function closeModal() {
-    document.getElementById('modal').classList.remove('open');
-    document.body.style.overflow = '';
-  }
-
-  document.getElementById('modal').addEventListener('click', function(e) {
-    if (e.target === this) closeModal();
-  });
-
-  function toggleCell(cell) {
-    if (cell.classList.contains('skip')) return;
-    if (cell.classList.contains('done')) {
-      cell.classList.remove('done');
-      cell.textContent = '';
-    } else {
-      cell.classList.add('done');
-      cell.textContent = '✓';
-    }
-  }
-
-  function handleSignup() {
-    const btn = document.querySelector('.form-submit');
-    btn.textContent = '✓ You\'re In. Welcome to The Blueprint.';
-    btn.style.background = 'var(--green)';
-    setTimeout(closeModal, 1800);
-    btn.textContent = '⚡ Create My Free Account';
-    btn.style.background = '';
-  }
-
-  // Scroll reveal
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.style.opacity = '1';
-        e.target.style.transform = 'translateY(0)';
-      }
+  const profile = { name, email, struggle, totalXP:0, streak:0, lastMissionDate:null, totalMissions:0, activePillars:[], missions:{}, habitData:{}, earnedBadges:[], createdAt: new Date().toISOString() };
+  localStorage.setItem('tmb_user', JSON.stringify(profile));
+  btn.textContent='⏳ Sending confirmation...'; btn.disabled=true;
+  try {
+    await fetch('https://api.web3forms.com/submit', {
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body: JSON.stringify({
+        access_key: 'c52038bd-53c9-42d0-ac49-a4185c9a3296',
+        subject: 'Welcome to The Young Man Blueprint',
+        from_name: 'The Young Man Blueprint',
+        name, email,
+        message: `Hi ${name},\n\nYour account has been created. Welcome to The Young Man Blueprint.\n\nYour starting pillar: ${struggle||'Not specified'}\n\nBegin Phase 1 here:\nhttps://gmamba13.github.io/the-young-man-blueprint/dashboard.html\n\n— The Young Man Blueprint`,
+        replyto: email,
+      })
     });
-  }, { threshold: 0.1 });
+  } catch(e){ console.warn('Email failed:', e); }
+  btn.textContent='✓ Account Created!'; btn.style.background='var(--green)';
+  setTimeout(()=>{ window.location.href='thankyou.html'; }, 1000);
+}
 
-  document.querySelectorAll('.pillar, .roadmap-phase, .rev-card, .price-card').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(20px)';
-    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-    observer.observe(el);
-  });
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; } });
+}, { threshold: 0.08 });
+document.querySelectorAll('.pillar, .roadmap-phase, .price-card').forEach(el => {
+  el.style.opacity='0'; el.style.transform='translateY(20px)'; el.style.transition='opacity 0.5s ease, transform 0.5s ease';
+  observer.observe(el);
+});
 </script>
-
 </body>
 </html>

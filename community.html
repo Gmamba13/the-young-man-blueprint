@@ -102,10 +102,25 @@
     <a href="index.html#pillars">Pillars</a>
     <a href="blog.html">Blog</a>
     <a href="faq.html">FAQ</a>
-    <a href="login.html">Log In</a>
-    <a href="create-account.html" class="nav-cta">Start Free</a>
+    <a id="nav-auth-link" href="login.html">Log In</a>
+    <a id="nav-cta-link" href="create-account.html" class="nav-cta">Start Free</a>
   </div>
 </nav>
+<script>
+(function(){
+  try {
+    var u = localStorage.getItem('tmb_user');
+    if(u && u !== 'null') {
+      // Mark session active
+      sessionStorage.setItem('tmb_session', '1');
+      var el = document.getElementById('nav-auth-link');
+      var cta = document.getElementById('nav-cta-link');
+      if(el){ el.textContent = 'Dashboard'; el.href = 'dashboard.html'; }
+      if(cta){ cta.textContent = 'My Dashboard →'; cta.href = 'dashboard.html'; }
+    }
+  } catch(e){}
+})();
+</script>
 
 <div class="hero">
   <div class="hero-grid"></div>
@@ -129,8 +144,7 @@
         <div class="room-name">PHYSICAL HEALTH</div>
         <p class="room-desc">Training programs, nutrition questions, sleep struggles, and body transformation check-ins.</p>
         <div class="room-meta">
-          <span class="room-members">847 members</span>
-          <span class="room-tag"><span class="active-dot"></span> 23 active</span>
+          <span class="room-members">Be one of the first to join</span>
         </div>
       </div>
       <div class="room-card" onclick="window.location.href='create-account.html'">
@@ -138,8 +152,7 @@
         <div class="room-name">MENTAL HEALTH</div>
         <p class="room-desc">A judgment-free space to talk about anxiety, depression, therapy, and what's actually going on.</p>
         <div class="room-meta">
-          <span class="room-members">1,204 members</span>
-          <span class="room-tag"><span class="active-dot"></span> 41 active</span>
+          <span class="room-members">Be one of the first to join</span>
         </div>
       </div>
       <div class="room-card" onclick="window.location.href='create-account.html'">
@@ -147,8 +160,7 @@
         <div class="room-name">FINANCES</div>
         <p class="room-desc">Budgeting, debt payoff progress, salary questions, and celebrating financial wins no matter how small.</p>
         <div class="room-meta">
-          <span class="room-members">932 members</span>
-          <span class="room-tag"><span class="active-dot"></span> 18 active</span>
+          <span class="room-members">Be one of the first to join</span>
         </div>
       </div>
       <div class="room-card" onclick="window.location.href='create-account.html'">
@@ -156,8 +168,7 @@
         <div class="room-name">INVESTING</div>
         <p class="room-desc">First investments, portfolio questions, and learning together without the noise of financial Twitter.</p>
         <div class="room-meta">
-          <span class="room-members">678 members</span>
-          <span class="room-tag"><span class="active-dot"></span> 12 active</span>
+          <span class="room-members">Be one of the first to join</span>
         </div>
       </div>
       <div class="room-card" onclick="window.location.href='create-account.html'">
@@ -165,8 +176,7 @@
         <div class="room-name">CAREER</div>
         <p class="room-desc">Resume reviews, job hunting, career pivots, salary negotiations, and skill building accountability.</p>
         <div class="room-meta">
-          <span class="room-members">756 members</span>
-          <span class="room-tag"><span class="active-dot"></span> 29 active</span>
+          <span class="room-members">Be one of the first to join</span>
         </div>
       </div>
       <div class="room-card" onclick="window.location.href='create-account.html'">
@@ -174,8 +184,7 @@
         <div class="room-name">ACCOUNTABILITY</div>
         <p class="room-desc">Daily check-ins, streak sharing, and the accountability that makes the difference between intention and action.</p>
         <div class="room-meta">
-          <span class="room-members">1,489 members</span>
-          <span class="room-tag"><span class="active-dot"></span> 67 active</span>
+          <span class="room-members">Be one of the first to join</span>
         </div>
       </div>
     </div>
@@ -184,117 +193,14 @@
   <!-- COMMUNITY FEED PREVIEW -->
   <div class="section">
     <div class="section-label">Community Feed</div>
-    <h2 class="section-title">WHAT MEN ARE BUILDING</h2>
-    <p class="section-body">A preview of the conversations happening inside. Join to participate.</p>
+    <h2 class="section-title">LAUNCHING WITH YOU.</h2>
+    <p class="section-body">This community is being built from the ground up. Sign up now and be part of it from day one.</p>
 
-    <div class="feed-wrap">
-      <div>
-        <div class="post-list">
-          <div class="post">
-            <div class="post-header">
-              <div class="post-avatar">J</div>
-              <div><div class="post-author">Jordan M.</div><div class="post-meta">Level 5 · 2 hours ago</div></div>
-              <div class="post-pillar">💰 Finance</div>
-            </div>
-            <div class="post-title">Hit my $1,000 emergency fund today. Took 3 months.</div>
-            <p class="post-preview">Started with literally $0 in savings in January. Set up the automatic transfer after reading the finances pillar and just... didn't touch it. Three months later, it's there. Small win but it feels massive.</p>
-            <div class="post-footer">
-              <span class="post-stat">❤️ 47</span>
-              <span class="post-stat">💬 12 replies</span>
-              <span class="post-stat">⚡ +30 XP</span>
-            </div>
-          </div>
-
-          <div class="post">
-            <div class="post-header">
-              <div class="post-avatar blue">R</div>
-              <div><div class="post-author">Ryan K.</div><div class="post-meta">Level 3 · 5 hours ago</div></div>
-              <div class="post-pillar">🧠 Mental Health</div>
-            </div>
-            <div class="post-title">Had my first therapy session today. Some of you told me to go. You were right.</div>
-            <p class="post-preview">Been putting it off for 2 years. Finally booked it last week after reading the mental health pillar. It was uncomfortable and also one of the best decisions I've made. For anyone on the fence — just book it.</p>
-            <div class="post-footer">
-              <span class="post-stat">❤️ 93</span>
-              <span class="post-stat">💬 28 replies</span>
-              <span class="post-stat">⚡ +50 XP</span>
-            </div>
-          </div>
-
-          <div class="post">
-            <div class="post-header">
-              <div class="post-avatar amber">D</div>
-              <div><div class="post-author">Devon S.</div><div class="post-meta">Level 7 · Yesterday</div></div>
-              <div class="post-pillar">💪 Health</div>
-            </div>
-            <div class="post-title">30-day workout streak done. Here's what actually made the difference.</div>
-            <p class="post-preview">I've started and quit gym routines probably 6 times. What made this one stick: I went at the same time every day, I only committed to 3 days a week (not 5), and I logged everything. Consistency over intensity.</p>
-            <div class="post-footer">
-              <span class="post-stat">❤️ 124</span>
-              <span class="post-stat">💬 34 replies</span>
-              <span class="post-stat">⚡ +80 XP</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="locked-overlay" style="margin-top:2px;">
-          <div class="lock-icon">🔒</div>
-          <div class="lock-title">JOIN TO PARTICIPATE</div>
-          <p class="lock-sub">Create a free account to read, reply, and post in the community. No credit card needed.</p>
-          <a href="create-account.html" class="btn-primary">⚡ Join Free</a>
-        </div>
-      </div>
-
-      <div>
-        <div class="sidebar-widget">
-          <div class="widget-header">🏆 THIS WEEK'S TOP BUILDERS</div>
-          <div class="widget-body">
-            <div class="leaderboard-item">
-              <div class="lb-rank gold">1</div>
-              <div class="lb-avatar" style="background:var(--amber);">D</div>
-              <div class="lb-name">Devon S.</div>
-              <div class="lb-xp">+840 XP</div>
-            </div>
-            <div class="leaderboard-item">
-              <div class="lb-rank">2</div>
-              <div class="lb-avatar" style="background:var(--orange);">R</div>
-              <div class="lb-name">Ryan K.</div>
-              <div class="lb-xp">+720 XP</div>
-            </div>
-            <div class="leaderboard-item">
-              <div class="lb-rank">3</div>
-              <div class="lb-avatar" style="background:var(--green);">J</div>
-              <div class="lb-name">Jordan M.</div>
-              <div class="lb-xp">+680 XP</div>
-            </div>
-            <div class="leaderboard-item">
-              <div class="lb-rank">4</div>
-              <div class="lb-avatar" style="background:#2d7bba;">M</div>
-              <div class="lb-name">Marcus T.</div>
-              <div class="lb-xp">+590 XP</div>
-            </div>
-            <div class="leaderboard-item">
-              <div class="lb-rank">5</div>
-              <div class="lb-avatar" style="background:#7a5cc0;">A</div>
-              <div class="lb-name">Alex B.</div>
-              <div class="lb-xp">+540 XP</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="sidebar-widget">
-          <div class="widget-header">📋 COMMUNITY RULES</div>
-          <div class="widget-body">
-            <ul class="rules-list">
-              <li><span>→</span> No judgment. Everyone starts somewhere.</li>
-              <li><span>→</span> Share wins AND struggles. Both matter.</li>
-              <li><span>→</span> No unsolicited advice. Ask first.</li>
-              <li><span>→</span> Real names or first names only.</li>
-              <li><span>→</span> No political arguments or culture war content.</li>
-              <li><span>→</span> Direct anyone in crisis to professional help.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
+    <div style="margin-top: 40px; background: var(--panel); border: 1px solid var(--border); padding: 60px 40px; text-align: center;">
+      <div style="font-size: 2rem; margin-bottom: 16px;">🚀</div>
+      <div style="font-family: var(--font-display); font-size: 1.8rem; letter-spacing: 1px; margin-bottom: 12px;">COMMUNITY LAUNCHING SOON</div>
+      <p style="font-size: 0.9rem; color: var(--muted); max-width: 460px; margin: 0 auto 32px; line-height: 1.7;">We're building this from the ground up. Create your account now and be part of the founding community from day one.</p>
+      <a href="create-account.html" style="display:inline-flex;align-items:center;gap:8px;background:var(--orange);color:var(--white);font-family:var(--font-body);font-size:0.85rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;text-decoration:none;padding:16px 32px;border-radius:2px;transition:all 0.2s;">⚡ Be a Founding Member</a>
     </div>
   </div>
 </div>
@@ -314,7 +220,7 @@
     <a href="community.html">Community</a>
     <a href="login.html">Log In</a>
   </div>
-  <div class="footer-copy">© 2025 THE YOUNG MAN BLUEPRINT</div>
+  <div class="footer-copy">© 2026 THE YOUNG MAN BLUEPRINT</div>
 </footer>
 </body>
 </html>

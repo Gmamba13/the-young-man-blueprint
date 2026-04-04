@@ -223,11 +223,8 @@
   .btn-login:hover::after { transform: translateX(100%); }
   .btn-login:hover { background: var(--orange-glow); box-shadow: 0 8px 30px rgba(232,80,10,0.3); }
 
-  .divider {
-    display: flex; align-items: center; gap: 12px;
-    margin: 28px 0;
-    color: var(--muted);
-    font-size: 0.72rem;
+  .divider-hidden {
+    display: none;
     font-family: var(--font-mono);
     letter-spacing: 2px;
   }
@@ -315,44 +312,41 @@
     </div>
   </div>
 
-  <div class="left-footer">© 2025 THE YOUNG MAN BLUEPRINT</div>
+  <div class="left-footer">© 2026 THE YOUNG MAN BLUEPRINT</div>
 </div>
 
 <!-- RIGHT PANEL -->
 <div class="right-panel">
-  <div class="login-box">
+  <!-- LOGIN BOX -->
+  <div class="login-box" id="login-box">
     <div class="login-title">LOG IN</div>
-    <p class="login-sub">Don't have an account? <a href="index.html#pricing">Start for free →</a></p>
-
-    <div class="error-msg" id="error-msg">⚠ Incorrect email or password. Try again.</div>
-
+    <p class="login-sub">Don't have an account? <a href="create-account.html">Start for free →</a></p>
+    <div class="error-msg" id="error-msg">⚠ Please enter your email and password.</div>
     <div class="form-group">
       <label>Email Address</label>
-      <input type="email" id="email" placeholder="your@email.com">
+      <input type="email" id="email" placeholder="your@email.com" onkeydown="if(event.key==='Enter')handleLogin()">
     </div>
-
     <div class="form-group">
       <label>Password</label>
-      <input type="password" id="password" placeholder="••••••••">
+      <input type="password" id="password" placeholder="••••••••" onkeydown="if(event.key==='Enter')handleLogin()">
     </div>
-
-    <a href="#" class="forgot">Forgot your password?</a>
-
+    <a href="#" class="forgot" onclick="showForgot(event)">Forgot your password?</a>
     <button class="btn-login" onclick="handleLogin()">Log In To My Blueprint</button>
-
-    <div class="divider">or continue with</div>
-
-    <button class="btn-google" onclick="handleLogin()">
-      <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-        <path d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908c1.702-1.567 2.684-3.874 2.684-6.615z" fill="#4285F4"/>
-        <path d="M9 18c2.43 0 4.467-.806 5.956-2.18l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 009 18z" fill="#34A853"/>
-        <path d="M3.964 10.71A5.41 5.41 0 013.682 9c0-.593.102-1.17.282-1.71V4.958H.957A8.996 8.996 0 000 9c0 1.452.348 2.827.957 4.042l3.007-2.332z" fill="#FBBC05"/>
-        <path d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 00.957 4.958L3.964 6.29C4.672 4.163 6.656 3.58 9 3.58z" fill="#EA4335"/>
-      </svg>
-      Continue with Google
-    </button>
-
     <p class="signup-prompt">New here? <a href="index.html">Learn about The Blueprint →</a></p>
+  </div>
+
+  <!-- FORGOT PASSWORD BOX -->
+  <div class="login-box" id="forgot-box" style="display:none;">
+    <div class="login-title">RESET PASSWORD</div>
+    <p class="login-sub">Enter the email you signed up with and we'll send you a reset link.</p>
+    <div class="error-msg" id="forgot-error">⚠ Please enter a valid email address.</div>
+    <div id="forgot-success" style="display:none;background:rgba(45,186,110,0.1);border:1px solid var(--green);color:var(--green);padding:14px;border-radius:2px;font-size:0.82rem;margin-bottom:16px;font-family:var(--font-mono);letter-spacing:1px;">✓ EMAIL SENT — CHECK YOUR INBOX.</div>
+    <div class="form-group">
+      <label>Email Address</label>
+      <input type="email" id="reset-email" placeholder="your@email.com" onkeydown="if(event.key==='Enter')sendReset()">
+    </div>
+    <button class="btn-login" onclick="sendReset()">Send Reset Link</button>
+    <p class="signup-prompt" style="margin-top:16px;"><a href="#" onclick="showLogin(event)">← Back to Log In</a></p>
   </div>
 </div>
 
@@ -362,24 +356,107 @@
     const password = document.getElementById('password').value.trim();
     const error = document.getElementById('error-msg');
 
-    // Demo: any filled fields go to dashboard
-    if (email && password) {
-      const btn = document.querySelector('.btn-login');
-      btn.textContent = 'Logging In...';
-      btn.style.background = 'var(--green)';
-      setTimeout(() => {
-        window.location.href = 'dashboard.html';
-      }, 900);
-    } else {
+    if (!email || !password) {
+      error.textContent = '⚠ Please enter your email and password.';
       error.classList.add('show');
       setTimeout(() => error.classList.remove('show'), 3000);
+      return;
     }
+
+    const btn = document.querySelector('.btn-login');
+    btn.textContent = 'Logging In...';
+    btn.style.background = 'var(--green)';
+
+    let existing = null;
+    try { existing = localStorage.getItem('tmb_user'); } catch(e){}
+
+    if (!existing) {
+      const name = email.split('@')[0].replace(/[^a-zA-Z]/g,' ').trim() || 'User';
+      const profile = {
+        name: name.charAt(0).toUpperCase() + name.slice(1),
+        email: email,
+        totalXP: 0,
+        streak: 0,
+        lastMissionDate: null,
+        totalMissions: 0,
+        activePillars: [],
+        missions: {},
+        habitData: {},
+        customHabits: null,
+        customMissions: null,
+        earnedBadges: [],
+        avatarColor: '#e8500a',
+        createdAt: new Date().toISOString()
+      };
+      try { 
+      localStorage.setItem('tmb_user', JSON.stringify(profile));
+      sessionStorage.setItem('tmb_session', '1');
+    } catch(e){}
+    }
+
+    // Verify save worked before redirecting
+    try {
+      var saved = localStorage.getItem('tmb_user');
+      if(!saved) {
+        // Try saving again
+        var name2 = email.split('@')[0].replace(/[^a-zA-Z]/g,' ').trim() || 'User';
+        var p2 = {name: name2.charAt(0).toUpperCase()+name2.slice(1), email: email, totalXP:0, streak:0, lastMissionDate:null, totalMissions:0, activePillars:[], missions:{}, habitData:{}, customHabits:null, customMissions:null, earnedBadges:[], avatarColor:'#e8500a', createdAt: new Date().toISOString()};
+        localStorage.setItem('tmb_user', JSON.stringify(p2));
+      }
+    } catch(e){}
+    setTimeout(() => { window.location.href = 'dashboard.html'; }, 900);
   }
 
-  // Allow Enter key
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Enter') handleLogin();
-  });
+  function showForgot(e) {
+    e.preventDefault();
+    document.getElementById('login-box').style.display = 'none';
+    document.getElementById('forgot-box').style.display = 'block';
+    document.getElementById('forgot-success').style.display = 'none';
+    document.getElementById('forgot-error').classList.remove('show');
+  }
+
+  function showLogin(e) {
+    e.preventDefault();
+    document.getElementById('forgot-box').style.display = 'none';
+    document.getElementById('login-box').style.display = 'block';
+  }
+
+  async function sendReset() {
+    const email = document.getElementById('reset-email').value.trim();
+    const error = document.getElementById('forgot-error');
+    const success = document.getElementById('forgot-success');
+    const btn = document.querySelector('#forgot-box .btn-login');
+
+    if (!email || !email.includes('@')) {
+      error.textContent = '⚠ Please enter a valid email address.';
+      error.classList.add('show');
+      setTimeout(() => error.classList.remove('show'), 3000);
+      return;
+    }
+
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+
+    try {
+      await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          access_key: 'c52038bd-53c9-42d0-ac49-a4185c9a3296',
+          subject: 'Password Reset Request — Young Man Blueprint',
+          from_name: 'Blueprint Reset',
+          email: email,
+          message: 'A password reset was requested for: ' + email + '. Please reply to this email to assist the user.',
+          replyto: email
+        })
+      });
+    } catch(e) {}
+
+    btn.textContent = 'Send Reset Link';
+    btn.disabled = false;
+    success.style.display = 'block';
+    document.getElementById('reset-email').value = '';
+  }
 </script>
 
 </body>
