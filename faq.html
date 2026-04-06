@@ -287,10 +287,17 @@ async function sendContact() {
   }
   btn.textContent='⏳ Sending...'; btn.disabled=true;
   try {
-    await fetch('https://api.web3forms.com/submit', {
-      method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'},
-      body: JSON.stringify({ access_key:'c52038bd-53c9-42d0-ac49-a4185c9a3296', subject:'New Question — Blueprint FAQ', from_name:name, name, email, message:msg, replyto:email })
-    });
+    await fetch('https://api.brevo.com/v3/smtp/email', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'api-key': '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' },
+      body: JSON.stringify({
+        sender: { name: 'The Young Man Blueprint', email: 'youngmanblueprint@outlook.com' },
+        to: [{ email: 'youngmanblueprint@outlook.com', name: 'The Young Man Blueprint' }],
+        subject: 'New FAQ Contact Message — Young Man Blueprint',
+        replyTo: { email: email, name: name },
+        htmlContent: '<div style=\"font-family:Arial,sans-serif;padding:20px;\"><h2>New Contact Message</h2><p><strong>From:</strong> ' + name + ' (' + email + ')</p><p><strong>Message:</strong></p><p>' + message + '</p></div>'
+      })
+    })
   } catch(e){}
   btn.style.background='var(--green)'; btn.textContent='✓ Sent!';
   document.getElementById('contact-success').style.display='block';

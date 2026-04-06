@@ -438,16 +438,19 @@
     btn.disabled = true;
 
     try {
-      await fetch('https://api.web3forms.com/submit', {
+      await fetch('https://api.brevo.com/v3/smtp/email', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'api-key': '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' },
         body: JSON.stringify({
-          access_key: 'c52038bd-53c9-42d0-ac49-a4185c9a3296',
-          subject: 'Password Reset Request — Young Man Blueprint',
-          from_name: 'Blueprint Reset',
-          email: email,
-          message: 'A password reset was requested for: ' + email + '. Please reply to this email to assist the user.',
-          replyto: email
+          sender: { name: 'The Young Man Blueprint', email: 'youngmanblueprint@outlook.com' },
+          to: [{ email: email, name: email }],
+          subject: 'Password Reset — The Young Man Blueprint',
+          htmlContent: '<div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;background:#0a0a0a;color:#f0ede8;padding:40px;">' +
+            '<div style="font-size:1.2rem;letter-spacing:2px;font-weight:700;margin-bottom:24px;">THE YOUNG MAN <span style="color:#e8500a;">BLUEPRINT</span></div>' +
+            '<h1 style="font-size:1.6rem;margin-bottom:16px;">PASSWORD RESET REQUEST</h1>' +
+            '<p style="color:#7a7f8a;line-height:1.7;margin-bottom:24px;">We received a password reset request for your account (' + email + '). Reply to this email and we will help you reset your password within 24 hours.</p>' +
+            '<p style="color:#7a7f8a;font-size:0.8rem;margin-top:32px;">If you did not request this, ignore this email.</p>' +
+            '</div>'
         })
       });
     } catch(e) {}

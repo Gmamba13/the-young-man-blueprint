@@ -233,15 +233,19 @@ async function subscribe() {
   }
   btn.textContent = '⏳ Adding...'; btn.disabled = true;
   try {
-    await fetch('https://api.web3forms.com/submit', {
+    await fetch('https://api.brevo.com/v3/smtp/email', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      headers: { 'Content-Type': 'application/json', 'api-key': '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' },
       body: JSON.stringify({
-        access_key: 'c52038bd-53c9-42d0-ac49-a4185c9a3296',
-        subject: 'New Blog Subscriber — Young Man Blueprint',
-        from_name: 'Blueprint Blog',
-        email: email,
-        message: 'New blog subscriber: ' + email
+        sender: { name: 'The Young Man Blueprint', email: 'youngmanblueprint@outlook.com' },
+        to: [{ email: email, name: email }],
+        subject: 'You are on the list — The Young Man Blueprint Blog',
+        htmlContent: '<div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;background:#0a0a0a;color:#f0ede8;padding:40px;">' +
+          '<div style="font-size:1.2rem;letter-spacing:2px;font-weight:700;margin-bottom:24px;">THE YOUNG MAN <span style="color:#e8500a;">BLUEPRINT</span></div>' +
+          '<h1 style="font-size:1.6rem;margin-bottom:16px;">YOU ARE ON THE LIST.</h1>' +
+          '<p style="color:#7a7f8a;line-height:1.7;margin-bottom:24px;">When the first Blueprint article drops, you will get it before anyone else. No spam. Just the article.</p>' +
+          '<p style="color:#7a7f8a;font-size:0.8rem;margin-top:32px;">The Young Man Blueprint &mdash; Built for men who refuse to settle.</p>' +
+          '</div>'
       })
     });
   } catch(e) {}
