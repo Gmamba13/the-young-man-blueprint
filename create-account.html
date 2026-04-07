@@ -713,6 +713,7 @@ function showResult() {
   var profile = {
     name: userData.name,
     email: userData.email,
+    password: userData.password,
     plan: 'free',
     age: age,
     struggle: struggle,
@@ -752,20 +753,17 @@ function showResult() {
 
   // Send welcome email
   try {
-    fetch('https://api.brevo.com/v3/smtp/email', {
+    fetch('https://api.web3forms.com/submit', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'api-key': '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' },
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify({
-        sender: { name: 'The Young Man Blueprint', email: 'youngmanblueprint@outlook.com' },
-        to: [{ email: userData.email, name: userData.name }],
-        subject: 'Welcome to The Young Man Blueprint, ' + userData.name + '.',
-        htmlContent: '<div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;background:#0a0a0a;color:#f0ede8;padding:40px;">' +
-          '<div style="font-size:1.2rem;letter-spacing:2px;font-weight:700;margin-bottom:24px;">THE YOUNG MAN <span style="color:#e8500a;">BLUEPRINT</span></div>' +
-          '<h1 style="font-size:2rem;margin-bottom:16px;">YOUR BLUEPRINT IS READY, ' + userData.name.toUpperCase() + '.</h1>' +
-          '<p style="color:#7a7f8a;line-height:1.7;margin-bottom:24px;">You have taken the first step. Your personalised roadmap is waiting on your dashboard.</p>' +
-          '<a href="https://gmamba13.github.io/the-young-man-blueprint/dashboard.html" style="display:inline-block;background:#e8500a;color:#fff;padding:14px 32px;text-decoration:none;font-weight:700;letter-spacing:2px;text-transform:uppercase;border-radius:2px;">Go To My Dashboard &rarr;</a>' +
-          '<p style="color:#7a7f8a;font-size:0.8rem;margin-top:32px;">The Young Man Blueprint &mdash; Built for men who refuse to settle.</p>' +
-          '</div>'
+        access_key: 'c52038bd-53c9-42d0-ac49-a4185c9a3296',
+        subject: 'Welcome to The Young Man Blueprint — ' + userData.name,
+        from_name: 'The Young Man Blueprint',
+        name: userData.name,
+        email: userData.email,
+        message: 'Hi ' + userData.name + ',\n\nYour Blueprint is ready.\n\nHead to your dashboard:\nhttps://gmamba13.github.io/the-young-man-blueprint/dashboard.html\n\n— The Young Man Blueprint',
+        replyto: userData.email
       })
     });
   } catch(e) {}

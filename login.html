@@ -363,46 +363,52 @@
       return;
     }
 
-    const btn = document.querySelector('.btn-login');
+    const btn = document.querySelector('#login-box .btn-login');
     btn.textContent = 'Logging In...';
-    btn.style.background = 'var(--green)';
+    btn.disabled = true;
 
-    let existing = null;
-    try { existing = localStorage.getItem('tmb_user'); } catch(e){}
-
-    if (!existing) {
-      const name = email.split('@')[0].replace(/[^a-zA-Z]/g,' ').trim() || 'User';
-      const profile = {
-        name: name.charAt(0).toUpperCase() + name.slice(1),
-        email: email,
-        totalXP: 0,
-        streak: 0,
-        lastMissionDate: null,
-        totalMissions: 0,
-        activePillars: [],
-        missions: {},
-        habitData: {},
-        customHabits: null,
-        customMissions: null,
-        earnedBadges: [],
-        avatarColor: '#e8500a',
-        createdAt: new Date().toISOString()
-      };
-      try { 
-      localStorage.setItem('tmb_user', JSON.stringify(profile));
-      sessionStorage.setItem('tmb_session', '1');
+    // Check if account exists
+    let profile = null;
+    try {
+      const stored = localStorage.getItem('tmb_user');
+      if (stored) profile = JSON.parse(stored);
     } catch(e){}
+
+    if (!profile) {
+      // No account found
+      error.textContent = '⚠ No account found with that email. Please sign up first.';
+      error.classList.add('show');
+      setTimeout(() => error.classList.remove('show'), 4000);
+      btn.textContent = 'Log In To My Blueprint';
+      btn.disabled = false;
+      return;
     }
 
-    // Verify save worked before redirecting
+    // Check email matches
+    if (profile.email && profile.email.toLowerCase() !== email.toLowerCase()) {
+      error.textContent = '⚠ Incorrect email or password.';
+      error.classList.add('show');
+      setTimeout(() => error.classList.remove('show'), 3000);
+      btn.textContent = 'Log In To My Blueprint';
+      btn.disabled = false;
+      return;
+    }
+
+    // Check password if one was saved
+    if (profile.password && profile.password !== password) {
+      error.textContent = '⚠ Incorrect password. Try again or reset your password below.';
+      error.classList.add('show');
+      setTimeout(() => error.classList.remove('show'), 4000);
+      btn.textContent = 'Log In To My Blueprint';
+      btn.disabled = false;
+      return;
+    }
+
+    // All good — log in
+    btn.style.background = 'var(--green)';
+    btn.textContent = '✓ Logging In...';
     try {
-      var saved = localStorage.getItem('tmb_user');
-      if(!saved) {
-        // Try saving again
-        var name2 = email.split('@')[0].replace(/[^a-zA-Z]/g,' ').trim() || 'User';
-        var p2 = {name: name2.charAt(0).toUpperCase()+name2.slice(1), email: email, totalXP:0, streak:0, lastMissionDate:null, totalMissions:0, activePillars:[], missions:{}, habitData:{}, customHabits:null, customMissions:null, earnedBadges:[], avatarColor:'#e8500a', createdAt: new Date().toISOString()};
-        localStorage.setItem('tmb_user', JSON.stringify(p2));
-      }
+      sessionStorage.setItem('tmb_session', '1');
     } catch(e){}
     setTimeout(() => { window.location.href = 'dashboard.html'; }, 900);
   }
@@ -438,19 +444,16 @@
     btn.disabled = true;
 
     try {
-      await fetch('https://api.brevo.com/v3/smtp/email', {
+      await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'api-key': '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' },
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify({
-          sender: { name: 'The Young Man Blueprint', email: 'youngmanblueprint@outlook.com' },
-          to: [{ email: email, name: email }],
-          subject: 'Password Reset — The Young Man Blueprint',
-          htmlContent: '<div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;background:#0a0a0a;color:#f0ede8;padding:40px;">' +
-            '<div style="font-size:1.2rem;letter-spacing:2px;font-weight:700;margin-bottom:24px;">THE YOUNG MAN <span style="color:#e8500a;">BLUEPRINT</span></div>' +
-            '<h1 style="font-size:1.6rem;margin-bottom:16px;">PASSWORD RESET REQUEST</h1>' +
-            '<p style="color:#7a7f8a;line-height:1.7;margin-bottom:24px;">We received a password reset request for your account (' + email + '). Reply to this email and we will help you reset your password within 24 hours.</p>' +
-            '<p style="color:#7a7f8a;font-size:0.8rem;margin-top:32px;">If you did not request this, ignore this email.</p>' +
-            '</div>'
+          access_key: 'c52038bd-53c9-42d0-ac49-a4185c9a3296',
+          subject: 'Password Reset Request — Young Man Blueprint',
+          from_name: 'Blueprint Reset',
+          email: email,
+          message: 'A password reset was requested for: ' + email + '. Please reply to this email to assist the user.',
+          replyto: email
         })
       });
     } catch(e) {}
