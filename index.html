@@ -296,15 +296,15 @@
     <div class="dash-ui">
       <div class="dash-bar"><div class="dash-dot r"></div><div class="dash-dot y"></div><div class="dash-dot g"></div><div class="dash-title-bar">BLUEPRINT / dashboard</div></div>
       <div class="dash-body">
-        <div class="dash-welcome">WELCOME BACK, <span>MARCUS</span></div>
-        <div style="font-family:var(--font-mono);font-size:0.65rem;color:var(--muted);margin-bottom:6px;">LEVEL 7 → LEVEL 8 PROGRESS</div>
+        <div class="dash-welcome">WELCOME BACK, <span>YOUR NAME</span></div>
+        <div style="font-family:var(--font-mono);font-size:0.65rem;color:var(--muted);margin-bottom:6px;">LEVEL 1 → LEVEL 2 PROGRESS</div>
         <div class="xp-bar-wrap"><div class="xp-bar-fill"></div></div>
-        <div class="xp-meta"><span>2,340 XP earned</span><span>3,500 XP to unlock</span></div>
+        <div class="xp-meta"><span>340 XP earned</span><span>500 XP to unlock Level 2</span></div>
         <div class="dash-cards">
-          <div class="dash-card"><div class="dash-card-label">Current Streak</div><div class="dash-card-val fire">🔥 14</div></div>
-          <div class="dash-card"><div class="dash-card-label">Net Worth ↑</div><div class="dash-card-val up">+$840</div></div>
-          <div class="dash-card"><div class="dash-card-label">Workouts This Week</div><div class="dash-card-val">4/5</div></div>
-          <div class="dash-card"><div class="dash-card-label">Sleep Avg</div><div class="dash-card-val">7.2h</div></div>
+          <div class="dash-card"><div class="dash-card-label">Current Streak</div><div class="dash-card-val fire">🔥 3</div></div>
+          <div class="dash-card"><div class="dash-card-label">Total XP</div><div class="dash-card-val up">340</div></div>
+          <div class="dash-card"><div class="dash-card-label">Missions Done</div><div class="dash-card-val">2/5</div></div>
+          <div class="dash-card"><div class="dash-card-label">Pillars Active</div><div class="dash-card-val">2/11</div></div>
         </div>
         <div style="font-family:var(--font-mono);font-size:0.65rem;color:var(--muted);margin-bottom:4px;">TODAY'S MISSIONS</div>
         <div class="dash-tasks">
@@ -451,7 +451,7 @@
     <button onclick="closeWaitlist()" style="position:absolute;top:14px;right:18px;background:none;border:none;color:var(--muted);font-size:1.3rem;cursor:pointer;">✕</button>
     <div style="font-family:var(--font-mono);font-size:0.65rem;letter-spacing:3px;color:var(--orange);text-transform:uppercase;margin-bottom:10px;">Coming Soon</div>
     <div style="font-family:var(--font-display);font-size:2rem;letter-spacing:1px;margin-bottom:8px;">JOIN THE WAITLIST</div>
-    <p style="color:var(--muted);font-size:0.86rem;line-height:1.6;margin-bottom:24px;">The $9/month Blueprint plan is launching soon. Drop your email and you'll be first to know — and first to get access.</p>
+    <p style="color:var(--muted);font-size:0.86rem;line-height:1.6;margin-bottom:24px;">The $9/month Blueprint plan is coming soon. Drop your email and you'll be the first to know when it launches.</p>
     <div id="waitlist-success" style="display:none;background:rgba(45,186,110,0.1);border:1px solid var(--green);color:var(--green);padding:14px;border-radius:2px;font-size:0.82rem;font-family:var(--font-mono);letter-spacing:1px;margin-bottom:16px;">✓ YOU'RE ON THE LIST — WE'LL BE IN TOUCH.</div>
     <input type="email" id="waitlist-email" placeholder="your@email.com" style="width:100%;background:var(--deep);border:1px solid var(--border);color:var(--white);padding:13px 16px;font-size:0.9rem;font-family:var(--font-body);border-radius:2px;outline:none;margin-bottom:12px;" onfocus="this.style.borderColor='var(--orange)'" onblur="this.style.borderColor='var(--border)'" onkeydown="if(event.key==='Enter')submitWaitlist()">
     <button onclick="submitWaitlist()" id="waitlist-btn" style="width:100%;background:var(--orange);color:var(--white);border:none;padding:14px;font-size:0.82rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;font-family:var(--font-body);border-radius:2px;">Notify Me When It Launches →</button>
@@ -471,14 +471,9 @@ async function submitWaitlist(){
   }
   btn.textContent='Adding you...';btn.disabled=true;
   try{
-    await fetch('https://api.brevo.com/v3/smtp/email',{
-      method:'POST',headers:{'Content-Type':'application/json','api-key':'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'},
-      body:JSON.stringify({
-        sender:{name:'The Young Man Blueprint',email:'youngmanblueprint@outlook.com'},
-        to:[{email:email,name:email}],
-        subject:'You are on the waitlist — The Young Man Blueprint',
-        htmlContent:'<div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;background:#0a0a0a;color:#f0ede8;padding:40px;"><div style="font-size:1.2rem;letter-spacing:2px;font-weight:700;margin-bottom:24px;">THE YOUNG MAN <span style="color:#e8500a;">BLUEPRINT</span></div><h1 style="font-size:1.6rem;margin-bottom:16px;">YOU ARE ON THE WAITLIST.</h1><p style="color:#7a7f8a;line-height:1.7;margin-bottom:24px;">When the $9/month Blueprint plan launches, you will be first to know and first to get access.</p><p style="color:#7a7f8a;font-size:0.8rem;margin-top:32px;">The Young Man Blueprint — Built for men who refuse to settle.</p></div>'
-      })
+    await fetch('https://api.web3forms.com/submit',{
+      method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({access_key:'c52038bd-53c9-42d0-ac49-a4185c9a3296',subject:'New Waitlist Signup — Blueprint $9/month',from_name:'Blueprint Waitlist',email:email,message:'New waitlist signup: '+email})
     });
   }catch(e){}
   btn.textContent='Notify Me When It Launches →';btn.disabled=false;
@@ -487,31 +482,11 @@ async function submitWaitlist(){
 }
 document.getElementById('waitlist-overlay').addEventListener('click',function(e){if(e.target===this)closeWaitlist();});
 </script>
-<div class="modal-overlay" id="modal">
-  <div class="modal">
-    <button class="modal-close" onclick="closeModal()">✕</button>
-    <h2>START YOUR JOURNEY</h2>
-    <p>Free account. No credit card. Full access to Phase 1. Start building today.</p>
-    <div class="form-group"><label>First Name</label><input type="text" placeholder="Marcus" id="m-name"></div>
-    <div class="form-group"><label>Email Address</label><input type="email" placeholder="marcus@email.com" id="m-email"></div>
-    <div class="form-group">
-      <label>Biggest Struggle Right Now</label>
-      <select id="m-struggle">
-        <option value="">Choose your starting pillar...</option>
-        <option>Mental Health</option><option>Finances / Money</option>
-        <option>Physical Health / Fitness</option><option>Career / Direction</option>
-        <option>Relationships</option><option>Addiction / Bad Habits</option>
-        <option>Discipline / Motivation</option><option>All of the above (real one)</option>
-      </select>
-    </div>
-    <button class="form-submit" id="modal-submit" onclick="handleModalSignup()">⚡ Create My Free Account</button>
-    <p style="text-align:center;font-size:0.72rem;color:var(--muted);margin-top:16px;margin-bottom:0;">No spam, ever.</p>
-  </div>
-</div>
+<!-- modal removed - signup goes to create-account.html -->
 
 <script>
-function openModal(){ document.getElementById('modal').classList.add('open'); document.body.style.overflow='hidden'; }
-function closeModal(){ document.getElementById('modal').classList.remove('open'); document.body.style.overflow=''; }
+function openModal(){ window.location.href='create-account.html'; }
+function closeModal(){}
 document.getElementById('modal').addEventListener('click', function(e){ if(e.target===this) closeModal(); });
 document.addEventListener('keydown', e => { if(e.key==='Escape') closeModal(); });
 
@@ -534,15 +509,9 @@ async function handleModalSignup(){
   localStorage.setItem('tmb_user', JSON.stringify(profile));
   btn.textContent='⏳ Sending confirmation...'; btn.disabled=true;
   try {
-    await fetch('https://api.brevo.com/v3/smtp/email', {
-      method:'POST',
-      headers:{'Content-Type':'application/json','api-key':'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'},
-      body: JSON.stringify({
-        sender:{name:'The Young Man Blueprint',email:'youngmanblueprint@outlook.com'},
-        to:[{email:email,name:name}],
-        subject:'Welcome to The Young Man Blueprint, ' + name + '.',
-        htmlContent:'<div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;background:#0a0a0a;color:#f0ede8;padding:40px;"><div style="font-size:1.2rem;letter-spacing:2px;font-weight:700;margin-bottom:24px;">THE YOUNG MAN <span style="color:#e8500a;">BLUEPRINT</span></div><h1 style="font-size:2rem;margin-bottom:16px;">YOUR BLUEPRINT IS READY, ' + name.toUpperCase() + '.</h1><p style="color:#7a7f8a;line-height:1.7;margin-bottom:24px;">Your account has been created. Head to your dashboard to begin.</p><a href="https://gmamba13.github.io/the-young-man-blueprint/dashboard.html" style="display:inline-block;background:#e8500a;color:#fff;padding:14px 32px;text-decoration:none;font-weight:700;letter-spacing:2px;text-transform:uppercase;border-radius:2px;">Go To My Dashboard &rarr;</a><p style="color:#7a7f8a;font-size:0.8rem;margin-top:32px;">The Young Man Blueprint — Built for men who refuse to settle.</p></div>'
-      })
+    await fetch('https://api.web3forms.com/submit',{
+      method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({access_key:'c52038bd-53c9-42d0-ac49-a4185c9a3296',subject:'New Waitlist Signup — Blueprint $9/month',from_name:'Blueprint Waitlist',email:email,message:'New waitlist signup: '+email})
     });
   } catch(e){ console.warn('Email failed:', e); }
   btn.textContent='✓ Account Created!'; btn.style.background='var(--green)';
