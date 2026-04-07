@@ -413,7 +413,7 @@
             <li><span class="check">✓</span> Weekly progress reports</li>
             <li><span class="check">✓</span> Finance + investing tools</li>
           </ul>
-          <button onclick="showWaitlist()" class="btn-primary" style="display:block;text-align:center;width:100%;cursor:pointer;border:none;">Get Started — $9/month →</button>
+          <a href="https://buy.stripe.com/dRm8wOcEBay28iFbyvew800" class="btn-primary" style="display:block;text-align:center;width:100%;text-decoration:none;">Get Started — $9/month →</a>
 
         </div>
       </div>
@@ -445,43 +445,7 @@
   </div>
 </footer>
 
-<!-- WAITLIST MODAL -->
-<div id="waitlist-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:500;align-items:center;justify-content:center;">
-  <div style="background:var(--panel);border:1px solid var(--border);padding:40px;max-width:480px;width:90%;position:relative;border-top:3px solid var(--orange);">
-    <button onclick="closeWaitlist()" style="position:absolute;top:14px;right:18px;background:none;border:none;color:var(--muted);font-size:1.3rem;cursor:pointer;">✕</button>
-    <div style="font-family:var(--font-mono);font-size:0.65rem;letter-spacing:3px;color:var(--orange);text-transform:uppercase;margin-bottom:10px;">Coming Soon</div>
-    <div style="font-family:var(--font-display);font-size:2rem;letter-spacing:1px;margin-bottom:8px;">JOIN THE WAITLIST</div>
-    <p style="color:var(--muted);font-size:0.86rem;line-height:1.6;margin-bottom:24px;">The $9/month Blueprint plan is coming soon. Drop your email and you'll be the first to know when it launches.</p>
-    <div id="waitlist-success" style="display:none;background:rgba(45,186,110,0.1);border:1px solid var(--green);color:var(--green);padding:14px;border-radius:2px;font-size:0.82rem;font-family:var(--font-mono);letter-spacing:1px;margin-bottom:16px;">✓ YOU'RE ON THE LIST — WE'LL BE IN TOUCH.</div>
-    <input type="email" id="waitlist-email" placeholder="your@email.com" style="width:100%;background:var(--deep);border:1px solid var(--border);color:var(--white);padding:13px 16px;font-size:0.9rem;font-family:var(--font-body);border-radius:2px;outline:none;margin-bottom:12px;" onfocus="this.style.borderColor='var(--orange)'" onblur="this.style.borderColor='var(--border)'" onkeydown="if(event.key==='Enter')submitWaitlist()">
-    <button onclick="submitWaitlist()" id="waitlist-btn" style="width:100%;background:var(--orange);color:var(--white);border:none;padding:14px;font-size:0.82rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;font-family:var(--font-body);border-radius:2px;">Notify Me When It Launches →</button>
-  </div>
-</div>
-
-<script>
-function showWaitlist(){document.getElementById('waitlist-overlay').style.display='flex';}
-function closeWaitlist(){document.getElementById('waitlist-overlay').style.display='none';}
-async function submitWaitlist(){
-  const email=document.getElementById('waitlist-email').value.trim();
-  const btn=document.getElementById('waitlist-btn');
-  if(!email||!email.includes('@')){
-    document.getElementById('waitlist-email').style.borderColor='var(--red)';
-    setTimeout(()=>document.getElementById('waitlist-email').style.borderColor='var(--border)',1500);
-    return;
-  }
-  btn.textContent='Adding you...';btn.disabled=true;
-  try{
-    await fetch('https://api.web3forms.com/submit',{
-      method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
-      body:JSON.stringify({access_key:'c52038bd-53c9-42d0-ac49-a4185c9a3296',subject:'New Waitlist Signup — Blueprint $9/month',from_name:'Blueprint Waitlist',email:email,message:'New waitlist signup: '+email})
-    });
-  }catch(e){}
-  btn.textContent='Notify Me When It Launches →';btn.disabled=false;
-  document.getElementById('waitlist-success').style.display='block';
-  document.getElementById('waitlist-email').value='';
-}
-document.getElementById('waitlist-overlay').addEventListener('click',function(e){if(e.target===this)closeWaitlist();});
-</script>
+<!-- payment handled by Stripe -->
 <!-- modal removed - signup goes to create-account.html -->
 
 <script>
