@@ -136,7 +136,7 @@
         <span class="faq-q-text">Is there a free version?</span>
         <span class="faq-icon">+</span>
       </div>
-      <div class="faq-answer"><div class="faq-answer-inner">Yes. The free plan gives you full access to all 11 pillar guides and resources, all interactive tests and assessments, the blog, and the community — no credit card required. You can use this indefinitely. The paid plan ($9/month) unlocks the Blueprint 10-step roadmap, XP system, habit tracker, daily missions, and badge rewards.</div></div>
+      <div class="faq-answer"><div class="faq-answer-inner">Yes. The free plan gives you full access to all 11 pillar guides, resources, and interactive tests — no credit card required. The $9/month plan unlocks the full Blueprint: the 10-level roadmap, XP system, habit tracker, daily missions, weekly reports, and badge rewards.</div></div>
     </div>
 
     <div class="faq-item">
@@ -172,7 +172,7 @@
         <span class="faq-q-text">How does the roadmap work?</span>
         <span class="faq-icon">+</span>
       </div>
-      <div class="faq-answer"><div class="faq-answer-inner">The Blueprint Roadmap has 10 steps — from Take Stock all the way to Blueprint Complete. Each step has clear milestones and unlocks based on your XP progress. You work through them sequentially, earning XP for completed actions. Your dashboard shows exactly where you are and what to focus on next — so you're never wondering what to do.</div></div>
+      <div class="faq-answer"><div class="faq-answer-inner">The Blueprint Roadmap has 10 levels — from Level 1 all the way to Level 10. Each level unlocks based on your XP progress. You earn XP by completing daily missions, logging habits, and hitting milestones. Your dashboard shows exactly where you are and what to focus on next.</div></div>
     </div>
 
     <div class="faq-item">
@@ -287,15 +287,15 @@ async function sendContact() {
   }
   btn.textContent='⏳ Sending...'; btn.disabled=true;
   try {
-    await fetch('https://api.brevo.com/v3/smtp/email', {
+    await fetch('https://api.web3forms.com/submit', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'api-key': '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' },
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify({
-        sender: { name: 'The Young Man Blueprint', email: 'youngmanblueprint@outlook.com' },
-        to: [{ email: 'youngmanblueprint@outlook.com', name: 'The Young Man Blueprint' }],
-        subject: 'New FAQ Contact Message — Young Man Blueprint',
-        replyTo: { email: email, name: name },
-        htmlContent: '<div style=\"font-family:Arial,sans-serif;padding:20px;\"><h2>New Contact Message</h2><p><strong>From:</strong> ' + name + ' (' + email + ')</p><p><strong>Message:</strong></p><p>' + message + '</p></div>'
+        access_key: 'c52038bd-53c9-42d0-ac49-a4185c9a3296',
+        subject: 'New Contact Message — Young Man Blueprint',
+        from_name: name,
+        email: email,
+        message: message
       })
     })
   } catch(e){}

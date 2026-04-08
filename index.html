@@ -449,8 +449,7 @@
 <!-- modal removed - signup goes to create-account.html -->
 
 <script>
-function openModal(){ window.location.href='create-account.html'; }
-function closeModal(){}
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeModal(); });
 
 function toggleCell(cell){
   if(cell.classList.contains('done')){ cell.classList.remove('done'); cell.textContent=''; }
