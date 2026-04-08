@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terms & Privacy — The Young Man Blueprint</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--black:#0a0a0a;--deep:#111318;--panel:#16191f;--border:#22262e;--orange:#e8500a;--white:#f0ede8;--muted:#7a7f8a;--green:#2dba6e;--font-display:'Bebas Neue',sans-serif;--font-body:'DM Sans',sans-serif;--font-mono:'Space Mono',monospace;}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--black);color:var(--white);font-family:var(--font-body);font-size:16px;line-height:1.7;}
+  ::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-track{background:var(--black);}::-webkit-scrollbar-thumb{background:var(--orange);}
+
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:18px 40px;background:rgba(10,10,10,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+  .nav-logo{font-family:var(--font-display);font-size:1.3rem;letter-spacing:2px;color:var(--white);text-decoration:none;}
+  .nav-logo span{color:var(--orange);}
+  .nav-back{font-family:var(--font-mono);font-size:0.65rem;letter-spacing:2px;color:var(--muted);text-decoration:none;text-transform:uppercase;transition:color 0.2s;}
+  .nav-back:hover{color:var(--white);}
+  @media(max-width:600px){nav{padding:16px 20px;}}
+
+  .hero{padding:120px 40px 60px;text-align:center;border-bottom:1px solid var(--border);background:var(--deep);}
+  .eyebrow{font-family:var(--font-mono);font-size:0.65rem;letter-spacing:3px;color:var(--orange);text-transform:uppercase;margin-bottom:16px;}
+  .hero h1{font-family:var(--font-display);font-size:clamp(3rem,8vw,6rem);letter-spacing:2px;margin-bottom:16px;}
+  .hero h1 span{color:var(--orange);}
+  .hero-sub{color:var(--muted);font-size:0.9rem;max-width:500px;margin:0 auto;}
+
+  /* TAB NAV */
+  .tab-nav{display:flex;border-bottom:1px solid var(--border);background:var(--deep);position:sticky;top:73px;z-index:50;}
+  .tab-btn{padding:18px 32px;font-family:var(--font-mono);font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer;border:none;background:transparent;border-bottom:2px solid transparent;transition:all 0.2s;}
+  .tab-btn.active{color:var(--orange);border-bottom-color:var(--orange);}
+  .tab-btn:hover{color:var(--white);}
+
+  .content{max-width:780px;margin:0 auto;padding:60px 40px 100px;}
+  @media(max-width:600px){.content{padding:40px 20px 80px;}}
+
+  .tab-section{display:none;}
+  .tab-section.active{display:block;}
+
+  .last-updated{font-family:var(--font-mono);font-size:0.62rem;letter-spacing:2px;color:var(--muted);margin-bottom:48px;padding-bottom:24px;border-bottom:1px solid var(--border);}
+
+  h2{font-family:var(--font-display);font-size:1.6rem;letter-spacing:1px;margin:40px 0 14px;color:var(--white);}
+  h2:first-of-type{margin-top:0;}
+  p{color:var(--muted);margin-bottom:16px;font-size:0.92rem;}
+  ul{color:var(--muted);margin:0 0 16px 20px;font-size:0.92rem;}
+  ul li{margin-bottom:8px;}
+  strong{color:var(--white);}
+  a{color:var(--orange);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+
+  .highlight{background:rgba(232,80,10,0.06);border:1px solid rgba(232,80,10,0.2);border-left:3px solid var(--orange);padding:16px 20px;border-radius:2px;margin:24px 0;}
+  .highlight p{margin:0;color:var(--white);font-size:0.88rem;}
+
+  footer{border-top:1px solid var(--border);padding:32px 40px;text-align:center;background:var(--deep);}
+  .footer-logo{font-family:var(--font-display);font-size:1.1rem;letter-spacing:2px;color:var(--white);text-decoration:none;display:block;margin-bottom:12px;}
+  .footer-logo span{color:var(--orange);}
+  .footer-links{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;margin-bottom:16px;}
+  .footer-links a{font-size:0.75rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-decoration:none;}
+  .footer-links a:hover{color:var(--white);}
+  .footer-copy{font-family:var(--font-mono);font-size:0.65rem;color:var(--muted);}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">THE YOUNG MAN <span>BLUEPRINT</span></a>
+  <a href="index.html" class="nav-back">← Back to Home</a>
+</nav>
+
+<div class="hero">
+  <div class="eyebrow">Legal</div>
+  <h1>TERMS & <span>PRIVACY</span></h1>
+  <p class="hero-sub">The legal stuff. Read it — it tells you exactly what we do and don't do with your data and your money.</p>
+</div>
+
+<div class="tab-nav">
+  <button class="tab-btn active" onclick="showTab('terms')">Terms of Service</button>
+  <button class="tab-btn" onclick="showTab('privacy')">Privacy Policy</button>
+</div>
+
+<!-- ══════════ TERMS OF SERVICE ══════════ -->
+<div class="content">
+<div id="tab-terms" class="tab-section active">
+  <div class="last-updated">Last updated: April 2026</div>
+
+  <div class="highlight"><p>By using The Young Man Blueprint, you agree to these terms. If you don't agree, don't use the site.</p></div>
+
+  <h2>1. Who We Are</h2>
+  <p>The Young Man Blueprint ("we", "us", "our") is a self-improvement platform built for young men. We operate at <strong>theyoungmanblueprint.com</strong> and are owned and operated by Daniel Afanasiyevskyy.</p>
+
+  <h2>2. Who Can Use This</h2>
+  <p>You must be at least 16 years old to use this platform. By creating an account, you confirm that you meet this requirement. If you are under 18, please ensure a parent or guardian is aware you are using this service.</p>
+
+  <h2>3. Your Account</h2>
+  <p>You are responsible for:</p>
+  <ul>
+    <li>Keeping your password secure and confidential</li>
+    <li>All activity that occurs under your account</li>
+    <li>Providing accurate information when signing up</li>
+    <li>Notifying us immediately if you suspect unauthorized access</li>
+  </ul>
+  <p>We reserve the right to suspend or terminate accounts that violate these terms.</p>
+
+  <h2>4. Free Plan</h2>
+  <p>The free plan gives you access to all 11 pillar guides, resources, and interactive assessments at no cost. No credit card is required. We may modify what's included in the free plan at any time with reasonable notice.</p>
+
+  <h2>5. Paid Plan — $9/month</h2>
+  <p>The paid Blueprint plan is billed monthly at CAD $9.00 (or the equivalent in your local currency as determined by Stripe). By subscribing, you agree to:</p>
+  <ul>
+    <li>Automatic monthly billing until you cancel</li>
+    <li>Payments processed securely by Stripe — we never store your card details</li>
+    <li>Prices may change with 30 days notice</li>
+  </ul>
+
+  <h2>6. Cancellations & Refunds</h2>
+  <p>You can cancel your subscription at any time from your account settings. Your access continues until the end of the current billing period — no partial refunds for unused time.</p>
+  <p><strong>7-day money-back guarantee:</strong> If you subscribe and feel it wasn't worth it, email us within 7 days of your first payment at <a href="mailto:youngmanblueprint@outlook.com">youngmanblueprint@outlook.com</a> and we will refund you in full, no questions asked.</p>
+
+  <h2>7. What We Provide</h2>
+  <p>The Young Man Blueprint provides educational content, tools, and frameworks for personal development. We are <strong>not</strong>:</p>
+  <ul>
+    <li>A licensed therapy or mental health service</li>
+    <li>A financial advisor or investment service</li>
+    <li>A medical provider</li>
+  </ul>
+  <p>Content on this platform is for informational and educational purposes only. Always consult a qualified professional for medical, financial, or mental health decisions.</p>
+
+  <h2>8. Mental Health & Crisis</h2>
+  <p>If you are in crisis, please contact emergency services or a crisis line immediately. In Canada and the US: <strong>call or text 988</strong>. In the UK: <strong>116 123</strong> (Samaritans). In Australia: <strong>13 11 14</strong> (Lifeline).</p>
+  <p>The Blueprint is not a substitute for professional mental health support.</p>
+
+  <h2>9. Intellectual Property</h2>
+  <p>All content on this platform — including guides, frameworks, assessments, design, and code — is owned by The Young Man Blueprint. You may not copy, reproduce, or distribute our content without written permission.</p>
+
+  <h2>10. Limitation of Liability</h2>
+  <p>We provide this platform in good faith. To the maximum extent permitted by law, The Young Man Blueprint is not liable for any indirect, incidental, or consequential damages arising from your use of the platform. Our maximum liability to you in any circumstance is the amount you paid us in the last 30 days.</p>
+
+  <h2>11. Changes to These Terms</h2>
+  <p>We may update these terms from time to time. We will notify you of significant changes by email or via a notice on the platform. Continued use of the platform after changes constitutes acceptance.</p>
+
+  <h2>12. Contact</h2>
+  <p>Questions about these terms? Email us at <a href="mailto:youngmanblueprint@outlook.com">youngmanblueprint@outlook.com</a>. We respond within 48 hours.</p>
+</div>
+
+<!-- ══════════ PRIVACY POLICY ══════════ -->
+<div id="tab-privacy" class="tab-section">
+  <div class="last-updated">Last updated: April 2026</div>
+
+  <div class="highlight"><p>Short version: We collect only what we need. We don't sell your data. Ever.</p></div>
+
+  <h2>1. What We Collect</h2>
+  <p><strong>When you create an account:</strong> your name, email address, and password (stored locally in your browser).</p>
+  <p><strong>When you use the platform:</strong> your progress data — XP, habits, missions, streaks, badges — stored locally in your browser via localStorage. This data stays on your device and is not transmitted to our servers.</p>
+  <p><strong>When you subscribe:</strong> payment is processed by Stripe. We receive confirmation of payment but never see or store your card details.</p>
+  <p><strong>When you contact us:</strong> your name, email, and message submitted through our contact form (processed by Web3Forms).</p>
+
+  <h2>2. What We Don't Collect</h2>
+  <ul>
+    <li>We do not use tracking cookies or advertising trackers</li>
+    <li>We do not use Google Analytics or any third-party analytics</li>
+    <li>We do not sell, rent, or share your personal data with third parties</li>
+    <li>We do not store your progress data on any server — it lives in your browser only</li>
+  </ul>
+
+  <h2>3. How We Use Your Information</h2>
+  <ul>
+    <li>To send you account-related emails (welcome, password reset)</li>
+    <li>To process your subscription payment via Stripe</li>
+    <li>To respond to your support or contact messages</li>
+    <li>To send you the blog newsletter if you subscribed (you can unsubscribe anytime)</li>
+  </ul>
+
+  <h2>4. Data Storage & Security</h2>
+  <p>Your account progress is stored in your browser's localStorage — meaning it stays on your device. If you clear your browser data, your progress will be lost. We recommend noting your email and password so you can restore your account.</p>
+  <p>Emails are sent through Web3Forms and Brevo, both of which maintain industry-standard security practices.</p>
+  <p>Payments are processed by Stripe, which is PCI DSS compliant. We never handle or store payment card information directly.</p>
+
+  <h2>5. Third-Party Services</h2>
+  <p>We use the following third-party services:</p>
+  <ul>
+    <li><strong>Stripe</strong> — payment processing (<a href="https://stripe.com/privacy" target="_blank">Stripe Privacy Policy</a>)</li>
+    <li><strong>Web3Forms</strong> — contact and email form handling</li>
+    <li><strong>GitHub Pages</strong> — website hosting</li>
+    <li><strong>Google Fonts</strong> — typography (may load fonts from Google servers)</li>
+  </ul>
+
+  <h2>6. Your Rights</h2>
+  <p>You have the right to:</p>
+  <ul>
+    <li>Request a copy of any personal data we hold about you</li>
+    <li>Request deletion of your data — email us and we will remove your email from all our systems within 7 days</li>
+    <li>Unsubscribe from any emails at any time</li>
+    <li>Delete your account from the Settings page</li>
+  </ul>
+
+  <h2>7. Children's Privacy</h2>
+  <p>This platform is intended for users aged 16 and over. We do not knowingly collect data from children under 16. If you believe a child has provided us with personal information, please contact us and we will delete it promptly.</p>
+
+  <h2>8. Changes to This Policy</h2>
+  <p>We may update this privacy policy from time to time. We will notify you of significant changes via email. The date at the top of this page reflects the most recent update.</p>
+
+  <h2>9. Contact</h2>
+  <p>Privacy questions or data requests: <a href="mailto:youngmanblueprint@outlook.com">youngmanblueprint@outlook.com</a>. We respond within 48 hours.</p>
+</div>
+</div>
+
+<footer>
+  <a href="index.html" class="footer-logo">THE YOUNG MAN <span>BLUEPRINT</span></a>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="faq.html">FAQ</a>
+    <a href="legal.html">Terms & Privacy</a>
+    <a href="mailto:youngmanblueprint@outlook.com">Contact</a>
+  </div>
+  <div class="footer-copy">© 2026 THE YOUNG MAN BLUEPRINT. ALL RIGHTS RESERVED.</div>
+</footer>
+
+<script>
+function showTab(tab) {
+  document.querySelectorAll('.tab-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
+</body>
+</html>
