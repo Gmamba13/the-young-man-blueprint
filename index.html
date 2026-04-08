@@ -452,7 +452,6 @@
 function openModal(){ window.location.href='create-account.html'; }
 function closeModal(){}
 document.getElementById('modal').addEventListener('click', function(e){ if(e.target===this) closeModal(); });
-document.addEventListener('keydown', e => { if(e.key==='Escape') closeModal(); });
 
 function toggleCell(cell){
   if(cell.classList.contains('done')){ cell.classList.remove('done'); cell.textContent=''; }
