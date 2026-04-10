@@ -409,6 +409,7 @@
     btn.textContent = '✓ Logging In...';
     try {
       sessionStorage.setItem('tmb_session', '1');
+      localStorage.removeItem('tmb_logged_out');
     } catch(e){}
     setTimeout(() => { window.location.href = 'dashboard.html'; }, 900);
   }

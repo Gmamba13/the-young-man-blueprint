@@ -195,12 +195,19 @@ body{background:var(--black);color:var(--white);font-family:var(--font-body);fon
   try {
     var p = localStorage.getItem('tmb_user');
     var sess = sessionStorage.getItem('tmb_session');
-    // Logged out if no profile, or if session was explicitly cleared (logout)
+    var loggedOut = localStorage.getItem('tmb_logged_out');
+    
+    // No profile = never signed up
     if(!p || p === 'null' || p === 'undefined') {
       window.location.replace('login.html');
       return;
     }
-    // Set session marker so nav pages know user is active
+    // Explicitly logged out and no active session
+    if(loggedOut === '1' && !sess) {
+      window.location.replace('login.html');
+      return;
+    }
+    // Active session or profile exists without logout flag - let them in
     sessionStorage.setItem('tmb_session', '1');
   } catch(e){
     window.location.replace('login.html');
@@ -727,7 +734,7 @@ function renderBadges(p){
 }
 
 // ── MISC ─────────────────────────────────────────────
-function logout(){localStorage.removeItem('tmb_user');sessionStorage.removeItem('tmb_session');location.href='login.html';}
+function logout(){sessionStorage.removeItem('tmb_session');localStorage.setItem('tmb_logged_out','1');location.href='login.html';}
 function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('mob-overlay').classList.toggle('show');}
 document.querySelectorAll('.modal-overlay').forEach(m=>{m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('open');});});
 
